@@ -1,0 +1,28 @@
+{{errMessage}}
+
+Nhập customerID: <input type="text" #ID>
+<button (click)="getInfo(ID.value)" >Submit</button>
+<ul>
+  <li>Thông tin cá nhân
+    <ul>
+      <li>Tên: {{cusInfo.customerName}}</li>
+      <li>Email: {{cusInfo.customerEmail}}</li>
+      <li>Phone: {{cusInfo.customerPhone}}</li>
+      <li>Gender: {{cusInfo.customerGender}}</li>
+      <li>Address: {{cusInfo.customerAddress}}</li>
+    </ul>
+  </li>
+  <!-- <li>
+    Lịch sử mua hàng
+    <ul *ngFor="let po of purchaseHistory">
+      <li>Ngày: {{po.orderDate}}</li>
+      <li>Details:
+        <ul *ngFor="let item of po.orderItems">
+          <li>Sản phẩm: {{item.productId}}</li>
+          <li>Đơn giá: {{item.unitPrice}}</li>
+          <li>Số lượng: {{item.quantity}}</li>
+        </ul>
+      </li>
+    </ul>
+  </li> -->
+</ul>

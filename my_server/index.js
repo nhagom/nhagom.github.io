@@ -30,7 +30,7 @@ customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
-
+//api cơ bản
 app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).toArray();
     res.send(result)
@@ -53,6 +53,20 @@ app.get("/blogs", cors(), async (req,res)=>{
 
 app.get("/feedbacks", cors(), async (req,res)=>{
     const result = await feedbacksCollection.find({}).toArray();
+    res.send(result)
+})
+
+//api gọi customer theo id
+app.get("/customers/:customerId", cors(), async (req,res)=>{
+    var id = req.params["customerId"]
+    const result = await customersCollection.find({customerId:id}).toArray();
+    res.send(result[0])
+})
+
+//api gọi lịch sử mua hàng theo customerid
+app.get("/orders/:customerId", cors(), async (req,res)=>{
+    var id = req.params["customerId"]
+    const result = await ordersCollection.find({customerId:id}).toArray();
     res.send(result)
 })
 
