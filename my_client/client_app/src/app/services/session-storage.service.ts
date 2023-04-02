@@ -1,6 +1,6 @@
 // lưu trữ thông tin người dùng
 import { Injectable } from '@angular/core';
-import { IUser } from '../interfaces/User';
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
