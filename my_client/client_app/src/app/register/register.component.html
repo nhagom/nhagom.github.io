@@ -1,0 +1,13 @@
+<div>
+  <h2>Register</h2>
+  <div *ngIf="error" style="color: red">{{ error }}</div>
+  <div>
+    <label>Email:</label>
+    <input type="text" [(ngModel)]="email">
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type="password" [(ngModel)]="password">
+  </div>
+  <button (click)="register()">Register</button>
+</div>
