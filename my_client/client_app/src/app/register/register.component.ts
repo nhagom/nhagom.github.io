@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { SessionStorageService } from '../services/session-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -12,19 +12,17 @@ export class RegisterComponent {
   password: string='';
   error: string='';
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private storageService: SessionStorageService) {}
 
   register() {
-    const users = this.loginService.getUsers();
+    const users = this.storageService.getUsers();
     const user = users.find(u => u.email === this.email);
     if (user) {
       this.error = 'Email already registered';
     } else {
       const newUser = { email: this.email, password: this.password };
-      this.loginService.addUser(newUser);
+      this.storageService.addUser(newUser);
       this.router.navigate(['/login']);
     }
   }
-
 }
-
