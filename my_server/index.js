@@ -57,8 +57,8 @@ app.get("/feedbacks", cors(), async (req,res)=>{
 })
 
 //api gọi customer theo id
-app.get("/customers/:customerId", cors(), async (req,res)=>{
-    var id = req.params["customerId"]
+app.get("/customers/:id", cors(), async (req,res)=>{
+    var id = req.params["id"]
     const result = await customersCollection.find({customerId:id}).toArray();
     res.send(result[0])
 })
