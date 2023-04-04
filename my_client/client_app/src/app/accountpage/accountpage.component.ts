@@ -17,10 +17,10 @@ export class AccountpageComponent {
       error:(err)=>{this.errMessage=err}
     })
   }
-  // getPurchaseHistory(ID:string){
-  //   this._service.getPurchaseHistory(ID).subscribe({
-  //     next:(data)=>{this.purchaseHistory=data},
-  //     error:(err)=>{this.errMessage=err}
-  //   })
-  // }
+  getPurchaseHistory(ID:string){
+    this._service.getPurchaseHistory(ID).subscribe({
+      next:(data)=>{this.purchaseHistory=data},
+      error:(err)=>{this.errMessage=err}
+    })
+  }
 }
