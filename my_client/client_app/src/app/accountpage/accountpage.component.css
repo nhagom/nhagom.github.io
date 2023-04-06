@@ -9,3 +9,28 @@
 .detail{
   flex: 2;
 }
+.order {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+  border: 1px solid black;
+  padding: 20px 10px;
+  margin: 20px 0;
+}
+.order-header {
+  display: flex;
+  justify-content: space-between;
+}
+table{
+  width: 100%;
+}
+.name{
+  width: 50%;
+}
+.order-bold {
+  font-weight: bold;
+}
+.total {
+  text-align: right;
+}
