@@ -1,0 +1,114 @@
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  flex-direction: column;
+  display: flex;
+}
+
+.toggle-chatbot {
+  background-color: #1e90ff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.toggle-chatbot:hover {
+  transform: scale(1.1);
+}
+.chatbot {
+  width: 300px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.chatbox {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbot-message {
+  background-color: #f1f1f1;
+  margin: 5px 5px;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.user-message {
+  background-color: #4CAF50;
+  color: white;
+  margin: 5px 0px;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px;
+  align-self: flex-end;
+}
+
+.traLoiNhanh {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnTraLoiNhanh {
+  background-color: #4376d0;
+  color: white;
+  margin: 1px 0px;
+  border-radius: 4px;
+  padding: 5px;
+  display: inline-block;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.input-container {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+.a {
+  height: 100vh;
+  width: 100vw;
+}

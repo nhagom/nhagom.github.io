@@ -10,6 +10,7 @@ import { AccountpageComponent } from './accountpage/accountpage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BlogComponent } from './blog/blog.component';
     AccountpageComponent,
     LoginComponent,
     RegisterComponent,
-    BlogComponent
+    BlogComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,
