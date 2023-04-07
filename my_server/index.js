@@ -6,11 +6,11 @@ const morgan=require("morgan")
 app.use(morgan("combined"))
 
 const bodyParser=require("body-parser")
-app.use(bodyParser.json({limit:'1000mb'}));
-app.use(bodyParser.urlencoded({extended: true,limit:'1000mb'}));
+app.use(bodyParser.json({limit:'100mb'}));
+app.use(bodyParser.urlencoded({extended: true,limit:'100mb'}));
 
-app.use(express.json({limit:'1000mb'}));
-app.use(express.urlencoded({limit:'1000mb'}));
+app.use(express.json({limit:'100mb'}));
+app.use(express.urlencoded({limit:'100mb'}));
 app.use(express.json())
 
 
@@ -38,12 +38,7 @@ ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
 
-// Xử lý khi dung lượng gửi lên serve lớn
-app.use(bodyParser.json({limit: '10mb'}));
-app.use(bodyParser.urlencoded({extend: true, limit :'10mb'}));
-app.use(express.json({limit:'10mb'}));
-app.use(express.urlencoded({limit:'10mb'}));
-app.use(express.json());
+
 
 //api product
 app.get("/products", cors(), async (req,res)=>{
