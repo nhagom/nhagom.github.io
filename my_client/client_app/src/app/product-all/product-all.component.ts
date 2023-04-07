@@ -9,7 +9,7 @@ import { IProduct } from '../interfaces/Product';
   styleUrls: ['./product-all.component.css']
 })
 export class ProductAllComponent {
-  products: IProduct[] = [];
+  products: any;
   errMessage: string = '';
   constructor(public _service: ProductApiService, public router: Router) {
     this._service.getProducts().subscribe({
