@@ -70,3 +70,15 @@ app.get("/orders/:customerId", cors(), async (req,res)=>{
     res.send(result)
 })
 
+//api update thông tin customer
+app.put("/customers", cors(), async (req,res)=>{
+    await customersCollection.updateOne(
+        {_id:new ObjectId(req.body._id)},
+        { $set: { 
+            
+
+        }}
+    )
+    res.send(result)
+})
+
