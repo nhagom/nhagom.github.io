@@ -30,6 +30,14 @@ customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
+
+// Xử lý khi dung lượng gửi lên serve lớn
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({extend: true, limit :'10mb'}));
+app.use(express.json({limit:'10mb'}));
+app.use(express.urlencoded({limit:'10mb'}));
+app.use(express.json());
+
 //api cơ bản
 app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).toArray();
@@ -54,6 +62,13 @@ app.get("/blogs", cors(), async (req,res)=>{
 app.get("/feedbacks", cors(), async (req,res)=>{
     const result = await feedbacksCollection.find({}).toArray();
     res.send(result)
+})
+
+app.post("/customers",cors(),async(req,res)=>{
+    //put json Register into database
+    await customersCollection.insertOne(req.body)
+    //send messege to client
+    res.send(req.body)
 })
 
 //api gọi customer theo id
