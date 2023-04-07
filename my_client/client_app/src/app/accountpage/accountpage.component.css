@@ -1,0 +1,11 @@
+.profile-item{
+  display: flex;
+}
+.bold{
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+.detail{
+  flex: 2;
+}

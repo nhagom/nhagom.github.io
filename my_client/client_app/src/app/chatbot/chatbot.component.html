@@ -1,0 +1,25 @@
+<div class="a" (click)="onBodyClick($event)">
+  <div class="chatbot-container" >
+    <button class="toggle-chatbot" (click)="toggleChatbot()">
+      Chat
+    </button>
+    <div *ngIf="isChatbotVisible" class="chatbot" >
+      <div class="chatbox">
+
+        <div class="message" *ngFor="let message of messages">
+          <span [ngClass]="{'chatbot-message': message.sender === 'chatbot', 'user-message': message.sender === 'user'}">
+            {{message.content}}
+          </span>
+        </div>
+        <div class="traLoiNhanh">
+          <button class="btnTraLoiNhanh" (click)="fillOutMessage('Giao hàng')">Giao hàng</button>
+          <button class="btnTraLoiNhanh">Chính sách đổi trả của cửa hàng</button>
+        </div>
+      </div>
+      <div class="input-container">
+        <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()" placeholder="Type your message...">
+        <button (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+  </div>
