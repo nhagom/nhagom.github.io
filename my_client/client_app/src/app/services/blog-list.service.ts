@@ -9,6 +9,7 @@ import { IBlog } from '../interfaces/blogs';
 export class BlogListService {
 
   constructor(private _http:HttpClient) { }
+
   getBlogs():Observable<any>
   {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
@@ -25,4 +26,5 @@ export class BlogListService {
   handleError(error:HttpErrorResponse){
     return throwError(()=> new Error(error.message))
   }
+  public selectedBlogId:any
 }

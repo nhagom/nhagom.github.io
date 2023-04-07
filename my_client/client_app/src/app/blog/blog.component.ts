@@ -9,6 +9,10 @@ import { BlogListService } from '../services/blog-list.service';
 export class BlogComponent {
   blogs:any
   errMessage:string=''
+  selectedBlogId:any
+  ngOnInit():void{
+    this.selectedBlogId=this._service.selectedBlogId
+  }
   constructor(public _service: BlogListService){
     this._service.getBlogs().subscribe({
       next:(data)=>{this.blogs=data},
