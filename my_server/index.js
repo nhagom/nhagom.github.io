@@ -37,6 +37,14 @@ customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
+
+// Xử lý khi dung lượng gửi lên serve lớn
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({extend: true, limit :'10mb'}));
+app.use(express.json({limit:'10mb'}));
+app.use(express.urlencoded({limit:'10mb'}));
+app.use(express.json());
+
 //api cơ bản
 app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).toArray();
@@ -63,6 +71,13 @@ app.get("/feedbacks", cors(), async (req,res)=>{
     res.send(result)
 })
 
+app.post("/customers",cors(),async(req,res)=>{
+    //put json Register into database
+    await customersCollection.insertOne(req.body)
+    //send messege to client
+    res.send(req.body)
+})
+
 //api gọi customer theo id
 app.get("/customers/:id", cors(), async (req,res)=>{
     var id = req.params["id"]
@@ -77,6 +92,7 @@ app.get("/orders/:customerId", cors(), async (req,res)=>{
     res.send(result)
 })
 
+<<<<<<< HEAD
 //api của product
 app.get("/fashions/:id",cors(), async(req,res)=>{
     var o_id = new ObjectId(req.params["id"]);
@@ -91,3 +107,17 @@ app.get("/fashions-get/:style",cors(), async(req,res)=>{
 })
 
 
+=======
+//api update thông tin customer
+app.put("/customers", cors(), async (req,res)=>{
+    await customersCollection.updateOne(
+        {_id:new ObjectId(req.body._id)},
+        { $set: { 
+            
+
+        }}
+    )
+    res.send(result)
+})
+
+>>>>>>> a43f356a3a3f105b1b6d7cd7d2d71ed2dcb42e17

@@ -7,6 +7,7 @@ import { AccountPageService } from '../services/account-page.service';
   styleUrls: ['./accountpage.component.css']
 })
 export class AccountpageComponent {
+  active = 1;
   cusInfo:any
   purchaseHistory:any
   errMessage=''
@@ -22,5 +23,13 @@ export class AccountpageComponent {
       next:(data)=>{this.purchaseHistory=data},
       error:(err)=>{this.errMessage=err}
     })
+  }
+
+  calculateTotal(p: any): number {
+    let total = 0;
+    for (let item of p.orderItems) {
+      total += item.quantity * item.price;
+    }
+    return total;
   }
 }

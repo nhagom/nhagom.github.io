@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { AccountpageComponent } from './accountpage/accountpage.component';
@@ -32,9 +34,13 @@ import { ProductAllComponent } from './product-all/product-all.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+<<<<<<< HEAD
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+=======
+    ReactiveFormsModule
+>>>>>>> a43f356a3a3f105b1b6d7cd7d2d71ed2dcb42e17
   ],
   providers: [],
   bootstrap: [AppComponent]

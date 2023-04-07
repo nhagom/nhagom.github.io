@@ -1,6 +1,6 @@
 <p>blog works!</p>
 {{errMessage}}
-<table border="1">
+<!-- <table border="1">
   <tr *ngFor="let blog of blogs">
     <td>{{blog.blogId}}</td>
     <td>{{blog.blogName}}</td>
@@ -10,4 +10,35 @@
     <td>{{blog.content2}}</td>
     <td>{{blog.content3}}</td>
   </tr>
-</table>
+</table> -->
+<main>
+  <div class="blog-detail">
+      <!-- <div class="row-banner">
+          <img src="../../assets/img/Banner blog.jpg" alt="">
+      </div> -->
+
+      <div class="blog-content-detail">
+          <div *ngFor="let blog of blogs">
+                <img id="img-blog-content-1" src="{{blog.imgTitle}}">
+                <div class="text-blog-content">
+                    <h4>Blog | {{blog.blogTitle}} | {{blog.blogName}}</h4>
+                    <p>{{blog.content1}}</p>
+                      <!-- <p>{{blog.content2}}</p>
+                      <p>{{blog.content3}}</p> -->
+                </div>
+          </div>
+      </div>
+      <h2>Bài viết liên quan</h2>
+      <div class="blog-related-list">
+          <div class="blog-related-card" *ngFor="let b of blogs.slice(0,4);let i=index">
+              <div>
+                  <img src="{{b.imgTitle}}" alt="">
+                  <div>
+                      <h2>{{b.blogTitle}}</h2>
+                      <p>{{b.shortContent}}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
