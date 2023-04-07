@@ -92,22 +92,6 @@ app.get("/orders/:customerId", cors(), async (req,res)=>{
     res.send(result)
 })
 
-<<<<<<< HEAD
-//api của product
-app.get("/fashions/:id",cors(), async(req,res)=>{
-    var o_id = new ObjectId(req.params["id"]);
-    const result = await fashionCollection.find({_id:o_id}).toArray();
-    res.send(result[0])
-})
-//this is API to get category of style
-app.get("/fashions-get/:style",cors(), async(req,res)=>{
-    const o_style = new RegExp(req.params.style,"i")
-    const result = await fashionCollection.find({style:{$regex: o_style}}).toArray();
-    res.send(result)
-})
-
-
-=======
 //api update thông tin customer
 app.put("/customers", cors(), async (req,res)=>{
     await customersCollection.updateOne(
@@ -120,4 +104,3 @@ app.put("/customers", cors(), async (req,res)=>{
     res.send(result)
 })
 
->>>>>>> a43f356a3a3f105b1b6d7cd7d2d71ed2dcb42e17
