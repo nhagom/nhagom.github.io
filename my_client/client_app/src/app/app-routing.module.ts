@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountpageComponent } from './accountpage/accountpage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductAllComponent } from './product-all/product-all.component';
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
@@ -14,6 +16,9 @@ const routes: Routes = [
   // { path: 'home', component: AccountpageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'product-detail', component: ProductDetailComponent },
+  { path: 'product-all', component: ProductAllComponent },
+
 ];
 
 @NgModule({

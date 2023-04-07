@@ -6,8 +6,13 @@ const morgan=require("morgan")
 app.use(morgan("combined"))
 
 const bodyParser=require("body-parser")
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit:'1000mb'}));
+app.use(bodyParser.urlencoded({extended: true,limit:'1000mb'}));
+
+app.use(express.json({limit:'1000mb'}));
+app.use(express.urlencoded({limit:'1000mb'}));
+app.use(express.json())
+
 
 const cors=require("cors");
 app.use(cors())
@@ -24,7 +29,9 @@ app.get("/", (req,res)=>{
 const { MongoClient, ObjectId } = require('mongodb');
 client = new MongoClient("mongodb://127.0.0.1:27017");
 client.connect();
+
 database = client.db("gốm");
+
 productsCollection = database.collection("products");
 customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
@@ -69,4 +76,18 @@ app.get("/orders/:customerId", cors(), async (req,res)=>{
     const result = await ordersCollection.find({customerId:id}).toArray();
     res.send(result)
 })
+
+//api của product
+app.get("/fashions/:id",cors(), async(req,res)=>{
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await fashionCollection.find({_id:o_id}).toArray();
+    res.send(result[0])
+})
+//this is API to get category of style
+app.get("/fashions-get/:style",cors(), async(req,res)=>{
+    const o_style = new RegExp(req.params.style,"i")
+    const result = await fashionCollection.find({style:{$regex: o_style}}).toArray();
+    res.send(result)
+})
+
 
