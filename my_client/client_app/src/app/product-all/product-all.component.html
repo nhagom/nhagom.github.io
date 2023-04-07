@@ -1,0 +1,165 @@
+<script src="../../assets/jquery/jquery.min.js"></script>
+<script src="../../assets/css/bootstrap-reboot.min.css"></script>
+
+<script src="../../assets/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
+
+
+<nav aria-label="breadcrumb col-md-12">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#!/homePage">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="#!/productAll">Danh mục</a></li>
+      <!-- <li class="breadcrumb-item active" aria-current="page">{{breadcum}}</li> -->
+  </ol>
+</nav>
+<!-- <div class="row">
+  <div class="hdsp col-md-12  fadeIn">
+      <img id="slide"  ng-src="Image/Header_ProductPage/{{banner}}" alt="Lỗi">
+  </div>
+</div> -->
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+
+          <div class="collection col-md-3 col-sm-12 col-12">
+              <nav class="navbar navbar-expand-md sticky-top ">
+
+                  <button class="navbar-toggler" id="hanggom" type="button" data-toggle="collapse"
+                      data-target="#navbarSupported" aria-controls="navbarSupported" aria-expanded="false"
+                      aria-label="Toggle navigation">
+                      <div class="card-header">
+                          <a href="#!/productAll" class="menu col-md-2 col-sm-12 col-12">Hàng Gốm
+                          </a>
+                          <i class="bi bi-plus"></i>
+                      </div>
+
+                  </button>
+
+
+                  <div class="collapse navbar-collapse" id="navbarSupported">
+                      <div class="accordion" id="accordionExample">
+                          <div class="card">
+                              <div class="card-header" id="headingOne">
+                                  <h2 class="mb-0">
+                                      <button class="btn " type="button"
+                                          data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                                          aria-controls="collapseOne">Gốm gia dụng
+                                          <i class="bi bi-caret-down-fill"></i>
+                                      </button>
+                                  </h2>
+                              </div>
+
+                              <div id="collapseOne" id="menu" class="collapse show" aria-labelledby="headingOne"
+                                  data-parent="#accordionExample">
+                                  <div type="button"class="card-body">
+                                      <a href="#!/productKitchen">Gốm phòng bếp</a>
+                                  </div>
+                              </div>
+                              <div id="collapseOne" id="menu" class="collapse show" aria-labelledby="headingOne"
+                                  data-parent="#accordionExample">
+                                  <div type="button" class="card-body">Gốm phòng khách
+                                  </div>
+                              </div>
+                              <div id="collapseOne" id="menu" class="collapse show" aria-labelledby="headingOne"
+                                  data-parent="#accordionExample">
+                                  <div type="button" class="card-body">
+                                      <a href="#!/productBath">Gốm phòng tắm</a>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="card">
+                              <div class="card-header" id="headingTwo">
+                                  <h2 class="mb-0">
+                                      <button class="btn text-left collapsed" type="button"
+                                          data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                          aria-controls="collapseTwo">
+                                          <a href="#!/productDecor">Gốm trang trí</a>
+                                      </button>
+                                  </h2>
+                              </div>
+                          </div>
+                          <div class="card">
+                              <div class="card-header" id="headingThree">
+                                  <h2 class="mb-0">
+                                      <button class="btn  text-left collapsed" type="button"
+                                          data-toggle="collapse" data-target="#collapseThree"
+                                          aria-expanded="false" aria-controls="collapseThree">
+                                          <a href="#!/productJewelry">Gốm trang sức</a>
+                                      </button>
+                                  </h2>
+                              </div>
+<!-- //btn-link btn-block// -->
+                          </div>
+                          <div class="card">
+                              <div class="card-header" id="headingFour">
+                                  <h2 class="mb-0">
+                                      <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                          data-toggle="collapse" data-target="#collapseFour"
+                                          aria-expanded="false" aria-controls="collapseFour">
+                                          <a href="#!/productCollections">Bộ gốm</a>
+                                      </button>
+                                  </h2>
+                              </div>
+
+                          </div>
+
+                          <div class="card">
+                              <div class="card-header" id="headingFive">
+                                  <h2 class="mb-0">
+                                      <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                          data-toggle="collapse" data-target="#collapseFive"
+                                          aria-expanded="false" aria-controls="collapseFive" ng-click="tags()">
+                                          <a href="#!/productOthers">Gốm khác</a>
+                                      </button>
+                                  </h2>
+                              </div>
+
+                          </div>
+                      </div>
+
+                  </div>
+              </nav>
+
+          </div>
+          <div class="col-md-9 col-sm-12 col-12">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h2 id="gomnoi">
+                          <a href="">Tất cả sản phẩm</a>
+                      </h2>
+                  </div>
+              </div>
+
+              <div class="listgomnoi">
+                  <div class="container">
+                      <div class="row">
+                          <div class="sp col-lg-3 col-md-3 col-sm-6 col-12 pro-loop" ng-repeat="item in Product ">
+
+                              <a class="photo" href="#!/detailProduct?masp="{{products.productId}}>
+                                  <img id="imnoi" {{products.image}}class="card-img-top  fadeIn" data-size="auto">
+                                  <div class="card-body">
+                                      <p class="card-text" {{products.productName}}>
+                                      <p class="card-text" {{products.price | number:0}}>
+                                  </div>
+                                  <div class="glow-wrap">
+                                      <i class="glow"></i>
+                                  </div>
+                              </a>
+
+                          </div>
+                          <!-- <div class="pag col-md-12 col-sm-12 col-12 ">
+                              <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize"
+                                  class="pagination" boundary-links="true" rotate="true" num-pages="numPages">
+                              </pagination>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

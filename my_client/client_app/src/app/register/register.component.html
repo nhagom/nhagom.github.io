@@ -1,5 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<div>
+<!-- <div>
   <h2>Register</h2>
   <div *ngIf="error" style="color: red">{{ error }}</div>
   <div>
@@ -11,7 +11,64 @@
     <input type="password" [(ngModel)]="password">
   </div>
   <button (click)="register()">Register</button>
+</div> -->
+<p>{{errMessage}}</p>
+<div class="containter-fluid">
+  <form [formGroup]="regForm">
+    <h3 class="text-center">Đăng ký tài khoản</h3>
+        <!-- tên -->
+    <div class="mb-3">
+      <label for="name">Họ và tên</label>
+      <input type="text" class="form-control" name="customerName" id="name" placeholder="Nhập tên" formControlName="name" [class.is-invalid]="regForm.controls['name'].invalid && regForm.controls['name'].touched" [(ngModel)]="customer.customerName">
+      <div *ngIf="regForm.controls['name'].invalid && regForm.controls['name'].touched">
+        <small class="text-danger" *ngIf="regForm.controls['name'].errors?.['required'] ">Tên không được để trống</small>
+        <small class="text-danger" *ngIf="regForm.controls['name'].errors?.['minlength']">Tên phải tồn tại ít nhất 3 ký tự </small>
+        <small class="text-danger" *ngIf="name.errors?.['nameNotMatch']">Tên không được chứa ký tự đặc biệt</small>
+      </div>
+    </div>
+    <!-- email -->
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input type="email" [email]="true" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" formControlName="email"[class.is-invalid]="regForm.controls['email'].invalid && regForm.controls['email'].touched"  [(ngModel)]="customer.customerEmail">
+      <div *ngIf="regForm.controls['email'].errors && (regForm.controls['email'].invalid || regForm.controls['email'].touched)">
+        <small class="text-danger" *ngIf="regForm.controls['email'].errors['required'] " [class.d-none]="regForm.controls['email'].valid || regForm.controls['email'].untouched
+        ">Bạn chưa nhập email</small>
+        <small class="text-danger" *ngIf="regForm.controls['email'].errors['email']">Email không hợp lệ</small>
+      </div>
+    </div>
+    <!-- phone -->
+    <div class="mb-3">
+      <label for="phone">Số điện thoại</label>
+      <input type="text" class="form-control" name="customerName" id="name" placeholder="Nhập tên" formControlName="name" [class.is-invalid]="regForm.controls['name'].invalid && regForm.controls['name'].touched" [(ngModel)]="customer.customerName">
+      <input type="text" class="form-control" name="phone" id="phone" formControlName="customerPhoneNumb" [(ngModel)]="customer.customerPhoneNumb">
+      <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Bạn chưa nhập số điện thoại</small> -->
+    </div>
+    <!-- địa chỉ -->
+    <div class="mb-3">
+      <label for="address">Địa chỉ</label>
+      <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ" required [(ngModel)]="customer.customerAddress">
+      <!-- <small class="text-danger" [class.d-none]="address.valid || address.untouched">Bạn chưa nhập địa chỉ</small> -->
+    </div>
+    <!-- password -->
+    <div class="mb-3">
+      <label for="pass">Mật khẩu</label>
+      <input type="password" class="form-control" id="pass" formControlName="password" placeholder="Nhập mật khẩu" [(ngModel)]="customer.password">
+    </div>
+    <div class="mb-3">
+      <label for="retype_password">Nhập lại mật khẩu</label>
+      <input type="password" class="form-control" id="retype_password" formControlName="confirmPass" [class.is-invalid]="regForm.errors?.['misMatch']" placeholder="Nhập lại mật khẩu">
+      <small class="text-danger" *ngIf="regForm.errors?.['misMatch']">Mật khẩu không trùng khớp</small>
+    </div>
+    <button (click)="postCustomers" type="submit" class="btn btn-primary">Đăng ký</button>
+  </form>
 </div>
+
+<p>{{customer.customerName}}</p>
+<p>{{customer.customerEmail}}</p>
+<p>{{customer.customerPhoneNumb}}</p>
+
+<p>{{customer.customerAddress}}</p>
+
 
 
 
