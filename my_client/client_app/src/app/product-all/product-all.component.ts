@@ -9,15 +9,12 @@ import { IProduct } from '../interfaces/Product';
   styleUrls: ['./product-all.component.css']
 })
 export class ProductAllComponent {
-  products: IProduct[] = [];
-  errMessage: string = '';
-  constructor(public _service: ProductApiService, public router: Router) {
+  products: any;
+  errMessage:string=''
+  constructor(public _service: ProductApiService){
     this._service.getProducts().subscribe({
-        next: (data)=>{this.products=data},
-        error: (err)=>{this.errMessage=err}
-    });
-  }
-  ViewProduct(p:any){
-    this.router.navigate(['product-detail', p._id])
+    next: (data)=>{this.products=data},
+    error: (err)=>{this.errMessage=err}
+  })
   }
 }
