@@ -1,8 +1,6 @@
 
- <app-register ></app-register>
-
-<app-login ></app-login>
-
-<app-accountpage></app-accountpage>
-<app-chatbot></app-chatbot>
-<app-blog></app-blog>
+<button [routerLink]="'blog'">Blog</button>
+<button [routerLink]="'accountpage'">Account User</button>
+<button [routerLink]="'login'">Login</button>
+<button [routerLink]="'register'">Register</button>
+<router-outlet></router-outlet>
