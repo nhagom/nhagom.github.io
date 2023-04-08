@@ -1,4 +1,4 @@
-{{errMessage}}
+
 Nhập customerID: <input type="text" #ID>
 <button (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)" >Submit</button>
 
@@ -143,12 +143,24 @@ Nhập customerID: <input type="text" #ID>
                       <input type="text" class="form-control" id="customerAddress" name="customerAddress" #name="ngModel" value="{{cusInfo.customerAddress}}" [(ngModel)]="aCus.customerAddress">
                     </div>
                   </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="customerGender">Giới tính</label>
+                      <input type="text" class="form-control" id="customerGender" name="customerGender" #name="ngModel" value="{{cusInfo.customerGender}}" [(ngModel)]="aCus.customerGender">
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="customerBirth">Ngày sinh</label>
+                      <input type="text" class="form-control" id="customerBirth" name="customerBirth" #name="ngModel" value="{{cusInfo.customerBirth}}" [(ngModel)]="aCus.customerBirth">
+                    </div>
+                  </div>
                 </div>
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="text-right">
                       <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo()">Update</button>
+                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(ID.value)" (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)">Update</button>
                     </div>
                   </div>
                 </div>

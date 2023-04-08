@@ -102,9 +102,9 @@ app.get("/orders/:customerId", cors(), async (req,res)=>{
 })
 
 //api update thông tin customer
-app.put("/customers", cors(), async (req,res)=>{
+app.put("/customers/:customerId", cors(), async (req,res)=>{
     await customersCollection.updateOne(
-        {customerId: req.body.customerId},
+        {customerId: req.params.customerId},
         { $set: { 
             customerName: req.body.customerName,
             customerEmail: req.body.customerEmail,
@@ -112,6 +112,7 @@ app.put("/customers", cors(), async (req,res)=>{
             customerBirth: req.body.customerBirth,
             customerAddress: req.body.customerAddress,
             customerGender: req.body.customerGender,
+            username: req.body.username,
             password: req.body.password
         }}
     )
