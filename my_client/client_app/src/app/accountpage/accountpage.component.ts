@@ -17,10 +17,13 @@ export class AccountpageComponent {
   }
   getInfo(ID:string){
     this._service.getCustomerInfo(ID).subscribe({
-      next:(data)=>{this.cusInfo=data},
-      error:(err)=>{this.errMessage=err}
+        next:(data)=>{
+            this.cusInfo=data;
+            this.aCus = {...this.cusInfo};
+        },
+        error:(err)=>{this.errMessage=err}
     })
-  }
+}
 
   getPurchaseHistory(ID:string){
     this._service.getPurchaseHistory(ID).subscribe({
