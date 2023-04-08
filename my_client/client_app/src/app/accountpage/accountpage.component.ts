@@ -8,11 +8,13 @@ import { Customers } from '../models/customers';
   styleUrls: ['./accountpage.component.css']
 })
 export class AccountpageComponent {
-  aCus=new Customers();
   cusInfo:any
+  aCus=new Customers();
   purchaseHistory:any
   errMessage=''
-  constructor(private _service: AccountPageService) {}
+  constructor(private _service: AccountPageService) {
+
+  }
   getInfo(ID:string){
     this._service.getCustomerInfo(ID).subscribe({
       next:(data)=>{this.cusInfo=data},
@@ -35,8 +37,8 @@ export class AccountpageComponent {
     return total;
   }
 
-  updateCusInfo() {
-    this._service.updateCusInfo(this.aCus).subscribe({
+  updateCusInfo(ID:string) {
+    this._service.updateCusInfo(this.aCus, ID).subscribe({
       next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err}
     })
