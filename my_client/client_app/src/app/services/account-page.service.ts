@@ -40,4 +40,17 @@ export class AccountPageService {
       catchError(this.handleError)
     )
   }
+
+  updateCusInfo(aCus:any):Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+    const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+    }
+    return this._http.put<any>("/customers",JSON.stringify(aCus),requestOptions).pipe(
+      map(res=>JSON.parse(res) as Array<ICustomer>),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
 }

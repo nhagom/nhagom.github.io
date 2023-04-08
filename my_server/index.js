@@ -104,12 +104,19 @@ app.get("/orders/:customerId", cors(), async (req,res)=>{
 //api update thông tin customer
 app.put("/customers", cors(), async (req,res)=>{
     await customersCollection.updateOne(
-        {_id:new ObjectId(req.body._id)},
+        {customerId: req.body.customerId},
         { $set: { 
-            
-
+            customerName: req.body.customerName,
+            customerEmail: req.body.customerEmail,
+            customerPhoneNumb: req.body.customerPhoneNumb,
+            customerBirth: req.body.customerBirth,
+            customerAddress: req.body.customerAddress,
+            customerGender: req.body.customerGender,
+            password: req.body.password
         }}
     )
-    res.send(result)
+    var o_id = req.body.customerId
+    const result = await customersCollection.find({customerId:o_id}).toArray();
+    res.send(result[0])
 })
 

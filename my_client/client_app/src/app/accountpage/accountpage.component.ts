@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AccountPageService } from '../services/account-page.service';
+import { Customers } from '../models/customers';
 
 @Component({
   selector: 'app-accountpage',
@@ -7,7 +8,7 @@ import { AccountPageService } from '../services/account-page.service';
   styleUrls: ['./accountpage.component.css']
 })
 export class AccountpageComponent {
-  active = 1;
+  aCus=new Customers();
   cusInfo:any
   purchaseHistory:any
   errMessage=''
@@ -18,6 +19,7 @@ export class AccountpageComponent {
       error:(err)=>{this.errMessage=err}
     })
   }
+
   getPurchaseHistory(ID:string){
     this._service.getPurchaseHistory(ID).subscribe({
       next:(data)=>{this.purchaseHistory=data},
@@ -32,4 +34,12 @@ export class AccountpageComponent {
     }
     return total;
   }
+
+  updateCusInfo() {
+    this._service.updateCusInfo(this.aCus).subscribe({
+      next:(data)=>{this.cusInfo=data},
+      error:(err)=>{this.errMessage=err}
+    })
+  }
+
 }
