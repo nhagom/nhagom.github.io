@@ -1,80 +1,37 @@
-<!-- Boostrap Css
-
-
-<script src="../../assets/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery.min.js"></script> -->
-<!-- <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"> -->
-
-<!-- <script src="../../assets/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script> -->
-
-<div >
-  <div class="chitiet fadeIn">
-      <div class="container-fluid" >
-          <div class="row">
-
-              <div class="hinhchitiet col-md-5 col-sm-12 col-12">
-                  <div class="hinhdetail">
-                      <ul>
-                          <li><img src="{{product.image}}" ></li>
-                      </ul>
-
-                  </div>
-              </div>
-              <div class="motachitiet col-md-7 col-sm-12 col-12">
-                  <div class="prodcut-title">
-                  <h4>{{product.productName}}</h4>
-                      <span>
-                          <div id="myToast" class="toast" data-delay=2000 role="alert" aria-live="assertive" aria-atomic="true">
-                              <div class="toast-header">
-                                <strong class="mr-auto"> Sân Gốm  <i class="bi bi-check-circle"></i></strong>
-                              </div>
-                              <div class="toast-body">
-                                Thêm vào giỏ hàng thành công
-                              </div>
-                       </div>
-                      </span>
-                  </div>
-                  <div class="product-price">
-                      <span id="price">{{product.price}}</span>
-                  </div>
-                  <form action="">
-                      <div class="quantity-btn">
-                          <input type="button" value="-" ng-click="minusQuantity()" class="qty-btn">
-                          <!-- <input type="number" min=1 name="" id="quantity" value="{{num}}" min="1" max="100" readonly><br/> -->
-                          <input type="button" value="+" ng-click="plusQuantity()" class="qty-btn">
-                      </div>
-                      <div class="add">
-                          <div class="quantity">
-
-                          </div>
-                          <div class="addcard">
-
-                              <a type="button" ng-click="addProduct()" id="add-to-cart" data-ride="carousel" >Thêm vào giỏ</a>
-                          </div>
-                      </div>
-                  </form>
-                  <div class="product-descript">
-                          <h6>Mô tả</h6>
-                      <div class="descript-content-1">
-                          <p>{{product.description}}</p>
-                      </div>
-                      <h6>Thông tin chi tiết</h6>
-                      <div class="descript-content-2">
-                          <p>
-                                  {{product.detail[0]}}
-                              <br>{{product.detail[1]}}
-                              <br>{{product.detail[2]}}
-                              <br>{{product.detail[3]}}
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+<!-- <div class="row">
+  <div class="col-md-6">
+    <img src="{{product.mage}}">
   </div>
-</div>
+  <div class="col-md-6">
+      <h2>{{product.productName}}</h2>
+      <h4>{{product.price}}</h4>
+      <h4>{{product.description}}</h4>
+      <p>{{product.detail}}</p>
+        <hr>
+      <form action="" method="POST" class="form-inline" role="form">
+          <div class="form-group">
+              <input type="number" class="form-control" id="" placeholder="Số lượng..."/>
+          </div>
+      </form>
+
+  </div>
+</div> -->
+<table>
+  <tr>
+    <td colspan="2" class="cre">Fashion Detail</td>
+    </tr>
+  <tr>
+    <td class="text">Fashion Subject:</td>
+    <td>{{product.productName}}</td>
+  </tr>
+  <tr>
+    <td class="text">Fashion Detail:</td>
+   <td>{{product.price}}</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+    <img src="{{product.image}}" >
+    </td>
+    </tr>
+</table>
+

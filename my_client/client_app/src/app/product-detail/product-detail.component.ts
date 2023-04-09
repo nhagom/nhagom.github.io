@@ -13,7 +13,7 @@ export class ProductDetailComponent {
   constructor(private _service: ProductApiService, private activateRoute: ActivatedRoute, private router:Router){
     activateRoute.paramMap.subscribe(
       (param)=>{
-        let id=param.get('productId');
+        let id=param.get('id');
         if(id!=null){
 
 
