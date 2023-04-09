@@ -45,20 +45,15 @@ app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).toArray();
     res.send(result)
 })
-    
-    app.get("/products/:id", cors(), async (req, res)=>{
-        var productId = new ObjectId(req.params["id"]);
-        const result = await productCollection.find({_id:productId}).toArray(); 
-        res.send(result[0])
-    })
-    
-    app.get("/products-detail/:detail", cors(), async (req, res)=>{
-        var o_detail = new ObjectId(req.params["detail"]);
-        const result = await fashionCollection.find({detail:o_detail}).toArray(); 
-        res.send(result[0])
+
+    //this is API to get category of tag
+    app.get("/products-get/:style",cors(), async(req,res)=>{
+        const o_style = new RegExp(req.params.style,"i")
+        const result = await productCollection.find({style:{$regex: o_style}}).toArray();
+        res.send(result)
     })
 
-//api profuct
+//api cơ bản
 
 app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();

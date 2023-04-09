@@ -1,43 +1,20 @@
-<!-- {{errMessage}}
-<table [border]="1">
-    <tr>
-      <td>Product Id</td>
-      <td>Product Name</td>
-      <td>Description</td>
-      <td>Detail</td>
-      <td>Tag</td>
-      <td>Price</td>
-      <td>Image</td>
-      <td>Tools</td>
 
-    </tr>
-
-    <tbody>
-      <tr *ngFor="let product of products">
-      <td>{{product.productId}}</td>
-      <td>{{product.productName}}</td>
-      <td>{{product.description}} </td>
-      <td>{{product.productId}}</td>
-      <td>{{product.tag}}</td>
-      <td>{{product.price}} </td>
-      <td>
-      <img src="{{product.image}}" width="100px" height="100px">
-      </td>
-
-      <td>
-        <button class="btn" (click)="DetailProduct(product)">Detail</button>
-      </td>
-      </tr>
-    </tbody>
-</table> -->
 <p>{{errMessage}}</p>
+
+<div style="text-align: center; "  >
+
+  <input style="width: 200px; " type="text" #productStyle  placeholder="Search Product..."/>
+  <button style="width: 70px; background-color: black; color: white; " (click)="getProductStyle(productStyle.value)">Search</button>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-4" *ngFor="let product of products">
-      <div class="card"  (click)="DetailProduct(product)">
-        <div class="img-container">
+      <div class="card"  >
+        <div class="img-container" (click)="DetailProduct(product)">
           <div class="d-flex justify-content-between align-items-center p-2 first">
             <span class="percent">-5%</span>
+            <!-- <span class="percent">{{product.discount}}</span> -->
             <span class="wishlist"><i class="bi bi-heart-fill"></i></span>
           </div>
           <div class="text-center">
@@ -45,14 +22,14 @@
           </div>
         </div>
         <div class="product-detail-container">
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center " (click)="DetailProduct(product)">
 
-            <h6 class="mb-0 text-truncate">{{product.productName}}</h6>
+            <h6 (click)="DetailProduct(product)" class="mb-0 text-truncate">{{product.productName}}</h6>
           </div>
-          <div>
-            <span class="text-danger fw-bold">${{product.price}}</span>
+          <div >
+            <span (click)="DetailProduct(product)" class="text-danger fw-bold">${{product.price}}</span>
           </div>
-          <div class="d-flex justify-content-between align-items-center mt-2">
+          <div class="d-flex justify-content-between align-items-center mt-2" (click)="DetailProduct(product)">
             <!-- <div class="ratings"><i class="bi bi-star-fill me-1"></i>
               <span>{{product.tag}}</span>
             </div> -->
@@ -60,7 +37,7 @@
               {{p.rating.count}}
             </div> -->
           </div>
-            <div class="mt-3"> <button class="btn btn-warning d-block w-100 text-white fw-bold">Buy Now</button>
+            <div class="mt-3"> <button style="background-color: #d89779;" class="btn  d-block w-100 text-white fw-bold">Thêm vào giỏ hàng</button>
             </div>
         </div>
       </div>
