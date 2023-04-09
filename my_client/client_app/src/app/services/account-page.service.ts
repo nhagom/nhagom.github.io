@@ -11,6 +11,19 @@ export class AccountPageService {
 
   constructor(private _http: HttpClient) { }
 
+  getCustomers():Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+    const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+    }
+    return this._http.get<any>("/customers",requestOptions).pipe(
+      map(res=>JSON.parse(res) as Array<ICustomer>),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
+
   getCustomerInfo(id:string):Observable<any> {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
@@ -36,6 +49,19 @@ export class AccountPageService {
     }
     return this._http.get<any>("/orders/"+ID,requestOptions).pipe(
       map(res=>JSON.parse(res) as Array<IOrder>),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
+
+  updateCusInfo(aCus:any, ID:string):Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+    const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+    }
+    return this._http.put<any>("/customers/"+ID,JSON.stringify(aCus),requestOptions).pipe(
+      map(res=>JSON.parse(res) as Array<ICustomer>),
       retry(3),
       catchError(this.handleError)
     )
