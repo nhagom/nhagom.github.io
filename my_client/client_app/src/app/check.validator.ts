@@ -1,4 +1,4 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, FormGroup } from "@angular/forms";
 
 // tên không chứa ký tự đặc biệt
 export function customerValidator(control: AbstractControl): {
@@ -8,12 +8,13 @@ export function customerValidator(control: AbstractControl): {
   }
 
 // kiểm tra khớp mật khẩu
-export function passwordValidator (control: AbstractControl): {
-  [key: string]: any} | null {
-    const password = control.get('password');
-    const confirmPassword = control.get('confirmPass');
-  if ((password && password.pristine) || (confirmPassword && confirmPassword.pristine)) {
-    return null;
+export function passwordValidator(formGroup: FormGroup) {
+  const password = formGroup.get('password');
+  const confirmPass = formGroup.get('confirmPass');
+
+  if (password?.value !== confirmPass?.value) {
+    confirmPass?.setErrors({ misMatch: true });
+  } else {
+    confirmPass?.setErrors(null);
   }
-  return password && confirmPassword && password.value !== confirmPassword.value ? {'misMatch': true} : null;
-  }
+}
