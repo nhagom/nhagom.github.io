@@ -18,6 +18,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductAllComponent } from './product-all/product-all.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table'
+import { MatButtonModule} from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RouterModule,
     ReactiveFormsModule,
     CarouselModule,
+    MatTableModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
