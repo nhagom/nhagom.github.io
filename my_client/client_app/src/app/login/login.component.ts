@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { Customers } from '../models/customers';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,19 @@ import { Customers } from '../models/customers';
 export class LoginComponent {
   customer =new Customers();
   errMessage:string=''
-  constructor(private _service: LoginService){
 
+  logForm: any;
+  errFlag: boolean = false;
+  constructor(private formBuilder: FormBuilder, private _service: LoginService){}
+
+  ngOnInit() {
+    this.logForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
-  public setCustomer(c:Customers){
-    this.customer=c
-  }
-  postCustomers(){
-    this._service.postCustomers(this.customer).subscribe({
-      next:(data)=>{this.customer=data},
-      error:(err)=>{this.errMessage=err}
-    })
+  get email(){
+    return this.logForm.controls['email']
   }
 
 }
