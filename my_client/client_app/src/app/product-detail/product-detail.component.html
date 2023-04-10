@@ -1,37 +1,120 @@
-<!-- <div class="row">
-  <div class="col-md-6">
-    <img src="{{product.mage}}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<br>
+<div class="row" >
+  <div class="col-md-5 col-sm-12 col-12" >
+    <img class="zoom" src="{{product.image}}">
   </div>
-  <div class="col-md-6">
-      <h2>{{product.productName}}</h2>
-      <h4>{{product.price}}</h4>
-      <h4>{{product.description}}</h4>
-      <p>{{product.detail}}</p>
-        <hr>
-      <form action="" method="POST" class="form-inline" role="form">
-          <div class="form-group">
-              <input type="number" class="form-control" id="" placeholder="Số lượng..."/>
+
+  <div class="col-md-7 col-sm-12 col-12">
+    <div class="selling-heading">
+      <a href="javascript:void(0);">{{product.productName}}</a>
+          <div class="selling-rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
           </div>
-      </form>
+    </div>
+
+    <div class="text">
+        <b class="tlt">Mô tả</b>
+        <br>
+        <span>{{product.description}}</span>
+    </div>
+
+    <div class="text">
+        <b class="tlt">Thông tin sản phẩm</b>
+        <br>
+        <span>Mã sản phẩm: {{product.productId}}</span><br>
+        <span>Kích thước: {{product.size}}</span><br>
+        <span>Đặc điểm: {{product.trait}}</span><br>
+    </div>
+
+        <h3>
+          <span class="selling-amount">{{product.price | currency: "":"": "6.0"}}đ</span>
+        </h3>
+
+      <div class="selling-button">
+          <div class="form-group"> <input type="number" class="form-control" id="" placeholder="Số lượng..." /> </div>
+
+
+            <a href="javascript:void(0);" class="cart-btn"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+          <button type="button" class="main-button">
+          <a href="javascript:void(0);"><i class="fa fa-heart"></i></a>
+          <a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+        </button>
+      </div>
 
   </div>
-</div> -->
-<table>
-  <tr>
-    <td colspan="2" class="cre">Fashion Detail</td>
-    </tr>
-  <tr>
-    <td class="text">Fashion Subject:</td>
-    <td>{{product.productName}}</td>
-  </tr>
-  <tr>
-    <td class="text">Fashion Detail:</td>
-   <td>{{product.price}}</td>
-  </tr>
-  <tr>
-    <td colspan="2">
-    <img src="{{product.image}}" >
-    </td>
-    </tr>
-</table>
+</div>
 
+<!-- <section class="best-selling">
+  <div class="containers">
+      <div class="best-selling-container">
+          <div class="sale-price">
+              Sale <strong>14%</strong>
+          </div>
+          <div class="selling-col-1">
+            <div class="selling-left">
+              <ul>
+                <li>
+                  <span class="count-date">194</span>
+                  <span class="count-day">Days</span>
+                </li>
+                <li>
+                  <span class="count-date">01</span>
+                  <span class="count-day">Hours</span>
+                </li>
+                <li>
+                  <span class="count-date">22</span>
+                  <span class="count-day">Mins</span>
+                </li>
+                <li>
+                  <span class="count-date">24</span>
+                  <span class="count-day">Secs</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class=" row selling-col-2">
+            <div class="selling-img">
+              <img src="{{product.image}}">
+            </div>
+          </div>
+
+          <div class="selling-col-3">
+              <div class="selling-heading">
+                  <a href="javascript:void(0);">Enim Pichana Enim</a>
+                      <div class="selling-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+              </div>
+
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae explicabo debitis in quidem, laboriosam tempore eligendi excepturi nisi accusamus pariatur aliquam exercitationem. Nam maiores debitis, odit cumque soluta mollitia! Fugiat?</p>
+
+              <h3>
+                <span class="selling-amount">$230.00</span>
+                <span class="selling-discount">$202</span>
+              </h3>
+
+            <div class="selling-button">
+                <a href="javascript:void(0);" class="cart-btn"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                <button type="button" class="main-button">
+                <a href="javascript:void(0);"><i class="fa fa-heart"></i></a>
+                <a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+              </button>
+            </div>
+
+          </div>
+
+      </div>
+  </div>
+</section> -->

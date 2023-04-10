@@ -17,6 +17,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductAllComponent } from './product-all/product-all.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProductAllComponent } from './product-all/product-all.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

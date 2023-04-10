@@ -46,6 +46,12 @@ app.get("/products", cors(), async (req,res)=>{
     res.send(result)
 })
 
+app.get("/products/:id",cors(), async(req,res)=>{
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await productsCollection.find({_id:o_id}).toArray();
+    res.send(result[0])
+})
+
     //this is API to get category of tag
     app.get("/products-get/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")

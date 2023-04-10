@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent {
+
   product: any;
   errMessage:string=''
   constructor(private _service: ProductApiService, private activateRoute: ActivatedRoute, private router:Router){
