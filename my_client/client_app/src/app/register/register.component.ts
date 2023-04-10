@@ -1,41 +1,39 @@
 import { Component } from '@angular/core';
-
-import {FormBuilder, Validators } from '@angular/forms';
-import { customerValidator, passwordValidator } from '../check.validator';
 import { Customers } from '../models/customers';
 import { RegisterService } from '../services/register.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { customerValidator, passwordValidator } from '../check.validator';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  // email: string='';
-  // password: string='';
-  // error: string='';
-
-  // constructor(private router: Router, private storageService: SessionStorageService) {}
-
-  // register() {
-  //   const users = this.storageService.getUsers();
-  //   const user = users.find(u => u.email === this.email);
-  //   if (user) {
-  //     this.error = 'Email already registered';
-  //   } else {
-  //     const newUser = { email: this.email, password: this.password };
-  //     this.storageService.addUser(newUser);
-  //     this.router.navigate(['/login']);
-  //   }
-  // }
+  customer =new Customers();
+  errMessage:string=''
 
   regForm: any;
-  constructor(private formBuilder: FormBuilder, private _service: RegisterService){
-    this.regForm= this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3), customerValidator]],
+  errFlag: boolean = false;
+  constructor(private formBuilder: FormBuilder, private _service: RegisterService){}
+
+  ngOnInit() {
+    this.regForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3),customerValidator]],
       email: ['', [Validators.required]],
-      password: [''],
-      confirmPassword: ['']
-   }, {validators: [passwordValidator]})
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      birth: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPass: ['', [Validators.required]]
+    }, { validators: passwordValidator });
+  }
+
+  validateGender(value:any):void{
+    if(value === 'none')
+    this.errFlag = true;
+    else
+    this.errFlag = false;
   }
   get name(){
     return this.regForm.controls['name']
@@ -43,9 +41,10 @@ export class RegisterComponent {
   get email(){
     return this.regForm.controls['email']
   }
+  get confirmPass(){
+    return this.regForm.controls['confirmPass']
+  }
 
-  customer =new Customers();
-  errMessage:string=''
   public setCustomer(c:Customers){
     this.customer=c
   }
