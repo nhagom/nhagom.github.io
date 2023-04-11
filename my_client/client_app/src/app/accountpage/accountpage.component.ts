@@ -15,6 +15,8 @@ export class AccountpageComponent {
   purchaseHistory:any
   errMessage=''
   successMsg = '';
+  emailExist=false
+
 
   constructor(private _service: AccountPageService, ) {
 
@@ -57,5 +59,13 @@ export class AccountpageComponent {
 
   hideSuccessMsg() {
     this.successMsg = '';
+  }
+
+  checkEmail() {
+    if (this.aCus.customerEmail !== this.cusInfo.customerEmail) {
+      this._service.checkEmailExists(this.aCus.customerEmail).subscribe({
+        next:(data)=>{this.emailExist=data},
+      });
+    }
   }
 }
