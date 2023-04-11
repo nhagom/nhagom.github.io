@@ -66,4 +66,11 @@ export class AccountPageService {
       catchError(this.handleError)
     )
   }
+
+  checkEmailExists(email: string): Observable<boolean> {
+    return this._http.get<any>(`/customers/check-email/${email}`).pipe(
+      map(res => res as boolean),
+      catchError(this.handleError)
+    );
+  }
 }

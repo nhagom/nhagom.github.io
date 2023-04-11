@@ -134,8 +134,9 @@ Nhập customerID: <input type="text" #ID>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerEmail">Email</label>
-                      <input type="email" class="form-control" id="customerEmail" #email="ngModel" name="customerEmail" value="{{cusInfo.customerEmail}}" [(ngModel)]="aCus.customerEmail" required>
+                      <input type="email" class="form-control" id="customerEmail" #email="ngModel" name="customerEmail" value="{{cusInfo.customerEmail}}" [(ngModel)]="aCus.customerEmail" required (input)="checkEmail()">
                       <small class="text-danger" *ngIf="email.invalid && email.touched">Thông tin này là bắt buộc.</small>
+                      <small class="text-danger" *ngIf="emailExist">Email này đã được sử dụng.</small>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -161,14 +162,15 @@ Nhập customerID: <input type="text" #ID>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerBirth">Ngày sinh</label>
-                      <input type="text" class="form-control" id="customerBirth" name="customerBirth" #name="ngModel" value="{{cusInfo.customerBirth}}" [(ngModel)]="aCus.customerBirth">
+                      <input type="date" class="form-control" id="customerBirth" name="customerBirth" #birth="ngModel" value="{{cusInfo.customerBirth}}" [(ngModel)]="aCus.customerBirth" required>
+                      <small class="text-danger" *ngIf="birth.invalid && birth.touched">Thông tin này là bắt buộc.</small>
                     </div>
                   </div>
                 </div>
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="text-right">
-                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(ID.value)" (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)" [disabled]="infoForm.invalid">Update</button>
+                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(ID.value)" (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)" [disabled]="emailExist || infoForm.invalid">Update</button>
                     </div>
                   </div>
                 </div>

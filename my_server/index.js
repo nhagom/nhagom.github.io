@@ -125,6 +125,18 @@ app.post("/customers",cors(),async(req,res)=>{
     await customersCollection.insertOne(req.body)
     res.send(req.body)
 })
+
+//api kiểm tra xem email đã tồn tại hay chưa?
+app.get("/customers/check-email/:email", cors(), async (req, res) => {
+    const email = req.params.email;
+    const result = await customersCollection.findOne({ customerEmail: email });
+  
+    if (result) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
 //api chỉnh sửa mật khẩu
 app.put("/customers", cors(),async(req,res) =>{
     await customersCollection.updateOne(
