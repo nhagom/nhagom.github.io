@@ -7,6 +7,5 @@ export interface ICustomer {
   customerBirth:string,
   customerGender:string,
   customerAddress:string,
-  username:string,
   password:string,
 }

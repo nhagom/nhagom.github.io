@@ -42,7 +42,8 @@
                     <small class="text-danger" *ngIf="logForm.controls['confirmPass'].errors?.['misMatch']">Mật khẩu không trùng khớp</small>
                   </div>
                    <div class="row mb-3 px-3">
-                       <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="logForm.invalid">Cập nhật</button>
+                       <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="logForm.invalid"
+                       (click)="putPassword()">Cập nhật</button>
                    </div>
                </div>
            </div>

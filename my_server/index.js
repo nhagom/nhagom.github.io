@@ -128,12 +128,13 @@ app.post("/customers",cors(),async(req,res)=>{
 //api chỉnh sửa mật khẩu
 app.put("/customers", cors(),async(req,res) =>{
     await customersCollection.updateOne(
-        {_email:new ObjectId(req.body._email)},
+        {customerEmail:req.params.customerEmail},
         {$set :{
             password:req.body.password,
         }}
     )
-    var e_email = new ObjectId(req.body._email);
-    const result = await customersCollection.find({_email:e_email}).toArray();
+    var e_email = req.body.customerEmail;
+    const result = await customersCollection.find({customerEmail:e_email}).toArray();
     res.send(result[0])
 })
+
