@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { BlogListService } from '../services/blog-list.service';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  selector: 'app-blog-detail',
+  templateUrl: './blog-detail.component.html',
+  styleUrls: ['./blog-detail.component.css']
 })
-export class BlogComponent {
+export class BlogDetailComponent {
   blogs:any
   errMessage:string=''
   selectedBlogId:any

@@ -8,6 +8,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductAllComponent } from './product-all/product-all.component';
 import { BlogComponent } from './blog/blog.component';
 import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'product-all', component: ProductAllComponent },
-  { path: 'blog', component: BlogComponent }
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog-detail', component: BlogDetailComponent },
 
 ];
 

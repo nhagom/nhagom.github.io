@@ -1,44 +1,33 @@
 <p>blog works!</p>
 {{errMessage}}
-<!-- <table border="1">
-  <tr *ngFor="let blog of blogs">
-    <td>{{blog.blogId}}</td>
-    <td>{{blog.blogName}}</td>
-    <td>{{blog.blogTitle}}</td>
-    <td>{{blog.shortContent}}</td>
-    <td>{{blog.content1}}</td>
-    <td>{{blog.content2}}</td>
-    <td>{{blog.content3}}</td>
-  </tr>
-</table> -->
-<main>
-  <div class="blog-detail">
-      <!-- <div class="row-banner">
-          <img src="../../assets/img/Banner blog.jpg" alt="">
-      </div> -->
-
-      <div class="blog-content-detail">
-          <div *ngFor="let blog of blogs">
-                <img id="img-blog-content-1" src="{{blog.imgTitle}}">
-                <div class="text-blog-content">
-                    <h4>Blog | {{blog.blogTitle}} | {{blog.blogName}}</h4>
-                    <p>{{blog.content1}}</p>
-                      <!-- <p>{{blog.content2}}</p>
-                      <p>{{blog.content3}}</p> -->
-                </div>
+<section id="posts" class="posts">
+  <div class="container" data-aos="fade-up">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div class="row g-5">
+          <div class="col-lg-4 border-start custom-border" *ngFor="let blog of blogs">
+            <div class="post-entry-1">
+              <a href="'blog-detail'"><img src="{{blog.imgTitle}}" alt="" class="img-fluid"  style="height:150px;width: 225px;"></a>
+              <div class="post-meta"><span class="date">{{blog.blogName}}</span></div>
+              <h4><a href="'blog-detail'">{{blog.blogTitle}}</a></h4>
+            </div>
           </div>
+        </div>
       </div>
-      <h2>Bài viết liên quan</h2>
-      <div class="blog-related-list">
-          <div class="blog-related-card" *ngFor="let b of blogs.slice(0,4);let i=index">
-              <div>
-                  <img src="{{b.imgTitle}}" alt="">
-                  <div>
-                      <h2>{{b.blogTitle}}</h2>
-                      <p>{{b.shortContent}}</p>
-                  </div>
-              </div>
-          </div>
+      <div class="col-lg-4">
+        <div class="trending">
+          <h3>Trending</h3>
+          <ul class="trending-post" *ngFor="let blog of blogs.slice(0,6)">
+            <li>
+              <a href="#">
+                <h3>{{blog.blogTitle}}</h3>
+                <span class="author">{{blog.blogName}}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
   </div>
-</main>
+</section>
+
