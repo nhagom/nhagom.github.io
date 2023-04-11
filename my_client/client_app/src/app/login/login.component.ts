@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { Customers } from '../models/customers';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -15,7 +15,7 @@ export class LoginComponent {
 
   logForm: any;
   errFlag: boolean = false;
-  constructor(private formBuilder: FormBuilder, private _service: LoginService){}
+  constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit() {
     this.logForm = this.formBuilder.group({
@@ -26,6 +26,10 @@ export class LoginComponent {
   get email(){
     return this.logForm.controls['email']
   }
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+
 
 }
 
