@@ -1,0 +1,53 @@
+<form [formGroup]="logForm" >
+  <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto bg-color">
+   <div class="card card0 border-0">
+       <div class="row d-flex">
+           <div class="col-lg-6">
+               <div class="card1">
+                   <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                     <img src="assets/image/register_login.jpg" class="img-fluid">
+                   </div>
+               </div>
+           </div>
+           <div class="col-lg-6">
+               <div class="card2 card border-0 px-4 py-5">
+                   <div class="row mb-4 px-3 panel-heading">
+                     <h3 class="text-center">Thay đổi mật khẩu</h3>
+                   </div>
+                   <div class="row px-3">
+                     <label class="mb-1">
+                       <h6 class="mb-0 text-sm" for="email">Email</h6>
+                     </label>
+                     <input type="email" [email]="true" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" formControlName="email"[class.is-invalid]="logForm.controls['email'].invalid && logForm.controls['email'].touched"  [(ngModel)]="customer.customerEmail">
+                     <div *ngIf="logForm.controls['email'].errors && (logForm.controls['email'].invalid || logForm.controls['email'].touched)">
+                       <small class="text-danger" *ngIf="logForm.controls['email'].errors['required'] " [class.d-none]="logForm.controls['email'].valid || logForm.controls['email'].untouched
+                         ">Email không được để trống</small>
+                       <small class="text-danger" *ngIf="logForm.controls['email'].errors['email']">Email không hợp lệ</small>
+                     </div>
+                   </div>
+                   <div class="row px-3">
+                    <label class="mb-1">
+                      <h6 class="mb-0 text-sm" for="password">Mật khẩu mới</h6>
+                    </label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Nhập Mật khẩu" formControlName="password" [class.is-invalid]="logForm.controls['password'].invalid && logForm.controls['password'].touched" [(ngModel)]="customer.password">
+                    <div *ngIf="logForm.controls['password'].invalid && logForm.controls['password'].touched">
+                      <small class="text-danger" *ngIf="logForm.controls['password'].errors?.['required'] ">Mật khẩu không được để trống</small>
+                    </div>
+                  </div>
+                  <div class="row px-3">
+                    <label class="mb-1">
+                      <h6 class="mb-0 text-sm" for="retype_password">Nhập lại mật khẩu mới</h6>
+                    </label>
+                    <input type="password" class="form-control" id="retype_password" formControlName="confirmPass" [class.is-invalid]="logForm.controls['confirmPass'].errors?.['misMatch']" placeholder="Nhập lại mật khẩu">
+                    <small class="text-danger" *ngIf="logForm.controls['confirmPass'].errors?.['misMatch']">Mật khẩu không trùng khớp</small>
+                  </div>
+                   <div class="row mb-3 px-3">
+                       <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="logForm.invalid"
+                       (click)="putPassword()">Cập nhật</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+ </div>
+ </form>

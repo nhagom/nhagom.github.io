@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { RouterModule, Routes } from '@angular/router';
 import { AccountpageComponent } from './accountpage/accountpage.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login-page/login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductAllComponent } from './product-all/product-all.component';
 import { BlogComponent } from './blog/blog.component';
+import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
@@ -17,6 +17,8 @@ const routes: Routes = [
   // { path: 'home', component: AccountpageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'forgotpassword', component: ForgotPassComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'product-all', component: ProductAllComponent },
   { path: 'blog', component: BlogComponent }

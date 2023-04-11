@@ -7,10 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
-
 import { AppComponent } from './app.component';
 import { AccountpageComponent } from './accountpage/accountpage.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login-page/login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
@@ -23,17 +22,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountpageComponent,
-    LoginComponent,
     RegisterComponent,
     BlogComponent,
     ChatbotComponent,
     ProductDetailComponent,
     ProductAllComponent,
+    LoginComponent,
+    ForgotPassComponent
   ],
   imports: [
     BrowserModule,

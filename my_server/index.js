@@ -120,8 +120,33 @@ app.put("/customers/:customerId", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerId:o_id}).toArray();
     res.send(result[0])
 })
-//api thêm 1 customer
+//api thêm 1 customer (đăng ký)
 app.post("/customers",cors(),async(req,res)=>{
     await customersCollection.insertOne(req.body)
     res.send(req.body)
 })
+
+//api kiểm tra xem email đã tồn tại hay chưa?
+app.get("/customers/check-email/:email", cors(), async (req, res) => {
+    const email = req.params.email;
+    const result = await customersCollection.findOne({ customerEmail: email });
+  
+    if (result) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
+//api chỉnh sửa mật khẩu
+app.put("/customers", cors(),async(req,res) =>{
+    await customersCollection.updateOne(
+        {customerEmail:req.params.customerEmail},
+        {$set :{
+            password:req.body.password,
+        }}
+    )
+    var e_email = req.body.customerEmail;
+    const result = await customersCollection.find({customerEmail:e_email}).toArray();
+    res.send(result[0])
+})
+

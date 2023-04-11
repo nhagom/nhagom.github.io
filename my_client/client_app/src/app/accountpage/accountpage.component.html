@@ -1,7 +1,7 @@
 {{errMessage}}
+
 Nhập customerID: <input type="text" #ID>
 <button (click)="getInfo(ID.value)"   (click)="getPurchaseHistory(ID.value)">Submit</button>
-
 
 <div class="container">
   <div class="row my-1">
@@ -113,7 +113,12 @@ Nhập customerID: <input type="text" #ID>
             </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+              <div class="alert alert-success" *ngIf="successMsg" role="alert">
+                {{successMsg}}
+                <button type="button" class="close" (click)="hideSuccessMsg()">&times;</button>
+              </div>
             <div class="card h-100">
+              <form #infoForm="ngForm" novalidate>
               <div class="card-body">
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -122,25 +127,30 @@ Nhập customerID: <input type="text" #ID>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerName">Tên</label>
-                      <input type="text" class="form-control" #name="ngModel" name="customerName" id="customerName" value="{{cusInfo.customerName}}" [(ngModel)]="aCus.customerName">
+                      <input type="text" class="form-control" #name="ngModel" name="customerName" id="customerName" value="{{cusInfo.customerName}}" [(ngModel)]="aCus.customerName" required>
+                      <small class="text-danger" *ngIf="name.invalid && name.touched">Thông tin này là bắt buộc.</small>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerEmail">Email</label>
-                      <input type="email" class="form-control" id="customerEmail" #name="ngModel" name="customerEmail" value="{{cusInfo.customerEmail}}" [(ngModel)]="aCus.customerEmail">
+                      <input type="email" class="form-control" id="customerEmail" #email="ngModel" name="customerEmail" value="{{cusInfo.customerEmail}}" [(ngModel)]="aCus.customerEmail" required (input)="checkEmail()">
+                      <small class="text-danger" *ngIf="email.invalid && email.touched">Thông tin này là bắt buộc.</small>
+                      <small class="text-danger" *ngIf="emailExist">Email này đã được sử dụng.</small>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerPhoneNumb">Phone</label>
-                      <input type="text" class="form-control" id="customerPhoneNumb" #name="ngModel" name="customerPhoneNumb" value="{{cusInfo.customerPhoneNumb}}" [(ngModel)]="aCus.customerPhoneNumb">
+                      <input type="text" class="form-control" id="customerPhoneNumb" #phone="ngModel" name="customerPhoneNumb" value="{{cusInfo.customerPhoneNumb}}" [(ngModel)]="aCus.customerPhoneNumb" required>
+                      <small class="text-danger" *ngIf="phone.invalid && phone.touched">Thông tin này là bắt buộc.</small>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerAddress">Địa chỉ</label>
-                      <input type="text" class="form-control" id="customerAddress" name="customerAddress" #name="ngModel" value="{{cusInfo.customerAddress}}" [(ngModel)]="aCus.customerAddress">
+                      <input type="text" class="form-control" id="customerAddress" name="customerAddress" #address="ngModel" value="{{cusInfo.customerAddress}}" [(ngModel)]="aCus.customerAddress" required>
+                      <small class="text-danger" *ngIf="address.invalid && address.touched">Thông tin này là bắt buộc.</small>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -152,19 +162,20 @@ Nhập customerID: <input type="text" #ID>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="customerBirth">Ngày sinh</label>
-                      <input type="text" class="form-control" id="customerBirth" name="customerBirth" #name="ngModel" value="{{cusInfo.customerBirth}}" [(ngModel)]="aCus.customerBirth">
+                      <input type="date" class="form-control" id="customerBirth" name="customerBirth" #birth="ngModel" value="{{cusInfo.customerBirth}}" [(ngModel)]="aCus.customerBirth" required>
+                      <small class="text-danger" *ngIf="birth.invalid && birth.touched">Thông tin này là bắt buộc.</small>
                     </div>
                   </div>
                 </div>
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="text-right">
-                      <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(ID.value)" (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)">Update</button>
+                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(ID.value)" (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)" [disabled]="emailExist || infoForm.invalid">Update</button>
                     </div>
                   </div>
                 </div>
               </div>
+              </form>
             </div>
             </div>
             </div>

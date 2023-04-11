@@ -46,7 +46,6 @@ body {
 .text-sm {
   font-size: 14px !important;
 }
-
 ::placeholder {
   color: #BDBDBD;
   opacity: 1;
@@ -63,7 +62,7 @@ body {
   font-weight: 300
 }
 
- input, textarea {
+input, textarea {
   padding: 10px 12px 10px 12px;
   border: 1px solid lightgrey;
   border-radius: 2px;
@@ -75,19 +74,8 @@ body {
   font-size: 14px;
   letter-spacing: 1px;
 }
-select{
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  margin-bottom: 5px;
-  margin-top: 2px;
-  width: 100%;
-  box-sizing: border-box;
-  color: #2C3E50;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
 
-select:focus, input:focus, textarea:focus {
+input:focus, textarea:focus {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;

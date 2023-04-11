@@ -1,5 +1,5 @@
  <form [formGroup]="logForm" >
- <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+ <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto bg-color">
   <div class="card card0 border-0">
       <div class="row d-flex">
           <div class="col-lg-6">
@@ -38,14 +38,14 @@
                     <div class="custom-control custom-checkbox custom-control-inline">
                       <input id="chk1" type="checkbox" name="chk" class="custom-control-input">
                       <label for="chk1" class="custom-control-label text-sm">Ghi nhớ mật khẩu</label>
-                      <a href="#" class="font-weight-bold text-danger ml-auto">Quên mật khẩu?</a>
+                      <a  class="font-weight-bold text-danger ml-auto" (click)="goToForgotPassword()">Quên mật khẩu?</a>
                     </div>
                   </div>
                   <div class="row mb-3 px-3">
                       <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="logForm.invalid">Đăng nhập</button>
                   </div>
                   <div class="row mb-4 px-3">
-                      <small class="font-weight-bold text-center">Bạn chưa có tài khoản? <a class="text-danger "> Đăng ký</a></small>
+                      <small class="font-weight-bold text-center">Bạn chưa có tài khoản? <a class="text-danger" (click)="goToRegister()"> Đăng ký</a></small>
                   </div>
               </div>
           </div>
