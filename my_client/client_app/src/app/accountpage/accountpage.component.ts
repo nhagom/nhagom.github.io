@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AccountPageService } from '../services/account-page.service';
 import { Customers } from '../models/customers';
 
+
+
 @Component({
   selector: 'app-accountpage',
   templateUrl: './accountpage.component.html',
@@ -12,7 +14,9 @@ export class AccountpageComponent {
   aCus=new Customers();
   purchaseHistory:any
   errMessage=''
-  constructor(private _service: AccountPageService) {
+  successMsg = '';
+
+  constructor(private _service: AccountPageService, ) {
 
   }
   getInfo(ID:string){
@@ -43,8 +47,15 @@ export class AccountpageComponent {
   updateCusInfo(ID:string) {
     this._service.updateCusInfo(this.aCus, ID).subscribe({
       next:(data)=>{this.cusInfo=data},
-      error:(err)=>{this.errMessage=err}
+      error:(err)=>{this.errMessage=err},
+
     })
+    this.successMsg = 'Cập nhật thông tin khách hàng thành công!';
+    setTimeout(() => { this.hideSuccessMsg(); }, 5000);
+
   }
 
+  hideSuccessMsg() {
+    this.successMsg = '';
+  }
 }
