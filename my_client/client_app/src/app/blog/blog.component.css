@@ -3,6 +3,10 @@
 }
 .post-entry-1 img {
   margin-bottom: 30px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  overflow: hidden;
 }
 .post-entry-1 h4 {
   margin-bottom: 20px;
