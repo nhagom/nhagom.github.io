@@ -86,7 +86,7 @@
                       </label>
                       <input type="password" class="form-control" id="retype_password" formControlName="confirmPass" [class.is-invalid]="regForm.controls['confirmPass'].errors?.['misMatch']" placeholder="Nhập lại mật khẩu">
                       <small class="text-danger" *ngIf="regForm.controls['confirmPass'].errors?.['misMatch']">Mật khẩu không trùng khớp</small>
-                      </div>
+                    </div>
                     <br>
                     <div class="row mb-3 px-3">
                       <button (click)="postCustomers()" type="submit" class="btn btn-primary" [disabled]="regForm.invalid">Đăng ký</button>

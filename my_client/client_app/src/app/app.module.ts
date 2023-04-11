@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ChatbotComponent,
     ProductDetailComponent,
     ProductAllComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPassComponent
   ],
   imports: [
     BrowserModule,
