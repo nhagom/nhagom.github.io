@@ -1,80 +1,119 @@
-<!-- Boostrap Css
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script src="../../assets/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery.min.js"></script> -->
-<!-- <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"> -->
-
-<!-- <script src="../../assets/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script> -->
-
-<div >
-  <div class="chitiet fadeIn">
-      <div class="container-fluid" >
-          <div class="row">
-
-              <div class="hinhchitiet col-md-5 col-sm-12 col-12">
-                  <div class="hinhdetail">
-                      <ul>
-                          <li><img src="{{product.image}}" ></li>
-                      </ul>
-
-                  </div>
-              </div>
-              <div class="motachitiet col-md-7 col-sm-12 col-12">
-                  <div class="prodcut-title">
-                  <h4>{{product.productName}}</h4>
-                      <span>
-                          <div id="myToast" class="toast" data-delay=2000 role="alert" aria-live="assertive" aria-atomic="true">
-                              <div class="toast-header">
-                                <strong class="mr-auto"> Sân Gốm  <i class="bi bi-check-circle"></i></strong>
-                              </div>
-                              <div class="toast-body">
-                                Thêm vào giỏ hàng thành công
-                              </div>
-                       </div>
-                      </span>
-                  </div>
-                  <div class="product-price">
-                      <span id="price">{{product.price}}</span>
-                  </div>
-                  <form action="">
-                      <div class="quantity-btn">
-                          <input type="button" value="-" ng-click="minusQuantity()" class="qty-btn">
-                          <!-- <input type="number" min=1 name="" id="quantity" value="{{num}}" min="1" max="100" readonly><br/> -->
-                          <input type="button" value="+" ng-click="plusQuantity()" class="qty-btn">
-                      </div>
-                      <div class="add">
-                          <div class="quantity">
-
-                          </div>
-                          <div class="addcard">
-
-                              <a type="button" ng-click="addProduct()" id="add-to-cart" data-ride="carousel" >Thêm vào giỏ</a>
-                          </div>
-                      </div>
-                  </form>
-                  <div class="product-descript">
-                          <h6>Mô tả</h6>
-                      <div class="descript-content-1">
-                          <p>{{product.description}}</p>
-                      </div>
-                      <h6>Thông tin chi tiết</h6>
-                      <div class="descript-content-2">
-                          <p>
-                                  {{product.detail[0]}}
-                              <br>{{product.detail[1]}}
-                              <br>{{product.detail[2]}}
-                              <br>{{product.detail[3]}}
-                          </p>
-                      </div>
-                  </div>
-              </div>
+<br>
+<div class="row" >
+  <div class="col-md-5 col-sm-12 col-12" >
+    <img class="zoom" src="{{product.image}}">
+  </div>
+  <div class="col-md-7 col-sm-12 col-12">
+    <div class="selling-heading">
+      <a href="javascript:void(0);">{{product.productName}}</a>
+          <div class="selling-rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
           </div>
+    </div>
+
+    <div class="text">
+        <b class="tlt">Mô tả</b>
+        <br>
+        <span>{{product.description}}</span>
+    </div>
+
+    <div class="text">
+        <b class="tlt">Thông tin sản phẩm</b>
+        <br>
+        <span>Mã sản phẩm: {{product.productId}}</span><br>
+        <span>Kích thước: {{product.size}}</span><br>
+        <span>Đặc điểm: {{product.trait}}</span><br>
+    </div>
+
+        <h3>
+          <span class="selling-amount">{{product.price | currency: "":"": "6.0"}}đ</span>
+        </h3>
+
+      <div class="selling-button">
+          <div class="form-group"> <input type="number" class="form-control" id="" placeholder="Số lượng..." /> </div>
+
+
+            <a href="javascript:void(0);" class="cart-btn"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+          <button type="button" class="main-button">
+          <a href="javascript:void(0);"><i class="fa fa-heart"></i></a>
+          <a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+        </button>
       </div>
+
   </div>
 </div>
+
+<!-- <section class="best-selling">
+  <div class="containers">
+      <div class="best-selling-container">
+          <div class="sale-price">
+              Sale <strong>14%</strong>
+          </div>
+          <div class="selling-col-1">
+            <div class="selling-left">
+              <ul>
+                <li>
+                  <span class="count-date">194</span>
+                  <span class="count-day">Days</span>
+                </li>
+                <li>
+                  <span class="count-date">01</span>
+                  <span class="count-day">Hours</span>
+                </li>
+                <li>
+                  <span class="count-date">22</span>
+                  <span class="count-day">Mins</span>
+                </li>
+                <li>
+                  <span class="count-date">24</span>
+                  <span class="count-day">Secs</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class=" row selling-col-2">
+            <div class="selling-img">
+              <img src="{{product.image}}">
+            </div>
+          </div>
+
+          <div class="selling-col-3">
+              <div class="selling-heading">
+                  <a href="javascript:void(0);">Enim Pichana Enim</a>
+                      <div class="selling-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+              </div>
+
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae explicabo debitis in quidem, laboriosam tempore eligendi excepturi nisi accusamus pariatur aliquam exercitationem. Nam maiores debitis, odit cumque soluta mollitia! Fugiat?</p>
+
+              <h3>
+                <span class="selling-amount">$230.00</span>
+                <span class="selling-discount">$202</span>
+              </h3>
+
+            <div class="selling-button">
+                <a href="javascript:void(0);" class="cart-btn"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                <button type="button" class="main-button">
+                <a href="javascript:void(0);"><i class="fa fa-heart"></i></a>
+                <a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+              </button>
+            </div>
+
+          </div>
+
+      </div>
+  </div>
+</section> -->

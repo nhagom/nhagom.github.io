@@ -8,12 +8,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent {
+
   product: any;
   errMessage:string=''
   constructor(private _service: ProductApiService, private activateRoute: ActivatedRoute, private router:Router){
     activateRoute.paramMap.subscribe(
       (param)=>{
-        let id=param.get('productId');
+        let id=param.get('id');
         if(id!=null){
 
 

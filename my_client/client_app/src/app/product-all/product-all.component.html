@@ -1,69 +1,41 @@
-<!-- {{errMessage}}
-<table [border]="1">
-    <tr>
-      <td>Product Id</td>
-      <td>Product Name</td>
-      <td>Description</td>
-      <td>Detail</td>
-      <td>Tag</td>
-      <td>Price</td>
-      <td>Image</td>
-      <td>Tools</td>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    </tr>
-
-    <tbody>
-      <tr *ngFor="let product of products">
-      <td>{{product.productId}}</td>
-      <td>{{product.productName}}</td>
-      <td>{{product.description}} </td>
-      <td>{{product.productId}}</td>
-      <td>{{product.tag}}</td>
-      <td>{{product.price}} </td>
-      <td>
-      <img src="{{product.image}}" width="100px" height="100px">
-      </td>
-
-      <td>
-        <button class="btn" (click)="DetailProduct(product)">Detail</button>
-      </td>
-      </tr>
-    </tbody>
-</table> -->
-<p>{{errMessage}}</p>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4" *ngFor="let product of products">
-      <div class="card"  (click)="DetailProduct(product)">
-        <div class="img-container">
-          <div class="d-flex justify-content-between align-items-center p-2 first">
-            <span class="percent">-5%</span>
-            <span class="wishlist"><i class="bi bi-heart-fill"></i></span>
-          </div>
-          <div class="text-center">
-            <img src="{{product.image}}" class="img-scale" >
-          </div>
-        </div>
-        <div class="product-detail-container">
-          <div class="d-flex justify-content-between align-items-center">
-
-            <h6 class="mb-0 text-truncate">{{product.productName}}</h6>
-          </div>
-          <div>
-            <span class="text-danger fw-bold">${{product.price}}</span>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-2">
-            <!-- <div class="ratings"><i class="bi bi-star-fill me-1"></i>
-              <span>{{product.tag}}</span>
-            </div> -->
-            <!-- <div class="count">Count:
-              {{p.rating.count}}
-            </div> -->
-          </div>
-            <div class="mt-3"> <button class="btn btn-warning d-block w-100 text-white fw-bold">Buy Now</button>
-            </div>
-        </div>
+<section class="bg-color">
+  <div class="containers">
+      <div class="title">
+          <h2><span>Hàng</span> Gốm</h2>
       </div>
-    </div>
+      <div class="row" >
+          <div class="col-md-3" *ngFor="let product of products">
+              <div class="card">
+                  <div class="card-main">
+                      <div class="discount">0%</div>
+
+                      <div class="image">
+                        <img src="{{product.image}}">
+                      </div>
+                      <div class="cart-line"></div>
+                      <div class="cart-item">
+                          <ul>
+                              <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                              <li><a href=""><i class="fa fa-heart"></i></a></li>
+                              <li ><a (click)="DetailProduct(product)"><i class="fa fa-search"></i></a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="content">
+                      <a href="javascript:void(0);">{{product.productName}}</a>
+                      <div class="rating">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                      </div>
+                      <p><span class="money fw-bold">{{product.price  | currency: "":"": "6.0"}}đ</span></p>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-</div>
+</section>
