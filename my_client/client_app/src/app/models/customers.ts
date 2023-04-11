@@ -6,7 +6,6 @@ export class Customers {
     public customerBirth:string="",
     public customerGender:string="",
     public customerAddress:string="",
-    public username:string="",
     public password:string="",
   ) {}
 }
