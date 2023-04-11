@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductApiService } from '../services/product-api.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/Product';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-product-all',
@@ -11,6 +14,7 @@ import { Product } from 'src/Product';
 export class ProductAllComponent {
   products: Product[] = [];
   errMessage: string = '';
+  p: number=1
   Styles: any;
   constructor(public _service: ProductApiService, public router: Router) {
     this._service.getProducts().subscribe({
@@ -24,6 +28,7 @@ export class ProductAllComponent {
   DetailProduct(d:any){
     this.router.navigate(['product-detail',d._id])
   }
+
 
   getProductStyle(productStyle:string)
   {

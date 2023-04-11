@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
 import { ProductAllComponent } from './product-all/product-all.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table'
+import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
@@ -40,11 +41,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HttpClientModule,
     FormsModule,
     CommonModule,
+    NgxPaginationModule,
     RouterModule,
     ReactiveFormsModule,
     CarouselModule,
     MatTableModule,
     MatButtonModule,
+
     MatPaginatorModule,
     BrowserAnimationsModule,
   ],
