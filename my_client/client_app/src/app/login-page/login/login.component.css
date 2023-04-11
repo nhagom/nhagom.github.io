@@ -1,3 +1,8 @@
+.bg-color {
+  background: #e0c6b0;
+  padding: 60px 0;
+  /* font-family: 'Roboto', sans-serif; */
+}
 body {
   color: #000;
   overflow-x: hidden;
@@ -41,7 +46,6 @@ body {
 .text-sm {
   font-size: 14px !important;
 }
-
 ::placeholder {
   color: #BDBDBD;
   opacity: 1;

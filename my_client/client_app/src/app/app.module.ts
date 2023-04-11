@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AccountpageComponent } from './accountpage/accountpage.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login-page/login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
@@ -27,12 +27,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   declarations: [
     AppComponent,
     AccountpageComponent,
-    LoginComponent,
     RegisterComponent,
     BlogComponent,
     ChatbotComponent,
     ProductDetailComponent,
     ProductAllComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
