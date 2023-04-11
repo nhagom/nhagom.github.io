@@ -120,8 +120,20 @@ app.put("/customers/:customerId", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerId:o_id}).toArray();
     res.send(result[0])
 })
-//api thêm 1 customer
+//api thêm 1 customer (đăng ký)
 app.post("/customers",cors(),async(req,res)=>{
     await customersCollection.insertOne(req.body)
     res.send(req.body)
+})
+//api chỉnh sửa mật khẩu
+app.put("/customers", cors(),async(req,res) =>{
+    await customersCollection.updateOne(
+        {_email:new ObjectId(req.body._email)},
+        {$set :{
+            password:req.body.password,
+        }}
+    )
+    var e_email = new ObjectId(req.body._email);
+    const result = await customersCollection.find({_email:e_email}).toArray();
+    res.send(result[0])
 })
