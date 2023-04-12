@@ -24,13 +24,13 @@ export class AccountPageService {
     )
   }
 
-  getCustomerInfo(id:string):Observable<any> {
+  getCustomerInfo(email:string):Observable<any> {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
       responseType:"text"
     }
-    return this._http.get<any>("/customers/"+id,requestOptions).pipe(
+    return this._http.get<any>("/customers/"+email,requestOptions).pipe(
       map(res=>JSON.parse(res) as ICustomer),
       retry(3),
       catchError(this.handleError)
@@ -41,26 +41,26 @@ export class AccountPageService {
     return throwError(()=>new Error(error.message))
   }
 
-  getPurchaseHistory(ID:string):Observable<any> {
+  getPurchaseHistory(email:string):Observable<any> {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
       responseType:"text"
     }
-    return this._http.get<any>("/orders/"+ID,requestOptions).pipe(
+    return this._http.get<any>("/orders/"+email,requestOptions).pipe(
       map(res=>JSON.parse(res) as Array<IOrder>),
       retry(3),
       catchError(this.handleError)
     )
   }
 
-  updateCusInfo(aCus:any, ID:string):Observable<any>{
+  updateCusInfo(aCus:any, email:string):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
       responseType:"text"
     }
-    return this._http.put<any>("/customers/"+ID,JSON.stringify(aCus),requestOptions).pipe(
+    return this._http.put<any>("/customers/"+email,JSON.stringify(aCus),requestOptions).pipe(
       map(res=>JSON.parse(res) as Array<ICustomer>),
       retry(3),
       catchError(this.handleError)

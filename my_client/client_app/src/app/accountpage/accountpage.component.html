@@ -1,7 +1,7 @@
 {{errMessage}}
 
-Nhập customerID: <input type="text" #ID>
-<button (click)="getInfo(ID.value)"   (click)="getPurchaseHistory(ID.value)">Submit</button>
+Nhập customerID: <input type="email" #Cemail>
+<button (click)="getInfo(Cemail.value)"  (click)="getPurchaseHistory(Cemail.value)">Nhập email</button>
 
 <div class="container">
   <div class="row my-1">
@@ -170,7 +170,7 @@ Nhập customerID: <input type="text" #ID>
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="text-right">
-                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(ID.value)" (click)="getInfo(ID.value)" (click)="getPurchaseHistory(ID.value)" [disabled]="emailExist || infoForm.invalid">Update</button>
+                      <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateCusInfo(Cemail.value)" (click)="getInfo(Cemail.value)" (click)="getPurchaseHistory(Cemail.value)" [disabled]="emailExist || infoForm.invalid">Update</button>
                     </div>
                   </div>
                 </div>

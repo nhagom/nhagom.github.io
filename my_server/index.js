@@ -87,24 +87,24 @@ app.post("/customers",cors(),async(req,res)=>{
     res.send(req.body)
 })
 
-//api gọi customer theo id
-app.get("/customers/:id", cors(), async (req,res)=>{
-    var id = req.params["id"]
-    const result = await customersCollection.find({customerId:id}).toArray();
+//api gọi customer theo email
+app.get("/customers/:email", cors(), async (req,res)=>{
+    var email = req.params["email"]
+    const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
 
 //api gọi lịch sử mua hàng theo customerid
-app.get("/orders/:customerId", cors(), async (req,res)=>{
-    var id = req.params["customerId"]
-    const result = await ordersCollection.find({customerId:id}).toArray();
+app.get("/orders/:customerEmail", cors(), async (req,res)=>{
+    var email = req.params["customerEmail"]
+    const result = await ordersCollection.find({customerEmail:email}).toArray();
     res.send(result)
 })
 
 //api update thông tin customer
-app.put("/customers/:customerId", cors(), async (req,res)=>{
+app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     await customersCollection.updateOne(
-        {customerId: req.params.customerId},
+        {customerEmail: req.params.customerEmail},
         { $set: { 
             customerName: req.body.customerName,
             customerEmail: req.body.customerEmail,
@@ -112,12 +112,10 @@ app.put("/customers/:customerId", cors(), async (req,res)=>{
             customerBirth: req.body.customerBirth,
             customerAddress: req.body.customerAddress,
             customerGender: req.body.customerGender,
-            username: req.body.username,
-            password: req.body.password
         }}
     )
-    var o_id = req.body.customerId
-    const result = await customersCollection.find({customerId:o_id}).toArray();
+    var email = req.body.customerEmail
+    const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
 //api thêm 1 customer (đăng ký)
@@ -137,6 +135,7 @@ app.get("/customers/check-email/:email", cors(), async (req, res) => {
       res.send(false);
     }
   });
+  
 //api chỉnh sửa mật khẩu
 app.put("/customers", cors(),async(req,res) =>{
     await customersCollection.updateOne(
