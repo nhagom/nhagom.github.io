@@ -48,22 +48,22 @@
       <div class="row" >
           <div class="col-md-3" *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: p }">
               <div class="card">
-                  <div class="card-main">
-                      <div class="discount">0%</div>
+                  <div class="card-main" >
+                      <div class="discount" (click)="DetailProduct(product)">0%</div>
 
-                      <div class="image">
+                      <div class="image" (click)="DetailProduct(product)">
                         <img src="{{product.image}}">
                       </div>
-                      <div class="cart-line"></div>
+                      <div class="cart-line" (click)="DetailProduct(product)"></div>
                       <div class="cart-item">
                           <ul>
                               <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
                               <li><a href=""><i class="fa fa-heart"></i></a></li>
-                              <li ><a (click)="DetailProduct(product)"><i class="fa fa-search"></i></a></li>
+                              <li ><a><i class="fa fa-search"></i></a></li>
                           </ul>
                       </div>
                   </div>
-                  <div class="content">
+                  <div class="content" (click)="DetailProduct(product)">
                       <a href="javascript:void(0);">{{product.productName}}</a>
                       <div class="rating">
                           <i class="fa fa-star-o"></i>
