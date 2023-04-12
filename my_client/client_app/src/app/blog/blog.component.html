@@ -7,9 +7,11 @@
         <div class="row g-5">
           <div class="col-lg-4 border-start custom-border" *ngFor="let blog of blogs">
             <div class="post-entry-1">
-              <a href="'blog-detail'"><img src="{{blog.imgTitle}}" alt="" class="img-fluid"  style="height:150px;width: 225px;"></a>
+              <a style="cursor:pointer" [routerLink]="'/blog-detail'">
+                <img src="{{blog.imgTitle}}" alt="" class="img-fluid"  style="height:150px;width: 225px;">
+              </a>
               <div class="post-meta"><span class="date">{{blog.blogName}}</span></div>
-              <h4><a href="'blog-detail'">{{blog.blogTitle}}</a></h4>
+              <h4><a style="cursor:pointer" [routerLink]="'/blog-detail'">{{blog.blogTitle}}</a></h4>
             </div>
           </div>
         </div>
@@ -19,7 +21,7 @@
           <h3>Trending</h3>
           <ul class="trending-post" *ngFor="let blog of blogs.slice(0,6)">
             <li>
-              <a href="#">
+              <a style="cursor:pointer" [routerLink]="'/blog-detail'">
                 <h3>{{blog.blogTitle}}</h3>
                 <span class="author">{{blog.blogName}}</span>
               </a>

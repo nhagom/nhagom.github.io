@@ -69,12 +69,18 @@ app.get("/orders", cors(), async (req,res)=>{
     const result = await ordersCollection.find({}).toArray();
     res.send(result)
 })
-
+// API blogs
+  // get all blogs
 app.get("/blogs", cors(), async (req,res)=>{
     const result = await blogsCollection.find({}).toArray();
     res.send(result)
 })
-
+  // get 1 blog by id
+app.get("/blogs/:id",cors(), async (req,res)=>{
+    var id = req.params["id"]
+    const result = await blogsCollection.find({blogId:id}).toArray();
+    res.send(result)
+})
 app.get("/feedbacks", cors(), async (req,res)=>{
     const result = await feedbacksCollection.find({}).toArray();
     res.send(result)

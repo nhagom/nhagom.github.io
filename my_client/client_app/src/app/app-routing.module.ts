@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'product-all', component: ProductAllComponent },
   { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogDetailComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
 
 ];
