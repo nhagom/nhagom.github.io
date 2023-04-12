@@ -15,12 +15,14 @@ export class AccountpageComponent {
   purchaseHistory:any
   errMessage=''
   successMsg = '';
+  emailExist=false
+
 
   constructor(private _service: AccountPageService, ) {
 
   }
-  getInfo(ID:string){
-    this._service.getCustomerInfo(ID).subscribe({
+  getInfo(email:string){
+    this._service.getCustomerInfo(email).subscribe({
         next:(data)=>{
             this.cusInfo=data;
             this.aCus = {...this.cusInfo};
@@ -29,8 +31,8 @@ export class AccountpageComponent {
     })
 }
 
-  getPurchaseHistory(ID:string){
-    this._service.getPurchaseHistory(ID).subscribe({
+  getPurchaseHistory(email:string){
+    this._service.getPurchaseHistory(email).subscribe({
       next:(data)=>{this.purchaseHistory=data},
       error:(err)=>{this.errMessage=err}
     })
@@ -44,8 +46,8 @@ export class AccountpageComponent {
     return total;
   }
 
-  updateCusInfo(ID:string) {
-    this._service.updateCusInfo(this.aCus, ID).subscribe({
+  updateCusInfo(email:string) {
+    this._service.updateCusInfo(this.aCus, email).subscribe({
       next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err},
 
@@ -57,5 +59,13 @@ export class AccountpageComponent {
 
   hideSuccessMsg() {
     this.successMsg = '';
+  }
+
+  checkEmail() {
+    if (this.aCus.customerEmail !== this.cusInfo.customerEmail) {
+      this._service.checkEmailExists(this.aCus.customerEmail).subscribe({
+        next:(data)=>{this.emailExist=data},
+      });
+    }
   }
 }

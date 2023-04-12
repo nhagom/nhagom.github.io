@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { AppComponent } from './app.component';
@@ -43,11 +44,13 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
     HttpClientModule,
     FormsModule,
     CommonModule,
+    NgxPaginationModule,
     RouterModule,
     ReactiveFormsModule,
     CarouselModule,
     MatTableModule,
     MatButtonModule,
+
     MatPaginatorModule,
     BrowserAnimationsModule,
   ],
