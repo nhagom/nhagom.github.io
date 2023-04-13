@@ -36,7 +36,7 @@
 
 .title::after {
   content: '\f005';
-  font-family: FontAwesome;
+  /* font-family: FontAwesome; */
   color: #dbdbdb;
   width: 50px;
   height: 20px;
@@ -60,6 +60,7 @@
 
 .title h2 {
   font-size: 44px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #131313;
   font-weight: 900;
   text-align: center;
@@ -68,6 +69,7 @@
 
 .title span {
   color: #d89779;
+
 }
 
 .card {
@@ -310,7 +312,6 @@
   font-size: 18px;
   font-weight: 400;
   margin: 0;
-  font-family: var(--font-secondary);
 }
 
 @media (max-width: 575px) {
@@ -359,13 +360,11 @@
   font-size: 22px;
   font-weight: 500;
   color: var(--color-secondary);
-  font-family: var(--font-secondary);
   font-weight: 30px;
   margin-bottom: 5px;
 }
 
 .menu .tab-content .menu-item .ingredients {
-  font-family: var(--font-secondary);
   color: #8d8d9b;
   margin-bottom: 5px;
 }
