@@ -24,12 +24,9 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
 
 
 @NgModule({
@@ -59,12 +56,9 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     MatButtonModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    NzPaginationModule,
-    NzLayoutModule,
     ScrollingModule,
     DragDropModule,
-    NzBreadCrumbModule,
-    NzDropDownModule,
+
 
 
   ],
