@@ -5,7 +5,7 @@
            <div class="col-lg-6">
                <div class="card1">
                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
-                     <img src="assets/image/register_login.jpg" class="img-fluid">
+                     <img src="assets/image/logister_login.jpg" class="img-fluid">
                    </div>
                </div>
            </div>
@@ -15,16 +15,24 @@
                      <h3 class="text-center">Thay đổi mật khẩu</h3>
                    </div>
                    <div class="row px-3">
-                     <label class="mb-1">
-                       <h6 class="mb-0 text-sm" for="email">Email</h6>
-                     </label>
-                     <input type="email" [email]="true" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" formControlName="email"[class.is-invalid]="logForm.controls['email'].invalid && logForm.controls['email'].touched"  [(ngModel)]="customer.customerEmail">
-                     <div *ngIf="logForm.controls['email'].errors && (logForm.controls['email'].invalid || logForm.controls['email'].touched)">
-                       <small class="text-danger" *ngIf="logForm.controls['email'].errors['required'] " [class.d-none]="logForm.controls['email'].valid || logForm.controls['email'].untouched
-                         ">Email không được để trống</small>
-                       <small class="text-danger" *ngIf="logForm.controls['email'].errors['email']">Email không hợp lệ</small>
-                     </div>
-                   </div>
+                    <label class="mb-1">
+                      <h6 class="mb-0 text-sm" for="email">Email</h6>
+                    </label>
+                    <input type="email"
+                           class="form-control"
+                           name="email"
+                           id="email"
+                           placeholder="Nhập địa chỉ email"
+                           formControlName="email"
+                           [class.is-invalid]="logForm.controls['email'].invalid && logForm.controls['email'].touched"
+                           (blur)="checkEmail()"
+                           [(ngModel)]="customer.customerEmail">
+                    <div *ngIf="logForm.controls['email'].errors && (logForm.controls['email'].invalid || logForm.controls['email'].touched)">
+                      <small class="text-danger" *ngIf="logForm.controls['email'].errors['required']" [class.d-none]="logForm.controls['email'].valid || logForm.controls['email'].untouched">Email không được để trống</small>
+                      <small class="text-danger" *ngIf="logForm.controls['email'].errors['email']">Email không hợp lệ</small>
+                      <small class="text-danger" *ngIf="!emailExist && logForm.controls['email'].touched">Email không tồn tại</small>
+                    </div>
+                  </div>
                    <div class="row px-3">
                     <label class="mb-1">
                       <h6 class="mb-0 text-sm" for="password">Mật khẩu mới</h6>

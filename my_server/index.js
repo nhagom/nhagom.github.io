@@ -130,7 +130,7 @@ app.post("/customers",cors(),async(req,res)=>{
     res.send(req.body)
 })
 
-//api kiểm tra xem email đã tồn tại hay chưa?
+//api kiểm tra email không tồn tại
 app.get("/customers/check-email/:email", cors(), async (req, res) => {
     const email = req.params.email;
     const result = await customersCollection.findOne({ customerEmail: email });
@@ -141,7 +141,17 @@ app.get("/customers/check-email/:email", cors(), async (req, res) => {
       res.send(false);
     }
   });
+//api kiểm tra email tồn tại
+app.get("/customers/check-email-invalid/:email", cors(), async (req, res) => {
+    const email = req.params.email;
+    const result = await customersCollection.findOne({ customerEmail: email });
   
+    if (result) {
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  });
 //api chỉnh sửa mật khẩu
 app.put("/customers", cors(),async(req,res) =>{
     await customersCollection.updateOne(

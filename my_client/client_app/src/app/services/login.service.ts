@@ -9,18 +9,18 @@ import { ICustomer } from '../interfaces/customers';
 })
 export class LoginService {
   constructor(private _http: HttpClient) { }
-  // postCustomers(aCustomer:any):Observable<any>{
-  //   const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
-  //   const requestOptions:Object={
-  //     headers:headers,
-  //     responseType:"text"
-  //   }
-  //   return this._http.post<any>("/customers",JSON.stringify(aCustomer),requestOptions).pipe(
-  //     map(res=>JSON.parse(res) as Customers),
-  //     retry(3),
-  //     catchError(this.handleError)
-  //   )
-  // }
+  postCustomers(aCustomer:any):Observable<any>{
+    const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+    const requestOptions:Object={
+      headers:headers,
+      responseType:"text"
+    }
+    return this._http.post<any>("/customers",JSON.stringify(aCustomer),requestOptions).pipe(
+      map(res=>JSON.parse(res) as Customers),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
   handleError(error:HttpErrorResponse){
     return throwError(()=>new Error(error.message))
   }
@@ -37,4 +37,12 @@ export class LoginService {
     catchError(this.handleError)
   )
 }
+//kiểm tra email không tồn tại
+checkEmailExists(email: string): Observable<boolean> {
+  return this._http.get<any>(`/customers/check-email-invalid/${email}`).pipe(
+    map(res => res as boolean),
+    catchError(this.handleError)
+  );
+}
+
 }
