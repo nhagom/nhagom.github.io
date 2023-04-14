@@ -160,7 +160,7 @@ app.put("/customers/:email", cors(),async(req,res) =>{
         }}
     )
     var e_email = req.body.customerEmail;
-    const result = await customersCollection.find({customerEmail:email}).toArray();
+    const result = await customersCollection.find({customerEmail:e_email}).toArray();
     res.send(result[0])
 })
 //api kiểm tra email, pass khi login
