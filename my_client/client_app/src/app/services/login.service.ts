@@ -8,6 +8,9 @@ import { ICustomer } from '../interfaces/customers';
   providedIn: 'root'
 })
 export class LoginService {
+  login(email: any, password: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private _http: HttpClient) { }
   postCustomers(aCustomer:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
@@ -31,7 +34,7 @@ export class LoginService {
     headers:headers,
     responseType:"text"
   }
-  return this._http.put<any>("/customers",JSON.stringify(aCustomer),requestOptions).pipe(
+  return this._http.put<any>("/customers",aCustomer,requestOptions).pipe(
     map(res=>JSON.parse(res) as Array<ICustomer>),
     retry(3),
     catchError(this.handleError)

@@ -38,8 +38,6 @@ ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
 
-
-
 //api product
 app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).toArray();
@@ -52,12 +50,12 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
-    //this is API to get category of tag
+  //this is API to get category of tag
     app.get("/products-get/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
         const result = await productCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
-    })
+    })  
 
 
 app.get("/customers", cors(), async (req,res)=>{
@@ -124,6 +122,7 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
+//-------------------------------API REGISTER , LOGIN------------------------------------------
 //api thêm 1 customer (đăng ký)
 app.post("/customers",cors(),async(req,res)=>{
     await customersCollection.insertOne(req.body)
@@ -164,4 +163,6 @@ app.put("/customers", cors(),async(req,res) =>{
     const result = await customersCollection.find({customerEmail:e_email}).toArray();
     res.send(result[0])
 })
+//api kiểm tra email, pass khi login
+// const bcrypt = require('bcrypt');
 
