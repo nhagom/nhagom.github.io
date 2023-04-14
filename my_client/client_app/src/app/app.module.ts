@@ -24,6 +24,10 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+
 
 @NgModule({
   declarations: [
@@ -50,9 +54,13 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
     CarouselModule,
     MatTableModule,
     MatButtonModule,
-
     MatPaginatorModule,
     BrowserAnimationsModule,
+    ScrollingModule,
+    DragDropModule,
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

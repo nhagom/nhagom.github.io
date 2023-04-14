@@ -38,8 +38,6 @@ ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
 
-
-
 //api product
 app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).toArray();
@@ -52,12 +50,12 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
-    //this is API to get category of tag
+  //this is API to get category of tag
     app.get("/products-get/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
         const result = await productCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
-    })
+    })  
 
 
 app.get("/customers", cors(), async (req,res)=>{
@@ -124,13 +122,14 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
+//-------------------------------API REGISTER , LOGIN------------------------------------------
 //api thêm 1 customer (đăng ký)
 app.post("/customers",cors(),async(req,res)=>{
     await customersCollection.insertOne(req.body)
     res.send(req.body)
 })
 
-//api kiểm tra xem email đã tồn tại hay chưa?
+//api kiểm tra email không tồn tại
 app.get("/customers/check-email/:email", cors(), async (req, res) => {
     const email = req.params.email;
     const result = await customersCollection.findOne({ customerEmail: email });
@@ -141,17 +140,29 @@ app.get("/customers/check-email/:email", cors(), async (req, res) => {
       res.send(false);
     }
   });
+//api kiểm tra email tồn tại
+app.get("/customers/check-email-invalid/:email", cors(), async (req, res) => {
+    const email = req.params.email;
+    const result = await customersCollection.findOne({ customerEmail: email });
   
+    if (result) {
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  });
 //api chỉnh sửa mật khẩu
-app.put("/customers", cors(),async(req,res) =>{
+app.put("/customers/:email", cors(),async(req,res) =>{
     await customersCollection.updateOne(
-        {customerEmail:req.params.customerEmail},
+        {customerEmail:req.params.email},
         {$set :{
             password:req.body.password,
         }}
     )
     var e_email = req.body.customerEmail;
-    const result = await customersCollection.find({customerEmail:e_email}).toArray();
+    const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
+//api kiểm tra email, pass khi login
+// const bcrypt = require('bcrypt');
 
