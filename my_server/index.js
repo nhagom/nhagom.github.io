@@ -152,15 +152,15 @@ app.get("/customers/check-email-invalid/:email", cors(), async (req, res) => {
     }
   });
 //api chỉnh sửa mật khẩu
-app.put("/customers", cors(),async(req,res) =>{
+app.put("/customers/:email", cors(),async(req,res) =>{
     await customersCollection.updateOne(
-        {customerEmail:req.params.customerEmail},
+        {customerEmail:req.params.email},
         {$set :{
             password:req.body.password,
         }}
     )
     var e_email = req.body.customerEmail;
-    const result = await customersCollection.find({customerEmail:e_email}).toArray();
+    const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
 //api kiểm tra email, pass khi login
