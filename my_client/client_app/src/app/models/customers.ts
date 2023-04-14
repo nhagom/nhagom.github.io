@@ -9,3 +9,9 @@ export class Customers {
     public password:string="",
   ) {}
 }
+export class ForgotPassCustomers {
+  constructor(
+    public customerEmail:string="",
+    public password:string="",
+  ) {}
+}

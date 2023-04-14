@@ -28,13 +28,13 @@ export class LoginService {
     return throwError(()=>new Error(error.message))
   }
   // update pass
-  putPassword(aCustomer:any):Observable<any>{
+  putPassword(aCustomer:any, email:string):Observable<any>{
   const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
   const requestOptions:Object={
     headers:headers,
     responseType:"text"
   }
-  return this._http.put<any>("/customers",aCustomer,requestOptions).pipe(
+  return this._http.put<any>("/customers/" +email, JSON.stringify(aCustomer),requestOptions).pipe(
     map(res=>JSON.parse(res) as Array<ICustomer>),
     retry(3),
     catchError(this.handleError)

@@ -31,8 +31,8 @@ export class ForgotPassComponent {
       confirmPass: ['', [Validators.required]]
     }, { validators: passwordValidator });
   }
-  putPassword(){
-    this._service.putPassword(this.customer).subscribe({
+  putPassword(email:string){
+    this._service.putPassword(this.customer,email).subscribe({
       next:(data)=>{this.customer=data},
       error:(err)=>{this.errMessage=err}
     })
