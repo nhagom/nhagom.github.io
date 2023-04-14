@@ -104,4 +104,9 @@ export class ChatbotComponent {
       this.isChatbotVisible = false;
     }
   }
+  isQuickReplyVisible = false;
+
+  toggleQuickReplyButtons() {
+  this.isQuickReplyVisible = !this.isQuickReplyVisible;
+  }
 }
