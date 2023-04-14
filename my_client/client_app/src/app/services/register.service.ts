@@ -7,6 +7,7 @@ import { Customers } from '../models/customers';
 })
 export class RegisterService {
   constructor(private _http: HttpClient) { }
+
   postCustomers(aCustomer:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
@@ -21,5 +22,11 @@ export class RegisterService {
   }
   handleError(error:HttpErrorResponse){
     return throwError(()=>new Error(error.message))
+  }
+  checkEmailExists(email: string): Observable<boolean> {
+    return this._http.get<any>(`/customers/check-email/${email}`).pipe(
+      map(res => res as boolean),
+      catchError(this.handleError)
+    );
   }
 }
