@@ -25,7 +25,7 @@
                            placeholder="Nhập địa chỉ email"
                            formControlName="email" #c_email
                            [class.is-invalid]="logForm.controls['email'].invalid && logForm.controls['email'].touched"
-                           (blur)="checkEmail()"
+                           (onblur)="checkEmail()"
                            [(ngModel)]="customer.customerEmail">
                     <div *ngIf="logForm.controls['email'].errors && (logForm.controls['email'].invalid || logForm.controls['email'].touched)">
                       <small class="text-danger" *ngIf="logForm.controls['email'].errors['required']" [class.d-none]="logForm.controls['email'].valid || logForm.controls['email'].untouched">Email không được để trống</small>
@@ -37,7 +37,7 @@
                     <label class="mb-1">
                       <h6 class="mb-0 text-sm" for="password">Mật khẩu mới</h6>
                     </label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Nhập Mật khẩu" formControlName="password" [class.is-invalid]="logForm.controls['password'].invalid && logForm.controls['password'].touched" [(ngModel)]="customer.password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Nhập Mật khẩu" formControlName="password" [class.is-invalid]="logForm.controls['password'].invalid && logForm.controls['password'].touched" [(ngModel)]="customer.password" >
                     <div *ngIf="logForm.controls['password'].invalid && logForm.controls['password'].touched">
                       <small class="text-danger" *ngIf="logForm.controls['password'].errors?.['required'] ">Mật khẩu không được để trống</small>
                     </div>

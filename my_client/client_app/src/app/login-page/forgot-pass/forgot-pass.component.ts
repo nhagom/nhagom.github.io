@@ -8,17 +8,17 @@ import { passwordValidator } from 'src/app/check.validator';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AccountPageService } from 'src/app/services/account-page.service';
 
+
 @Component({
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
   styleUrls: ['./forgot-pass.component.css']
 })
 export class ForgotPassComponent {
-  customer =new ForgotPassCustomers();
+  customer =new Customers();
   errMessage:string=''
   logForm: any;
   cusInfo:any
-
   emailExist=false
   errFlag: boolean = false;
   constructor(private formBuilder: FormBuilder, private _service: LoginService, private service:AccountPageService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){
@@ -32,17 +32,23 @@ export class ForgotPassComponent {
       confirmPass: ['', [Validators.required]]
     }, { validators: passwordValidator });
   }
-//   getInfo(email:string){
-//     this.service.getCustomerInfo(email).subscribe({
-//         next:(data)=>{
-//             this.cusInfo=data;
-//             this.customer = {...this.cusInfo};
-//         },
-//         error:(err)=>{this.errMessage=err}
-//     })
-// }
+
+  // getInfo(email:string){
+  //   this.service.getCustomerInfo(email).subscribe({
+  //     next:(data)=>{this.cusInfo=data}
+  //   })
+  //   this.cusInfo=this.customer
+  // }
 
   putPassword(email:string){
+    this.service.getCustomerInfo(email).subscribe({
+      next:(data)=>{this.cusInfo=data}
+    })
+    this.customer.customerName=this.cusInfo.customerName,
+    this.customer.customerPhoneNumb=this.cusInfo.customerPhoneNumb,
+    this.customer.customerGender=this.cusInfo.customerGender,
+    this.customer.customerBirth=this.cusInfo.customerBirth,
+    this.customer.customerAddress=this.cusInfo.customerAddress
     this._service.putPassword(this.customer,email).subscribe({
       next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err}
