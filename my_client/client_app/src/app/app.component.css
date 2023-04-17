@@ -1,0 +1,21 @@
+.body__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr auto;
+  grid-template-areas: "header" "main" "footer";
+  margin-top: 12px;
+}
+
+.header__position {
+  grid-area: header;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.footer__position {
+  height: auto;
+  background-color: var(--color3);
+  grid-area: footer;
+}
