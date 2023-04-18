@@ -60,12 +60,11 @@ import { FooterComponent } from './footer/footer.component';
     RouterModule,
     ReactiveFormsModule,
     CarouselModule,
-
     BrowserAnimationsModule,
     ScrollingModule,
     DragDropModule,
     Ng2SearchPipeModule,
-    MatDialogModule,
+    MatDialogModule
 
 
   ],
