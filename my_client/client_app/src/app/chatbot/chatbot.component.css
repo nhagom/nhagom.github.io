@@ -4,10 +4,11 @@
   right: 20px;
   flex-direction: column;
   display: flex;
+  z-index: 9999;
 }
 
 .toggle-chatbot {
-  background-color: #1e90ff;
+  background-color: #bd6206;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -17,7 +18,10 @@
   font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease-in-out;
+  width: 100%;
+  margin-left: 0;
 }
 
 .toggle-chatbot:hover {
@@ -26,7 +30,7 @@
 .chatbot {
   width: 300px;
   background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   overflow: auto;
   display: flex;
@@ -56,7 +60,7 @@
 }
 
 .user-message {
-  background-color: #4CAF50;
+  background-color: #d66e0c;
   color: white;
   margin: 5px 0px;
   border-radius: 4px;
@@ -67,24 +71,43 @@
 
 .traLoiNhanh {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 5px; /* khoảng cách với input */
+}
+.traLoiNhanh::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 5px;
+}
+
+.traLoiNhanh::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+.traLoiNhanh::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #f5f5f5;
 }
 
 .btnTraLoiNhanh {
   background-color: #4376d0;
   color: white;
-  margin: 1px 0px;
+  margin: 1px 5px 1px 0;
   border-radius: 4px;
   padding: 5px;
   display: inline-block;
   cursor: pointer;
   align-self: flex-end;
+  white-space: nowrap;
 }
 
 .input-container {
   display: flex;
   padding: 10px;
   border-top: 1px solid #eee;
+  align-items: center; /* canh giữa các phần tử con */
 }
 
 input {
@@ -93,6 +116,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
+  margin-right: 5px; /* khoảng cách với nút Send */
 }
 
 button {

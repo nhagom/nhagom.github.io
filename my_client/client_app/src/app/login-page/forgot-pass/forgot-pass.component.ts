@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { Customers } from 'src/app/models/customers';
+import { Customers, ForgotPassCustomers } from 'src/app/models/customers';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { passwordValidator } from 'src/app/check.validator';
 import { Observable, catchError, map, of } from 'rxjs';
+import { AccountPageService } from 'src/app/services/account-page.service';
+
 
 @Component({
   selector: 'app-forgot-pass',
@@ -17,10 +19,9 @@ export class ForgotPassComponent {
   errMessage:string=''
   logForm: any;
   cusInfo:any
-
   emailExist=false
   errFlag: boolean = false;
-  constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){
+  constructor(private formBuilder: FormBuilder, private _service: LoginService, private service:AccountPageService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){
   }
 
   // validator
@@ -31,9 +32,25 @@ export class ForgotPassComponent {
       confirmPass: ['', [Validators.required]]
     }, { validators: passwordValidator });
   }
-  putPassword(){
-    this._service.putPassword(this.customer).subscribe({
-      next:(data)=>{this.customer=data},
+
+  // getInfo(email:string){
+  //   this.service.getCustomerInfo(email).subscribe({
+  //     next:(data)=>{this.cusInfo=data}
+  //   })
+  //   this.cusInfo=this.customer
+  // }
+
+  putPassword(email:string){
+    this.service.getCustomerInfo(email).subscribe({
+      next:(data)=>{this.cusInfo=data}
+    })
+    this.customer.customerName=this.cusInfo.customerName,
+    this.customer.customerPhoneNumb=this.cusInfo.customerPhoneNumb,
+    this.customer.customerGender=this.cusInfo.customerGender,
+    this.customer.customerBirth=this.cusInfo.customerBirth,
+    this.customer.customerAddress=this.cusInfo.customerAddress
+    this._service.putPassword(this.customer,email).subscribe({
+      next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err}
     })
   }

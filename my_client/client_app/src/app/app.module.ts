@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { AppComponent } from './app.component';
@@ -25,7 +26,13 @@ import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.compon
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+<<<<<<< HEAD
 import { ShopGridComponent } from './shop-grid/shop-grid.component';
+=======
+import { AboutUsComponent } from './about-us/about-us.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+>>>>>>> 1c205cb0b771338ab0efdd53d01c2d1a2c4ada3a
 
 
 
@@ -41,7 +48,13 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
     LoginComponent,
     ForgotPassComponent,
     BlogDetailComponent,
+<<<<<<< HEAD
     ShopGridComponent,
+=======
+    AboutUsComponent,
+    HeaderComponent,
+    FooterComponent
+>>>>>>> 1c205cb0b771338ab0efdd53d01c2d1a2c4ada3a
   ],
   imports: [
     BrowserModule,
@@ -57,8 +70,12 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
     BrowserAnimationsModule,
     ScrollingModule,
     DragDropModule,
+<<<<<<< HEAD
     Ng2SearchPipeModule,
 
+=======
+    MatDialogModule
+>>>>>>> 1c205cb0b771338ab0efdd53d01c2d1a2c4ada3a
 
 
   ],
