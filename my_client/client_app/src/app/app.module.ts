@@ -19,13 +19,13 @@ import { RouterModule } from '@angular/router';
 import { ProductAllComponent } from './product-all/product-all.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
-import { MatButtonModule} from '@angular/material/button';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ShopGridComponent } from './shop-grid/shop-grid.component';
 
 
 
@@ -40,7 +40,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ProductAllComponent,
     LoginComponent,
     ForgotPassComponent,
-    BlogDetailComponent
+    BlogDetailComponent,
+    ShopGridComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,12 +53,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     RouterModule,
     ReactiveFormsModule,
     CarouselModule,
-    MatTableModule,
-    MatButtonModule,
-    MatPaginatorModule,
+
     BrowserAnimationsModule,
     ScrollingModule,
     DragDropModule,
+    Ng2SearchPipeModule,
 
 
 
