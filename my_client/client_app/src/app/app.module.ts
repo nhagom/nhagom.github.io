@@ -60,7 +60,6 @@ import { FooterComponent } from './footer/footer.component';
     RouterModule,
     ReactiveFormsModule,
     CarouselModule,
-
     BrowserAnimationsModule,
     ScrollingModule,
     DragDropModule,
