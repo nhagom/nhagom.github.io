@@ -50,13 +50,18 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
-  //this is API to get category of tag
-    app.get("/products-get/:style",cors(), async(req,res)=>{
+    //this is API to get category of tag
+    app.get("/products-Style/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
-        const result = await productCollection.find({style:{$regex: o_style}}).toArray();
+        const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
     })  
 
+  app.get("/products-Style/", cors(), async (req,res)=>{
+          var o_style =new RegExp(req.params.style,"i")
+          const result=await productsCollection.find({style:{$regex: o_style}}).toArray();
+          res.send(result)
+          })
 
 app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();

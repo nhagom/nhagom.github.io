@@ -1,4 +1,4 @@
-.row{
+.product{
     width: 90%;
     margin: 0 auto;
     margin-top: 20px;
@@ -7,7 +7,7 @@
     /* box-shadow: 0px 2px 2px 1px rgba(71, 71, 71, 0.52); */
     position: relative;
     background: #e0c6b0;
-    padding: 40px;
+    padding: 20px;
     border-radius: 10px;
   }
 
@@ -107,7 +107,7 @@
   .selling-heading {
     padding-bottom: 20px;
     border-bottom: 1px solid #d89779;
-    
+
   }
 
   .selling-heading a {
@@ -128,7 +128,7 @@
   }
 
   .text{
-    margin:  20px 0 15px; 
+    margin:  20px 0 15px;
   }
 
 
@@ -173,7 +173,7 @@
   }
 
   .form-group{
-    text-decoration: none; 
+    text-decoration: none;
     border-radius: 4px;
     font-size: 14px;
     font-weight: 600;
