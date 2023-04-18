@@ -50,13 +50,8 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
-<<<<<<< HEAD
     //this is API to get category of tag
     app.get("/products-Style/:style",cors(), async(req,res)=>{
-=======
-  //this is API to get category of tag
-    app.get("/products-get/:style",cors(), async(req,res)=>{
->>>>>>> 1c205cb0b771338ab0efdd53d01c2d1a2c4ada3a
         const o_style = new RegExp(req.params.style,"i")
         const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
