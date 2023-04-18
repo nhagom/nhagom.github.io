@@ -9,11 +9,8 @@ import { ProductAllComponent } from './product-all/product-all.component';
 import { BlogComponent } from './blog/blog.component';
 import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
-<<<<<<< HEAD
 import { ShopGridComponent } from './shop-grid/shop-grid.component';
-=======
 import { AboutUsComponent } from './about-us/about-us.component';
->>>>>>> 1c205cb0b771338ab0efdd53d01c2d1a2c4ada3a
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
