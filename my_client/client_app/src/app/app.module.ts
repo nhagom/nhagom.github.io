@@ -66,6 +66,7 @@ import { CartComponent } from './cart/cart.component';
     ScrollingModule,
     DragDropModule,
     Ng2SearchPipeModule,
+
     MatDialogModule
 
 

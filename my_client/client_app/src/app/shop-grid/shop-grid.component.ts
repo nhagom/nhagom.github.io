@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class ShopGridComponent {
   products: Product[] = [];
   errMessage: string = '';
-  p: number=1
+  p: number=1;
   searchText: any;
   uniqueStyles: any;
     constructor(public _service: ProductApiService, public router: Router) {
