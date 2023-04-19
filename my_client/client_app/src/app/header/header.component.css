@@ -1,4 +1,4 @@
-/* @import '~@fortawesome/fontawesome-free/css/all.min.css'; */
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 .navbar-nav li a {
   color: #fff;
   font-weight: bold;
@@ -58,3 +58,4 @@
   margin-left: -130px;
   border-radius: 10px;
 }
+

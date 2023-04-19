@@ -30,6 +30,7 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -48,7 +49,8 @@ import { FooterComponent } from './footer/footer.component';
     ShopGridComponent,
     AboutUsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
