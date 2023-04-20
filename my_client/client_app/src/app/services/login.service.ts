@@ -34,8 +34,8 @@ export class LoginService {
     headers:headers,
     responseType:"text"
   }
-  return this._http.put<any>("/customers/" +email, JSON.stringify(aCustomer),requestOptions).pipe(
-    map(res=>JSON.parse(res) as Array<ICustomer>),
+  return this._http.put<any>("/customers/pass/" +email, JSON.stringify(aCustomer),requestOptions).pipe(
+    map(res=>JSON.parse(res) as ICustomer),
     retry(3),
     catchError(this.handleError)
   )

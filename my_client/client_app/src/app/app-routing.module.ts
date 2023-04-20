@@ -9,6 +9,9 @@ import { ProductAllComponent } from './product-all/product-all.component';
 import { BlogComponent } from './blog/blog.component';
 import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { ShopGridComponent } from './shop-grid/shop-grid.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
@@ -16,15 +19,18 @@ const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   // { path: 'home', component: AccountpageComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgotpassword', component: ForgotPassComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'about', component: AboutUsComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'product-all', component: ProductAllComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogDetailComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
+  { path: 'shop-grid', component: ShopGridComponent },
+
 
 ];
 

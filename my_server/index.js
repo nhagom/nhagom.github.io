@@ -50,13 +50,18 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
-  //this is API to get category of tag
-    app.get("/products-get/:style",cors(), async(req,res)=>{
+    //this is API to get category of tag
+    app.get("/products-Style/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
-        const result = await productCollection.find({style:{$regex: o_style}}).toArray();
+        const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
     })  
 
+  app.get("/products-Style/", cors(), async (req,res)=>{
+          var o_style =new RegExp(req.params.style,"i")
+          const result=await productsCollection.find({style:{$regex: o_style}}).toArray();
+          res.send(result)
+          })
 
 app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();
@@ -118,7 +123,7 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
             customerGender: req.body.customerGender,
         }}
     )
-    var email = req.body.customerEmail
+    var email = req.params.customerEmail
     const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
@@ -152,15 +157,23 @@ app.get("/customers/check-email-invalid/:email", cors(), async (req, res) => {
     }
   });
 //api chỉnh sửa mật khẩu
-app.put("/customers/:email", cors(),async(req,res) =>{
+app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
+    console.log(req.body)
     await customersCollection.updateOne(
-        {customerEmail:req.params.email},
-        {$set :{
-            password:req.body.password,
+        {customerEmail: req.params.customerEmail},
+        { $set: { 
+            customerId: req.body.customerId,
+            customerName: req.body.customerName,
+            customerEmail: req.body.customerEmail,
+            customerPhoneNumb: req.body.customerPhoneNumb,
+            customerBirth: req.body.customerBirth,
+            customerGender: req.body.customerGender,
+            customerAddress: req.body.customerAddress,
+            password : req.body.password
         }}
     )
-    var e_email = req.body.customerEmail;
-    const result = await customersCollection.find({customerEmail:e_email}).toArray();
+    var email = req.params.customerEmail
+    const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
 //api kiểm tra email, pass khi login

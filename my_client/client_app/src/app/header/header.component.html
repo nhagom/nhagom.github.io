@@ -1,0 +1,118 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-color1">
+  <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">
+          <img src="../../assets/img/Logo.png" height="45" alt="" loading="lazy" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="navbar-toggler-icon"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item ml">
+                  <a class="nav-link active" aria-current="page" routerLink="/home">TRANG CHỦ</a>
+              </li>
+              <li class="nav-item ml dropdown">
+                  <a class="nav-link" routerLink="/shop-grid" >SẢN PHẨM</a>
+                  <!-- <ul class="dropdown-menu">
+                      <li><a class="dropdown-item dropdown-content" routerLink="/products-list">Sản phẩm bán</a></li>
+                      <li><a class="dropdown-item dropdown-content" routerLink="/products-list">Sản phẩm thuê</a></li>
+                  </ul> -->
+              </li>
+              <!-- <li class="nav-item ml dropdown">
+                  <a class="nav-link" routerLink="/services-list">DỊCH VỤ</a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item dropdown-content" routerLink="/services-list">Lưu trú</a></li>
+                      <li><a class="dropdown-item dropdown-content" routerLink="/services-list">Ăn uống</a></li>
+                  </ul>
+              </li> -->
+              <li class="nav-item ml dropdown">
+                  <a class="nav-link" routerLink="/blog">BLOG</a>
+                  <!-- <ul class="dropdown-menu">
+                      <li><a class="dropdown-item dropdown-content" routerLink="/feedback">Đánh giá</a></li>
+                      <li><a class="dropdown-item dropdown-content" routerLink="/blogs-list">Chia sẻ</a></li>
+                  </ul> -->
+              </li>
+              <li class="nav-item ml">
+                  <a class="nav-link" routerLink="/about">VỀ CHÚNG TÔI</a>
+              </li>
+          </ul>
+
+          <form class="d-flex w-auto search">
+              <input type="text" class="form-control search-icon-input" [(ngModel)]="searchTerm"
+                   placeholder="Nhập tên sản phẩm..." aria-label="Search" />
+              <button type="submit" class="search-icon-button"><span class="bi bi-search"></span></button>
+          </form>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+
+              <li class="nav-item dropdown">
+                <button class="btn" (click)="showModal()" data-toggle="modal" data-target="#exampleModal">
+                  <i style="font-size:30px" class="fas fa-cart-plus"></i>
+                  <div style="font-size:10px" class="badge bg-danger">{{totalQuantity()}}</div>
+                </button>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link icon-sizing2" routerLink="/account">
+                      <i class="fa-solid fa-user-plus"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end p-2 container-account">
+                      <li class="my-2 d-flex align-items-center">
+                          <a class="dropdown-item" routerLink="/login">Đăng nhập</a>
+                      </li>
+                      <li>
+                          <hr class="dropdown-divider" />
+                      </li>
+                      <li><a class="dropdown-item" routerLink="/account">Tài khoản</a></li>
+                      <li><a class="dropdown-item" routerLink="/login">Đăng xuất</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Giỏ Hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="cart-row">
+          <span class="cart-item1 cart-header cart-column">Sản Phẩm</span>
+          <span class="cart-price cart-header cart-column">Giá</span>
+          <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+        </div>
+        <div class="cart-items">
+          <div class="cart-row" *ngFor="let item of cart">
+            <div class="cart-item1 cart-column">
+              <img class="cart-item-image" src="{{item.image}}" width="100" height="100">
+              <span class="cart-item-title">{{item.productName}}</span>
+            </div>
+            <span class="cart-price cart-column">{{item.price | number:'1.0-0'}}</span>
+            <div class="cart-quantity cart-column">
+              <input class="cart-quantity-input" (change)="changeCartQuan(item.productId)" [(ngModel)]="item.quantity" type="number" min="1" id="cart-quantity-{{item.productId}}" />
+              <button class="bi bi-trash-fill" (click)="removeProduct(item.productId)" type="button"></button>
+            </div>
+          </div>
+        </div>
+        <div class="cart-total">
+          <strong class="cart-total-title">Thành Tiền:</strong>
+          <span class="cart-total-price" id="total">{{totalPrice() | number:'1.0-0'}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <a type="button" href="#!/payment" (click)="closeModal()" class="btn btn-primary">Thanh toán</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
