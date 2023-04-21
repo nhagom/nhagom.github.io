@@ -60,7 +60,7 @@
 }
 
 .user-message {
-  background-color: #d66e0c;
+  background-color: #d66e0c7e;
   color: white;
   margin: 5px 0px;
   border-radius: 4px;
@@ -120,7 +120,7 @@ input {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #bd6206;
   border: none;
   color: white;
   padding: 5px 10px;
