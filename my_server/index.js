@@ -40,7 +40,7 @@ feedbacksCollection = database.collection("feedbacks")
 
 //api product
 app.get("/products", cors(), async (req,res)=>{
-    const result = await productsCollection.find({}).toArray();
+    const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
     res.send(result)
 })
 

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError, retry } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { IProduct } from '../interfaces/Product';
-import { Product } from 'src/Product';
+import { IProduct, Product } from '../interfaces/Product';
 
 @Injectable({
   providedIn: 'root'

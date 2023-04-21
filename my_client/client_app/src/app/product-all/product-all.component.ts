@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { ProductApiService } from '../services/product-api.service';
 import { Router } from '@angular/router';
-import { Product } from 'src/Product';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { IProduct, Product } from '../interfaces/Product';
 
 @Component({
   selector: 'app-product-all',
