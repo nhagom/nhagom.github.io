@@ -1,90 +1,94 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private _cart: any = {};
-  cartUpdated: Subject<any> = new Subject<any>();
-
-  constructor(private storageService: StorageService) {
-    this.storageService.storageUpdated.subscribe(() => {
-      this.refresh();
-    });
+  cart: any[] = [];
+  constructor() {
+    // Lấy dữ liệu giỏ hàng từ local storage (nếu có)
+    const cartData = localStorage.getItem('cart');
+    if (cartData) {
+      this.cart = JSON.parse(cartData);
+    }
   }
 
-  private _cartLookUp(id: string): boolean {
-    return this._cart.hasOwnProperty(id) ? true : false;
+  totalPrice = 0;
+  totalQuan = 0;
+
+  private cartSubject = new BehaviorSubject<any>({
+    cart: this.cart,
+    totalPrice: this.totalPrice,
+    totalQuantity: this.totalQuan
+  });
+
+  getCart(): Observable<any> {
+    return this.cartSubject.asObservable();
   }
 
-  getCart(): any {
-    this._cart = this.storageService.fetch();
-    if (!this._cart) { this._cart = {}; }
 
-    return this._cart;
-  }
+  addToCart(product: any, quantity: number ) {
+    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    const index = this.cart.findIndex(item => item.productId === product.productId);
 
-  addItem(product: any): void {
-    if (this._cartLookUp(product.id)) {
-      this.changeQuantity(product.id);
+    if (index === -1) {
+      // Nếu chưa có thì thêm sản phẩm mới vào giỏ hàng
+      this.cart.push({
+        ...product,
+        quantity
+      });
     } else {
-      this._newItem(product);
+      // Nếu đã có thì tăng số lượng sản phẩm lên
+      this.cart[index].quantity += quantity;
     }
 
-    this.save();
-  }
-
-  private _newItem(product: any): void {
-    const quantityElement = document.getElementById("quantity") as HTMLInputElement;
-    if (quantityElement !== null) {
-      product.quantity = quantityElement.value;
-      this._cart[product.id] = product;
-    }
-  }
-
-  addItems(products: any[]): void {
-    products.forEach((product) => {
-      this.addItem(product);
+    // Lưu dữ liệu giỏ hàng vào local storage
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.totalPrice = this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    this.totalQuan = this.cart.reduce((total, item) => total + item.quantity, 0);
+    // Phát ra giá trị mới của cart, totalPrice và totalQuantity đến tất cả các subscriber
+    this.cartSubject.next({
+      cart: this.cart,
+      totalPrice: this.totalPrice,
+      totalQuantity: this.totalQuan
     });
   }
 
-  save(): void {
-    this.storageService.save(this._cart);
-    this.cartUpdated.next(this._cart);
-  }
-
-  remove(id: string): void {
-    delete this._cart[id];
-    this.save();
-  }
-
-  clear(): void {
-    this._cart = {};
-    this.storageService.remove();
-    this.cartUpdated.next(this._cart);
-  }
-
-  persist() { }
-
-  changeQuantity(id: string): void {
-    const quantityElement = document.getElementById("quantity") as HTMLInputElement;
-    if (quantityElement !== null && this._cart[id]) {
-      this._cart[id].quantity = quantityElement.value;
+  removeFromCart(productId: any) {
+    // Xóa sản phẩm khỏi giỏ hàng
+    const index = this.cart.findIndex(item => item.productId === productId);
+    if (index !== -1) {
+      this.cart.splice(index, 1);
     }
+
+    // Lưu dữ liệu giỏ hàng vào local storage
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.totalPrice = this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    this.totalQuan = this.cart.reduce((total, item) => total + item.quantity, 0);
   }
 
-  changeCartQuantity(id: string): void {
-    const index = "cart-quantity-" + id;
-    const quantityElement = document.getElementById(index) as HTMLInputElement;
-    if (quantityElement !== null && this._cart[id]) {
-      this._cart[id].quantity = quantityElement.value;
-      this.save();
+  changeCartQuan(productId: any, quantity: number) {
+    // Thay đổi số lượng sản phẩm trong giỏ hàng
+    const index = this.cart.findIndex(item => item.productId === productId);
+    if (index !== -1) {
+      this.cart[index].quantity = quantity;
     }
+
+    // Lưu dữ liệu giỏ hàng vào local storage
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.totalPrice = this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    this.totalQuan = this.cart.reduce((total, item) => total + item.quantity, 0);
   }
 
-  refresh(): void {
-    this.cartUpdated.next(this._cart);
+  getTotalPrice() {
+    // Tính tổng tiền của giỏ hàng
+    return this.totalPrice
   }
+
+  getTotalQuantity() {
+    // Tính tổng số lượng sản phẩm trong giỏ hàng
+    return this.totalQuan
+  }
+
 }
