@@ -11,6 +11,7 @@ import { ForgotPassComponent } from './login-page/forgot-pass/forgot-pass.compon
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'blog/:id', component: BlogDetailComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
   { path: 'shop-grid', component: ShopGridComponent },
+
 
 ];
 
