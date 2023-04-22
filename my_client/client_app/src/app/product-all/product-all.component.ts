@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProduct, Product } from '../interfaces/Product';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-all',
@@ -16,7 +17,7 @@ export class ProductAllComponent {
   errMessage: string = '';
   p: number=1
   Styles: any;
-  constructor(public _service: ProductApiService, public router: Router) {
+  constructor(public _service: ProductApiService, public router: Router, private cartService: CartService ) {
     this._service.getProducts().subscribe({
       next: (data) => {
         this.products = data;
@@ -40,6 +41,15 @@ export class ProductAllComponent {
         this.errMessage = err;
       },
     });
+  }
 
+
+  //cart
+  product: any
+  addToCart(id:any){
+    this._service.getProduct(id).subscribe({
+      next: (data)=>{this.product=data},
+    })
+    this.cartService.addToCart(this.product,1)
   }
 }

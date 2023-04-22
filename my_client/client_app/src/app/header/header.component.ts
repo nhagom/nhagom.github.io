@@ -11,9 +11,19 @@ import * as $ from "jquery";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  public totalItem:number = 0;
   public searchTerm !: string;
-  constructor(public dialog: MatDialog, private service: CartService ) { }
+  cart: any[] = [];
+  totalPrice: number = 0
+  totalQuantity: number = 0;
+  constructor(public dialog: MatDialog, private service: CartService ) {
+    this.service.getCart().subscribe(
+      (data) => {
+      this.cart = data.cart;
+      this.totalPrice = data.totalPrice;
+      this.totalQuantity = data.totalQuantity
+      }
+    )
+   }
 
   openDialog() {
     this.dialog.open(LoginComponent, {
@@ -22,18 +32,16 @@ export class HeaderComponent {
   }
 
 //cart
-  cart: any[] = [];
-  totalPrice = 0;
-  totalQuantity = 0;
-  ngOnInit() {
-    // Lấy dữ liệu giỏ hàng từ service
-    this.service.getCart().subscribe((data) =>
-    {
-      this.cart = data.cart;
-      this.totalPrice = data.totalPrice;
-      this.totalQuantity = data.totalQuantity
-    })
-  }
+
+  // ngOnInit() {
+  //   // Lấy dữ liệu giỏ hàng từ service
+  //   this.service.getCart().subscribe((data) =>
+  //   {
+  //     this.cart = data.cart;
+  //     this.totalPrice = data.totalPrice;
+  //     this.totalQuantity = data.totalQuantity
+  //   })
+  // }
 
   removeProduct(productId: number) {
     // Xóa sản phẩm khỏi giỏ hàng

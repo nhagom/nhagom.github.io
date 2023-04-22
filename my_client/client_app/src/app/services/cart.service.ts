@@ -6,22 +6,29 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CartService {
   cart: any[] = [];
+  totalPrice = 0;
+  totalQuan = 0;
+  public cartSubject = new BehaviorSubject<any>({
+    cart: this.cart,
+    totalPrice: this.totalPrice,
+    totalQuantity: this.totalQuan
+  });
+
   constructor() {
     // Lấy dữ liệu giỏ hàng từ local storage (nếu có)
     const cartData = localStorage.getItem('cart');
     if (cartData) {
       this.cart = JSON.parse(cartData);
+      this.totalPrice = this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+      this.totalQuan = this.cart.reduce((total, item) => total + item.quantity, 0);
     }
-  }
-
-  totalPrice = 0;
-  totalQuan = 0;
-
-  private cartSubject = new BehaviorSubject<any>({
+    // Phát ra giá trị hiện tại của cart, totalPrice và totalQuantity đến tất cả các subscriber
+    this.cartSubject.next({
     cart: this.cart,
     totalPrice: this.totalPrice,
     totalQuantity: this.totalQuan
   });
+  }
 
   getCart(): Observable<any> {
     return this.cartSubject.asObservable();

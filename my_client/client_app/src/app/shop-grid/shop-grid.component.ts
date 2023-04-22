@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../interfaces/Product';
 import { ProductApiService } from '../services/product-api.service';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-shop-grid',
@@ -23,7 +24,7 @@ export class ShopGridComponent {
   p: number=1;
   searchText: any;
   uniqueStyles: any;
-    constructor(public _service: ProductApiService, public router: Router) {
+    constructor(public _service: ProductApiService, public router: Router, private cartService: CartService) {
     this._service.getProducts().subscribe({
       next: (data) => {
         this.products = data;
@@ -45,5 +46,13 @@ export class ShopGridComponent {
     })
   }
 
-
+  //cart
+  product: any
+  quantity = 1
+  addToCart(p:any){
+    this._service.getProduct(p._id).subscribe({
+      next: (data)=>{this.product=data},
+    })
+    this.cartService.addToCart(this.product, this.quantity)
+  }
 }
