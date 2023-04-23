@@ -1,0 +1,85 @@
+
+.card-body {
+  padding: 3rem;
+}
+
+.card-body h2 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-outline {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.form-outline input {
+  font-size: 1.2rem;
+  padding: 1.2rem 2rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+}
+
+.form-outline label {
+  position: absolute;
+  top: 1.2rem;
+  left: 2rem;
+  color: #6c757d;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.form-outline input:focus ~ label,
+.form-outline input:valid ~ label {
+  top: -0.5rem;
+  left: 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #007bff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1.2rem 2rem;
+  border-radius: 2rem;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.text-center p {
+  margin-bottom: 1rem;
+}
+
+.btn-floating {
+  border-radius: 50%;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+  margin: 0 0.5rem;
+  transition: all 0.3s;
+}
+
+.btn-floating:hover {
+  transform: translateY(-2px);
+}
+
+.btn-floating i {
+  margin: 0;
+}
+.bgr{
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}

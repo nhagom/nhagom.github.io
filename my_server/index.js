@@ -37,6 +37,7 @@ customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
 feedbacksCollection = database.collection("feedbacks")
+adminCollection = database.collection("admin")
 
 //api product
 app.get("/products", cors(), async (req,res)=>{
@@ -179,3 +180,28 @@ app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
 //api kiểm tra email, pass khi login
 // const bcrypt = require('bcrypt');
 
+//---------------------------API ADMIN---------------------------------------------------
+  app.delete("/customers/delete/:email", cors(), async (req, res)=>{
+    var email= req.params.email;
+    const result = await customersCollection.find({customerEmail:email}).toArray();
+    await customersCollection.deleteOne(
+        {customerEmail: email}
+    )
+    const result2 = await customersCollection.find({}).toArray();
+    res.send(result2)
+  }
+  )
+  app.get('/admin', async (req, res) => {
+    const result = await adminCollection.find({}).toArray();
+    res.send(result);
+  });
+
+  app.post('/admin', async (req, res) => {
+    const { username, password } = req.body;
+    const admin = await adminCollection.findOne({ username: username, password: password });
+    if (admin) {
+      res.send(true); 
+    } else {
+      res.send(false);
+    }
+  });
