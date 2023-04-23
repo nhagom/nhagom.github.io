@@ -1,6 +1,9 @@
 .footer__container {
+<<<<<<< HEAD
   /* position: fixed; */
   bottom: 0;
+=======
+>>>>>>> 5012b978b0d0e4f68a3413f308ae617d8e19cb15
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
