@@ -8,7 +8,7 @@ import { BlogListService } from '../services/blog-list.service';
   styleUrls: ['./blog-detail.component.css']
 })
 export class BlogDetailComponent {
-  blogDetail:any
+  blog:any
   blogs:any
   errMessage:string=''
   selectedBlogId:any
@@ -21,7 +21,7 @@ export class BlogDetailComponent {
         let id=param.get('id')
         if(id!=null){
           this._service.getBlog(id).subscribe({
-            next:(data: any)=>{this.blogDetail=data},
+            next:(data: any)=>{this.blog=data},
             error:(err: string)=>{this.errMessage=err}
           })
         }
@@ -32,5 +32,4 @@ export class BlogDetailComponent {
       error:(err: string)=>{this.errMessage=err}
     })
   }
-
 }
