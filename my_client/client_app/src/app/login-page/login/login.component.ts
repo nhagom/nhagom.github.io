@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit{
       this._service.checkEmailExists(this.customer.customerEmail).subscribe({
         next:(data)=>{
           this.emailExist = data;
+          this.cusInfo = data;
           if (!this.emailExist) {  // Kiểm tra !this.emailExist thay vì this.emailExist
             this.logForm.controls['email'].setErrors({emailExist: true});
           } else {

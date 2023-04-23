@@ -30,11 +30,8 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-<<<<<<< HEAD
 import { FilterPipe } from './filter.pipe';
-=======
 import { CartComponent } from './cart/cart.component';
->>>>>>> 8a3389b612d85e8181ef69d704aab2fd98b65adb
 
 
 
@@ -54,11 +51,8 @@ import { CartComponent } from './cart/cart.component';
     AboutUsComponent,
     HeaderComponent,
     FooterComponent,
-<<<<<<< HEAD
-    FilterPipe
-=======
+    FilterPipe,
     CartComponent
->>>>>>> 8a3389b612d85e8181ef69d704aab2fd98b65adb
   ],
   imports: [
     BrowserModule,
