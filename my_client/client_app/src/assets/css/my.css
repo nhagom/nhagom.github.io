@@ -7,3 +7,6 @@ body.modal-open {
 body {
   overflow: auto !important
 }
+.footer__container{
+  bottom: 0;
+}
