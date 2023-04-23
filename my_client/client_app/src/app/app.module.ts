@@ -32,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FilterPipe } from './filter.pipe';
 import { CartComponent } from './cart/cart.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 
@@ -52,7 +53,8 @@ import { CartComponent } from './cart/cart.component';
     HeaderComponent,
     FooterComponent,
     FilterPipe,
-    CartComponent
+    CartComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { CartComponent } from './cart/cart.component';
     ScrollingModule,
     DragDropModule,
     Ng2SearchPipeModule,
-    MatDialogModule
+    MatDialogModule,
+    HomepageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
