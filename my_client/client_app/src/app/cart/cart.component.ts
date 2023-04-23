@@ -9,44 +9,44 @@ import * as $ from "jquery";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  cart: any = {};
+  // cart: any = {};
 
-  constructor(private cartService: CartService) { }
+  // constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
-    this.cart = this.cartService.getCart();
-    this.cartService.cartUpdated.subscribe((cart: any) => {
-      this.cart = cart;
-    });
-  }
+  // ngOnInit(): void {
+  //   this.cart = this.cartService.getCart();
+  //   this.cartService.cartUpdated.subscribe((cart: any) => {
+  //     this.cart = cart;
+  //   });
+  // }
 
-  changeCartQuan(index: string): void {
-    this.cartService.changeCartQuantity(index);
-  }
+  // changeCartQuan(index: string): void {
+  //   this.cartService.changeCartQuantity(index);
+  // }
 
-  removeProduct(index: string): void {
-    this.cartService.remove(index);
-  }
+  // removeProduct(index: string): void {
+  //   this.cartService.remove(index);
+  // }
 
-  totalPrice(): number {
-    let total = 0;
-    this.cart = this.cartService.getCart();
-    Object.values(this.cart).forEach((e: any) => {
-      total += parseInt(e.quantity) * parseInt(e.gia);
-    });
-    return total;
-  }
+  // totalPrice(): number {
+  //   let total = 0;
+  //   this.cart = this.cartService.getCart();
+  //   Object.values(this.cart).forEach((e: any) => {
+  //     total += parseInt(e.quantity) * parseInt(e.gia);
+  //   });
+  //   return total;
+  // }
 
-  totalQuantity(): number {
-    let total = 0;
-    this.cart = this.cartService.getCart();
-    Object.values(this.cart).forEach((e: any) => {
-      total += parseInt(e.quantity);
-    });
-    return total;
-  }
+  // totalQuantity(): number {
+  //   let total = 0;
+  //   this.cart = this.cartService.getCart();
+  //   Object.values(this.cart).forEach((e: any) => {
+  //     total += parseInt(e.quantity);
+  //   });
+  //   return total;
+  // }
 
-  closeModal(): void {
-    $("#exampleModal").modal('hide');
-  }
+  // closeModal(): void {
+  //   $("#exampleModal").modal('hide');
+  // }
 }

@@ -11,9 +11,19 @@ import * as $ from "jquery";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  public totalItem:number = 0;
   public searchTerm !: string;
-  constructor(public dialog: MatDialog, private cartService: CartService) { }
+  cart: any[] = [];
+  totalPrice: number = 0
+  totalQuantity: number = 0;
+  constructor(public dialog: MatDialog, private service: CartService ) {
+    this.service.getCart().subscribe(
+      (data) => {
+      this.cart = data.cart;
+      this.totalPrice = data.totalPrice;
+      this.totalQuantity = data.totalQuantity
+      }
+    )
+   }
 
   openDialog() {
     this.dialog.open(LoginComponent, {
@@ -21,44 +31,33 @@ export class HeaderComponent {
     });
   }
 
-  //cart
-  cart: any = {};
-  ngOnInit(): void {
-    this.cart = this.cartService.getCart();
-    this.cartService.cartUpdated.subscribe((cart: any) => {
-      this.cart = cart;
-    });
+//cart
 
-    $('#exampleModal').modal({
-  backdrop: false,
-  keyboard: false
-});
+  // ngOnInit() {
+  //   // Lấy dữ liệu giỏ hàng từ service
+  //   this.service.getCart().subscribe((data) =>
+  //   {
+  //     this.cart = data.cart;
+  //     this.totalPrice = data.totalPrice;
+  //     this.totalQuantity = data.totalQuantity
+  //   })
+  // }
 
-  }
-  totalQuantity(): number {
-    let total = 0;
-    this.cart = this.cartService.getCart();
-    Object.values(this.cart).forEach((e: any) => {
-      total += parseInt(e.quantity);
-    });
-    return total;
+  removeProduct(productId: number) {
+    // Xóa sản phẩm khỏi giỏ hàng
+    this.service.removeFromCart(productId);
+    this.cart = this.service.cart;
+    this.totalPrice = this.service.getTotalPrice();
+    this.totalQuantity = this.service.getTotalQuantity();
   }
 
-  changeCartQuan(index: string): void {
-    this.cartService.changeCartQuantity(index);
-  }
-
-  removeProduct(index: string): void {
-    this.cartService.remove(index);
-  }
-
-  totalPrice(): number {
-    let total = 0;
-    this.cart = this.cartService.getCart();
-    Object.values(this.cart).forEach((e: any) => {
-      total += parseInt(e.quantity) * parseInt(e.gia);
-    });
-    return total;
+  changeQuan(productId: any, quantity: number){
+    // Thay đổi số lượng sản phẩm trong giỏ hàng
+    this.service.changeCartQuan(productId, quantity);
+    // Cập nhật giỏ hàng và tổng giá tiền
+    this.cart = this.service.cart;
+    this.totalPrice = this.service.getTotalPrice();
+    this.totalQuantity = this.service.getTotalQuantity();
   }
 
 

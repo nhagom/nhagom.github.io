@@ -283,11 +283,12 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
-                                    <span>Lọc sản phẩm</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
+                                    <span>SẮP XẾP THEO</span>
+                                    <select name=" " id=" " ng-model="SortPrice">
+                                      <option value=" " disabled>--Sắp xếp--</option>
+                                      <option value="-price" >Giá giảm dần</option>
+                                      <option value="price">Giá tăng dần</option>
+                                  </select>
                                 </div>
                             </div>
 
@@ -310,7 +311,7 @@
                       <div class="cart-line" (click)="DetailProduct(product)"></div>
                       <div class="cart-item">
                           <ul>
-                              <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                              <li (click)="addToCart(product)"><a><i class="fa fa-shopping-basket" ></i></a></li>
                               <li><a href=""><i class="fa fa-heart"></i></a></li>
                               <li ><a><i class="fa fa-search"></i></a></li>
                           </ul>

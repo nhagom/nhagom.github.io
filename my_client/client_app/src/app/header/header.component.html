@@ -15,7 +15,7 @@
                   <a class="nav-link active" aria-current="page" routerLink="/home">TRANG CHỦ</a>
               </li>
               <li class="nav-item ml dropdown">
-                  <a class="nav-link" routerLink="/shop-grid" >SẢN PHẨM</a>
+                  <a class="nav-link" routerLink="/shop-grid" j>SẢN PHẨM</a>
                   <!-- <ul class="dropdown-menu">
                       <li><a class="dropdown-item dropdown-content" routerLink="/products-list">Sản phẩm bán</a></li>
                       <li><a class="dropdown-item dropdown-content" routerLink="/products-list">Sản phẩm thuê</a></li>
@@ -50,7 +50,7 @@
               <li class="nav-item dropdown">
                 <button class="btn" (click)="showModal()" data-toggle="modal" data-target="#exampleModal">
                   <i style="font-size:30px" class="fas fa-cart-plus"></i>
-                  <div style="font-size:10px" class="badge bg-danger">{{totalQuantity()}}</div>
+                  <div style="font-size:10px" class="badge bg-danger">{{totalQuantity}}</div>
                 </button>
               </li>
               <li class="nav-item dropdown">
@@ -96,14 +96,14 @@
             </div>
             <span class="cart-price cart-column">{{item.price | number:'1.0-0'}}</span>
             <div class="cart-quantity cart-column">
-              <input class="cart-quantity-input" (change)="changeCartQuan(item.productId)" [(ngModel)]="item.quantity" type="number" min="1" id="cart-quantity-{{item.productId}}" />
+              <input class="cart-quantity-input" (change)="changeQuan(item.productId, item.quantity)" [(ngModel)]="item.quantity" type="number" min="1" id="cart-quantity-{{item.productId}}" />
               <button class="bi bi-trash-fill" (click)="removeProduct(item.productId)" type="button"></button>
             </div>
           </div>
         </div>
         <div class="cart-total">
           <strong class="cart-total-title">Thành Tiền:</strong>
-          <span class="cart-total-price" id="total">{{totalPrice() | number:'1.0-0'}}</span>
+          <span class="cart-total-price" id="total">{{totalPrice}}</span>
         </div>
       </div>
       <div class="modal-footer">

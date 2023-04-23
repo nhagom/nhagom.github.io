@@ -36,12 +36,16 @@ productsCollection = database.collection("products");
 customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
+<<<<<<< HEAD
 feedbacksCollection = database.collection("feedbacks")
 adminCollection = database.collection("admin")
+=======
+feedbacksCollection = database.collection("feedbacks");
+>>>>>>> 7ef3b0c7418bf41f2b33f2e28ee2a2a0bb3f69da
 
 //api product
 app.get("/products", cors(), async (req,res)=>{
-    const result = await productsCollection.find({}).toArray();
+    const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
     res.send(result)
 })
 
@@ -178,7 +182,18 @@ app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
     res.send(result[0])
 })
 //api kiểm tra email, pass khi login
-// const bcrypt = require('bcrypt');
+app.post("/users", cors(), async(req, res)=>{
+    var crypto = require('crypto'); 
+    salt = crypto.randomBytes(16).toString('hex');
+    
+    usersCollection = database.collection("users")
+    users =req.body
+    hash = crypto.pbkdf2Sync(users.password, salt, 1000, 64, `sha512`).toString(`hex`);
+    users.password = hash
+    users.salt = salt
+    await usersCollection.insertOne(users)
+    res.send(req.body)
+})
 
 //---------------------------API ADMIN---------------------------------------------------
   app.delete("/customers/delete/:email", cors(), async (req, res)=>{
@@ -203,5 +218,45 @@ app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
       res.send(true); 
     } else {
       res.send(false);
+// app.post("/login",cors(), async(req, res)=>{
+//     username=req.body.username
+//     password=req.body.password
+    
+//     var crypto = require('crypto');
+//     usersCollection = database.collection("users")
+//     users = await usersCollection.findOne({username:username})
+//     if(user==null)
+//         res.send({"username":username, "message": "not exist"})
+//     else
+//     { 
+//         hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hax`); 
+//         if(user.password==hash) 
+//             res.send(user) 
+//         else
+//         res.send({"username":username, "password": password, "message": "wrong password"})
+//     }
+// }
+// )
+
+app.post("/login", cors(), async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    const usersCollection = database.collection("users");
+    const user = await usersCollection.findOne({ username: username });
+  
+    if (!user) {
+      res.send({ username: username, message: "not exist" });
+      return;
+    }
+  
+    const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, "sha512").toString("hex");
+  
+    if (hash === user.password) {
+      // Lưu thông tin email vào session storage
+      req.session.email = user.email;
+      res.send(user);
+    } else {
+      res.send({ username: username, password: password, message: "wrong password" });
     }
   });
