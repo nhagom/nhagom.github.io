@@ -36,12 +36,9 @@ productsCollection = database.collection("products");
 customersCollection = database.collection("customers");
 ordersCollection = database.collection("orders");
 blogsCollection = database.collection("blogs");
-<<<<<<< HEAD
 feedbacksCollection = database.collection("feedbacks")
 adminCollection = database.collection("admin")
-=======
 feedbacksCollection = database.collection("feedbacks");
->>>>>>> 7ef3b0c7418bf41f2b33f2e28ee2a2a0bb3f69da
 
 //api product
 app.get("/products", cors(), async (req,res)=>{
@@ -218,6 +215,7 @@ app.post("/users", cors(), async(req, res)=>{
       res.send(true); 
     } else {
       res.send(false);
+    }});
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username
 //     password=req.body.password
@@ -259,4 +257,4 @@ app.post("/login", cors(), async (req, res) => {
     } else {
       res.send({ username: username, password: password, message: "wrong password" });
     }
-  });
+  })
