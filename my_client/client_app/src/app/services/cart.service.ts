@@ -28,6 +28,10 @@ export class CartService {
     totalPrice: this.totalPrice,
     totalQuantity: this.totalQuan
   });
+  // reset cart khi tắt trình duyệt
+  window.addEventListener('beforeunload', () => {
+    localStorage.removeItem('cart');
+  })
   }
 
   getCart(): Observable<any> {
