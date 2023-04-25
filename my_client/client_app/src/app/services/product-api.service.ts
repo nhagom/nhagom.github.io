@@ -52,6 +52,20 @@ export class ProductApiService {
     );
   }
 
+  sortProductsByPrice(): Observable<IProduct[]> {
+    const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
+    const requestOptions: Object = {
+      headers: headers,
+      responseType: "text"
+    };
 
+    return this._http.get<any>("/products-sort-by-price/", requestOptions).pipe(
+      map(res => JSON.parse(res) as IProduct[]),
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
 
 }
+
+

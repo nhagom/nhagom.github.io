@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../interfaces/Product';
 import { ProductApiService } from '../services/product-api.service';
 import { Router } from '@angular/router';
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-shop-grid',
@@ -9,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./shop-grid.component.css',
   '../../assets/css/styles.css',
   '../../assets/shop-product.scss',
-  '../../assets/css/bootstrap.min.css',
   '../../assets/css/font-awesome.min.css',
   '../../assets/css/nice-select.css',
   '../../assets/css/elegant-icons.css',
@@ -23,10 +23,23 @@ export class ShopGridComponent {
   p: number=1;
   searchText: any;
   uniqueStyles: any;
+
+  itemsPerPage: number = 12;
+  totalProduct: any;
+  // key = "Giaban";
+  // reverse: boolean = false;
+
+
+  disabled = false;
+  value1 = 30;
+  value2 = [20, 50];
+
+  
     constructor(public _service: ProductApiService, public router: Router) {
     this._service.getProducts().subscribe({
       next: (data) => {
         this.products = data;
+        this.totalProduct = data.length;
       console.log("Style",data); this.uniqueStyles = [...new Set(this.products.map(product=> product.style))]},
       error: (err) => {this.errMessage = err;},
     });
@@ -40,10 +53,26 @@ export class ShopGridComponent {
   getProductStyle(productStyle:string)
   {
     this._service.getProductStyle(productStyle).subscribe({
-      next: (data)=>{this.products=data; console.log("hii",data); this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
+      next: (data)=>{this.products=data; console.log("hii",data); 
+    this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
       error: (err)=>{this.errMessage=err},
     })
   }
 
+  sortProduct() {
+    this._service.sortProductsByPrice().subscribe({
+      next: (data) => {this.products = data;},
+      error: (err) => {this.errMessage = err;},
+    });
+  }
+
+
+
+  // sort() {
+  //   this.reverse = false
+  // }
+  // sort2() {
+  //   this.reverse = true
+  // }
 
 }

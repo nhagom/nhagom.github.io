@@ -33,6 +33,7 @@
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/jquery-ui.min.css",
               "src/assets/css/nice-select.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css"
             ],
