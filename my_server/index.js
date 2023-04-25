@@ -74,7 +74,7 @@ app.get("/orders", cors(), async (req,res)=>{
     const result = await ordersCollection.find({}).toArray();
     res.send(result)
 })
-// API blogs
+//------------------------------------ API blogs-----------------------------
   // get all blogs
 app.get("/blogs", cors(), async (req,res)=>{
     const result = await blogsCollection.find({}).toArray();
@@ -130,6 +130,16 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     res.send(result[0])
 })
 //-------------------------------API REGISTER , LOGIN------------------------------------------
+//login
+app.post('/customers/login', async (req, res) => {
+  const { customerEmail, password } = req.body;
+  const users = await customersCollection.findOne({customerEmail: customerEmail, password: password });
+  if (users) {
+    res.send(true); 
+  } else {
+    res.send(false);
+  }});
+
 //api thêm 1 customer (đăng ký)
 app.post("/customers",cors(),async(req,res)=>{
     await customersCollection.insertOne(req.body)
@@ -191,7 +201,48 @@ app.post("/users", cors(), async(req, res)=>{
     await usersCollection.insertOne(users)
     res.send(req.body)
 })
+// app.post("/login",cors(), async(req, res)=>{
+//     username=req.body.username
+//     password=req.body.password
+    
+//     var crypto = require('crypto');
+//     usersCollection = database.collection("users")
+//     users = await usersCollection.findOne({username:username})
+//     if(user==null)
+//         res.send({"username":username, "message": "not exist"})
+//     else
+//     { 
+//         hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hax`); 
+//         if(user.password==hash) 
+//             res.send(user) 
+//         else
+//         res.send({"username":username, "password": password, "message": "wrong password"})
+//     }
+// }
+// )
 
+// app.post("/login", cors(), async (req, res) => {
+//   const username = req.body.username;
+//   const password = req.body.password;
+
+//   const usersCollection = database.collection("users");
+//   const user = await usersCollection.findOne({ username: username });
+
+//   if (!user) {
+//     res.send({ username: username, message: "not exist" });
+//     return;
+//   }
+
+//   const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, "sha512").toString("hex");
+
+//   if (hash === user.password) {
+//     // Lưu thông tin email vào session storage
+//     req.session.email = user.email;
+//     res.send(user);
+//   } else {
+//     res.send({ username: username, password: password, message: "wrong password" });
+//   }
+// })
 //---------------------------API ADMIN---------------------------------------------------
   app.delete("/customers/delete/:email", cors(), async (req, res)=>{
     var email= req.params.email;
@@ -216,45 +267,4 @@ app.post("/users", cors(), async(req, res)=>{
     } else {
       res.send(false);
     }});
-// app.post("/login",cors(), async(req, res)=>{
-//     username=req.body.username
-//     password=req.body.password
-    
-//     var crypto = require('crypto');
-//     usersCollection = database.collection("users")
-//     users = await usersCollection.findOne({username:username})
-//     if(user==null)
-//         res.send({"username":username, "message": "not exist"})
-//     else
-//     { 
-//         hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hax`); 
-//         if(user.password==hash) 
-//             res.send(user) 
-//         else
-//         res.send({"username":username, "password": password, "message": "wrong password"})
-//     }
-// }
-// )
 
-app.post("/login", cors(), async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-  
-    const usersCollection = database.collection("users");
-    const user = await usersCollection.findOne({ username: username });
-  
-    if (!user) {
-      res.send({ username: username, message: "not exist" });
-      return;
-    }
-  
-    const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, "sha512").toString("hex");
-  
-    if (hash === user.password) {
-      // Lưu thông tin email vào session storage
-      req.session.email = user.email;
-      res.send(user);
-    } else {
-      res.send({ username: username, password: password, message: "wrong password" });
-    }
-  })

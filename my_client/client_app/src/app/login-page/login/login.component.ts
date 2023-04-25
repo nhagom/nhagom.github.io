@@ -5,6 +5,7 @@ import { Customers } from 'src/app/models/customers';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
+import { IUser } from 'src/app/interfaces/User';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +19,19 @@ export class LoginComponent implements OnInit{
   cusInfo:any
 
   emailExist=false
-
   constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){}
+  //login
+  aUser = new IUser()
+  check = false
+  onSubmit(aUser:any): void {
+    this._service.getUsers(aUser).subscribe({
+      next:(data) => {this.check = data}
+    })
+    if (this.check == true) {
+      this.router.navigate(['/blog']);
+    }
+    else {console.log("error")}
+  }
   // validator
   ngOnInit() {
     this.logForm = this.formBuilder.group({
@@ -38,7 +50,6 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/forgotpassword']);
   }
   //kiểm tra email không tồn tại
-
   emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       return this._service.checkEmailExists(control.value).pipe(
