@@ -24,6 +24,9 @@ export class ShopGridComponent {
   searchText: any;
   uniqueStyles: any;
 
+  //Sắp xếp
+  sortOrder: string = '';
+
   itemsPerPage: number = 12;
   totalProduct: any;
   // key = "Giaban";
@@ -31,8 +34,8 @@ export class ShopGridComponent {
 
 
   disabled = false;
-  value1 = 30;
-  value2 = [20, 50];
+  value2 = [50000, 5000000];
+  // value2 = [0, 10000000];
 
 
 constructor(public _service: ProductApiService, public router: Router, private cartService: CartService) {
@@ -58,6 +61,14 @@ constructor(public _service: ProductApiService, public router: Router, private c
     this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
       error: (err)=>{this.errMessage=err},
     })
+  }
+
+  MM(max:string, min:string )
+  {
+  this._service.getMinMax(max,min).subscribe({
+  next:(data)=>{this.products=data},
+  error:(err)=>{this.errMessage=err}
+  })
   }
 
   sortProduct() {
