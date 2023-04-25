@@ -64,6 +64,12 @@ app.get("/products/:id",cors(), async(req,res)=>{
           const result=await productsCollection.find({style:{$regex: o_style}}).toArray();
           res.send(result)
           })
+    
+    app.get("/products-sort-by-price/:price", cors(), async (req,res)=>{
+        const o_price = new RegExp(req.params.price,"p")
+        const result = await productsCollection.find({price:{$regex: o_price}}).sort({price: 1}).toArray();
+        res.send(result)
+    })
 
 app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();
@@ -267,4 +273,28 @@ app.post("/users", cors(), async(req, res)=>{
     } else {
       res.send(false);
     }});
+
+app.post("/login", cors(), async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    const usersCollection = database.collection("users");
+    const user = await usersCollection.findOne({ username: username });
+  
+    if (!user) {
+      res.send({ username: username, message: "not exist" });
+      return;
+    }
+  
+    const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, "sha512").toString("hex");
+  
+    if (hash === user.password) {
+      // Lưu thông tin email vào session storage
+      req.session.email = user.email;
+      res.send(user);
+    } else {
+      res.send({ username: username, password: password, message: "wrong password" });
+    }
+  })
+
 

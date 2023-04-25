@@ -1,6 +1,6 @@
 .chatbot-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 250px;
   right: 20px;
   flex-direction: column;
   display: flex;

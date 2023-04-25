@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import {MatDialogModule} from '@angular/material/dialog';
 
 
@@ -32,6 +32,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FilterPipe } from './filter.pipe';
 import { CartComponent } from './cart/cart.component';
+import { ProductReviewComponent } from './product-review/product-review.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 
 
@@ -53,6 +55,7 @@ import { CartComponent } from './cart/cart.component';
     FooterComponent,
     FilterPipe,
     CartComponent,
+    ProductReviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,9 +71,12 @@ import { CartComponent } from './cart/cart.component';
     ScrollingModule,
     DragDropModule,
     Ng2SearchPipeModule,
-    MatDialogModule,
+    NzSliderModule,
+    MatDialogModule
+
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, ShopGridComponent]
 })
 export class AppModule { }
