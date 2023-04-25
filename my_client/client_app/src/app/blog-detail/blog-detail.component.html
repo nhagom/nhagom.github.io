@@ -1,4 +1,4 @@
-<p>blog-detail works!</p>
+<!-- <p>blog-detail works!</p> -->
 {{errMessage}}
 <main id="main">
   <section class="single-post-content">
@@ -7,15 +7,15 @@
         <div class="col-md-9 post-content" data-aos="fade-up">
           <!-- ======= Single Post Content ======= -->
           <div class="single-post">
-            <div class="post-meta"><span class="date">{{blogs[1].blogName}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-            <h1 class="mb-5">{{blogs[1].blogTitle}}</h1>
-            <p>{{blogs[1].content1}}</p>
+            <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
+            <h1 class="mb-5">{{blog.blogTitle}}</h1>
+            <p>{{blog.content1}}</p>
             <figure class="my-4">
-              <img src="{{blogs[1].imgTitle}}" alt="" class="img-fluid">
-              <figcaption>{{blogs[1].blogTitle}}</figcaption>
+              <img src="{{blog.imgTitle}}" alt="" class="img-fluid">
+              <figcaption>{{blog.blogTitle}}</figcaption>
             </figure>
-            <p>{{blogs[1].content2}}</p>
-            <p>{{blogs[1].content3}}</p>
+            <p>{{blog.content2}}</p>
+            <p>{{blog.content3}}</p>
           </div><!-- End Single Post Content -->
 
           <!-- ======= Comments Form ======= -->
@@ -57,7 +57,7 @@
                 <button class="nav-link" id="pills-trending-tab" data-bs-toggle="pill" data-bs-target="#pills-trending" type="button" role="tab" aria-controls="pills-trending" aria-selected="false">Trending</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false">Latest</button>
+<button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false">Latest</button>
               </li>
             </ul>
 
@@ -66,9 +66,9 @@
               <!-- Popular -->
               <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab" *ngFor="let blog of blogs.slice(0,5)">
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
                   <h2 class="mb-2"><a href="#">{{blog.blogTitle}}</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span class="author mb-3 d-block">{{blog.author}}</span>
                 </div>
               </div> <!-- End Popular -->
 
@@ -98,4 +98,3 @@
     </div>
   </section>
 </main><!-- End #main -->
-

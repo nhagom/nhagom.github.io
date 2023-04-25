@@ -28,7 +28,7 @@ export class ProductDetailComponent {
   }
 
   //cart
-  quantity = 0
+  quantity = 1
   addToCart(product:any, quantity:number){
     this.cartService.addToCart(product,quantity)
   }

@@ -1,0 +1,56 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"rel="stylesheet">
+<div class="container">
+  <!-- Thay đổi CSS cho phần tìm kiếm -->
+<div class="input-group my-3">
+  <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchCustomers()">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchCustomers()">Tìm kiếm</button>
+  </div>
+</div>
+
+<!-- Thay đổi CSS cho phần danh sách khách hàng -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>STT</th>
+        <th (click)="sortCustomers()">Tên</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customers; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ c.customerName }}</td>
+        <td>{{ c.customerEmail }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteCustomer(c.customerEmail)">Xóa</button>
+          <button class="btn btn-info" (click)="showCustomerDetails(c, customerModal)">Chi tiết</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Thay đổi CSS cho phần modal -->
+<ng-template #customerModal>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h4 class="modal-title">{{selectedCustomer.customerName}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Email:</strong> {{selectedCustomer.customerEmail}}</p>
+        <p><strong>Số điện thoại:</strong> {{selectedCustomer.customerPhoneNumb}}</p>
+        <p><strong>Giới tính:</strong> {{selectedCustomer.customerGender}}</p>
+        <p><strong>Ngày sinh:</strong> {{selectedCustomer.customerBirth}}</p>
+        <p><strong>Địa chỉ:</strong> {{selectedCustomer.customerAddress}}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</div>

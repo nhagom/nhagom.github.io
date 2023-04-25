@@ -8,7 +8,7 @@
 }
 
 .toggle-chatbot {
-  background-color:  #b14739;
+  background-color: #b14739;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -60,7 +60,7 @@
 }
 
 .user-message {
-  background-color: #d66e0c7e;
+  background-color: #b14739;
   color: white;
   margin: 5px 0px;
   border-radius: 4px;
@@ -132,7 +132,3 @@ button {
   margin-left: 5px;
   border-radius: 4px;
 }
-/* .a {
-  height: 100vh;
-  width: 100vw;
-} */

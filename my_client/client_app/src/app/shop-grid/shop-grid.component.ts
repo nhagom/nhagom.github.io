@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../interfaces/Product';
 import { ProductApiService } from '../services/product-api.service';
 import { Router } from '@angular/router';
-import * as bootstrap from "bootstrap";
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-shop-grid',
@@ -34,8 +34,8 @@ export class ShopGridComponent {
   value1 = 30;
   value2 = [20, 50];
 
-  
-    constructor(public _service: ProductApiService, public router: Router) {
+
+constructor(public _service: ProductApiService, public router: Router, private cartService: CartService) {
     this._service.getProducts().subscribe({
       next: (data) => {
         this.products = data;
@@ -45,6 +45,7 @@ export class ShopGridComponent {
     });
   }
 
+
   DetailProduct(d:any){
     this.router.navigate(['product-detail',d._id])
   }
@@ -53,7 +54,7 @@ export class ShopGridComponent {
   getProductStyle(productStyle:string)
   {
     this._service.getProductStyle(productStyle).subscribe({
-      next: (data)=>{this.products=data; console.log("hii",data); 
+      next: (data)=>{this.products=data; console.log("hii",data);
     this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
       error: (err)=>{this.errMessage=err},
     })
@@ -65,9 +66,6 @@ export class ShopGridComponent {
       error: (err) => {this.errMessage = err;},
     });
   }
-
-
-
   // sort() {
   //   this.reverse = false
   // }
@@ -75,4 +73,13 @@ export class ShopGridComponent {
   //   this.reverse = true
   // }
 
+  //cart
+  product: any
+  quantity = 1
+  addToCart(p:any){
+    this._service.getProduct(p._id).subscribe({
+      next: (data)=>{this.product=data},
+    })
+    this.cartService.addToCart(this.product, this.quantity)
+  }
 }

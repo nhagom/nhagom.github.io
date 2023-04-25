@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { Customers } from 'src/app/models/customers';
-import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 
@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit{
       this._service.checkEmailExists(this.customer.customerEmail).subscribe({
         next:(data)=>{
           this.emailExist = data;
+          this.cusInfo = data;
           if (!this.emailExist) {  // Kiểm tra !this.emailExist thay vì this.emailExist
             this.logForm.controls['email'].setErrors({emailExist: true});
           } else {
