@@ -30,11 +30,10 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FilterPipe } from './filter.pipe';
 import { CartComponent } from './cart/cart.component';
 import { ProductReviewComponent } from './product-review/product-review.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
-
+import { SortProductsPipe } from './shop-grid/sort-products.pipe';
 
 
 @NgModule({
@@ -53,9 +52,9 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
     AboutUsComponent,
     HeaderComponent,
     FooterComponent,
-    FilterPipe,
     CartComponent,
-    ProductReviewComponent,
+    SortProductsPipe,
+    ProductReviewComponent
   ],
   imports: [
     BrowserModule,

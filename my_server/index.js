@@ -53,7 +53,7 @@ app.get("/products/:id",cors(), async(req,res)=>{
 })
 
     //this is API to get category of tag
-    app.get("/products-Style/:style",cors(), async(req,res)=>{
+    app.get("/products-get/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
         const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
@@ -70,6 +70,14 @@ app.get("/products/:id",cors(), async(req,res)=>{
         const result = await productsCollection.find({price:{$regex: o_price}}).sort({price: 1}).toArray();
         res.send(result)
     })
+
+    app.get("/products/:minprice/:maxprice", cors(),(req,res)=>{
+      console.log(req.params.minprice,req.params.maxprice)
+      let p = database.filter(x=>x.Price >=req.params.minprice && x.Price<= req.params.maxprice)
+      res.send(p)
+  })
+  
+
 
 app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();
