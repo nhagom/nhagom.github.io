@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortProducts'
 })
 export class SortProductsPipe implements PipeTransform {
-  transform(products: any[], sortOrder: string): any[] {
+  transform(products: any[],  sortOrder: string): any[] {
     if (!products || !sortOrder) {
       return products;
     }
