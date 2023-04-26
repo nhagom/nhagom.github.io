@@ -17,21 +17,49 @@ export class LoginComponent implements OnInit{
   errMessage:string=''
   logForm: any;
   cusInfo:any
-
+  check = false
+  customerName = '';
   emailExist=false
   constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){}
   //login
   aUser = new IUser()
-  check = false
-  onSubmit(aUser:any): void {
+  // onSubmit(aUser: any): void {
+  //   this._service.getUsers(aUser).subscribe({
+  //     next:(data) => {
+  //       if(data) {
+  //         localStorage.setItem('email', aUser.customerEmail);
+  //         localStorage.setItem('password', aUser.password);
+  //         this.router.navigate(['/blog']);
+  //       } else {
+  //         console.log("error");
+  //       }
+  //     },
+  //     error:(err) => { console.log(err)}
+  //   });
+  // }
+  onSubmit(aUser: any): void {
     this._service.getUsers(aUser).subscribe({
-      next:(data) => {this.check = data}
-    })
-    if (this.check == true) {
-      this.router.navigate(['/blog']);
-    }
-    else {console.log("error")}
+      next:(data) => {
+        this.check = data;
+        if (this.check) {
+          localStorage.setItem('customerEmail', aUser.customerEmail);
+          localStorage.setItem('password', aUser.password);
+          this._service.getCustomerName().subscribe({
+            next: (data) => {
+              this.customerName = data.customerName;
+            },
+            error: (err) => {
+              console.log(err);
+            },
+          });
+          this.router.navigate(['/blog']);
+        } else {
+          console.log("error");
+        }
+      }
+    });
   }
+
   // validator
   ngOnInit() {
     this.logForm = this.formBuilder.group({

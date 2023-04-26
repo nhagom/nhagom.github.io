@@ -153,6 +153,18 @@ app.post('/customers/login', async (req, res) => {
   } else {
     res.send(false);
   }});
+app.get('/customers/profile', async (req, res) => {
+  const customerEmail = localStorage.getItem('customerEmail');
+  const password = localStorage.getItem('password');
+  const user = await customersCollection.findOne({ customerEmail: customerEmail, password: password });
+  if (user) {
+    res.send({ customerName: user.customerName });
+  } else {
+    res.status(401).send({ message: 'Unauthorized' });
+  }
+});
+
+
 
 //api thêm 1 customer (đăng ký)
 app.post("/customers",cors(),async(req,res)=>{
