@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { LoginComponent } from '../login-page/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../services/cart.service';
-import * as bootstrap from "bootstrap";
 import * as $ from "jquery";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,8 @@ export class HeaderComponent {
   cart: any[] = [];
   totalPrice: number = 0
   totalQuantity: number = 0;
-  constructor(public dialog: MatDialog, private service: CartService ) {
+  customerName: string = '';
+  constructor(public dialog: MatDialog, private service: CartService ,private _http: HttpClient ) {
     this.service.getCart().subscribe(
       (data) => {
       this.cart = data.cart;
@@ -23,7 +24,10 @@ export class HeaderComponent {
       this.totalQuantity = data.totalQuantity
       }
     )
+
    }
+
+
 
   openDialog() {
     this.dialog.open(LoginComponent, {

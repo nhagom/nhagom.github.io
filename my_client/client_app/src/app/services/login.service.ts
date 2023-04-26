@@ -37,6 +37,14 @@ export class LoginService {
       catchError(this.handleError)
     );
   }
+  getCustomerName(): Observable<any> {
+    const requestOptions: Object = {
+      headers: new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+    };
+    return this._http.get<any>("/customers/profile", requestOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
   // update pass
   putPassword(aCustomer:any, email:string):Observable<any>{
   const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
