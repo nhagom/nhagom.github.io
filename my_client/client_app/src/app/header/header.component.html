@@ -84,8 +84,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <a type="button" href="#!/payment" (click)="closeModal()" class="btn btn-primary">Thanh toán</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Đóng</button>
+        <button type="button" (click)="payment()" (onclick)="closeModal()" class="btn btn-primary">Thanh toán</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,56 @@
+.body{
+  padding: 40px 0;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.total {
+  border-top: 1px solid #ccc;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.total b {
+  font-size: 1.2rem;
+}
+
+.payment-info form {
+  max-width: 400px;
+}
+
+.payment-info label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.payment-info input,
+.payment-info button {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cart-info img {
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.cart-info li {
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  background: #0199ff;
+  border-color: #0199ff;
+}
+
+.btn-primary:hover {
+  background: #0478d7;
+  border-color: #0478d7;
+}

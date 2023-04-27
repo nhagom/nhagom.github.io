@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../services/cart.service';
 import * as bootstrap from "bootstrap";
 import * as $ from "jquery";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent {
   cart: any[] = [];
   totalPrice: number = 0
   totalQuantity: number = 0;
-  constructor(public dialog: MatDialog, private service: CartService ) {
+  constructor(public dialog: MatDialog, private service: CartService, public router: Router ) {
     this.service.getCart().subscribe(
       (data) => {
       this.cart = data.cart;
@@ -32,16 +33,6 @@ export class HeaderComponent {
   }
 
 //cart
-
-  // ngOnInit() {
-  //   // Lấy dữ liệu giỏ hàng từ service
-  //   this.service.getCart().subscribe((data) =>
-  //   {
-  //     this.cart = data.cart;
-  //     this.totalPrice = data.totalPrice;
-  //     this.totalQuantity = data.totalQuantity
-  //   })
-  // }
 
   removeProduct(productId: number) {
     // Xóa sản phẩm khỏi giỏ hàng
@@ -60,7 +51,6 @@ export class HeaderComponent {
     this.totalQuantity = this.service.getTotalQuantity();
   }
 
-
   closeModal(): void {
     $("#exampleModal").modal('hide');
   }
@@ -69,5 +59,8 @@ export class HeaderComponent {
     $("#exampleModal").modal('show');
   }
 
+  payment() {
+    this.router.navigate(['payment']);
+  }
 
 }

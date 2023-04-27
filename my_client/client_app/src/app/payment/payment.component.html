@@ -1,0 +1,46 @@
+<h2>THANH TOÁN</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <ul class="list-group" *ngFor="let p of cart">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div><img src="{{p.image}}" width="70px"></div>
+          <div>{{p.productName}}</div>
+          <div>{{p.price | currency:'VND':true}}</div>
+          <div>{{p.quantity}}</div>
+        </li>
+      </ul>
+      <div class="total">
+        <div>Tổng giá trị đơn hàng: <b>{{totalPrice | currency:'VND':true}}</b></div>
+        <div>Phí Ship: <b>{{ship | currency:'VND':true}}</b></div>
+        <div>Tổng thanh toán: <b>{{totalPayment | currency:'VND':true}}</b></div>
+      </div>
+    </div>
+    <div class="col-4">
+      <form>
+        <div class="form-group">
+          <label for="name">Tên người nhận:</label>
+          <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại</label>
+          <input type="text" class="form-control" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="addr">Địa chỉ</label>
+          <input type="text" class="form-control" name="addr" id="addr">
+        </div>
+        <div class="form-group">
+          <label for="paymentMethod">Phương thức thanh toán</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethod" value="Thanh toán khi nhận hàng">
+            <label class="form-check-label" for="paymentMethod">
+              Thanh toán khi nhận hàng
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Thanh toán</button>
+      </form>
+    </div>
+  </div>
+</div>

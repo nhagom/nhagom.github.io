@@ -34,6 +34,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductReviewComponent } from './product-review/product-review.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { SortProductsPipe } from './shop-grid/sort-products.pipe';
+import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { SortProductsPipe } from './shop-grid/sort-products.pipe';
     FooterComponent,
     CartComponent,
     SortProductsPipe,
-    ProductReviewComponent
+    ProductReviewComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

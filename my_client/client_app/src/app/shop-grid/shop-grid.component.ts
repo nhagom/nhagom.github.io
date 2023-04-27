@@ -87,8 +87,8 @@ constructor(public _service: ProductApiService, public router: Router, private c
   //cart
   product: any
   quantity = 1
-  addToCart(p:any){
-    this._service.getProduct(p._id).subscribe({
+  addToCart(po:any){
+    this._service.getProduct(po._id).subscribe({
       next: (data)=>{this.product=data},
     })
     this.cartService.addToCart(this.product, this.quantity)
