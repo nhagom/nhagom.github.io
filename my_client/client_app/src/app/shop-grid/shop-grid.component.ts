@@ -20,15 +20,19 @@ import { CartService } from '../services/cart.service';
 export class ShopGridComponent {
   products: Product[] = [];
   errMessage: string = '';
+
+  //phân trang
   p: number=1;
+  itemsPerPage: number = 12;
+  totalProduct: any;
+
+  //search
   searchText: any;
   uniqueStyles: any;
 
   //Sắp xếp
   sortOrder: string = '';
 
-  itemsPerPage: number = 12;
-  totalProduct: any;
   // key = "Giaban";
   // reverse: boolean = false;
 
@@ -54,22 +58,22 @@ constructor(public _service: ProductApiService, public router: Router, private c
   }
 
 
-  getProductStyle(productStyle:string)
-  {
-    this._service.getProductStyle(productStyle).subscribe({
-      next: (data)=>{this.products=data; console.log("hii",data);
-    this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
-      error: (err)=>{this.errMessage=err},
-    })
-  }
+  // getProductStyle(productStyle:string)
+  // {
+  //   this._service.getProductStyle(productStyle).subscribe({
+  //     next: (data)=>{this.products=data; console.log("hii",data);
+  //   this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
+  //     error: (err)=>{this.errMessage=err},
+  //   })
+  // }
 
-  MM(max:string, min:string )
-  {
-  this._service.getMinMax(max,min).subscribe({
-  next:(data)=>{this.products=data},
-  error:(err)=>{this.errMessage=err}
-  })
-  }
+  // MM(max:string, min:string )
+  // {
+  // this._service.getMinMax(max,min).subscribe({
+  // next:(data)=>{this.products=data},
+  // error:(err)=>{this.errMessage=err}
+  // })
+  // }
 
   sortProduct() {
     this._service.sortProductsByPrice().subscribe({
@@ -77,6 +81,8 @@ constructor(public _service: ProductApiService, public router: Router, private c
       error: (err) => {this.errMessage = err;},
     });
   }
+
+
   // sort() {
   //   this.reverse = false
   // }
