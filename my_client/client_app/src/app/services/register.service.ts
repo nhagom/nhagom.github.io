@@ -14,7 +14,7 @@ export class RegisterService {
       headers:headers,
       responseType:"text"
     }
-    return this._http.post<any>("/customers",JSON.stringify(aCustomer),requestOptions).pipe(
+    return this._http.post<any>("/customers/register",JSON.stringify(aCustomer),requestOptions).pipe(
       map(res=>JSON.parse(res) as Customers),
       retry(3),
       catchError(this.handleError)

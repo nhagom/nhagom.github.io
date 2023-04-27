@@ -8,24 +8,42 @@ import { ICustomer } from '../interfaces/customers';
   providedIn: 'root'
 })
 export class LoginService {
-  login(email: any, password: any) {
-    throw new Error('Method not implemented.');
-  }
   constructor(private _http: HttpClient) { }
-  postCustomers(aCustomer:any):Observable<any>{
-    const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
-    const requestOptions:Object={
-      headers:headers,
-      responseType:"text"
-    }
-    return this._http.post<any>("/users",JSON.stringify(aCustomer),requestOptions).pipe(
-      map(res=>JSON.parse(res) as Customers),
-      retry(3),
-      catchError(this.handleError)
-    )
-  }
+  // login(email: any, password: any) {
+  //   throw new Error('Method not implemented.');
+  // }
+  // postCustomers(aCustomer:any):Observable<any>{
+  //   const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+  //   const requestOptions:Object={
+  //     headers:headers,
+  //     responseType:"text"
+  //   }
+  //   return this._http.post<any>("/users",JSON.stringify(aCustomer),requestOptions).pipe(
+  //     map(res=>JSON.parse(res) as Customers),
+  //     retry(3),
+  //     catchError(this.handleError)
+  //   )
+  // }
   handleError(error:HttpErrorResponse){
     return throwError(()=>new Error(error.message))
+  }
+  //login
+  getUsers(aUser: any): Observable<any> {
+    const requestOptions: Object = {
+      headers: new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+    };
+    return this._http.post<any>("/customers/login", JSON.stringify(aUser), requestOptions).pipe(
+      map(res => res as boolean),
+      catchError(this.handleError)
+    );
+  }
+  getCustomerName(): Observable<any> {
+    const requestOptions: Object = {
+      headers: new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
+    };
+    return this._http.get<any>("/customers/profile", requestOptions).pipe(
+      catchError(this.handleError)
+    );
   }
   // update pass
   putPassword(aCustomer:any, email:string):Observable<any>{

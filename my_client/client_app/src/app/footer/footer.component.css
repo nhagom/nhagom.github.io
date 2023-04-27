@@ -8,6 +8,13 @@
   color: #fff;
   background-color:  #b14739;
 }
+p{
+  color: #fff;
+}
+h2{
+  color: #fff;
+  font-weight: bold;
+}
 .footer__item--map {
   flex: 1;
   text-align: center;
@@ -55,7 +62,7 @@
 }
 
 .footer__item--contact li a:hover {
-  color: #007bff;
+  color: #fff;
 }
 
 .footer__item--about {
@@ -78,26 +85,17 @@
   padding: 0;
   display: flex;
 }
-
 .social-icon li {
   margin-right: 10px;
 }
-
 .social-icon a {
   color: #fff;
   text-decoration: none;
   font-size: 1.5rem;
 }
-
-.social-icon a:hover {
-  color: #007bff;
-}
-
 .footer__item--code {
   flex-basis: 10%;
 }
-
-
 .footer__item--code img {
   max-width: 100%;
 }

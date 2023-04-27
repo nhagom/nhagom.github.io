@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import {MatDialogModule} from '@angular/material/dialog';
 
 
@@ -30,10 +30,13 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FilterPipe } from './filter.pipe';
 import { CartComponent } from './cart/cart.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
+import { ProductReviewComponent } from './product-review/product-review.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { SortProductsPipe } from './shop-grid/sort-products.pipe';
+import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
@@ -52,9 +55,11 @@ import { HomepageComponent } from './homepage/homepage.component';
     AboutUsComponent,
     HeaderComponent,
     FooterComponent,
-    FilterPipe,
     CartComponent,
     HomepageComponent,
+    SortProductsPipe,
+    ProductReviewComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +75,12 @@ import { HomepageComponent } from './homepage/homepage.component';
     ScrollingModule,
     DragDropModule,
     Ng2SearchPipeModule,
-    MatDialogModule,
+    NzSliderModule,
+    MatDialogModule
+
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, ShopGridComponent]
 })
 export class AppModule { }

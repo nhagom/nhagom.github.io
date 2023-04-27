@@ -12,22 +12,11 @@
 
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item ml">
-                  <a class="nav-link active" aria-current="page" routerLink="/home">TRANG CHỦ</a>
+                  <a class="nav-link active content" aria-current="page" routerLink="/home">TRANG CHỦ</a>
               </li>
               <li class="nav-item ml dropdown">
-                  <a class="nav-link" routerLink="/shop-grid" j>SẢN PHẨM</a>
-                  <!-- <ul class="dropdown-menu">
-                      <li><a class="dropdown-item dropdown-content" routerLink="/products-list">Sản phẩm bán</a></li>
-                      <li><a class="dropdown-item dropdown-content" routerLink="/products-list">Sản phẩm thuê</a></li>
-                  </ul> -->
+                  <a class="nav-link content" routerLink="/shop-grid" >SẢN PHẨM</a>
               </li>
-              <!-- <li class="nav-item ml dropdown">
-                  <a class="nav-link" routerLink="/services-list">DỊCH VỤ</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item dropdown-content" routerLink="/services-list">Lưu trú</a></li>
-                      <li><a class="dropdown-item dropdown-content" routerLink="/services-list">Ăn uống</a></li>
-                  </ul>
-              </li> -->
               <li class="nav-item ml dropdown">
                   <a class="nav-link" routerLink="/blog">BLOG</a>
                   <!-- <ul class="dropdown-menu">
@@ -36,36 +25,25 @@
                   </ul> -->
               </li>
               <li class="nav-item ml">
-                  <a class="nav-link" routerLink="/about">VỀ CHÚNG TÔI</a>
+                  <a class="nav-link content" routerLink="/about">VỀ CHÚNG TÔI</a>
               </li>
           </ul>
-
-          <form class="d-flex w-auto search">
-              <input type="text" class="form-control search-icon-input" [(ngModel)]="searchTerm"
-                   placeholder="Nhập tên sản phẩm..." aria-label="Search" />
-              <button type="submit" class="search-icon-button"><span class="bi bi-search"></span></button>
-          </form>
           <ul class="navbar-nav mb-2 mb-lg-0">
-
               <li class="nav-item dropdown">
-                <button class="btn" (click)="showModal()" data-toggle="modal" data-target="#exampleModal">
-                  <i style="font-size:30px" class="fas fa-cart-plus"></i>
+                <a class="nav-link icon-sizing2" (click)="showModal()" data-toggle="modal" data-target="#exampleModal">
+                  <i class="fas fa-cart-plus"></i>
                   <div style="font-size:10px" class="badge bg-danger">{{totalQuantity}}</div>
-                </button>
+                </a>
               </li>
               <li class="nav-item dropdown">
-                  <a class="nav-link icon-sizing2" routerLink="/account">
+                  <a class="nav-link icon-sizing2">
                       <i class="fa-solid fa-user-plus"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end p-2 container-account">
-                      <li class="my-2 d-flex align-items-center">
-                          <a class="dropdown-item" routerLink="/login">Đăng nhập</a>
-                      </li>
-                      <li>
-                          <hr class="dropdown-divider" />
-                      </li>
-                      <li><a class="dropdown-item" routerLink="/account">Tài khoản</a></li>
-                      <li><a class="dropdown-item" routerLink="/login">Đăng xuất</a></li>
+                      <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng nhập </span> </li> <hr>
+                      <div class="user dropdown-item dropdown-content">{{customerName}}</div>
+                      <li><span class="dropdown-item dropdown-content" routerLink="/account">Tài khoản</span> </li> <hr>
+                      <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng xuất</span></li>
                   </ul>
               </li>
           </ul>
@@ -107,8 +85,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <a type="button" href="#!/payment" (click)="closeModal()" class="btn btn-primary">Thanh toán</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Đóng</button>
+        <button type="button" (click)="payment()" (onclick)="closeModal()" class="btn btn-primary">Thanh toán</button>
       </div>
     </div>
   </div>

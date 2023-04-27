@@ -53,7 +53,7 @@ app.get("/products/:id",cors(), async(req,res)=>{
 })
 
     //this is API to get category of tag
-    app.get("/products-Style/:style",cors(), async(req,res)=>{
+    app.get("/products-get/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
         const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
@@ -64,6 +64,20 @@ app.get("/products/:id",cors(), async(req,res)=>{
           const result=await productsCollection.find({style:{$regex: o_style}}).toArray();
           res.send(result)
           })
+    
+    app.get("/products-sort-by-price/:price", cors(), async (req,res)=>{
+        const o_price = new RegExp(req.params.price,"p")
+        const result = await productsCollection.find({price:{$regex: o_price}}).sort({price: 1}).toArray();
+        res.send(result)
+    })
+
+    app.get("/products/:minprice/:maxprice", cors(),(req,res)=>{
+      console.log(req.params.minprice,req.params.maxprice)
+      let p = database.filter(x=>x.Price >=req.params.minprice && x.Price<= req.params.maxprice)
+      res.send(p)
+  })
+  
+
 
 app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();
@@ -76,6 +90,7 @@ app.get("/orders", cors(), async (req,res)=>{
 })
 //---------------------------------Home and Blog------------------
 // API blogs
+//------------------------------------ API blogs-----------------------------
   // get all blogs
 app.get("/blogs", cors(), async (req,res)=>{
     const result = await blogsCollection.find({}).toArray();
@@ -166,10 +181,55 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     res.send(result[0])
 })
 //-------------------------------API REGISTER , LOGIN------------------------------------------
+//login
+// app.post('/customers/login', async (req, res) => {
+//   const { customerEmail, password } = req.body;
+//   const users = await customersCollection.findOne({customerEmail: customerEmail, password: password });
+//   if (users) {
+//     res.send(true); 
+//   } else {
+//     res.send(false);
+//   }});
+  app.post("/customers/login",cors(), async(req, res)=>{
+    const customerEmail=req.body.customerEmail
+    const password=req.body.password
+    const crypto = require('crypto');
+    const users = await customersCollection.findOne({customerEmail: customerEmail})
+    if(users==null)
+        res.send(false)
+    else
+    { 
+        hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hex`); 
+        if(users.password==hash) 
+            res.send(true) 
+            
+        else
+        res.send(false)
+    }
+}
+)
+
+app.get('/customers/profile', async (req, res) => {
+  const customerEmail = localStorage.getItem('customerEmail');
+  const password = localStorage.getItem('password');
+  const user = await customersCollection.findOne({ customerEmail: customerEmail, password: password });
+  if (user) {
+    res.send({ customerName: user.customerName });
+  } else {
+    res.status(401).send({ message: 'Unauthorized' });
+  }
+});
+
 //api thêm 1 customer (đăng ký)
-app.post("/customers",cors(),async(req,res)=>{
-    await customersCollection.insertOne(req.body)
-    res.send(req.body)
+app.post("/customers/register", cors(), async(req, res)=>{
+  var crypto = require('crypto'); 
+  salt = crypto.randomBytes(16).toString('hex');
+  users =req.body
+  hash = crypto.pbkdf2Sync(users.password, salt, 1000, 64, `sha512`).toString(`hex`);
+  users.password = hash
+  users.salt = salt
+  await customersCollection.insertOne(users)
+  res.send(req.body)
 })
 
 //api kiểm tra email không tồn tại
@@ -227,7 +287,48 @@ app.post("/users", cors(), async(req, res)=>{
     await usersCollection.insertOne(users)
     res.send(req.body)
 })
+app.post("/login",cors(), async(req, res)=>{
+  username=req.body.username
+  password=req.body.password
+  
+  var crypto = require('crypto');
+  usersCollection = database.collection("users")
+  users = await usersCollection.findOne({username:username})
+  if(user==null)
+      res.send({"username":username, "message": "not exist"})
+  else
+  { 
+      hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hax`); 
+      if(user.password==hash) 
+          res.send(user) 
+      else
+      res.send({"username":username, "password": password, "message": "wrong password"})
+  }
+}
+)
 
+app.post("/login", cors(), async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const usersCollection = database.collection("users");
+  const user = await usersCollection.findOne({ username: username });
+
+  if (!user) {
+    res.send({ username: username, message: "not exist" });
+    return;
+  }
+
+  const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, "sha512").toString("hex");
+
+  if (hash === user.password) {
+    // Lưu thông tin email vào session storage
+    req.session.email = user.email;
+    res.send(user);
+  } else {
+    res.send({ username: username, password: password, message: "wrong password" });
+  }
+})
 //---------------------------API ADMIN---------------------------------------------------
 // delete khách hàng
   app.delete("/customers/delete/:email", cors(), async (req, res)=>{
@@ -304,4 +405,5 @@ app.post("/login", cors(), async (req, res) => {
       res.send({ username: username, password: password, message: "wrong password" });
     }
   })
+
 

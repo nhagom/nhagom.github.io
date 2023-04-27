@@ -45,7 +45,7 @@ export class ProductApiService {
       headers:header,
       responseType:"text"
     }
-    return this._http.get<any>("/product-Style/"+productStyle,requestOptions).pipe(
+    return this._http.get<any>("/products-get/"+productStyle,requestOptions).pipe(
       map((res) => JSON.parse(res) as Array<Product>),
       retry(3),
       catchError(this.handleError)
@@ -53,5 +53,34 @@ export class ProductApiService {
   }
 
 
+  getMinMax(min:string, max:string):Observable<any>
+  {
+  const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+  const requestOptions:Object={
+  headers:headers,
+  responseType:"text"
+  }
+  return this._http.get<any>("/products/"+min +"/"+max,requestOptions).pipe(
+  map(res=>JSON.parse(res) as IProduct),
+  retry(3),
+  catchError(this.handleError))
+
+  }
+
+  sortProductsByPrice(): Observable<IProduct[]> {
+    const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
+    const requestOptions: Object = {
+      headers: headers,
+      responseType: "text"
+    };
+
+    return this._http.get<any>("/products-sort-by-price/", requestOptions).pipe(
+      map(res => JSON.parse(res) as IProduct[]),
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
 
 }
+
+

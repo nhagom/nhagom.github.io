@@ -1,10 +1,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
     <!-- Css Styles
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -15,8 +11,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css"> -->
 
     <!-- Hero Section Begin -->
-
-<br>
+<section class="product-details spad">
 <div class="row product" >
   <div class="col-md-5 col-sm-12 col-12" >
     <img class="zoom" src="{{product.image}}">
@@ -55,10 +50,10 @@
           <div class="form-group"> <input type="number"  min="1" max="20" class="form-control" id="quantity" name="quantity" [(ngModel)]="quantity"/> </div>
 
             <a href="javascript:void(0);" class="cart-btn" (click)="addToCart(product, quantity)" ><i class="fa fa-shopping-cart"></i> Add To Cart</a>
-          <button type="button" class="main-button">
+          <!-- <button type="button" class="main-button">
           <a href="javascript:void(0);"><i class="fa fa-heart"></i></a>
           <a href="javascript:void(0);"><i class="fa fa-search"></i></a>
-        </button>
+        </button> -->
       </div>
 
   </div>
@@ -67,7 +62,6 @@
 
 
   <!-- Product Details Section Begin -->
-  <section class="product-details spad">
       <div class="container">
           <div class="row">
 
@@ -76,39 +70,20 @@
                       <ul class="nav nav-tabs" role="tablist">
                           <li class="nav-item">
                               <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                  aria-selected="true">Description</a>
+                                  aria-selected="true">Thông tin</a>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                  aria-selected="false">Information</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                  aria-selected="false">Reviews <span>(1)</span></a>
+                                  aria-selected="false">Đánh giá</a>
                           </li>
                       </ul>
                       <div class="tab-content">
                           <div class="tab-pane active" id="tabs-1" role="tabpanel">
                               <div class="product__details__tab__desc">
-                                  <h6>Products Infomation</h6>
-                                  <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                      Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
-                                      suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
-                                      vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
-                                      Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
-                                      accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
-                                      pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
-                                      elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
-                                      et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
-                                      vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                      <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                      ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                      elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                      porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                      nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                      porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                      sed sit amet dui. Proin eget tortor risus.</p>
+                                  <h6>Giới thiệu gốm</h6>
+                                  <p>Gốm là một loại vật liệu được làm từ đất sét, sau đó được nung trong lò nung ở nhiệt độ cao để tạo ra các sản phẩm như chén, đĩa, bát, ly, và các vật dụng khác. Gốm có một lịch sử lâu đời, được sử dụng từ thời đại đồ đá cũ để làm đồ dùng hàng ngày và trang trí.</p>
+                                  <p>Các loại đất sét được sử dụng để làm gốm thường được tìm thấy ở các khu vực có địa chất phù hợp. Sau khi đất sét được thu thập và làm sạch, nó được nhào và định hình để tạo ra hình dạng mong muốn. Sau đó, sản phẩm được sấy khô và nung trong lò nung với nhiệt độ cao để tạo ra sự cứng cáp và bền bỉ.</p>
+                                  <p> Gốm được sản xuất và sử dụng trên khắp thế giới, có nhiều phong cách và kỹ thuật sản xuất khác nhau. Gốm có thể được trang trí bằng nhiều cách khác nhau, bao gồm sơn, khắc, in hoa văn, hoặc nặn các hình dạng phức tạp. Sản phẩm gốm có thể được sử dụng để ăn uống, trang trí, hoặc làm quà tặng.</p>
                               </div>
                           </div>
                           <div class="tab-pane" id="tabs-2" role="tabpanel">
@@ -125,29 +100,9 @@
                                       ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
                                       Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
                                       Proin eget tortor risus.</p>
-                                  <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                      ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                      elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                      porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                      nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
-                              </div>
+                                    </div>
                           </div>
-                          <div class="tab-pane" id="tabs-3" role="tabpanel">
-                              <div class="product__details__tab__desc">
-                                  <h6>Products Infomation</h6>
-                                  <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                      Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                      Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                      sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                      eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                      Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                      sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                      diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                      ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                      Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                      Proin eget tortor risus.</p>
-                              </div>
-                          </div>
+
                       </div>
                   </div>
               </div>
@@ -162,7 +117,7 @@
           <div class="row">
               <div class="col-lg-12">
                   <div class="section-title related__product__title">
-                      <h2>Related Product</h2>
+                      <h2>Sản phẩm tương tự</h2>
                   </div>
               </div>
           </div>

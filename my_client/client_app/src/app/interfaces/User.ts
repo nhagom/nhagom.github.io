@@ -1,5 +1,10 @@
 export interface IUser {
-  email: string;
+  customerEmail: string;
   password: string;
   }
-
+  export class IUser {
+    constructor(
+      public customerEmail:string="",
+      public password:string=""
+    ){}
+  }

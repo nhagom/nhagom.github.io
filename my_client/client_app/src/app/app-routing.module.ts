@@ -12,6 +12,7 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { PaymentComponent } from './payment/payment.component';
 
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'blog-detail/:id', component: BlogDetailComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
   { path: 'shop-grid', component: ShopGridComponent },
-  { path: 'home', component:HomepageComponent}
+  { path: 'home', component:HomepageComponent},
+  { path: 'payment', component: PaymentComponent },
 
 ];
 
