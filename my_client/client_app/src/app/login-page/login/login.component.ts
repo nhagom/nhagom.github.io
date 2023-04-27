@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit{
         this.check = data;
         if (this.check) {
           localStorage.setItem('customerEmail', aUser.customerEmail);
-          localStorage.setItem('password', aUser.password);
           this._service.getCustomerName().subscribe({
             next: (data) => {
               this.customerName = data.customerName;
