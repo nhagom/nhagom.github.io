@@ -20,6 +20,6 @@ export class LoginComponent {
     if (this.check == true) {
       this.router.navigate(['customer']);
     }
-    else {console.log("error")}
+    else {alert("Tên đăng nhập hoặc mật khẩu không đúng, vui lòng kiểm tra lại!");}
   }
 }
