@@ -35,7 +35,7 @@
                   <div style="font-size:10px" class="badge bg-danger">{{totalQuantity}}</div>
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" *ngIf="notLogin">
                   <a class="nav-link icon-sizing2">
                       <i class="fa-solid fa-user-plus"></i>
                   </a>
@@ -46,6 +46,7 @@
                       <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng xuất</span></li>
                   </ul>
               </li>
+              <li class="nav-item dropdown" *ngIf="isLogin">Tài khoản</li>
           </ul>
       </div>
   </div>

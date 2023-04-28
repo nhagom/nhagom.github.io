@@ -53,7 +53,7 @@ export class RegisterComponent {
   }
   postCustomers(){
     this._service.postCustomers(this.customer).subscribe({
-      next:(data)=>{this.customer=data},
+      next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err}
     })
   }

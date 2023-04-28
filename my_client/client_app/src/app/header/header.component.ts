@@ -16,8 +16,16 @@ export class HeaderComponent {
   cart: any[] = [];
   totalPrice: number = 0
   totalQuantity: number = 0;
-  customerName: string = ""
+  customerName: string = "";
+  isLogin = false;
+  notLogin = true;
   constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient ) {
+    let _email = localStorage.getItem('customerEmail')
+    if (_email) {
+      this.isLogin = true;
+      this.notLogin = false
+    }
+
     this.service.getCart().subscribe(
       (data) => {
       this.cart = data.cart;
@@ -26,6 +34,8 @@ export class HeaderComponent {
       this.isCartEmpty = this.cart.length === 0;
       }
     )
+
+
 
    }
 

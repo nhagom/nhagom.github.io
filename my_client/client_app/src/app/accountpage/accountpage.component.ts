@@ -22,6 +22,7 @@ export class AccountpageComponent {
     let _email = localStorage.getItem('customerEmail');
     if (_email){
       this.email = _email
+
     }
     this._service.getCustomerInfo(this.email).subscribe({
       next:(data)=>{
