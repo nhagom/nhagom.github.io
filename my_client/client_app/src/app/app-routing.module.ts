@@ -14,14 +14,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PaymentComponent } from './payment/payment.component';
 
-// import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
   { path: 'payment', component: PaymentComponent },
-
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  // { path: 'home', component: AccountpageComponent, canActivate: [AuthGuard] },
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

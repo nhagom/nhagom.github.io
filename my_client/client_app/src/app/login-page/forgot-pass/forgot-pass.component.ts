@@ -33,13 +33,6 @@ export class ForgotPassComponent {
     }, { validators: passwordValidator });
   }
 
-  // getInfo(email:string){
-  //   this.service.getCustomerInfo(email).subscribe({
-  //     next:(data)=>{this.cusInfo=data}
-  //   })
-  //   this.cusInfo=this.customer
-  // }
-
   putPassword(email:string){
     this.service.getCustomerInfo(email).subscribe({
       next:(data)=>{this.cusInfo=data}
@@ -55,7 +48,6 @@ export class ForgotPassComponent {
     })
   }
   //kiểm tra email không tồn tại
-
   emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       return this._service.checkEmailExists(control.value).pipe(

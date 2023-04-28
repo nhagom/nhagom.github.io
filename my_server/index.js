@@ -184,14 +184,6 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
 
 //-------------------------------API REGISTER , LOGIN------------------------------------------
 //login
-// app.post('/customers/login', async (req, res) => {
-//   const { customerEmail, password } = req.body;
-//   const users = await customersCollection.findOne({customerEmail: customerEmail, password: password });
-//   if (users) {
-//     res.send(true); 
-//   } else {
-//     res.send(false);
-//   }});
   app.post("/customers/login",cors(), async(req, res)=>{
     const customerEmail=req.body.customerEmail
     const password=req.body.password
@@ -210,17 +202,17 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     }
 }
 )
-
-app.get('/customers/profile', async (req, res) => {
-  const customerEmail = localStorage.getItem('customerEmail');
-  const password = localStorage.getItem('password');
-  const user = await customersCollection.findOne({ customerEmail: customerEmail, password: password });
-  if (user) {
-    res.send({ customerName: user.customerName });
-  } else {
-    res.status(401).send({ message: 'Unauthorized' });
-  }
-});
+//lưu customerEmail vào local Storage
+// app.get('/customers/profile', async (req, res) => {
+//   const customerEmail = localStorage.getItem('customerEmail');
+//   const password = localStorage.getItem('password');
+//   const user = await customersCollection.findOne({ customerEmail: customerEmail, password: password });
+//   if (user) {
+//     res.send({ customerName: user.customerName });
+//   } else {
+//     res.status(401).send({ message: 'Unauthorized' });
+//   }
+// });
 
 //api thêm 1 customer (đăng ký)
 app.post("/customers/register", cors(), async(req, res)=>{

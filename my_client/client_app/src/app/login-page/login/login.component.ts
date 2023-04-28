@@ -23,20 +23,6 @@ export class LoginComponent implements OnInit{
   constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){}
   //login
   aUser = new IUser()
-  // onSubmit(aUser: any): void {
-  //   this._service.getUsers(aUser).subscribe({
-  //     next:(data) => {
-  //       if(data) {
-  //         localStorage.setItem('email', aUser.customerEmail);
-  //         localStorage.setItem('password', aUser.password);
-  //         this.router.navigate(['/blog']);
-  //       } else {
-  //         console.log("error");
-  //       }
-  //     },
-  //     error:(err) => { console.log(err)}
-  //   });
-  // }
   onSubmit(aUser: any): void {
     this._service.getUsers(aUser).subscribe({
       next:(data) => {
