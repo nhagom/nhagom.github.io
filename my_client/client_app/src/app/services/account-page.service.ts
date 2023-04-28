@@ -24,7 +24,7 @@ export class AccountPageService {
     )
   }
 
-  getCustomerInfo(email:string):Observable<any> {
+  getCustomerInfo(email:any):Observable<any> {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
@@ -41,7 +41,7 @@ export class AccountPageService {
     return throwError(()=>new Error(error.message))
   }
 
-  getPurchaseHistory(email:string):Observable<any> {
+  getPurchaseHistory(email:any):Observable<any> {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
@@ -54,7 +54,7 @@ export class AccountPageService {
     )
   }
 
-  updateCusInfo(aCus:any, email:string):Observable<any>{
+  updateCusInfo(aCus:any, email:any):Observable<any>{
     const headers=new HttpHeaders().set("Content-Type","application/json;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
@@ -67,7 +67,7 @@ export class AccountPageService {
     )
   }
 
-  checkEmailExists(email: string): Observable<boolean> {
+  checkEmailExists(email: any): Observable<boolean> {
     return this._http.get<any>(`/customers/check-email/${email}`).pipe(
       map(res => res as boolean),
       catchError(this.handleError)

@@ -16,18 +16,18 @@ export class HeaderComponent {
   cart: any[] = [];
   totalPrice: number = 0
   totalQuantity: number = 0;
+  customerName: string = ""
   constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient ) {
     this.service.getCart().subscribe(
       (data) => {
       this.cart = data.cart;
       this.totalPrice = data.totalPrice;
-      this.totalQuantity = data.totalQuantity
+      this.totalQuantity = data.totalQuantity;
+      this.isCartEmpty = this.cart.length === 0;
       }
     )
 
    }
-
-
 
   openDialog() {
     this.dialog.open(LoginComponent, {
@@ -35,8 +35,9 @@ export class HeaderComponent {
     });
   }
 
-//cart
 
+/////cart
+  isCartEmpty: boolean = true;
   removeProduct(productId: number) {
     // Xóa sản phẩm khỏi giỏ hàng
     this.service.removeFromCart(productId);
@@ -63,7 +64,13 @@ export class HeaderComponent {
   }
 
   payment() {
-    this.router.navigate(['payment']);
+    const user = localStorage.getItem('customerEmail');
+    if (user) {
+      this.router.navigate(['payment']);
+    }
+    else {
+      this.router.navigate(['login']);
+    }
   }
 
 }

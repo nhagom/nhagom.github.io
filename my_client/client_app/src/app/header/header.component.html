@@ -86,11 +86,15 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Đóng</button>
-        <button type="button" (click)="payment()" (onclick)="closeModal()" class="btn btn-primary">Thanh toán</button>
+        <button type="button" data-dismiss="modal" (click)="payment()"  [disabled]="isCartEmpty" class="btn btn-primary">Đặt hàng</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
 
 
 

@@ -16,6 +16,7 @@ import { PaymentComponent } from './payment/payment.component';
 // import { AuthGuard } from './auth-guard';
 const routes: Routes = [
   {path: 'account', component:AccountpageComponent},
+  { path: 'payment', component: PaymentComponent },
 
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'blog-detail/:id', component: BlogDetailComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
   { path: 'shop-grid', component: ShopGridComponent },
-  { path: 'payment', component: PaymentComponent },
+
 
 ];
 

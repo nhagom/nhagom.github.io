@@ -38,6 +38,17 @@ export class CartService {
     return this.cartSubject.asObservable();
   }
 
+  deleteCart(): Observable <any> {
+    this.cart = [];
+    this.totalPrice = 0;
+    this.totalQuan = 0;
+    this.cartSubject.next({
+      cart: this.cart,
+      totalPrice: this.totalPrice,
+      totalQuantity: this.totalQuan
+    })
+    return this.cartSubject
+  }
 
   addToCart(product: any, quantity: number ) {
     // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa

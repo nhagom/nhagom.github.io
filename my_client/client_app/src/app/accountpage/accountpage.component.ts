@@ -15,28 +15,27 @@ export class AccountpageComponent {
   purchaseHistory:any
   errMessage=''
   successMsg = '';
-  emailExist=false
+  emailExist=false;
+  email = ""
 
-
-  constructor(private _service: AccountPageService, ) {
-
-  }
-  getInfo(email:string){
-    this._service.getCustomerInfo(email).subscribe({
-        next:(data)=>{
-            this.cusInfo=data;
-            this.aCus = {...this.cusInfo};
-        },
-        error:(err)=>{this.errMessage=err}
+  constructor(private _service: AccountPageService,  ) {
+    let _email = localStorage.getItem('customerEmail');
+    if (_email){
+      this.email = _email
+    }
+    this._service.getCustomerInfo(this.email).subscribe({
+      next:(data)=>{
+          this.cusInfo=data;
+          this.aCus = {...this.cusInfo};
+      },
+      error:(err)=>{this.errMessage=err}
     })
-}
-
-  getPurchaseHistory(email:string){
-    this._service.getPurchaseHistory(email).subscribe({
+    this._service.getPurchaseHistory(this.email).subscribe({
       next:(data)=>{this.purchaseHistory=data},
       error:(err)=>{this.errMessage=err}
     })
   }
+
 
   calculateTotal(p: any): number {
     let total = 0;
@@ -46,8 +45,8 @@ export class AccountpageComponent {
     return total;
   }
 
-  updateCusInfo(email:string) {
-    this._service.updateCusInfo(this.aCus, email).subscribe({
+  updateCusInfo() {
+    this._service.updateCusInfo(this.aCus, this.email).subscribe({
       next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err},
 
@@ -61,11 +60,11 @@ export class AccountpageComponent {
     this.successMsg = '';
   }
 
-  checkEmail() {
-    if (this.aCus.customerEmail !== this.cusInfo.customerEmail) {
-      this._service.checkEmailExists(this.aCus.customerEmail).subscribe({
-        next:(data)=>{this.emailExist=data},
-      });
-    }
-  }
+  // checkEmail() {
+  //   if (this.aCus.customerEmail !== this.cusInfo.customerEmail) {
+  //     this._service.checkEmailExists(this.aCus.customerEmail).subscribe({
+  //       next:(data)=>{this.emailExist=data},
+  //     });
+  //   }
+  // }
 }

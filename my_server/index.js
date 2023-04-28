@@ -40,12 +40,23 @@ feedbacksCollection = database.collection("feedbacks")
 adminCollection = database.collection("admin")
 feedbacksCollection = database.collection("feedbacks");
 
-//api product
+//----------------------------------API Chung--------------------------------------------
 app.get("/products", cors(), async (req,res)=>{
     const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
     res.send(result)
 })
+app.get("/customers", cors(), async (req,res)=>{
+  const result = await customersCollection.find({}).toArray();
+  res.send(result)
+})
 
+app.get("/orders", cors(), async (req,res)=>{
+  const result = await ordersCollection.find({}).toArray();
+  res.send(result)
+})
+
+
+//-----------------------------------API trang Product-----------------------------------------
 app.get("/products/:id",cors(), async(req,res)=>{
     var o_id = new ObjectId(req.params["id"]);
     const result = await productsCollection.find({_id:o_id}).toArray();
@@ -78,17 +89,7 @@ app.get("/products/:id",cors(), async(req,res)=>{
   })
   
 
-
-app.get("/customers", cors(), async (req,res)=>{
-    const result = await customersCollection.find({}).toArray();
-    res.send(result)
-})
-
-app.get("/orders", cors(), async (req,res)=>{
-    const result = await ordersCollection.find({}).toArray();
-    res.send(result)
-})
-//------------------------------------ API blogs-----------------------------
+//------------------------------------ API blogs--------------------------------------
   // get all blogs
 app.get("/blogs", cors(), async (req,res)=>{
     const result = await blogsCollection.find({}).toArray();
@@ -112,6 +113,8 @@ app.post("/customers",cors(),async(req,res)=>{
     res.send(req.body)
 })
 
+
+///------------------------------------API Account Page-----------------------------------------
 //api gọi customer theo email
 app.get("/customers/:email", cors(), async (req,res)=>{
     var email = req.params["email"]
@@ -143,6 +146,7 @@ app.put("/customers/:customerEmail", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
+
 //-------------------------------API REGISTER , LOGIN------------------------------------------
 //login
 // app.post('/customers/login', async (req, res) => {
@@ -292,6 +296,40 @@ app.post("/login", cors(), async (req, res) => {
     res.send({ username: username, password: password, message: "wrong password" });
   }
 })
+
+
+//-------------------------API TẠO ORDER - THANH TOÁN---------------------------------------
+app.post("/orders", cors(), async (req,res) => {
+  //lấy orderId của đơn hàng gần nhất
+  const lastOrder = await ordersCollection.find().sort({orderId: -1}).limit(1).toArray();
+  let nextOrderId = 1;
+  if (lastOrder.length > 0) {
+    nextOrderId = lastOrder[0].orderId + 1;
+  }
+
+  // Lấy ngày hiện tại
+  const currentDate = new Date().toLocaleDateString();
+
+  const newOrder = {
+    orderId: nextOrderId,
+    customerName: req.body.customerName,
+    customerEmail: req.body.customerEmail,
+    customerPhoneNumb: req.body.customerPhoneNumb,
+    customerAddress: req.body.customerAddress,
+    orderDate: currentDate,
+    totalPrice: req.body.totalPrice,
+    orderItems: req.body.orderItems
+  }
+
+  //lưu vào database
+  await ordersCollection.insertOne(newOrder)
+  res.send("Thanh toán thành công!")
+})
+
+
+
+
+
 //---------------------------API ADMIN---------------------------------------------------
   app.delete("/customers/delete/:email", cors(), async (req, res)=>{
     var email= req.params.email;

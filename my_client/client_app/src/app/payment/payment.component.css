@@ -54,3 +54,16 @@ h2 {
   background: #0478d7;
   border-color: #0478d7;
 }
+.label {
+  font-size: medium;
+  font-weight: bold;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);  /* Màu xám mờ */
+  z-index: 20000;
+}

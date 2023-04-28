@@ -3,6 +3,7 @@ import { ProductApiService } from '../services/product-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { HttpClient } from '@angular/common/http';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-product-detail',
@@ -29,8 +30,13 @@ export class ProductDetailComponent {
 
   //cart
   quantity = 1
+  item=new Cart()
   addToCart(product:any, quantity:number){
-    this.cartService.addToCart(product,quantity)
+    this.item.productId = this.product.productId
+    this.item.productName = this.product.productName,
+    this.item.image = this.product.image,
+    this.item.price = this.product.price,
+    this.cartService.addToCart(this.item,quantity)
   }
 
 }
