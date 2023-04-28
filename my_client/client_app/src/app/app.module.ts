@@ -76,7 +76,7 @@ import { PaymentComponent } from './payment/payment.component';
     DragDropModule,
     Ng2SearchPipeModule,
     NzSliderModule,
-    MatDialogModule
+    MatDialogModule,
 
 
   ],

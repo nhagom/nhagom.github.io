@@ -29,7 +29,8 @@ export class ShopGridComponent {
 
   //search
   searchText: any;
-  uniqueStyles: any;
+  Styles: any;
+  Names: any;
 
   //Sắp xếp
   sortOrder: string = '';
@@ -47,8 +48,7 @@ constructor(public _service: ProductApiService, public router: Router, private c
     this._service.getProducts().subscribe({
       next: (data) => {
         this.products = data;
-        this.totalProduct = data.length;
-      console.log("Style",data); this.uniqueStyles = [...new Set(this.products.map(product=> product.style))]},
+        this.totalProduct = data.length;},
       error: (err) => {this.errMessage = err;},
     });
   }
@@ -59,15 +59,31 @@ constructor(public _service: ProductApiService, public router: Router, private c
   }
 
 
-  // getProductStyle(productStyle:string)
-  // {
-  //   this._service.getProductStyle(productStyle).subscribe({
-  //     next: (data)=>{this.products=data; console.log("hii",data);
-  //   this.uniqueStyles = [...new Set(this.products.map(item => item.style))]},
-  //     error: (err)=>{this.errMessage=err},
-  //   })
-  // }
-
+  getProductsByCategoryStyle(productStyle:string)
+  {
+    this._service.getProductsByCategoryStyle(productStyle).subscribe({
+      next: (data) => {
+        this.products = data;
+      console.log("Style",data);
+        this.Styles = [...new Set(this.products.map(product=> product.style))]},
+      error: (err) => {
+        this.errMessage = err;
+      },
+    });
+  }
+  
+  getProductsBySearchName(proName:string)
+  {
+    this._service.getProductsBySearchName(proName).subscribe({
+      next: (data) => {
+        this.products = data;
+      console.log("Name",data);
+        this.Names = [...new Set(this.products.map(product=> product.productName))]},
+      error: (err) => {
+        this.errMessage = err;
+      },
+    });
+  }
   // MM(max:string, min:string )
   // {
   // this._service.getMinMax(max,min).subscribe({

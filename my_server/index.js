@@ -63,19 +63,26 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
-    //this is API to get category of tag
+    //this is API to get category of style
+    app.get("/products/by-category/:style",cors(), async(req,res)=>{
+      const o_style = new RegExp(req.params.style,"i")
+      const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
+      res.send(result)
+  })
+
     app.get("/products-get/:style",cors(), async(req,res)=>{
         const o_style = new RegExp(req.params.style,"i")
         const result = await productsCollection.find({style:{$regex: o_style}}).toArray();
         res.send(result)
     })  
 
-  app.get("/products-Style/", cors(), async (req,res)=>{
-          var o_style =new RegExp(req.params.style,"i")
-          const result=await productsCollection.find({style:{$regex: o_style}}).toArray();
-          res.send(result)
-          })
-    
+  //Tìm kiếm theo tên
+  app.get("/products/by-search/:productName",cors(), async(req,res)=>{
+    const o_productName = new RegExp(req.params.productName,"i")
+    const result = await productsCollection.find({productName:{$regex: o_productName}}).toArray();
+    res.send(result)
+})
+
     app.get("/products-sort-by-price/:price", cors(), async (req,res)=>{
         const o_price = new RegExp(req.params.price,"p")
         const result = await productsCollection.find({price:{$regex: o_price}}).sort({price: 1}).toArray();

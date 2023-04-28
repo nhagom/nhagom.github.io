@@ -31,14 +31,14 @@
                         <div class="sidebar__item">
                             <h4>Sản phẩm</h4>
                             <ul>
-                                <li><a href="#">Gốm phòng bếp</a></li>
-                                <li><a href="#">Gốm phòng tắm</a></li>
-                                <li><a href="#">Gốm trang trí</a></li>
-                                <li><a href="#">Bộ gốm</a></li>
-                                <li><a href="#">Gia dụng</a></li>
-                                <li><a href="#">Gốm phòng khách</a></li>
-                                <li><a href="#">Gốm trang sức</a></li>
-                                <li><a href="#">Khác</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S1')">Gốm phòng bếp</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S2')">Gốm phòng tắm</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S3')">Gốm trang trí</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S4')">Bộ gốm</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S5')">Gia dụng</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S6')">Gốm phòng khách</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S7')">Gốm trang sức</a></li>
+                              <li><a (click)="getProductsByCategoryStyle('S8')">Khác</a></li>
                             </ul>
                         </div>
                         <div class="sidebar__item">
@@ -102,11 +102,12 @@
                               <div class="hero__search__form">
                                   <form action="#">
                                       <div class="hero__search__categories">
-                                          Hàng gốm
-                                          <span class="arrow_carrot-down"></span>
+                                        <p ><i class="fa fa-search"></i></p>
+                                          <span class="arrow_carrot"></span>
                                       </div>
-                                      <input class="form-control" value="" required="required" title="" name="searchText" [(ngModel)]="searchText" placeholder="Bạn tìm sản phẩm nào?">
+                                      <input class="form-control" value="" required="required" title="" name="searchText" [(ngModel)]="searchText" placeholder="Bạn tìm sản phẩm nào?" type="text" #proName  >
                                       <!-- <button type="submit" class="site-btn">Tìm</button> -->
+                                      <button class="search-button" (click)="getProductsBySearchName(proName.value)"><b>Tìm</b></button>
                                   </form>
                               </div>
                           </div>

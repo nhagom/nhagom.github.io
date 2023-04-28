@@ -52,6 +52,29 @@ export class ProductApiService {
     );
   }
 
+  getProductsByCategoryStyle(productStyle:string): Observable<any>{
+    const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
+    const requestOptions: Object = {
+      headers: headers,
+      responseType: "text"
+    };
+      return this._http.get<any>("/products/by-category/"+productStyle, requestOptions).pipe(
+        map(res =>JSON.parse(res) as Array<Product>),
+        retry(3),
+        catchError(this.handleError))
+    }
+    
+    getProductsBySearchName(proName:string): Observable<any>{
+      const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
+      const requestOptions: Object = {
+        headers: headers,
+        responseType: "text"
+      };
+        return this._http.get<any>("/products/by-search/"+proName, requestOptions).pipe(
+          map(res =>JSON.parse(res) as Array<Product>),
+          retry(3),
+          catchError(this.handleError))
+      }
 
   getMinMax(min:string, max:string):Observable<any>
   {
