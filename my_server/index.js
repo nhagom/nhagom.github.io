@@ -101,6 +101,41 @@ app.get("/blogs/:id",cors(), async (req,res)=>{
     const result = await blogsCollection.find({blogId:id}).toArray();
     res.send(result)
 })
+// API Home
+  // get sp nổi bật từ order
+app.get('/api/home', async (req, res) => {
+  try {
+    const results = await ordersCollection.aggregate([
+      { $unwind: '$orderItems' },
+      {
+        $group: {
+          _id: '$orderItems.productId',
+          count: { $sum: '$orderItems.quantity' },
+          productName: { $first: '$orderItems.productName' },
+          price: { $first: '$orderItems.price' }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: 12 }
+    ]).toArray();
+
+    const popularProducts = results.map(result => ({
+      productId: result._id,
+      count: result.count,
+      productName: result.productName,
+      price: result.price,
+      totalValue: result.count * result.price,
+      image: result.image
+    }));
+
+    res.status(200).json(popularProducts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
 app.get("/feedbacks", cors(), async (req,res)=>{
     const result = await feedbacksCollection.find({}).toArray();
     res.send(result)
@@ -331,6 +366,7 @@ app.post("/orders", cors(), async (req,res) => {
 
 
 //---------------------------API ADMIN---------------------------------------------------
+// delete khách hàng
   app.delete("/customers/delete/:email", cors(), async (req, res)=>{
     var email= req.params.email;
     const result = await customersCollection.find({customerEmail:email}).toArray();
@@ -341,11 +377,7 @@ app.post("/orders", cors(), async (req,res) => {
     res.send(result2)
   }
   )
-  app.get('/admin', async (req, res) => {
-    const result = await adminCollection.find({}).toArray();
-    res.send(result);
-  });
-
+// login admin
   app.post('/admin', async (req, res) => {
     const { username, password } = req.body;
     const admin = await adminCollection.findOne({ username: username, password: password });
@@ -354,6 +386,38 @@ app.post("/orders", cors(), async (req,res) => {
     } else {
       res.send(false);
     }});
+// lọc orderDate
+app.get('/orders/:start/:end', (req, res) => {
+  const start = new Date(req.params.start);
+  const end = new Date(req.params.end);
+  ordersCollection.find({ orderDate: { $gte: start, $lte: end } }).toArray((err, result) => {
+    if (err) {
+      console.log(err);
+      res.send('Error getting data from database');
+      return;
+    }
+    res.send(result);
+  });
+});
+// app.post("/login",cors(), async(req, res)=>{
+//     username=req.body.username
+//     password=req.body.password
+    
+//     var crypto = require('crypto');
+//     usersCollection = database.collection("users")
+//     users = await usersCollection.findOne({username:username})
+//     if(user==null)
+//         res.send({"username":username, "message": "not exist"})
+//     else
+//     { 
+//         hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hax`); 
+//         if(user.password==hash) 
+//             res.send(user) 
+//         else
+//         res.send({"username":username, "password": password, "message": "wrong password"})
+//     }
+// }
+// )
 
 app.post("/login", cors(), async (req, res) => {
     const username = req.body.username;

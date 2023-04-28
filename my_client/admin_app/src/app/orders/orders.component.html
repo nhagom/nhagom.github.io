@@ -1,0 +1,78 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"rel="stylesheet">
+<div class="container">
+  <!-- Thay đổi CSS cho phần tìm kiếm -->
+<div class="input-group my-3">
+  <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchCustomers()">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchCustomers()">Tìm kiếm</button>
+  </div>
+</div>
+
+<!-- Thay đổi CSS cho phần danh sách khách hàng -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>STT</th>
+        <th>Order ID</th>
+        <th>Tên</th>
+        <th>Email</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let o of Orders ; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ o.orderId }}</td>
+        <td>{{ o.customerName }}</td>
+        <td>{{ o.customerEmail }}</td>
+        <td>
+          <button class="btn btn-info" (click)="showOrderDetails(o, customerModal)">Chi tiết</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Thay đổi CSS cho phần modal -->
+<ng-template #customerModal>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h4 class="modal-title">{{selectedOrder.customerName}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Order ID:</strong> {{selectedOrder.orderId}}</p>
+        <p><strong>Email:</strong> {{selectedOrder.customerEmail}}</p>
+        <p><strong>Số điện thoại:</strong> {{selectedOrder.customerPhoneNumb}}</p>
+        <p><strong>Order Date:</strong> {{selectedOrder.orderDate}}</p>
+        <p><strong>Địa chỉ:</strong> {{selectedOrder.customerAddress}}</p>
+        <table>
+          <th>Order items:</th>
+          <tbody *ngFor="let i of selectedOrder.orderItems ; let a = index">
+            <tr>
+              <td colspan="2"><strong>{{a+1}}.</strong></td>
+            </tr>
+            <tr>
+              <td>Product ID: </td>
+              <td>{{i.productId}}</td>
+            </tr>
+            <tr>
+              <td>Product name: </td>
+              <td>{{i.productName}}</td>
+            </tr>
+            <tr>
+              <td>Quantity:</td>
+              <td>{{i.quantity}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</div>

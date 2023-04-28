@@ -7,6 +7,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     CustomersComponent,
     LoginComponent,
+    OrdersComponent,
 
   ],
   imports: [

@@ -31,6 +31,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
+import { HomepageComponent } from './homepage/homepage.component';
+
 import { ProductReviewComponent } from './product-review/product-review.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { SortProductsPipe } from './shop-grid/sort-products.pipe';
@@ -54,6 +56,7 @@ import { PaymentComponent } from './payment/payment.component';
     HeaderComponent,
     FooterComponent,
     CartComponent,
+    HomepageComponent,
     SortProductsPipe,
     ProductReviewComponent,
     PaymentComponent
