@@ -63,7 +63,7 @@ export class ProductApiService {
         retry(3),
         catchError(this.handleError))
     }
-    
+
     getProductsBySearchName(proName:string): Observable<any>{
       const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
       const requestOptions: Object = {
@@ -76,20 +76,33 @@ export class ProductApiService {
           catchError(this.handleError))
       }
 
-  getMinMax(min:string, max:string):Observable<any>
-  {
-  const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
-  const requestOptions:Object={
-  headers:headers,
-  responseType:"text"
-  }
-  return this._http.get<any>("/products/"+min +"/"+max,requestOptions).pipe(
-  map(res=>JSON.parse(res) as IProduct),
-  retry(3),
-  catchError(this.handleError))
+  // getMinMax(min:string, max:string):Observable<any>
+  // {
+  // const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
+  // const requestOptions:Object={
+  // headers:headers,
+  // responseType:"text"
+  // }
+  // return this._http.get<any>("/products/"+min +"/"+max,requestOptions).pipe(
+  // map(res=>JSON.parse(res) as IProduct),
+  // retry(3),
+  // catchError(this.handleError))
+  // }
 
-  }
 
+  //10 Sản phẩm mới nhất
+  getNewestProducts(): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
+    const requestOptions: Object = {
+      headers: headers,
+      responseType: "text"
+    };
+    return this._http.get<any>("/products/newest", requestOptions).pipe(
+      map(res => JSON.parse(res) as Array<Product>),
+      retry(3),
+      catchError(this.handleError)
+    );
+}
   sortProductsByPrice(): Observable<IProduct[]> {
     const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
     const requestOptions: Object = {
