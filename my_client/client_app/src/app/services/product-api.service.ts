@@ -91,7 +91,7 @@ export class ProductApiService {
 
 
   //10 Sản phẩm mới nhất
-  getNewestProducts(): Observable<any> {
+  getNewestProducts(): Observable<any>{
     const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
     const requestOptions: Object = {
       headers: headers,
@@ -102,7 +102,9 @@ export class ProductApiService {
       retry(3),
       catchError(this.handleError)
     );
-}
+  }
+
+
   sortProductsByPrice(): Observable<IProduct[]> {
     const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
     const requestOptions: Object = {

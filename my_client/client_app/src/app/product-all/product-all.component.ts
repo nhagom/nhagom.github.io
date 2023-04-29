@@ -26,23 +26,10 @@ export class ProductAllComponent {
     });
   }
 
+
   DetailProduct(d:any){
     this.router.navigate(['product-detail',d._id])
   }
-
-
-  getProductStyle(productStyle:string)
-  {
-    this._service.getProductStyle(productStyle).subscribe({
-      next: (data) => {
-        this.products = data;
-      console.log("Style",data); this.Styles = [...new Set(this.products.map(product=> product.style))]},
-      error: (err) => {
-        this.errMessage = err;
-      },
-    });
-  }
-
 
   //cart
   product: any
