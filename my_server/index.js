@@ -386,17 +386,14 @@ app.post("/orders", cors(), async (req,res) => {
       res.send(false);
     }});
 // lọc orderDate
-app.get('/orders/:start/:end', (req, res) => {
-  const start = new Date(req.params.start);
-  const end = new Date(req.params.end);
-  ordersCollection.find({ orderDate: { $gte: start, $lte: end } }).toArray((err, result) => {
-    if (err) {
-      console.log(err);
-      res.send('Error getting data from database');
-      return;
-    }
-    res.send(result);
-  });
+app.get('/orders/:start/:end', async (req, res) => {
+  const result = await ordersCollection.find({
+  orderDate: {
+    $gte: req.params.start,   // start là chuỗi ngày tháng có định dạng "MM-DD-YYYY"
+    $lte: req.params.end      // end là chuỗi ngày tháng có định dạng "MM-DD-YYYY"
+  }
+}).toArray();
+  res.send(result);
 });
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username

@@ -11,7 +11,9 @@ export class OrdersComponent {
   Orders:any;
   searchText: string = '';
   modalRef!: BsModalRef;
-  selectedOrder: any
+  selectedOrder: any;
+  startDate = '';
+  endDate = '';
   constructor(private ordersService:OrdersService,  private modalService: BsModalService){
     this.ordersService.getOrders().subscribe((data) => {
       this.Orders = data;
@@ -26,6 +28,17 @@ export class OrdersComponent {
     } else {
       this.ordersService.getOrders().subscribe(customers => {
         this.Orders = customers;
+      });
+    }
+  }
+  searchByDate() {
+    if (this.startDate && this.endDate) {
+      this.ordersService. getOrdersInRange(this.startDate, this.endDate).subscribe((data) => {
+      this.Orders = data;
+    });
+    } else {
+      this.ordersService.getOrders().subscribe((data) => {
+      this.Orders = data;
       });
     }
   }
