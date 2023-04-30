@@ -16,12 +16,13 @@ export class PaymentService {
     const userData = localStorage.getItem('customerEmail');
     if (userData) {
       this.user = userData
-    }
+      console.log(this.user)
+    };
 
     //phát ra giá trị hiện tại của user đến tất cả các subcribe
     this.userSubject.next({
       User: this.user
-    })
+    });
 
     window.addEventListener('beforeunload', () => {
       localStorage.removeItem('customerEmail');
@@ -29,7 +30,7 @@ export class PaymentService {
   }
 
   getUser(): Observable<any> {
-    return this.userSubject
+    return this.userSubject.asObservable();
   }
 
   getCustomerInfo(email:string):Observable<any> {
