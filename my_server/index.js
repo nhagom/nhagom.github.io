@@ -41,34 +41,34 @@ adminCollection = database.collection("admin")
 feedbacksCollection = database.collection("feedbacks");
 
 //----------------------------------API Chung--------------------------------------------
-app.get("/products", cors(), async (req,res)=>{
-    const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
+  app.get("/products", cors(), async (req,res)=>{
+      const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
+      res.send(result)
+  })
+  app.get("/customers", cors(), async (req,res)=>{
+    const result = await customersCollection.find({}).toArray();
     res.send(result)
-})
-app.get("/customers", cors(), async (req,res)=>{
-  const result = await customersCollection.find({}).toArray();
-  res.send(result)
-})
+  })
 
-app.get("/orders", cors(), async (req,res)=>{
-  const result = await ordersCollection.find({}).toArray();
-  res.send(result)
-})
+  app.get("/orders", cors(), async (req,res)=>{
+    const result = await ordersCollection.find({}).toArray();
+    res.send(result)
+  })
 
 
 //-----------------------------------API trang Product-----------------------------------------
-app.get("/products/:id",cors(), async(req,res)=>{
-    var o_id = new ObjectId(req.params["id"]);
-    const result = await productsCollection.find({_id:o_id}).toArray();
-    res.send(result[0])
+  app.get("/products/:id",cors(), async(req,res)=>{
+      var o_id = new ObjectId(req.params["id"]);
+      const result = await productsCollection.find({_id:o_id}).toArray();
+      res.send(result[0])
 })
 
 
-// API to get 10 newest products
-app.get("/products/newest", cors(), async (req, res) => {
-  const result = await productsCollection.find({}).sort({ createdAt: -1 }).limit(10).toArray();
-  res.send(result);
-});
+// API to get 10 newest products based on productDate
+  app.get("/products-newest", cors(), async (req, res) => {
+    const result = await productsCollection.find({}).sort({productDate: -1 }).limit(6).toArray();
+    res.send(result);
+  });
 
     //this is API to get category of style
     app.get("/products/by-category/:style",cors(), async(req,res)=>{

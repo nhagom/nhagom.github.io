@@ -20,6 +20,7 @@ import { Cart } from '../models/cart';
 })
 export class ShopGridComponent {
   products: Product[] = [];
+  prod: Product[] = [];
   errMessage: string = '';
 
   //phân trang
@@ -56,8 +57,15 @@ constructor(public _service: ProductApiService, public router: Router, private c
       error: (err) => {this.errMessage = err;},
     });
   }
-
-
+  getProducts(){
+  this._service.getProducts().subscribe({
+    next: (data) => {
+      this.prod = data;},
+    error: (err) => {
+      this.errMessage = err;
+    },
+  });
+  }
   DetailProduct(d:any){
     this.router.navigate(['product-detail',d._id])
   }
