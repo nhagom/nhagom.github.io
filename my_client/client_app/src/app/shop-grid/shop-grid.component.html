@@ -5,13 +5,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" type="text/css">
-    <!-- Css Styles -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" type="text/css">
 
 
     <link rel="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css" type="text/css">
- -->
+
  	<!-- owl carousel libraries -->
    <!-- <link rel="stylesheet" href="js/owlcarousel/owl.carousel.min.css"> -->
 
@@ -41,54 +40,43 @@
                               <li><a (click)="getProductsByCategoryStyle('S8')">Khác</a></li>
                             </ul>
                         </div>
-                        <div class="sidebar__item">
+                        <!-- <div class="sidebar__item">
                             <h4>Giá</h4>
                             <div class="price-range-wrap">
-                                <!-- <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                    data-min="10" data-max="540">
-                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                </div>
-                                <div class="range-slider">
-                                    <div class="price-input">
-                                        <input type="text" id="minamount">
-                                        <input type="text" id="maxamount">
-                                    </div>
-                                </div> -->
                                 <nz-slider [nzMin]="50000" [nzMax]="10000000" [nzStep]="50000" nzRange [(ngModel)]="value2" [nzDisabled]="disabled" ></nz-slider>
                             </div>
+                        </div> -->
+
+                        <div class="sidebar__item">
+                          <h4>Giá</h4>
+                          <div class="price-range-wrap">
+                            <nz-slider [nzMin]="50000" [nzMax]="10000000" [nzStep]="50000" nzRange [(ngModel)]="value2" [nzDisabled]="disabled"></nz-slider>
+
+                            <button class="btn btn-primary">Reset</button>
+                          </div>
                         </div>
 
                         <div class="sidebar__item">
-                            <h4>Popular Size</h4>
-                            <div class="sidebar__item__size">
-                                <label for="large">
-                                    Large
-                                    <input type="radio" id="large">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="medium">
-                                    Medium
-                                    <input type="radio" id="medium">
-                                </label>
-                            </div>
-                        </div>
+                          <div class="latest-product__text">
+                              <h4>Sản phẩm mới</h4>
+                              <div class="latest-product__slider owl-carousel">
+                                  <div class="latest-prdouct__slider__item">
+                                      <a class="latest-product__item">
+                                          <div class="latest-product__item__pic">
+                                              <img src="latest-product/lp-1.jpg" alt="">
+                                          </div>
+                                          <div class="latest-product__item__text">
+                                              <h6>Crab Pool Security</h6>
+                                              <span>$30.00</span>
+                                          </div>
+                                      </a>
 
-                        <div class="sidebar__item">
-                            <div class="latest-product__text">
-                                <h4>Latest Products</h4>
-                                <div class="latest-product__slider owl-carousel">
-                                    <div class="latest-prdouct__slider__item">
+                                  </div>
 
-                                    </div>
-                                    <div class="latest-prdouct__slider__item">
+                              </div>
+                          </div>
+                      </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -106,7 +94,6 @@
                                           <span class="arrow_carrot"></span>
                                       </div>
                                       <input class="form-control" value="" required="required" title="" name="searchText" [(ngModel)]="searchText" placeholder="Bạn tìm sản phẩm nào?" type="text" #proName  >
-                                      <!-- <button type="submit" class="site-btn">Tìm</button> -->
                                       <button class="search-button" (click)="getProductsBySearchName(proName.value)"><b>Tìm</b></button>
                                   </form>
                               </div>
@@ -125,16 +112,20 @@
                                       <option value="name-desc">Tên Z-A</option>
                                   </select>
                                 </div>
-                                <!-- End khung chọn bộ lọc -->
-
-                                <!-- <div class="choosedFilter flexContain">
-                                  <a id="deleteAllFilter" style="display: none;">
-                                    <h3>Xóa bộ lọc</h3>
-                                  </a>
-                                </div>  -->
                             </div>
 
-
+                            <div class="col-lg-5 col-md-5">
+                              <div class="filter__sort">
+                                  <span for="sort">Khoảng giá:</span>
+                                  <select name=" " id="sort" [(ngModel)]="sortOrder">
+                                    <option value=" " disabled>--Lọc theo--</option>
+                                    <option value="Under200K">Nhỏ hơn 200,000đ</option>
+                                    <option value="From200KTo400K">200,000đ-400,000đ</option>
+                                    <option value="From400KTo800K">400,000đ-800,000đ</option>
+                                    <option value="Over800K">Trên 800,000đ</option>
+                                </select>
+                              </div>
+                          </div>
                         </div>
                     </div>
 
@@ -142,11 +133,9 @@
   <div class="containers">
 
       <div class="row" *ngIf="products" >
-        <div class="col-md-3"  *ngFor="let product of products | filter: searchText | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | sortProducts: sortOrder" >
+        <div class="col-md-3"  *ngFor="let product of products | filter: searchText | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | sortProducts: sortOrder | sortProducts: sortPrice" >
           <div class="card"  >
                   <div class="card-main" >
-                      <!-- <div class="discount" (click)="DetailProduct(product)">0%</div> -->
-
                       <div class="image" (click)="DetailProduct(product)">
                         <img src="{{product.image}}">
                       </div>
@@ -154,57 +143,31 @@
                       <div class="cart-item">
                           <ul>
                               <li (click)="addToCart(product)"><a><i class="fa fa-shopping-basket" ></i></a></li>
-                              <!-- <li><a href=""><i class="fa fa-heart"></i></a></li>
-                              <li ><a><i class="fa fa-search"></i></a></li> -->
                           </ul>
-
-                          <!-- <ul class="product__item__pic__hover">
-                            <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
-                        </ul> -->
                       </div>
                   </div>
                   <div class="content" (click)="DetailProduct(product)">
                       <a href="javascript:void(0);">{{product.productName}}</a>
-                      <!-- <div class="rating">
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                      </div> -->
                       <p><span class="money fw-bold">{{product.price  | currency: "":"": "6.0"}}đ</span></p>
                   </div>
               </div>
           </div>
       </div>
 
+      <div class="page">
+        <pagination-controls (pageChange)="p = $event" previousLabel=""
+        nextLabel=""> </pagination-controls>
+      </div >
+
   </div>
 </section>
 
-          <div class="page">
-          <!-- <div class="mt-8 py-5 flex justify-center items-center"> -->
-            <pagination-controls (pageChange)="p = $event" previousLabel=""
-            nextLabel=""> </pagination-controls>
-          <!-- <pagination-controls  id="some_id"
-                      (pageChange)="p = $event"
-                      (pageBoundsCorrection)="pageChanged($event)"
-                      maxSize="9"
-                      directionLinks="true"
-                      autoHide="true"
-                      responsive="true"
-                      previousLabel="Previous"
-                      nextLabel="Next"
-                      screenReaderPaginationLabel="Pagination"
-                      screenReaderPageLabel="page"
-                      screenReaderCurrentLabel="You're on page">
-          </pagination-controls> -->
-          </div >
+
 
                 </div>
             </div>
         </div>
     <!-- Product Section End -->
-
 
 
 
