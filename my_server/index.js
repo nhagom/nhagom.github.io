@@ -66,7 +66,7 @@ feedbacksCollection = database.collection("feedbacks");
 
 // API to get 10 newest products based on productDate
   app.get("/products-newest", cors(), async (req, res) => {
-    const result = await productsCollection.find({}).sort({productDate: -1 }).limit(6).toArray();
+    const result = await productsCollection.find({}).sort({productDate: -1 }).limit(10).toArray();
     res.send(result);
   });
 
@@ -96,10 +96,15 @@ feedbacksCollection = database.collection("feedbacks");
     //     res.send(result)
     // })
 
-    app.get("/products/:minprice/:maxprice", cors(),(req,res)=>{
-      console.log(req.params.minprice,req.params.maxprice)
-      let p = database.filter(x=>x.price >=req.params.minprice && x.price<= req.params.maxprice)
-      res.send(p)
+    app.get("/products-filter", cors(), async (req,res)=>{
+      const min = parseInt(req.query.min);
+      const max = parseInt(req.query.max);
+      if(isNaN(min) || isNaN(max)){
+          res.status(400).send("Invalid min/max price value");
+          return;
+      }
+      const result = await productsCollection.find({price: {$gte: min, $lte: max}}).toArray();
+      res.send(result)
   })
   
 

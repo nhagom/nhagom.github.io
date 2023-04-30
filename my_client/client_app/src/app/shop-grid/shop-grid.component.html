@@ -4,30 +4,76 @@
     <!-- Google Font -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" type="text/css">
-
-
-    <link rel="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css" type="text/css">
-
  	<!-- owl carousel libraries -->
    <!-- <link rel="stylesheet" href="js/owlcarousel/owl.carousel.min.css"> -->
 
-
-    <div class="banner">
-      <div class="owl-carousel owl-theme"></div>
-    </div>
     <!-- End Banner -->
 
     <!-- Product Section Begin -->
+    <div class="list">
+      <div class="item" (click)="getProductsByCategoryStyle('S1')">
+       <img src="../../assets/image/img1.png" alt="">
+       <div class="content">
+        <div><b>Gốm phòng bếp</b></div>
+      </div>
+      </div>
+
+      <div class="item" (click)="getProductsByCategoryStyle('S2')">
+       <img src="../../assets/image/img2.png" alt="">
+       <div class="content">
+        <div><b>Gốm phòng tắm</b></div>
+      </div>
+      </div>
+
+      <div class="item" (click)="getProductsByCategoryStyle('S3')">
+       <img src="../../assets/image/img3.png" alt="">
+       <div class="content">
+        <div><b>Gốm trang trí</b></div>
+      </div>
+      </div>
+
+      <div class="item" (click)="getProductsByCategoryStyle('S4')">
+       <img src="../../assets/image/img4.png" alt="">
+       <div class="content">
+        <div><b>Bộ gốm</b></div>
+      </div>
+      </div>
+
+      <div class="item" (click)="getProductsByCategoryStyle('S5')">
+       <img src="../../assets/image/img5.png" alt="">
+       <div class="content">
+        <div><b>Gia dụng</b></div>
+      </div>
+      </div>
+
+      <div class="item" (click)="getProductsByCategoryStyle('S6')">
+        <img src="../../assets/image/img6.png" alt="">
+        <div class="content">
+            <div><b>Gốm phòng khách</b></div>
+        </div>
+       </div>
+ 
+       <div class="item" (click)="getProductsByCategoryStyle('S7')">
+        <img src="../../assets/image/img7.png" alt="">
+        <div class="content">
+          <div><b>Gốm trang sức</b></div>
+        </div>
+       </div>
+ 
+       <div class="item" (click)="getProductsByCategoryStyle('S8')">
+        <img src="../../assets/image/img8.png" alt="">
+        <div class="content">
+          <div><b>Khác</b></div>
+        </div>
+       </div>
+   </div>
 
     <section class="product spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
-                        <div class="sidebar__item">
+                        <!-- <div class="sidebar__item">
                             <h4>Sản phẩm</h4>
                             <ul>
                               <li><a (click)="getProductsByCategoryStyle('S1')">Gốm phòng bếp</a></li>
@@ -39,13 +85,34 @@
                               <li><a (click)="getProductsByCategoryStyle('S7')">Gốm trang sức</a></li>
                               <li><a (click)="getProductsByCategoryStyle('S8')">Khác</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!-- <div class="sidebar__item">
                             <h4>Giá</h4>
                             <div class="price-range-wrap">
                                 <nz-slider [nzMin]="50000" [nzMax]="10000000" [nzStep]="50000" nzRange [(ngModel)]="value2" [nzDisabled]="disabled" ></nz-slider>
                             </div>
                         </div> -->
+
+                        <div class="sidebar__item">
+                          <h4>Giá</h4>
+                          <form (ngSubmit)="onPriceFilterSubmit()" #priceFilterForm="ngForm">
+                            <table>
+                              <th class="form-group">
+                                <label for="minPrice">Giá tối thiểu:</label>
+                                <input type="number" class="form-control" id="minPrice" name="minPrice" [(ngModel)]="minPrice" required min="0" step="10000" pattern="\d+">
+                              </th>
+                              <th class="form-group">
+                                <label for="maxPrice">Giá tối đa:</label>
+                                <input type="number" class="form-control" id="maxPrice" name="maxPrice" [(ngModel)]="maxPrice" required min="0" step="10000" pattern="\d+">
+                              </th>
+                              <tr>
+                                <td colspan="2">
+                                  <button type="submit" class="btn btn-primary">Lọc</button>
+                                </td>
+                              </tr>
+                            </table>
+                          </form>
+                        </div>
 
                     </div>
 
@@ -94,7 +161,7 @@
                             <div class="col-lg-5 col-md-5">
                               <div class="filter__sort">
                                   <span for="sort">Khoảng giá:</span>
-                                  <select name=" " id="sort" [(ngModel)]="sortOrder">
+                                  <select name=" " id="sort" [(ngModel)]="sortPrice">
                                     <option value=" " disabled>--Lọc theo--</option>
                                     <option value="Under200K">Nhỏ hơn 200,000đ</option>
                                     <option value="From200KTo400K">200,000đ-400,000đ</option>
