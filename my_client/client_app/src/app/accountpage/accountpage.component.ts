@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountPageService } from '../services/account-page.service';
 import { Customers } from '../models/customers';
+import { PaymentService } from '../services/payment.service';
 
 
 
@@ -18,12 +19,10 @@ export class AccountpageComponent {
   emailExist=false;
   email = ""
 
-  constructor(private _service: AccountPageService,  ) {
-    let _email = localStorage.getItem('customerEmail');
-    if (_email){
-      this.email = _email
-
-    }
+  constructor(private _service: AccountPageService, private service: PaymentService ) {
+    this.service.getUser().subscribe(
+      (data => this.email= data)
+    )
     this._service.getCustomerInfo(this.email).subscribe({
       next:(data)=>{
           this.cusInfo=data;
@@ -36,7 +35,6 @@ export class AccountpageComponent {
       error:(err)=>{this.errMessage=err}
     })
   }
-
 
   calculateTotal(p: any): number {
     let total = 0;
