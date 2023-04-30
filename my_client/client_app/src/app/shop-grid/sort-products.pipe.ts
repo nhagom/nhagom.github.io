@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortProducts'
 })
 export class SortProductsPipe implements PipeTransform {
-  transform(products: any[],  sortOrder: string): any[] {
+  transform(products: any[],  sortOrder: string ): any[] {
     if (!products || !sortOrder) {
       return products;
     }
@@ -24,8 +24,28 @@ export class SortProductsPipe implements PipeTransform {
       case 'name-desc':
         sortedProducts.sort((a, b) => b.productName.localeCompare(a.productName));
         break;
-    }
 
+      case 'Under200K':
+        sortedProducts = sortedProducts.filter(product => product.price < 200000);
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+
+      case 'From200KTo400K':
+        sortedProducts = sortedProducts.filter(product => product.price >= 200000 && product.price < 400000);
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+
+      case 'From400KTo800K':
+        sortedProducts = sortedProducts.filter(product => product.price >= 400000 && product.price < 800000);
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+
+      case 'Over800K':
+        sortedProducts = sortedProducts.filter(product => product.price >= 800000);
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+
+      }
     return sortedProducts;
   }
 }

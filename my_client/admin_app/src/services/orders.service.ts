@@ -7,7 +7,7 @@ import { IOrder } from 'src/interface/order';
   providedIn: 'root'
 })
 export class OrdersService {
-
+  private ordersUrl = '/orders';
   constructor(private _http: HttpClient) { }
 
     getOrders():Observable<any>{
@@ -21,6 +21,21 @@ export class OrdersService {
         retry(3),
         catchError(this.handleError)
       )
+    }
+
+    getOrdersInRange(start: string, end: string): Observable<any> {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+      const params = {
+        start: start,
+        end: end
+      }
+
+      return this._http.get<any>(`${this.ordersUrl}/${params.start}/${params.end}`, { headers: headers }).pipe(
+        map(res => res),
+        retry(3),
+        catchError(this.handleError)
+      );
     }
     handleError(error:HttpErrorResponse){
       return throwError(()=>new Error(error.message))

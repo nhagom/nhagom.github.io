@@ -34,6 +34,7 @@ export class ShopGridComponent {
 
   //Sắp xếp
   sortOrder: string = '';
+  sortPrice: string = '';
 
   // key = "Giaban";
   // reverse: boolean = false;
@@ -43,6 +44,9 @@ export class ShopGridComponent {
   value2 = [50000, 5000000];
   // value2 = [0, 10000000];
 
+  //lọc giá
+  minPrice: number = 0;
+  maxPrice: number = 0;
 
 constructor(public _service: ProductApiService, public router: Router, private cartService: CartService) {
     this._service.getProducts().subscribe({
@@ -71,7 +75,7 @@ constructor(public _service: ProductApiService, public router: Router, private c
       },
     });
   }
-  
+
   getProductsBySearchName(proName:string)
   {
     this._service.getProductsBySearchName(proName).subscribe({
@@ -91,6 +95,11 @@ constructor(public _service: ProductApiService, public router: Router, private c
   // error:(err)=>{this.errMessage=err}
   // })
   // }
+  onPriceRangeChange(event: any) {
+    this.minPrice = event[0];
+    this.maxPrice = event[1];
+  }
+
 
   sortProduct() {
     this._service.sortProductsByPrice().subscribe({

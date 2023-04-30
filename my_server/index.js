@@ -63,6 +63,13 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result[0])
 })
 
+
+// API to get 10 newest products
+app.get("/products/newest", cors(), async (req, res) => {
+  const result = await productsCollection.find({}).sort({ createdAt: -1 }).limit(10).toArray();
+  res.send(result);
+});
+
     //this is API to get category of style
     app.get("/products/by-category/:style",cors(), async(req,res)=>{
       const o_style = new RegExp(req.params.style,"i")
@@ -83,18 +90,20 @@ app.get("/products/:id",cors(), async(req,res)=>{
     res.send(result)
 })
 
-    app.get("/products-sort-by-price/:price", cors(), async (req,res)=>{
-        const o_price = new RegExp(req.params.price,"p")
-        const result = await productsCollection.find({price:{$regex: o_price}}).sort({price: 1}).toArray();
-        res.send(result)
-    })
+    // app.get("/products-sort-by-price/:price", cors(), async (req,res)=>{
+    //     const o_price = new RegExp(req.params.price,"p")
+    //     const result = await productsCollection.find({price:{$regex: o_price}}).sort({price: 1}).toArray();
+    //     res.send(result)
+    // })
 
     app.get("/products/:minprice/:maxprice", cors(),(req,res)=>{
       console.log(req.params.minprice,req.params.maxprice)
-      let p = database.filter(x=>x.Price >=req.params.minprice && x.Price<= req.params.maxprice)
+      let p = database.filter(x=>x.price >=req.params.minprice && x.price<= req.params.maxprice)
       res.send(p)
   })
   
+
+
 
 //------------------------------------ API blogs--------------------------------------
   // get all blogs
@@ -386,17 +395,14 @@ app.post("/orders", cors(), async (req,res) => {
       res.send(false);
     }});
 // lọc orderDate
-app.get('/orders/:start/:end', (req, res) => {
-  const start = new Date(req.params.start);
-  const end = new Date(req.params.end);
-  ordersCollection.find({ orderDate: { $gte: start, $lte: end } }).toArray((err, result) => {
-    if (err) {
-      console.log(err);
-      res.send('Error getting data from database');
-      return;
-    }
-    res.send(result);
-  });
+app.get('/orders/:start/:end', async (req, res) => {
+  const result = await ordersCollection.find({
+  orderDate: {
+    $gte: req.params.start,   // start là chuỗi ngày tháng có định dạng "MM-DD-YYYY"
+    $lte: req.params.end      // end là chuỗi ngày tháng có định dạng "MM-DD-YYYY"
+  }
+}).toArray();
+  res.send(result);
 });
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username
