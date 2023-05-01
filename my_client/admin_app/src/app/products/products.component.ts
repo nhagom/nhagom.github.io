@@ -28,12 +28,16 @@ export class ProductsComponent {
     style: "",
     trait: ""
   };
+  productId: string = '';
+  result= false;
   showForm: boolean = false;
+  disable=false;
   constructor(private productsService: ProductsService, private modalService: BsModalService) {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
     });
   }
+
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(
       template,
@@ -107,6 +111,17 @@ export class ProductsComponent {
         (product) => {
           console.log("Product added successfully:", product);
           this.getProducts();
+          alert("Bạn đã thêm thành công")
+          this.showForm = !this.showForm;
+          this.newProduct.productId="";
+          this.newProduct.productName="";
+          this.newProduct.price=0;
+          this.newProduct.description="";
+          this.newProduct.set="";
+          this.newProduct.size="";
+          this.newProduct.style="";
+          this.newProduct.trait="";
+          this.newProduct.image="";
         },
         (error) => {
           console.error("Error adding product:", error);
@@ -119,5 +134,16 @@ export class ProductsComponent {
   }
   toggleForm() {
     this.showForm = !this.showForm;
+  }
+  checkProduct(productId:string) {
+    this.productsService.checkProductId(productId).subscribe((data) => {
+      this.result = data;
+      if(this.result==true){
+        this.disable=true
+      }
+      else{
+        this.disable=false
+      }
+    });
   }
 }

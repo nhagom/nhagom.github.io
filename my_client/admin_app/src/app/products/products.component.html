@@ -6,7 +6,7 @@
     <div class="input-group-append">
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchProducts()">Tìm kiếm</button>
     </div>
-    <button (click)="toggleForm()">Form thêm sản phẩm</button>
+    <button (click)="toggleForm()">Thêm sản phẩm</button>
   </div>
 
   <div *ngIf="showForm">
@@ -14,7 +14,8 @@
     <form (ngSubmit)="onSubmit()" class="mt-4">
       <div class="form-group">
         <label for="productId">Product ID:</label><span class="required">*</span>
-        <input type="text" class="form-control" #productId="ngModel" id="productId" [(ngModel)]="newProduct.productId" name="productId" required>
+        <input type="text" class="form-control" #productId="ngModel" id="productId" [(ngModel)]="newProduct.productId" name="productId" required (blur)="checkProduct(newProduct.productId)">
+        <small class="text-danger" *ngIf="result">Product Id đã tồn tại!</small>
         <small class="text-danger" *ngIf="productId.invalid && productId.touched">Thông tin này là bắt buộc.</small>
       </div>
       <div class="form-group">
@@ -54,7 +55,7 @@
         <input type="text" class="form-control" #trait="ngModel" id="trait" [(ngModel)]="newProduct.trait" name="trait" required>
         <small class="text-danger" *ngIf="trait.invalid && trait.touched">Thông tin này là bắt buộc.</small>
       </div>
-      <button type="submit" class="btn btn-primary" (keydown.enter)="onSubmit()">Thêm sản phẩm</button>
+      <button type="submit" class="btn btn-primary" (keydown.enter)="onSubmit()" [disabled]="disable">Save</button>
     </form>
   </div>
   <!-- Thay đổi CSS cho phần danh sách khách hàng -->

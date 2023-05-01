@@ -438,7 +438,17 @@ app.get('/orders/:start/:end', async (req, res) => {
     const result = await productsCollection.insertOne(newProduct);
     res.send(result);
   });
-
+  // Kiểm tra Product Id có tồn tại chưa
+  app.get("/products/check/:Id", cors(), async (req, res) => {
+    const Id = req.params.Id;
+    const result = await productsCollection.findOne({ productId: Id });
+  
+    if (result) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username
 //     password=req.body.password
