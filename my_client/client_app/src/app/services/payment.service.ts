@@ -33,7 +33,7 @@ export class PaymentService {
     return this.userSubject.asObservable();
   }
 
-  getCustomerInfo(email:string):Observable<any> {
+  getCustomerInfo(email:any):Observable<any> {
     const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
     const requestOptions:Object={
       headers:headers,
