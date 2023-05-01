@@ -20,11 +20,12 @@ import { Cart } from '../models/cart';
 })
 export class ShopGridComponent {
   products: Product[] = [];
+  prod: Product[] = [];
   errMessage: string = '';
 
   //phân trang
   p: number=1;
-  itemsPerPage: number = 12;
+  itemsPerPage: number = 16;
   totalProduct: any;
 
   //search
@@ -39,11 +40,6 @@ export class ShopGridComponent {
   // key = "Giaban";
   // reverse: boolean = false;
 
-
-  disabled = false;
-  value2 = [50000, 5000000];
-  // value2 = [0, 10000000];
-
   //lọc giá
   minPrice: number = 0;
   maxPrice: number = 0;
@@ -56,8 +52,15 @@ constructor(public _service: ProductApiService, public router: Router, private c
       error: (err) => {this.errMessage = err;},
     });
   }
-
-
+  getProducts(){
+  this._service.getProducts().subscribe({
+    next: (data) => {
+      this.prod = data;},
+    error: (err) => {
+      this.errMessage = err;
+    },
+  });
+  }
   DetailProduct(d:any){
     this.router.navigate(['product-detail',d._id])
   }
@@ -88,16 +91,21 @@ constructor(public _service: ProductApiService, public router: Router, private c
       },
     });
   }
-  // MM(max:string, min:string )
-  // {
-  // this._service.getMinMax(max,min).subscribe({
-  // next:(data)=>{this.products=data},
-  // error:(err)=>{this.errMessage=err}
-  // })
-  // }
-  onPriceRangeChange(event: any) {
-    this.minPrice = event[0];
-    this.maxPrice = event[1];
+
+  //minma
+  getProductsByPriceRange(min: number, max: number) {
+    this._service.getProductsByPriceRange(min, max).subscribe({
+      next: (data) => {
+        this.products = data;
+        this.totalProduct = data.length;
+      },
+      error: (err) => {
+        this.errMessage = err;
+      },
+    });
+  }
+  onPriceFilterSubmit() {
+    this.getProductsByPriceRange(this.minPrice, this.maxPrice);
   }
 
 
@@ -107,14 +115,6 @@ constructor(public _service: ProductApiService, public router: Router, private c
       error: (err) => {this.errMessage = err;},
     });
   }
-
-
-  // sort() {
-  //   this.reverse = false
-  // }
-  // sort2() {
-  //   this.reverse = true
-  // }
 
   //cart
   product: any

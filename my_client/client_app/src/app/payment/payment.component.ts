@@ -17,8 +17,7 @@ export class PaymentComponent {
   totalPrice = 0;
   ship = 30000;
   totalPayment = 0;
-  customerEmail = "";
-  customer: any;
+  customerEmail:string = "";
   order=new Order();
   message = "";
   showSuccess = false;
@@ -42,7 +41,7 @@ export class PaymentComponent {
 
     //get thông tin customer
     this.service.getCustomerInfo(this.customerEmail).subscribe(
-      (data => {
+       (data => {
         this.order.customerName = data.customerName,
         this.order.customerPhoneNumb = data.customerPhoneNumb,
         this.order.customerAddress = data.customerAddress
@@ -51,6 +50,7 @@ export class PaymentComponent {
     this.order.orderItems = this.cart,
     this.order.customerEmail = this.customerEmail,
     this.order.totalPrice = this.totalPayment
+    console.log(this.order)
   }
 
   postOrder() {
@@ -60,14 +60,15 @@ export class PaymentComponent {
     this.cartService.deleteCart();
     this.showSuccess = true;
     this.showOverlay = true;
+    this.submit()
   }
 
-  ngOnInit() {
+  submit() {
     setTimeout(() => {
       this.showSuccess = false;
       this.showOverlay = false;
       this.router.navigate(['/']);
-    }, 5000);
+    }, 4000);
   }
 
 }
