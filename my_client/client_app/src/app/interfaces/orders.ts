@@ -1,6 +1,5 @@
 export interface IOrder {
   orderId:string,
-  customerId:string,
   customerName:string,
   customerEmail:string,
   customerPhone:string,
