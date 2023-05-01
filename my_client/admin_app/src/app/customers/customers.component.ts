@@ -2,6 +2,8 @@ import { Component, TemplateRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CustomersService } from 'src/services/customers.service';
+import { CheckService } from 'src/services/check.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -16,7 +18,7 @@ export class CustomersComponent {
   selectedCustomer: any;
   searchText: string = '';
   sortOrder: string = 'asc';
-  constructor(private customersService: CustomersService, private modalService: BsModalService ) {
+  constructor(private customersService: CustomersService, private modalService: BsModalService, private checkService:CheckService,  private router: Router ) {
     this.customersService.getCustomers().subscribe((data) => {
       this.customers = data;
       console.log(this.customers); // In ra danh sách khách hàng
@@ -62,7 +64,7 @@ export class CustomersComponent {
             this.errMessage = err;
           },
         });
-        this.refreshPage()
+        this.getCustomers()
       }
     });
   }
@@ -89,6 +91,11 @@ export class CustomersComponent {
     } else {
       this.customers.sort((a: { customerName: string }, b: { customerName: string }) => b.customerName.localeCompare(a.customerName));
       this.sortOrder = 'asc';
+    }
+  }
+  ngOnInittt() {
+    if (!this.checkService.checkLogin()) {
+      this.router.navigate(['login']);
     }
   }
 }

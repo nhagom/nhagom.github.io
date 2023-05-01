@@ -8,6 +8,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ProductsComponent } from './products/products.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { OrdersComponent } from './orders/orders.component';
     CustomersComponent,
     LoginComponent,
     OrdersComponent,
+    ProductsComponent,
+    HomeComponent,
 
   ],
   imports: [

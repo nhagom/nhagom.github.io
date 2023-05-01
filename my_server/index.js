@@ -401,5 +401,77 @@ app.get('/orders/:start/:end', async (req, res) => {
 
 
 
+// Xóa product
+ app.delete("/products/delete/:Id", cors(), async (req, res)=>{
+    var Id= req.params.Id;
+    const result = await productsCollection.find({productId:Id}).toArray();
+    await productsCollection.deleteOne(
+        {productId: Id}
+    )
+    const result2 = await productsCollection.find({}).toArray();
+    res.send(result2)
+  }
+  )
+  // Sửa product
+  app.put("/products/update/:Id", cors(), async (req,res)=>{
+    console.log(req.body)
+    const { productName, price, image, set, size, style, trait, description } = req.body;
+    await productsCollection.updateOne(
+      { productId: req.params.Id },
+      { $set: { productName, price, image, set, size, style, trait, description } }
+    );
+    const result = await productsCollection.findOne({ productId: req.params.Id });
+    res.send(result);
+  });
+  // Thêm product
+  app.post('/products/add', cors(), async (req, res) => {
+    const { productId, productName, description, price, image, set, size, style, trait } = req.body;
+    const newProduct = { productId, productName, description, price, image, set, size, style, trait };
+    const result = await productsCollection.insertOne(newProduct);
+    res.send(result);
+  });
+
+// app.post("/login",cors(), async(req, res)=>{
+//     username=req.body.username
+//     password=req.body.password
+    
+//     var crypto = require('crypto');
+//     usersCollection = database.collection("users")
+//     users = await usersCollection.findOne({username:username})
+//     if(user==null)
+//         res.send({"username":username, "message": "not exist"})
+//     else
+//     { 
+//         hash = crypto.pbkdf2Sync (password, users.salt, 1000, 64, `sha512`).toString(`hax`); 
+//         if(user.password==hash) 
+//             res.send(user) 
+//         else
+//         res.send({"username":username, "password": password, "message": "wrong password"})
+//     }
+// }
+// )
+
+app.post("/login", cors(), async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    const usersCollection = database.collection("users");
+    const user = await usersCollection.findOne({ username: username });
+  
+    if (!user) {
+      res.send({ username: username, message: "not exist" });
+      return;
+    }
+  
+    const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, "sha512").toString("hex");
+  
+    if (hash === user.password) {
+      // Lưu thông tin email vào session storage
+      req.session.email = user.email;
+      res.send(user);
+    } else {
+      res.send({ username: username, password: password, message: "wrong password" });
+    }
+  })
 
 

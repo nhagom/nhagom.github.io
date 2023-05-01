@@ -1,3 +1,9 @@
 <!-- <app-customers></app-customers> -->
-<app-orders></app-orders>
+<!-- <app-orders></app-orders> -->
+<!-- <app-products></app-products> -->
+<!-- <button [routerLink]="'customer'">Customers</button>
+<button [routerLink]="'order'">Orders</button>
+<button [routerLink]="'product'">Products</button> -->
+<app-home *ngIf="isLogin"></app-home>
+<app-login *ngIf="notLogin"></app-login>
 <!-- <router-outlet></router-outlet> -->
