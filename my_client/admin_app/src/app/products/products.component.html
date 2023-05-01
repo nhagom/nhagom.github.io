@@ -1,0 +1,163 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+  <!-- Thay đổi CSS cho phần tìm kiếm -->
+  <div class="input-group my-3">
+    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchProducts()">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchProducts()">Tìm kiếm</button>
+    </div>
+    <button (click)="toggleForm()">Form thêm sản phẩm</button>
+  </div>
+
+  <div *ngIf="showForm">
+    <h1 class="mt-5">Thêm sản phẩm mới</h1>
+    <form (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="form-group">
+        <label for="productId">Product ID:</label><span class="required">*</span>
+        <input type="text" class="form-control" #productId="ngModel" id="productId" [(ngModel)]="newProduct.productId" name="productId" required>
+        <small class="text-danger" *ngIf="productId.invalid && productId.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="productName">Product Name:</label><span class="required">*</span>
+        <input type="text" class="form-control" #productName="ngModel" id="productName" [(ngModel)]="newProduct.productName" name="productName" required>
+        <small class="text-danger" *ngIf="productName.invalid && productName.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" [(ngModel)]="newProduct.description" name="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label><span class="required">*</span>
+        <input type="number" class="form-control" #price="ngModel" id="price" [(ngModel)]="newProduct.price" name="price" required>
+        <small class="text-danger" *ngIf="price.invalid && price.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="image">Image:</label><span class="required">*</span>
+        <input type="text" class="form-control" #image="ngModel" id="image" [(ngModel)]="newProduct.image" name="image" required>
+        <small class="text-danger" *ngIf="image.invalid && image.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="set">Set:</label>
+        <input type="text" class="form-control" id="set" [(ngModel)]="newProduct.set" name="set">
+      </div>
+      <div class="form-group">
+        <label for="size">Size:</label>
+        <input type="text" class="form-control" id="size" [(ngModel)]="newProduct.size" name="size">
+      </div>
+      <div class="form-group">
+        <label for="style">Style:</label><span class="required">*</span>
+        <input type="text" class="form-control" #style="ngModel" id="style" [(ngModel)]="newProduct.style" name="style" required>
+        <small class="text-danger" *ngIf="style.invalid && style.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="trait">Trait:</label><span class="required">*</span>
+        <input type="text" class="form-control" #trait="ngModel" id="trait" [(ngModel)]="newProduct.trait" name="trait" required>
+        <small class="text-danger" *ngIf="trait.invalid && trait.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <button type="submit" class="btn btn-primary" (keydown.enter)="onSubmit()">Thêm sản phẩm</button>
+    </form>
+  </div>
+  <!-- Thay đổi CSS cho phần danh sách khách hàng -->
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>STT</th>
+          <th>Product ID</th>
+          <th>Product name</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products ; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ p.productId }}</td>
+          <td>{{ p.productName }}</td>
+          <td>{{ p.price }}</td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="editProduct(p,editProductModal)">Sửa</button>
+            <button class="btn btn-danger" (click)="deleteProduct(p.productId)">Xóa</button>
+            <button class="btn btn-info" (click)="showProductDetails(p, productModal)">Chi tiết</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Thay đổi CSS cho phần modal -->
+  <ng-template #productModal>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h4 class="modal-title">{{selectedProduct.productName}}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Product ID:</strong> {{selectedProduct.productId}}</p>
+          <p><strong>Price:</strong> {{selectedProduct.price}}</p>
+          <p><strong>Image:</strong> <img src="{{selectedProduct.image}}" height="100px"></p>
+          <p><strong>Set:</strong> {{selectedProduct.set ? selectedProduct.set : 'None'}}</p>
+          <p><strong>Size:</strong> {{selectedProduct.size ? selectedProduct.size : 'None'}}</p>
+          <p><strong>Style:</strong> {{selectedProduct.style}}</p>
+          <p><strong>Trait:</strong> {{selectedProduct.trait}}</p>
+          <p><strong>Description:</strong> {{selectedProduct.description}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #editProductModal>
+  <div class="modal-dialog modal-dialog-centered modal-lg rounded-0 trongSuot">
+    <div class="modal-content tora">
+      <div class="modal-header bg-info text-white" >
+        <h4 class="modal-title">Sửa sản phẩm</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="productId">Product ID:</label>
+            <input type="text" class="form-control" id="productId" name="productId" [(ngModel)]="selectedProduct.productId" readonly>
+          </div>
+          <div class="form-group">
+            <label for="productName">Product name:</label>
+            <input type="text" class="form-control" id="productName" name="productName" [(ngModel)]="selectedProduct.productName" required>
+          </div>
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="selectedProduct.price" required>
+          </div>
+          <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="text" class="form-control" id="image" name="image" [(ngModel)]="selectedProduct.image" required>
+          </div>
+          <div class="form-group">
+            <label for="set">Set:</label>
+            <input type="text" class="form-control" id="set" name="set" [(ngModel)]="selectedProduct.set">
+          </div>
+          <div class="form-group">
+            <label for="size">Size:</label>
+            <input type="text" class="form-control" id="size" name="size" [(ngModel)]="selectedProduct.size">
+          </div>
+          <div class="form-group">
+            <label for="style">Style:</label>
+            <input type="text" class="form-control" id="style" name="style" [(ngModel)]="selectedProduct.style" required>
+          </div>
+          <div class="form-group">
+            <label for="trait">Trait:</label>
+            <input type="text" class="form-control" id="trait" name="trait" [(ngModel)]="selectedProduct.trait">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="modalRef.hide()">Hủy</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="updateProduct()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</div>

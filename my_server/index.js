@@ -404,6 +404,36 @@ app.get('/orders/:start/:end', async (req, res) => {
 }).toArray();
   res.send(result);
 });
+// Xóa product
+ app.delete("/products/delete/:Id", cors(), async (req, res)=>{
+    var Id= req.params.Id;
+    const result = await productsCollection.find({productId:Id}).toArray();
+    await productsCollection.deleteOne(
+        {productId: Id}
+    )
+    const result2 = await productsCollection.find({}).toArray();
+    res.send(result2)
+  }
+  )
+  // Sửa product
+  app.put("/products/update/:Id", cors(), async (req,res)=>{
+    console.log(req.body)
+    const { productName, price, image, set, size, style, trait, description } = req.body;
+    await productsCollection.updateOne(
+      { productId: req.params.Id },
+      { $set: { productName, price, image, set, size, style, trait, description } }
+    );
+    const result = await productsCollection.findOne({ productId: req.params.Id });
+    res.send(result);
+  });
+  // Thêm product
+  app.post('/products/add', cors(), async (req, res) => {
+    const { productId, productName, description, price, image, set, size, style, trait } = req.body;
+    const newProduct = { productId, productName, description, price, image, set, size, style, trait };
+    const result = await productsCollection.insertOne(newProduct);
+    res.send(result);
+  });
+
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username
 //     password=req.body.password
