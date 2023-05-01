@@ -22,9 +22,9 @@ export class HeaderComponent {
   notLogin = true;
   constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient, private sv2: PaymentService) {
     let _email
-    this.sv2.getUser().subscribe({
-      next:(data) => _email = data
-    })
+    this.sv2.getUser().subscribe(
+      { next: (data => _email = data.User)}
+    )
     if (_email) {
       this.isLogin = true;
       this.notLogin = false
@@ -39,9 +39,7 @@ export class HeaderComponent {
       }
     )
 
-
-
-   }
+  }
 
   openDialog() {
     this.dialog.open(LoginComponent, {
