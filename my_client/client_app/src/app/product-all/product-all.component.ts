@@ -15,16 +15,19 @@ import { CartService } from '../services/cart.service';
 export class ProductAllComponent {
   products: Product[] = [];
   errMessage: string = '';
-  p: number=1
+
+
   Styles: any;
   constructor(public _service: ProductApiService, public router: Router, private cartService: CartService ) {
-    this._service.getProducts().subscribe({
+    this._service.getProductNewest().subscribe({
       next: (data) => {
         this.products = data;
       console.log("Style",data); this.Styles = [...new Set(this.products.map(product=> product.style))]},
       error: (err) => {this.errMessage = err;},
     });
   }
+
+
 
 
   DetailProduct(d:any){
@@ -39,4 +42,7 @@ export class ProductAllComponent {
     })
     this.cartService.addToCart(this.product,1)
   }
+
+
+  
 }
