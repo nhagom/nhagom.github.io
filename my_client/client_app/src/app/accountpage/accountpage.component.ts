@@ -17,20 +17,21 @@ export class AccountpageComponent {
   errMessage=''
   successMsg = '';
   emailExist=false;
-  email = ""
+  mail=""
 
   constructor(private _service: AccountPageService, private service: PaymentService ) {
-    this.service.getUser().subscribe(
-      (data => this.email= data)
-    )
-    this._service.getCustomerInfo(this.email).subscribe({
+    const email = localStorage.getItem('customerEmail')
+    if (email) {
+      this.mail = email
+    }
+    this._service.getCustomerInfo(email).subscribe({
       next:(data)=>{
           this.cusInfo=data;
           this.aCus = {...this.cusInfo};
       },
       error:(err)=>{this.errMessage=err}
     })
-    this._service.getPurchaseHistory(this.email).subscribe({
+    this._service.getPurchaseHistory(email).subscribe({
       next:(data)=>{this.purchaseHistory=data},
       error:(err)=>{this.errMessage=err}
     })
@@ -45,7 +46,7 @@ export class AccountpageComponent {
   }
 
   updateCusInfo() {
-    this._service.updateCusInfo(this.aCus, this.email).subscribe({
+    this._service.updateCusInfo(this.aCus, this.mail).subscribe({
       next:(data)=>{this.cusInfo=data},
       error:(err)=>{this.errMessage=err},
 

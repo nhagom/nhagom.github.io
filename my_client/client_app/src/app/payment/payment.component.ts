@@ -33,14 +33,13 @@ export class PaymentComponent {
     )
 
     //get user login
-    this.service.getUser().subscribe(
-      (data => {
-        this.customerEmail = data.User
-      })
-    )
+    const email = localStorage.getItem('customerEmail')
+    if (email) {
+      this.customerEmail = email
+    }
 
     //get thông tin customer
-    this.service.getCustomerInfo(this.customerEmail).subscribe(
+    this.service.getCustomerInfo(email).subscribe(
        (data => {
         this.order.customerName = data.customerName,
         this.order.customerPhoneNumb = data.customerPhoneNumb,
@@ -69,6 +68,43 @@ export class PaymentComponent {
       this.showOverlay = false;
       this.router.navigate(['/']);
     }, 4000);
+  }
+
+  showBankingPopup = false;
+  countdown = 180;
+  selectedPaymentMethod = ""
+
+  confirmPayment() {
+    // Kiểm tra phương thức thanh toán
+    if (this.selectedPaymentMethod == "COD") {
+      this.postOrder()
+    }
+    else {
+      this.openBankingPopup()
+    }
+  }
+
+  openBankingPopup() {
+    this.showBankingPopup = true;
+    const intervalId = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(intervalId);
+        this.closeBankingPopup();
+      }
+    }, 1000);
+  }
+
+  closeBankingPopup() {
+    this.showBankingPopup = false;
+    this.countdown = 180;
+    this.router.navigate(['/']);
+  }
+
+  closeBankingPopup2() {
+    this.showBankingPopup = false;
+    this.countdown = 180;
+    this.postOrder();
   }
 
 }

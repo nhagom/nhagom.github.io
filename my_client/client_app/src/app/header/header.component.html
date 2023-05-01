@@ -46,7 +46,9 @@
                       <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng xuất</span></li>
                   </ul>
               </li>
-              <li class="nav-item dropdown" *ngIf="isLogin">Tài khoản</li>
+              <li class="nav-item dropdown" *ngIf="isLogin">
+                <a routerLink="/account">Tài khoản</a>
+              </li>
           </ul>
       </div>
   </div>
