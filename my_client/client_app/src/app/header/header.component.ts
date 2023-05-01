@@ -6,7 +6,8 @@ import * as $ from "jquery";
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PaymentService } from '../services/payment.service';
-
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,18 +18,53 @@ export class HeaderComponent {
   cart: any[] = [];
   totalPrice: number = 0
   totalQuantity: number = 0;
-  customerName: string = "";
+  customerName = "";
   isLogin = false;
   notLogin = true;
-  constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient, private sv2: PaymentService) {
-    let _email
-    this.sv2.getUser().subscribe({
-      next:(data) => _email = data
-    })
-    if (_email) {
+  private subscription: Subscription;
+  constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient, private sv2: PaymentService, private authService: AuthService) {
+    // let _email
+    // this.sv2.getUser().subscribe({
+    //   next:(data) => _email = data
+    // })
+    // if (_email) {
+    //   this.isLogin = true;
+    //   this.notLogin = false
+    // }
+    // this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+    //   this.isLogin = true;
+    //   this.notLogin = false
+    // });
+    // const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // if (isLoggedIn === 'true') {
+    //   this.isLogin = true;
+    //   this.notLogin = false;
+    // } else {
+    //   this.isLogin = false;
+    //   this.notLogin = true;
+    // }
+    // this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+    //   this.isLogin = isLoggedIn;
+    //   this.notLogin = !isLoggedIn;
+    // });
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
       this.isLogin = true;
-      this.notLogin = false
+      this.notLogin = false;
+      this.customerName = localStorage.getItem('customerName')!;
+    } else {
+      this.isLogin = false;
+      this.notLogin = true;
     }
+    this.subscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLogin = isLoggedIn;
+      this.notLogin = !isLoggedIn;
+      if (isLoggedIn) {
+        this.customerName = localStorage.getItem('customerName')!;
+      } else {
+        this.customerName = '';
+      }
+    });
 
     this.service.getCart().subscribe(
       (data) => {
@@ -38,11 +74,12 @@ export class HeaderComponent {
       this.isCartEmpty = this.cart.length === 0;
       }
     )
-
-
-
    }
-
+ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
   openDialog() {
     this.dialog.open(LoginComponent, {
       // width:'60%'

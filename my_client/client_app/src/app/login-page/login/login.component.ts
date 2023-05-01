@@ -6,7 +6,7 @@ import { AbstractControl, AsyncValidatorFn, FormBuilder, Validators } from '@ang
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { IUser } from 'src/app/interfaces/User';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit{
   check = false
   customerName = '';
   emailExist=false
-  constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule){}
+  constructor(private formBuilder: FormBuilder, private _service: LoginService, private router: Router, private route: ActivatedRoute, private _http:HttpClientModule, private authService: AuthService){}
   //login
   aUser = new IUser()
   onSubmit(aUser: any): void {
@@ -45,6 +45,17 @@ export class LoginComponent implements OnInit{
     });
   }
 
+  // onLoginSuccess() {
+  //   // Xử lý đăng nhập và thông báo cho service biết
+  //   this.authService.login();
+  //   localStorage.setItem('isLoggedIn', 'true');
+  // }
+  onLoginSuccess() {
+    // Xử lý đăng nhập và thông báo cho service biết
+    this.authService.login();
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('customerName', this.customerName);
+  }
   // validator
   ngOnInit() {
     this.logForm = this.formBuilder.group({
