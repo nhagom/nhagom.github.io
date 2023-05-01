@@ -38,6 +38,18 @@ export class ProductApiService {
       catchError(this.handleError))
   }
 
+  getProductNewest(): Observable<any>
+  {  const headers=new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8")
+     const requestOptions:Object={
+        headers: headers,
+        responseType:"text"
+  }
+  return this._http.get<any>("/products-newest", requestOptions).pipe(
+     map(res =>JSON.parse(res) as Array<IProduct>), retry(3),
+     catchError(this.handleError))
+  }
+
+
   getProductStyle(productStyle:string):Observable<any>
   {
     const header=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
@@ -76,19 +88,21 @@ export class ProductApiService {
           catchError(this.handleError))
       }
 
-  // getMinMax(min:string, max:string):Observable<any>
-  // {
-  // const headers=new HttpHeaders().set("Content-Type","text/plain;charset=utf-8")
-  // const requestOptions:Object={
-  // headers:headers,
-  // responseType:"text"
-  // }
-  // return this._http.get<any>("/products/"+min +"/"+max,requestOptions).pipe(
-  // map(res=>JSON.parse(res) as IProduct),
-  // retry(3),
-  // catchError(this.handleError))
-  // }
-
+  // API lọc giá sản phẩm theo giá min-max
+  getProductsByPriceRange(min: number, max: number): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "text/plain; charset=utf-8");
+    const requestOptions: Object = {
+      headers: headers,
+      responseType: "text"
+    };
+  
+    const url = `/products-filter?min=${min}&max=${max}`;
+    return this._http.get<any>(url, requestOptions).pipe(
+      map(res => JSON.parse(res) as Array<IProduct>),
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
 
   //10 Sản phẩm mới nhất
   getNewestProducts(): Observable<any>{

@@ -41,34 +41,34 @@ adminCollection = database.collection("admin")
 feedbacksCollection = database.collection("feedbacks");
 
 //----------------------------------API Chung--------------------------------------------
-app.get("/products", cors(), async (req,res)=>{
-    const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
+  app.get("/products", cors(), async (req,res)=>{
+      const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
+      res.send(result)
+  })
+  app.get("/customers", cors(), async (req,res)=>{
+    const result = await customersCollection.find({}).toArray();
     res.send(result)
-})
-app.get("/customers", cors(), async (req,res)=>{
-  const result = await customersCollection.find({}).toArray();
-  res.send(result)
-})
+  })
 
-app.get("/orders", cors(), async (req,res)=>{
-  const result = await ordersCollection.find({}).toArray();
-  res.send(result)
-})
+  app.get("/orders", cors(), async (req,res)=>{
+    const result = await ordersCollection.find({}).toArray();
+    res.send(result)
+  })
 
 
 //-----------------------------------API trang Product-----------------------------------------
-app.get("/products/:id",cors(), async(req,res)=>{
-    var o_id = new ObjectId(req.params["id"]);
-    const result = await productsCollection.find({_id:o_id}).toArray();
-    res.send(result[0])
+  app.get("/products/:id",cors(), async(req,res)=>{
+      var o_id = new ObjectId(req.params["id"]);
+      const result = await productsCollection.find({_id:o_id}).toArray();
+      res.send(result[0])
 })
 
 
-// API to get 10 newest products
-app.get("/products/newest", cors(), async (req, res) => {
-  const result = await productsCollection.find({}).sort({ createdAt: -1 }).limit(10).toArray();
-  res.send(result);
-});
+// API to get 10 newest products based on productDate
+  app.get("/products-newest", cors(), async (req, res) => {
+    const result = await productsCollection.find({}).sort({productDate: -1 }).limit(10).toArray();
+    res.send(result);
+  });
 
     //this is API to get category of style
     app.get("/products/by-category/:style",cors(), async(req,res)=>{
@@ -96,10 +96,15 @@ app.get("/products/newest", cors(), async (req, res) => {
     //     res.send(result)
     // })
 
-    app.get("/products/:minprice/:maxprice", cors(),(req,res)=>{
-      console.log(req.params.minprice,req.params.maxprice)
-      let p = database.filter(x=>x.price >=req.params.minprice && x.price<= req.params.maxprice)
-      res.send(p)
+    app.get("/products-filter", cors(), async (req,res)=>{
+      const min = parseInt(req.query.min);
+      const max = parseInt(req.query.max);
+      if(isNaN(min) || isNaN(max)){
+          res.status(400).send("Invalid min/max price value");
+          return;
+      }
+      const result = await productsCollection.find({price: {$gte: min, $lte: max}}).toArray();
+      res.send(result)
   })
   
 

@@ -5,6 +5,7 @@ import { CartService } from '../services/cart.service';
 import * as $ from "jquery";
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { PaymentService } from '../services/payment.service';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +20,11 @@ export class HeaderComponent {
   customerName: string = "";
   isLogin = false;
   notLogin = true;
-  constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient ) {
-    let _email = localStorage.getItem('customerEmail')
+  constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient, private sv2: PaymentService) {
+    let _email
+    this.sv2.getUser().subscribe(
+      { next: (data => _email = data.User)}
+    )
     if (_email) {
       this.isLogin = true;
       this.notLogin = false
@@ -35,9 +39,7 @@ export class HeaderComponent {
       }
     )
 
-
-
-   }
+  }
 
   openDialog() {
     this.dialog.open(LoginComponent, {
