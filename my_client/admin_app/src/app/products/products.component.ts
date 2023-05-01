@@ -80,7 +80,7 @@ export class ProductsComponent {
         this.productsService.deleteProduct(productId).subscribe({
           next: (data) => {
             this.products = data;
-            this.getProducts();
+            // this.getProducts();
           },
           error: (err) => {
             this.errMessage = err;
@@ -107,10 +107,11 @@ export class ProductsComponent {
         (product) => {
           console.log("Product added successfully:", product);
           this.getProducts();
+          this.showForm = !this.showForm;
         },
         (error) => {
           console.error("Error adding product:", error);
-          this.getProducts();
+          // this.getProducts();
         }
       );
     } else {

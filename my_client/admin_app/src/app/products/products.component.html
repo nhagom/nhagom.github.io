@@ -54,7 +54,7 @@
         <input type="text" class="form-control" #trait="ngModel" id="trait" [(ngModel)]="newProduct.trait" name="trait" required>
         <small class="text-danger" *ngIf="trait.invalid && trait.touched">Thông tin này là bắt buộc.</small>
       </div>
-      <button type="submit" class="btn btn-primary" (keydown.enter)="onSubmit()">Thêm sản phẩm</button>
+      <button type="submit" class="btn btn-primary" (keydown.enter)="onSubmit()" >Thêm sản phẩm</button>
     </form>
   </div>
   <!-- Thay đổi CSS cho phần danh sách khách hàng -->
