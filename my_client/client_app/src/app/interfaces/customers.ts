@@ -1,6 +1,5 @@
 export interface ICustomer {
   _id:any
-  customerId: number,
   customerName: string,
   customerEmail:string,
   customerPhoneNumb:string,
