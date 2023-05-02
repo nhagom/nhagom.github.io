@@ -38,6 +38,7 @@ import { sortPricePipe } from './shop-grid/sort-price.pipe';
 import { PaymentComponent } from './payment/payment.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

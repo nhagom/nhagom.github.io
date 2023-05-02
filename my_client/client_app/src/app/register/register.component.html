@@ -107,7 +107,7 @@
                     </div>
                     <br>
                     <div class="row mb-3 px-3">
-                      <button (click)="postCustomers()" type="submit" class="btn btn-primary" [disabled]="regForm.invalid">Đăng ký</button>
+                      <button (click)="postCustomers()" type="submit" class="btn btn-primary" [disabled]="regForm.invalid" data-toggle="modal" data-target="#myModal">Đăng ký</button>
                     </div>
                     </div>
                 </div>
@@ -115,3 +115,20 @@
           </div>
       </div>
 </form>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Đăng ký</h4>
+      </div>
+      <div class="modal-body">
+        <p>Tài khoản của bạn đã được đăng ký thành công</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="goToLoginPage()">Đi đến trang đăng nhập</button>
+      </div>
+    </div>
+  </div>
+</div>

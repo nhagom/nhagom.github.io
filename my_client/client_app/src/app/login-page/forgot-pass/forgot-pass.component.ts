@@ -73,3 +73,93 @@ export class ForgotPassComponent {
     }
   }
 }
+// import { Component } from '@angular/core';
+// import { Router } from '@angular/router';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { LoginService } from 'src/app/services/login.service';
+
+// @Component({
+//   selector: 'app-forgot-pass',
+//   templateUrl: './forgot-pass.component.html',
+//   styleUrls: ['./forgot-pass.component.css']
+// })
+// export class ForgotPassComponent {
+//   currentStep = 1;
+//   emailForm: FormGroup;
+//   codeForm: FormGroup;
+//   passwordForm: FormGroup;
+
+//   constructor(
+//     private router: Router,
+//     private formBuilder: FormBuilder,
+//     private loginService: LoginService
+//   ) {
+//     this.emailForm = this.formBuilder.group({
+//       email: ['', [Validators.required, Validators.email]]
+//     });
+
+//     this.codeForm = this.formBuilder.group({
+//       code: ['', [Validators.required, this.validateCode]]
+//     });
+
+//     this.passwordForm = this.formBuilder.group({
+//       password: ['', Validators.required],
+//       confirmPassword: ['', Validators.required]
+//     }, { validator: this.checkPasswords });
+//   }
+
+//   onEmailSubmit() {
+//     const email = themailForm.controls['email'].value;
+//     const emailExist = this.loginService.checkEmailExist(email);
+
+//     if (!emailExist) {
+//       this.emailForm.controls.email.setErrors({ emailExist: true });
+//       return;
+//     }
+
+//     this.currentStep = 2;
+//   }
+
+//   onCodeSubmit() {
+//     const code = this.codeForm.controls.code.value;
+
+//     if (code !== '123456') {
+//       this.codeForm.controls.code.setErrors({ incorrectCode: true });
+//       return;
+//     }
+
+//     this.currentStep = 3;
+//   }
+
+//   onPasswordSubmit() {
+//     const password = this.passwordForm.controls.password.value;
+//     const confirmPassword = this.passwordForm.controls.confirmPassword.value;
+
+//     if (password !== confirmPassword) {
+//       this.passwordForm.controls.confirmPassword.setErrors({ misMatch: true });
+//       return;
+//     }
+
+//     const email = this.emailForm.controls.email.value;
+//     this.loginService.changePassword(email, password);
+
+//     alert('Mật khẩu đã được thay đổi thành công');
+
+//     this.router.navigate(['/login']);
+//   }
+
+//   validateCode(control) {
+//     if (control.value !== '123456') {
+//       return { incorrectCode: true };
+//     }
+
+//     return null;
+//   }
+
+//   checkPasswords(group) {
+//     const password = group.controls.password.value;
+//     const confirmPassword = group.controls.confirmPassword.value;
+
+//     return password === confirmPassword ? null : { misMatch: true };
+//   }
+// }

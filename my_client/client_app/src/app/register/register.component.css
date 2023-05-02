@@ -127,7 +127,17 @@ a {
 .btn-primary{
   background-color: #752B22;
 }
-
+.btn-default{
+  background-color: #752B22;
+  color: #fff;
+  font-weight: bold;
+}
+.btn-default:hover {
+  border: 1px solid #752B22;
+  background-color: #fff;
+  color: #752B22;
+  cursor: pointer;
+}
 @media screen and (max-width: 991px) {
   .logo {
       margin-left: 0px;

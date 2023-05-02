@@ -22,26 +22,10 @@ export class HeaderComponent {
   isLogin = false;
   notLogin = true;
   constructor(public dialog: MatDialog, public router: Router, private service: CartService ,private _http: HttpClient, private sv2: PaymentService, private authService: AuthService) {
-    let _email
+    let _email = localStorage.getItem('customerEmail')
     this.sv2.getUser().subscribe(
       { next: (data => _email = data.User)}
     )
-    if (_email) {
-      this.isLogin = true;
-      this.notLogin = false
-    }
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-      this.isLogin = true;
-      this.notLogin = false;
-    } else {
-      this.isLogin = false;
-      this.notLogin = true;
-    }
-    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
-      this.isLogin = isLoggedIn;
-      this.notLogin = !isLoggedIn;
-    });
     this.service.getCart().subscribe(
       (data) => {
       this.cart = data.cart;
@@ -52,15 +36,27 @@ export class HeaderComponent {
     )
 
   }
-
+  //hiện account lên header
+  ngOnInit() {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLogin = isLoggedIn;
+      this.notLogin = !isLoggedIn;
+    });
+  }
+  //đăng xuất
+  logout() {
+    localStorage.removeItem('customerEmail'); // Xóa thông tin khách hàng đã lưu trong localStorage
+    localStorage.setItem('isLoggedIn', 'false');
+    this.authService.logout(); // Gọi phương thức logout() trong AuthService
+    this.router.navigate(['/home']);
+    }
   openDialog() {
     this.dialog.open(LoginComponent, {
-      // width:'60%'
     });
   }
 
 
-/////cart
+//cart
   isCartEmpty: boolean = true;
   removeProduct(productId: number) {
     // Xóa sản phẩm khỏi giỏ hàng
