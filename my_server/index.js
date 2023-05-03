@@ -260,7 +260,7 @@ app.get("/customers/check-email-invalid/:email", cors(), async (req, res) => {
   });
 //api chỉnh sửa mật khẩu
 app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     await customersCollection.updateOne(
         {customerEmail: req.params.customerEmail},
         { $set: { 
@@ -414,7 +414,7 @@ app.get('/orders/:start/:end', async (req, res) => {
   )
   // Sửa product
   app.put("/products/update/:Id", cors(), async (req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     const { productName, price, image, set, size, style, trait, description } = req.body;
     await productsCollection.updateOne(
       { productId: req.params.Id },
