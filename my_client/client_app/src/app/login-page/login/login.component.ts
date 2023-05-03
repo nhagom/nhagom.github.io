@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
         this.check = data;
         if (this.check) {
           localStorage.setItem('customerEmail', aUser.customerEmail);
+          localStorage.setItem('isLoggedIn', 'true');
           this._service.getCustomerName().subscribe({
             next: (data) => {
               this.customerName = data.customerName;
@@ -43,19 +44,9 @@ export class LoginComponent implements OnInit{
         }
       }
     });
+    this.authService.login();
   }
 
-  // onLoginSuccess() {
-  //   // Xử lý đăng nhập và thông báo cho service biết
-  //   this.authService.login();
-  //   localStorage.setItem('isLoggedIn', 'true');
-  // }
-  onLoginSuccess() {
-    // Xử lý đăng nhập và thông báo cho service biết
-    this.authService.login();
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('customerName', this.customerName);
-  }
   // validator
   ngOnInit() {
     this.logForm = this.formBuilder.group({

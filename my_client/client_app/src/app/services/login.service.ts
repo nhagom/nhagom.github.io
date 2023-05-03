@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, retry, throwError } from 'rxjs';
-import { Customers } from '../models/customers';
 import { ICustomer } from '../interfaces/customers';
 
 @Injectable({

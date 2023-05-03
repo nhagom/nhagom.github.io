@@ -41,13 +41,17 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end p-2 container-account">
                       <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng nhập </span> </li> <hr>
-                      <div class="user dropdown-item dropdown-content">{{customerName}}</div>
-                      <li><span class="dropdown-item dropdown-content" routerLink="/account">Tài khoản</span> </li> <hr>
-                      <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng xuất</span></li>
+                      <li><span class="dropdown-item dropdown-content" routerLink="/register">Đăng ký</span></li>
                   </ul>
               </li>
               <li class="nav-item dropdown" *ngIf="isLogin">
-                <a routerLink="/account">Tài khoản</a>
+                <a class="nav-link icon-sizing2">
+                  <i class="fa-solid fa-circle-user"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end p-2 container-account">
+                  <li><span class="dropdown-item dropdown-content" routerLink="/account">Tài khoản</span> </li> <hr>
+                  <li><span class="dropdown-item dropdown-content" (click)="logout()" >Đăng xuất</span> </li>
+              </ul>
               </li>
           </ul>
       </div>

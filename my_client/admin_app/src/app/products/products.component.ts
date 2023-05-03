@@ -83,7 +83,7 @@ export class ProductsComponent {
         this.productsService.deleteProduct(productId).subscribe({
           next: (data) => {
             this.products = data;
-            this.getProducts();
+            // this.getProducts();
           },
           error: (err) => {
             this.errMessage = err;
@@ -124,7 +124,7 @@ export class ProductsComponent {
         },
         (error) => {
           console.error("Error adding product:", error);
-          this.getProducts();
+          // this.getProducts();
         }
       );
     } else {
