@@ -4,130 +4,313 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Nhà Gốm</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"> -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.4/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-  <main id="main">
-    <!-- <div class="row-banner">
-      <img src="assets/banner/banner1.png" alt="ERROR">
-    </div> -->
-
-<!--
-    <section id="hero-slider" class="hero-slider">
-      <div class="container-md">
+  <!-- /*****************
+            Banner
+  *****************/ -->
+  <section class="hero">
+    <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="swiper-container sliderFeaturedPosts">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('../../assets/image/About/about-4.jpg');">
-                    <div class="img-bg-inner">
-                      <h2>Nhà gốm</h2>
-                      <p>Đây là nhà gốm</p>
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span style="font-size: 15px;">Danh mục sản phẩm</span>
                     </div>
-                  </a>
+                    <ul>
+                        <li><a href="#">Gốm phòng bếp</a></li>
+                        <li><a href="#">Gốm phòng tắm</a></li>
+                        <li><a href="#">Gốm trang trí</a></li>
+                        <li><a href="#">Bộ gốm</a></li>
+                        <li><a href="#">Gia dụng</a></li>
+                        <li><a href="#">Gốm phòng khách</a></li>
+                        <li><a href="#">Gốm trang sức</a></li>
+                        <li><a href="#">Khác</a></li>
+                    </ul>
                 </div>
-
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('../../assets/image/About/about-2.jpg');">
-                    <div class="img-bg-inner">
-                      <h2>Nhà gốm</h2>
-                      <p>Đây là nhà gốm</p>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('../../assets/image/About/about-1.png');">
-                    <div class="img-bg-inner">
-                      <h2>Nhà gốm</h2>
-                      <p>Đây là nhà gốm</p>
-                    </div>
-                  </a>
-                </div>
-
-              </div>
-              <div class="swiper-button-next custom-swiper-button-next">
-                <span class="bi-chevron-right"></span>
-              </div>
-              <div class="swiper-button-prev custom-swiper-button-prev">
-                <span class="bi-chevron-left"></span>
-              </div>
-
-              <div class="swiper-pagination"></div>
             </div>
-          </div>
+            <div class="col-lg-9">
+              <div class="hero__item set-bg" style="background-image: url('../../assets/Cover-3-01.jpg');">
+                <div class="hero__text">
+                  <span>NHÀ GỐM</span>
+                  <h2>Gốm sứ cao cấp</h2>
+                  <p>Khẳng định thương hiệu Việt</p>
+                  <a href="#" class="primary-btn">MUA NGAY</a>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
-    </section> -->
-<section class="bg-gray-100">
-  <div class="container py-6 py-md-7 text-white z-index-20" style="background-image: url('../../assets/image/About/about-4.png');">
-    <div class="row">
-      <div class="col-xl-10">
-        <div class="text-center text-lg-start">
-          <p class="subtitle letter-spacing-4 mb-2 text-primary text-shadow">The best caretaker portal</p>
-          <h1 class="display-3 fw-bold text-shadow">Loved your elderly</h1>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
+  <!-- /*****************
+          End Banner
+  *****************/ -->
+  <section>
+    <div class="hotProduct">
+      SẢN PHẨM NỔI BẬT
+    </div>
     <div class="row__item--bestseller">
       <div class="bestseller__item">
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
               <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
               </div>
               <div class="carousel-inner">
                   <div class="carousel-item active">
-                      <div class="row">
-                          <div class="col-xs-6 col-sm-3" *ngFor="let product of popularProducts.slice(0,4)">
-                              <div class="bestseller__item--card products-card">
-                                  <img src="{{product.image}}" alt="">
-                                  <h2>{{product.productName}}</h2>
-                                  <p>{{product.price}}đ</p>
-                                  <a href="">Chi tiết sản phẩm</a>
-                                  <hr>
-                                  <button onClick="">Mua ngay</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="carousel-item">
-                      <div class="row">
-                          <div class="col-xs-6 col-sm-3" *ngFor="let product of popularProducts.slice(4,8)">
-                              <div class="bestseller__item--card products-card">
-                                  <img src={{product.image}} alt="">
-                                  <h2>{{product.productName}}</h2>
-                                  <p>{{product.price}}đ</p>
-                                  <a href="">Chi tiết sản phẩm</a>
-                                  <hr>
-                                  <button onClick="">Mua ngay</button>
-                              </div>
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-3" *ngFor="let product of products.slice(16,20)">
+                          <div class="bestseller__item--card products-card">
+                              <img src="{{product.image}}" alt="">
+                              <h2>{{product.productName}}</h2>
+                              <p>{{product.price}}đ</p>
+                              <a href="">Chi tiết sản phẩm</a>
+                              <hr>
+                              <button onClick="">Mua ngay</button>
                           </div>
                       </div>
                   </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+              <div class="carousel-item">
+                  <div class="row">
+                      <div class="col-xs-6 col-sm-3" *ngFor="let product of products.slice(5,9)">
+                          <div class="bestseller__item--card products-card">
+                              <img src={{product.image}} alt="">
+                              <h2>{{product.productName}}</h2>
+                              <p>{{product.price}}đ</p>
+                              <a href="">Chi tiết sản phẩm</a>
+                              <hr>
+                              <button onClick="">Mua ngay</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
       </div>
-
   </div>
-    <!-- blogs -->
+</div>
+</section>
+<section>
+<div class="hotProduct">
+  SẢN PHẨM BÁN CHẠY
+</div>
+<div class="row__item--bestseller">
+  <div class="bestseller__item">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+          <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          </div>
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-3" *ngFor="let product of popularProducts.slice(1,5)">
+                      <div class="bestseller__item--card products-card">
+                          <img src="{{product.image}}" alt="">
+                          <h2>{{product.productName}}</h2>
+                          <p>{{product.price}}đ</p>
+                          <a href="">Chi tiết sản phẩm</a>
+                          <hr>
+                          <button onClick="">Mua ngay</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="carousel-item">
+              <div class="row">
+                  <div class="col-xs-6 col-sm-3" *ngFor="let product of popularProducts.slice(5,9)">
+                      <div class="bestseller__item--card products-card">
+                          <img src={{product.image}} alt="">
+                          <h2>{{product.productName}}</h2>
+                          <p>{{product.price}}đ</p>
+                          <a href="">Chi tiết sản phẩm</a>
+                          <hr>
+                          <button onClick="">Mua ngay</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+</div>
+</div>
+</section>
+<!-- <section class="categories">
+<div class="container">
+<div class="row">
+    <div class="categories__slider owl-carousel">
+        <div class="col-lg-3">
+            <div class="categories__item">
+              <img src="{{popularProducts[1].image}}" alt="Sản phẩm">
+              <h5><a href="#">{{popularProducts[1].productName}}</a></h5>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="categories__item">
+              <img src="{{popularProducts[2].image}}" alt="Sản phẩm">
+              <h5><a href="#">{{popularProducts[2].productName}}</a></h5>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="categories__item">
+              <img src="{{popularProducts[3].image}}" alt="Sản phẩm">
+                      <h5><a href="#">{{popularProducts[3].productName}}</a></h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="categories__item">
+                      <img src="{{popularProducts[4].image}}" alt="Sản phẩm">
+                      <h5><a href="#">{{popularProducts[4].productName}}</a></h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="categories__item">
+                      <img src="{{popularProducts[5].image}}" alt="Sản phẩm">
+                      <h5><a href="#">{{popularProducts[5].productName}}</a></h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="categories__item">
+                      <img src="{{popularProducts[6].image}}" alt="Sản phẩm">
+                      <h5><a href="#">{{popularProducts[6].productName}}</a></h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="categories__item">
+                      <img src="{{popularProducts[7].image}}" alt="Sản phẩm">
+                      <h5><a href="#">{{popularProducts[7].productName}}</a></h5>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="categories__item">
+                      <img src="{{popularProducts[8].image}}" alt="Sản phẩm">
+                      <h5><a href="#">{{popularProducts[8].productName}}</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section> -->
+
+  <!-- <section class="latest-product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="latest-product__text">
+                    <h4>Sản phẩm mới nhất</h4>
+                    <div class="latest-product__slider owl-carousel">
+                        <div class="latest-prdouct__slider__item" *ngFor="let product of products.slice(10,13)">
+                            <a href="#" class="latest-product__item">
+                                <div class="latest-product__item__pic">
+                                    <img src="{{product.image}}" alt="Sản phẩm mới nhất">
+                                </div>
+                                <div class="latest-product__item__text">
+                                    <h6>{{product.productName}}</h6>
+                                    <span>{{product.price}}</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="latest-prdouct__slider__item" *ngFor="let product of products.slice(17,20)">
+                            <a href="#" class="latest-product__item">
+                              <div class="latest-product__item__pic">
+                                    <img src="{{product.image}}" alt="Sản phẩm mới nhất">
+                                </div>
+                                <div class="latest-product__item__text">
+                                    <h6>{{product.productName}}</h6>
+                                    <span>{{product.price}}</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="latest-product__text">
+                    <h4>Sản phẩm bán chạy</h4>
+                    <div class="latest-product__slider owl-carousel">
+                        <div class="latest-prdouct__slider__item" *ngFor="let product of popularProducts.slice(1,4)">
+                            <a href="#" class="latest-product__item">
+                                <div class="latest-product__item__pic">
+                                    <img src="{{product.image}}" alt="Sản phẩm bán chạy">
+                                </div>
+                                <div class="latest-product__item__text">
+                                    <h6>{{product.productName}}</h6>
+                                    <span>{{product.price}}</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="latest-prdouct__slider__item" *ngFor="let product of popularProducts.slice(5,8)">
+                            <a href="#" class="latest-product__item">
+                                <div class="latest-product__item__pic">
+                                     <img src="img/latest-product/lp-1.jpg" alt="Sản phẩm bán chạy">
+                                </div>
+                                <div class="latest-product__item__text">
+                                    <h6>{{product.productName}}</h6>
+                                    <span>{{product.price}}</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="latest-product__text">
+                    <h4>Sản phẩm khuyên dùng</h4>
+                    <div class="latest-product__slider owl-carousel" *ngFor="let product of products.slice(21,24)">
+                        <div class="latest-prdouct__slider__item">
+                            <a href="#" class="latest-product__item">
+                                <div class="latest-product__item__pic">
+                                    <img src="{{product.image}}" alt="Sản phẩm khuyên dùng">
+                                </div>
+                                <div class="latest-product__item__text">
+                                  <h6>{{product.productName}}</h6>
+                                    <span>{{product.price}}</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="latest-prdouct__slider__item" *ngFor="let product of products.slice(25,28)">
+                            <a href="#" class="latest-product__item">
+                                <div class="latest-product__item__pic">
+                                    <img src="{{product.image}}" alt="Sản phẩm khuyên dùng">
+                                </div>
+                                <div class="latest-product__item__text">
+                                    <h6>{{product.productName}}</h6>
+                                    <span>{{product.price}}</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+    <!-- -----------------------cũ-------------------------- -->
+
+
+  <!-- ---------------blog------------------------ -->
     <section id="posts" class="posts">
       <div class="container" data-aos="fade-up">
         <h2 class="text-center">Blog tiêu biểu</h2>
@@ -167,30 +350,5 @@
         </div>
       </div>
     </section>
-
-  </main>
-  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script> -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  var mySwiper = new Swiper('.swiper-container', {
-    loop: true,
-    navigation: {
-      nextEl: '.custom-swiper-button-next',
-      prevEl: '.custom-swiper-button-prev',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    autoplay: {
-      delay: 5000,
-    },
-    slidesPerView: 1,
-    spaceBetween: 0,
-  });
-});
-
-  </script>
 </body>
 </html>
