@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Customers } from '../models/customers';
 import { RegisterService } from '../services/register.service';
-import { AbstractControl, AsyncValidatorFn, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { customerValidator, passwordValidator } from '../check.validator';
 import { Observable, catchError, map, of } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,13 +15,10 @@ export class RegisterComponent {
   errMessage:string=''
   cusInfo:any
   emailExist=false
-
   regForm: any;
   errFlag: boolean = false;
-  constructor(private formBuilder: FormBuilder, private _service: RegisterService){}
-
-  ngOnInit() {
-    this.regForm = this.formBuilder.group({
+  constructor(private fb: FormBuilder, private _service: RegisterService, private router: Router){
+    this.regForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3),customerValidator]],
       email: ['', [Validators.required, Validators.email],[this.emailExistsValidator()]],
       phone: ['', [Validators.required]],
@@ -47,15 +45,8 @@ export class RegisterComponent {
   get confirmPass(){
     return this.regForm.controls['confirmPass']
   }
-
   public setCustomer(c:Customers){
     this.customer=c
-  }
-  postCustomers(){
-    this._service.postCustomers(this.customer).subscribe({
-      next:(data)=>{this.cusInfo=data},
-      error:(err)=>{this.errMessage=err}
-    })
   }
   emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
@@ -78,6 +69,15 @@ export class RegisterComponent {
           }}
       });
     }
+  }
+  postCustomers(){
+    this._service.postCustomers(this.customer).subscribe({
+      next:(data)=>{this.cusInfo=data},
+      error:(err)=>{this.errMessage=err}
+    })
+  }
+  goToLoginPage() {
+    this.router.navigate(['/login']);
   }
 }
 

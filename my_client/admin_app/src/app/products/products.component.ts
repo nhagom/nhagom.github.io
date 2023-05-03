@@ -37,7 +37,6 @@ export class ProductsComponent {
       this.products = data;
     });
   }
-
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(
       template,

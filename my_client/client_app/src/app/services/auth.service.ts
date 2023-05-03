@@ -11,11 +11,9 @@ export class AuthService {
   login() {
     // Xử lý đăng nhập và cập nhật trạng thái isLoggedIn khi đăng nhập thành công
     this.isLoggedIn.next(true);
-    localStorage.setItem('isLoggedIn', 'true');
   }
   logout() {
-    // Xử lý đăng xuất và xoá trạng thái đăng nhập khỏi local storage
+    // Cập nhật trạng thái đăng nhập khi đăng xuất
     this.isLoggedIn.next(false);
-    localStorage.removeItem('isLoggedIn');
-  }
+    }
 }

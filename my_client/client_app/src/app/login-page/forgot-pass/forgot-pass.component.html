@@ -59,3 +59,55 @@
    </div>
  </div>
  </form>
+<!-- Step 1: Nhập email -->
+<!-- <div *ngIf="currentStep === 1">
+  <form [formGroup]="emailForm" (ngSubmit)="onEmailSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="emailForm.controls.email.errors && (emailForm.controls.email.invalid || emailForm.controls.email.touched)">
+        <small class="text-danger" *ngIf="emailForm.controls.email.errors['required']">Email không được để trống</small>
+        <small class="text-danger" *ngIf="emailForm.controls.email.errors['email']">Email không hợp lệ</small>
+        <small class="text-danger" *ngIf="emailForm.controls.email.errors['emailExist']">Email không tồn tại</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="emailForm.invalid">Gửi</button>
+  </form>
+</div> -->
+
+<!-- Step 2: Nhập mã xác nhận -->
+<!-- <div *ngIf="currentStep === 2">
+  <form [formGroup]="codeForm" (ngSubmit)="onCodeSubmit()">
+    <div class="form-group">
+      <label for="code">Mã xác nhận (mặc định là 123456)</label>
+      <input type="text" class="form-control" id="code" formControlName="code">
+      <div *ngIf="codeForm.controls.code.errors && (codeForm.controls.code.invalid || codeForm.controls.code.touched)">
+        <small class="text-danger" *ngIf="codeForm.controls.code.errors['required']">Mã xác nhận không được để trống</small>
+        <small class="text-danger" *ngIf="codeForm.controls.code.errors['incorrectCode']">Mã xác nhận không chính xác</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="codeForm.invalid">Gửi</button>
+  </form>
+</div> -->
+
+<!-- Step 3: Nhập lại mật khẩu -->
+<!-- <div *ngIf="currentStep === 3">
+  <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+    <div class="form-group">
+      <label for="password">Mật khẩu mới</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div *ngIf="passwordForm.controls.password.errors && (passwordForm.controls.password.invalid || passwordForm.controls.password.touched)">
+        <small class="text-danger" *ngIf="passwordForm.controls.password.errors['required']">Mật khẩu không được để trống</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Nhập lại mật khẩu mới</label>
+      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="passwordForm.controls.confirmPassword.errors && (passwordForm.controls.confirmPassword.invalid || passwordForm.controls.confirmPassword.touched)">
+        <small class="text-danger" *ngIf="passwordForm.controls.confirmPassword.errors['required']">Nhập lại mật khẩu không được để trống</small>
+        <small class="text-danger" *ngIf="passwordForm.controls.confirmPassword.errors['misMatch']">Mật khẩu không trùng khớp</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="passwordForm.invalid">Gửi</button>
+  </form>
+</div> -->
