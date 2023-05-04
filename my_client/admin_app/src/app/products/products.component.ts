@@ -69,6 +69,20 @@ export class ProductsComponent {
       this.products = data;
     });
   }
+  onFileSelected (event:any, products: IProduct)
+  {
+    let me =this;
+    let file = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      products.image=reader.result!.toString()
+    };
+    reader.onerror= function (error) {
+      console.log('Error: ', error);
+    };
+  }
   deleteProduct(productId: any) {
     Swal.fire({
       title: 'Xóa sản phẩm',
