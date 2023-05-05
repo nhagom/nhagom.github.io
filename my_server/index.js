@@ -278,6 +278,30 @@ app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
+// app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
+//   const customerEmail = req.params.customerEmail;
+//   const password = req.body.password;
+//   const salt = crypto.randomBytes(16).toString('hex'); // Tạo ngẫu nhiên chuỗi salt
+//   const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex'); // Mã hóa mật khẩu với salt
+  
+//   await customersCollection.updateOne(
+//     {customerEmail: customerEmail},
+//     { $set: { 
+//       customerId: req.body.customerId,
+//       customerName: req.body.customerName,
+//       customerEmail: req.body.customerEmail,
+//       customerPhoneNumb: req.body.customerPhoneNumb,
+//       customerBirth: req.body.customerBirth,
+//       customerGender: req.body.customerGender,
+//       customerAddress: req.body.customerAddress,
+//       password: hash, // Lưu mật khẩu đã được mã hóa vào database
+//       salt: salt // Lưu chuỗi salt vào database
+//     }}
+//   );
+
+//   const updatedCustomer = await customersCollection.findOne({customerEmail: customerEmail});
+//   res.send(updatedCustomer);
+// });
 //api kiểm tra email, pass khi login
 app.post("/users", cors(), async(req, res)=>{
     var crypto = require('crypto'); 
