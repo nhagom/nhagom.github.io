@@ -1,7 +1,4 @@
-.row-banner img {
-  /* width: 100vw; */
-  width: 100%;
-}
+/* main{} */
 
 .row__item--left {
   display: flex;
@@ -25,6 +22,7 @@
 }
 
 .row__item--left .content-box h2 {
+  margin: 20px;
   color: #9DAB86;
   text-align: center;
 }
@@ -61,6 +59,7 @@
 }
 
 .row__item--right .content-box h2 {
+  margin: 20px;
   color: #9DAB86;
   text-align: center;
 }

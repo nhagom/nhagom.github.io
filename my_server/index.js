@@ -279,6 +279,30 @@ app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
     const result = await customersCollection.find({customerEmail:email}).toArray();
     res.send(result[0])
 })
+// app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
+//   const customerEmail = req.params.customerEmail;
+//   const password = req.body.password;
+//   const salt = crypto.randomBytes(16).toString('hex'); // Tạo ngẫu nhiên chuỗi salt
+//   const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex'); // Mã hóa mật khẩu với salt
+  
+//   await customersCollection.updateOne(
+//     {customerEmail: customerEmail},
+//     { $set: { 
+//       customerId: req.body.customerId,
+//       customerName: req.body.customerName,
+//       customerEmail: req.body.customerEmail,
+//       customerPhoneNumb: req.body.customerPhoneNumb,
+//       customerBirth: req.body.customerBirth,
+//       customerGender: req.body.customerGender,
+//       customerAddress: req.body.customerAddress,
+//       password: hash, // Lưu mật khẩu đã được mã hóa vào database
+//       salt: salt // Lưu chuỗi salt vào database
+//     }}
+//   );
+
+//   const updatedCustomer = await customersCollection.findOne({customerEmail: customerEmail});
+//   res.send(updatedCustomer);
+// });
 //api kiểm tra email, pass khi login
 app.post("/users", cors(), async(req, res)=>{
     var crypto = require('crypto'); 
@@ -428,6 +452,43 @@ app.get('/orders/:start/:end', async (req, res) => {
       res.send(false);
     }
   });
+// Xóa Blog
+app.delete("/blogs/delete/:Id", cors(), async (req, res)=>{
+  var Id= req.params.Id;
+  await blogsCollection.deleteOne(
+      {blogId: Id}
+  )
+  const result2 = await blogsCollection.find({}).toArray();
+  res.send(result2)
+});
+// Sửa Blog
+app.put("/blogs/update/:Id", cors(), async (req,res)=>{
+  const { blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } = req.body;
+  await blogsCollection.updateOne(
+    { blogId: req.params.Id },
+    { $set: { blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } }
+  );
+  const result = await blogsCollection.findOne({ blogId: req.params.Id });
+  res.send(result);
+});
+ // Thêm Blog
+ app.post('/blogs/add', cors(), async (req, res) => {
+  const { blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } = req.body;
+  const newBlog = {blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent };
+  const result = await blogsCollection.insertOne(newBlog);
+  res.send(result);
+});
+// Kiểm tra Blog Id có tồn tại chưa
+app.get("/blogs/check/:Id", cors(), async (req, res) => {
+  const Id = req.params.Id;
+  const result = await blogsCollection.findOne({ blogId: Id });
+
+  if (result) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+});
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username
 //     password=req.body.password

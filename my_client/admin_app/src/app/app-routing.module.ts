@@ -5,12 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
+import { BlogsComponent } from './blogs/blogs.component';
 
 const routes: Routes = [
   {path:'customer', component:CustomersComponent},
   {path:'order', component:OrdersComponent},
   {path:'product', component:ProductsComponent},
   {path: 'home', component:HomeComponent},
+  {path: 'blog', component:BlogsComponent},
   // {path:'login', component:LoginComponent}
 ];
 

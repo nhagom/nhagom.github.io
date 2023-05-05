@@ -16,4 +16,6 @@ export class AuthService {
     // Cập nhật trạng thái đăng nhập khi đăng xuất
     this.isLoggedIn.next(false);
     }
+    // -----------------quên mật khẩu-------------
+
 }

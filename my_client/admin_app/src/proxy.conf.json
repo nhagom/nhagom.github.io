@@ -25,4 +25,11 @@
   "secure":true,
   "changeOrigin":true,
   "logLevel":"debug"
+},
+{
+  "context":["/blogs"],
+  "target": "http://localhost:3004",
+  "secure":true,
+  "changeOrigin":true,
+  "logLevel":"debug"
 }]
