@@ -1,0 +1,163 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+  <div class="input-group my-3">
+    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchProducts()">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchProducts()">Tìm kiếm</button>
+    </div>
+    <button (click)="toggleForm()">Thêm Blog</button>
+  </div>
+
+  <div *ngIf="showForm">
+    <h1 class="mt-5">Thêm blog mới</h1>
+    <form (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="form-group">
+        <label for="blogId">Blog ID:</label><span class="required">*</span>
+        <input type="text" class="form-control" #blogId="ngModel" id="blogId" [(ngModel)]="newBlog.blogId" name="blogId" required (blur)="checkProduct(newBlog.blogId)">
+        <small class="text-danger" *ngIf="result">Blog Id đã tồn tại!</small>
+        <small class="text-danger" *ngIf="blogId.invalid && blogId.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="blogName">Blog Name:</label><span class="required">*</span>
+        <input type="text" class="form-control" #blogName="ngModel" id="blogName" [(ngModel)]="newBlog.blogName" name="blogName" required>
+        <small class="text-danger" *ngIf="blogName.invalid && blogName.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="blogTitle">Blog title:</label><span class="required">*</span>
+        <input class="form-control" id="blogTitle" #blogTitle="ngModel" [(ngModel)]="newBlog.blogTitle" name="blogTitle">
+        <small class="text-danger" *ngIf="blogTitle.invalid && blogTitle.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="shortContent">Short content:</label><span class="required">*</span>
+        <textarea class="form-control" #shortContent="ngModel" id="shortContent" [(ngModel)]="newBlog.shortContent" name="shortContent" required></textarea>
+        <small class="text-danger" *ngIf="shortContent.invalid && shortContent.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <!-- <div class="form-group">
+        <label for="image">Image:</label><span class="required">*</span>
+        <input  #image="ngModel" type="file" class="form-control"
+        #name="ngModel" name="image" id="image"   [(ngModel)]="newProduct.image"
+        (change)="onFileSelected($event, newProduct)" required>
+        <small class="text-danger" *ngIf="image.invalid && image.touched">Thông tin này là bắt buộc.</small>
+      </div> -->
+      <div class="form-group">
+        <label for="content1">Content1:</label><span class="required">*</span>
+        <textarea class="form-control" #content1="ngModel" id="content1" [(ngModel)]="newBlog.content1" name="content1" required></textarea>
+        <small class="text-danger" *ngIf="content1.invalid && content1.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="content2">Content2:</label><span class="required">*</span>
+        <textarea class="form-control" #content2="ngModel" id="content2" [(ngModel)]="newBlog.content2" name="content2" required></textarea>
+        <small class="text-danger" *ngIf="content2.invalid && content2.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <div class="form-group">
+        <label for="content3">Content3:</label><span class="required">*</span>
+        <textarea class="form-control" #content3="ngModel" id="content3" [(ngModel)]="newBlog.content3" name="content3" required></textarea>
+        <small class="text-danger" *ngIf="content3.invalid && content3.touched">Thông tin này là bắt buộc.</small>
+      </div>
+      <button type="submit" class="btn btn-primary" (keydown.enter)="onSubmit()" [disabled]="disable">Save</button>
+    </form>
+  </div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>STT</th>
+        <th>Blog ID</th>
+        <th>Blog name</th>
+        <th>Short content</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of blogs ; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ b.blogId }}</td>
+        <td>{{ b.blogName }}</td>
+        <td>{{ b.blogTitle }}</td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="editBlog(b,editblogModal)">Sửa</button>
+          <button class="btn btn-danger" (click)="deleteBlog(b.blogId)">Xóa</button>
+          <button class="btn btn-info" (click)="showBlogDetails(b, blogModal)">Chi tiết</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #blogModal>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h4 class="modal-title">{{selectedBlog.productName}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Product ID:</strong> {{selectedBlog.productId}}</p>
+        <p><strong>Price:</strong> {{selectedBlog.price}}</p>
+        <p><strong>Image:</strong> <img src="{{selectedBlog.image}}" height="100px"></p>
+        <p><strong>Set:</strong> {{selectedBlog.set ? selectedBlog.set : 'None'}}</p>
+        <p><strong>Size:</strong> {{selectedBlog.size ? selectedBlog.size : 'None'}}</p>
+        <p><strong>Style:</strong> {{selectedBlog.style}}</p>
+        <p><strong>Trait:</strong> {{selectedBlog.trait}}</p>
+        <p><strong>Description:</strong> {{selectedBlog.description}}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #editblogModal>
+  <div class="modal-dialog modal-dialog-centered modal-lg rounded-0 trongSuot">
+    <div class="modal-content tora">
+      <div class="modal-header bg-info text-white" >
+        <h4 class="modal-title">Sửa sản phẩm</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="blogId">Blog ID:</label>
+            <input type="text" class="form-control" id="blogId" name="blogId" [(ngModel)]="selectedBlog.blogId" readonly>
+          </div>
+          <div class="form-group">
+            <label for="blogName">Blog name:</label>
+            <input type="text" class="form-control" id="blogName" name="blogName" [(ngModel)]="selectedBlog.blogName" required>
+          </div>
+          <div class="form-group">
+            <label for="blogTitle">Blog title:</label>
+            <input type="number" class="form-control" id="blogTitle" name="blogTitle" [(ngModel)]="selectedBlog.blogTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="imgTitle">Image:</label>
+            <img src="{{selectedBlog. imgTitle}}" height="100px">
+            <!-- <input  #image="ngModel" type="file" class="form-control"
+            #name="ngModel" name="imageTitle" id="imageTitle"   [(ngModel)]="newBlog. imgTitle"
+            (change)="onFileSelected($event, newBlog)" > -->
+          </div>
+          <div class="form-group">
+            <label for="shortContent">Short content:</label>
+            <input type="text" class="form-control" id="shortContent" name="shortContent" [(ngModel)]="selectedBlog.shortContent" required>
+          </div>
+          <div class="form-group">
+            <label for="content1">Content1:</label>
+            <input type="text" class="form-control" id="content1" name="content1" [(ngModel)]="selectedBlog.content1" required>
+          </div>
+          <div class="form-group">
+            <label for="content2">Content2:</label>
+            <input type="text" class="form-control" id="content2" name="content2" [(ngModel)]="selectedBlog.content2" required>
+          </div>
+          <div class="form-group">
+            <label for="Content3">Content3:</label>
+            <input type="text" class="form-control" id="Content3" name="Content3" [(ngModel)]="selectedBlog.content3"required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="modalRef.hide()">Hủy</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="updateProduct()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</div>

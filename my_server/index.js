@@ -29,6 +29,7 @@ app.get("/", (req,res)=>{
 const { MongoClient, ObjectId } = require('mongodb');
 client = new MongoClient("mongodb://127.0.0.1:27017");
 client.connect();
+const bcrypt = require('bcryptjs');
 
 database = client.db("gốm");
 
@@ -361,14 +362,45 @@ app.post("/orders", cors(), async (req,res) => {
   }
   )
 // login admin
+  // app.post('/admin', async (req, res) => {
+  //   const { username, password } = req.body;
+  //   const admin = await adminCollection.findOne({ username: username, password: password });
+  //   if (admin) {
+  //     res.send(true); 
+  //   } else {
+  //     res.send(false);
+  //   }});
+// login admin mã hóa
   app.post('/admin', async (req, res) => {
     const { username, password } = req.body;
-    const admin = await adminCollection.findOne({ username: username, password: password });
+    const admin = await adminCollection.findOne({ username: username });
     if (admin) {
-      res.send(true); 
+      const validPassword = await bcrypt.compare(password, admin.password);
+      if (validPassword) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
     } else {
       res.send(false);
-    }});
+    }
+  });
+// tạo tk, mk admin mã hóa
+  // app.post('/admin', async (req, res) => {
+  //   const { username, password } = req.body;
+  //   const hashedPassword = await bcrypt.hash(password, 10);
+  //   const admin = await adminCollection.findOne({ username: username });
+  //   if (admin && await bcrypt.compare(password, admin.password)) {
+  //     res.send(true);
+  //   } else {
+  //     const result = await adminCollection.insertOne({ username: username, password: hashedPassword });
+  //     if (result.insertedCount === 1) {
+  //       res.send(true);
+  //     } else {
+  //       res.send(false);
+  //     }
+  //   }
+  // });
 // lọc orderDate
 app.get('/orders/:start/:end', async (req, res) => {
   const result = await ordersCollection.find({
@@ -379,8 +411,6 @@ app.get('/orders/:start/:end', async (req, res) => {
 }).toArray();
   res.send(result);
 });
-
-
 
 // Xóa product
  app.delete("/products/delete/:Id", cors(), async (req, res)=>{
@@ -422,6 +452,43 @@ app.get('/orders/:start/:end', async (req, res) => {
       res.send(false);
     }
   });
+// Xóa Blog
+app.delete("/blogs/delete/:Id", cors(), async (req, res)=>{
+  var Id= req.params.Id;
+  await blogsCollection.deleteOne(
+      {blogId: Id}
+  )
+  const result2 = await blogsCollection.find({}).toArray();
+  res.send(result2)
+});
+// Sửa Blog
+app.put("/blogs/update/:Id", cors(), async (req,res)=>{
+  const { blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } = req.body;
+  await blogsCollection.updateOne(
+    { blogId: req.params.Id },
+    { $set: { blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } }
+  );
+  const result = await blogsCollection.findOne({ blogId: req.params.Id });
+  res.send(result);
+});
+ // Thêm Blog
+ app.post('/blogs/add', cors(), async (req, res) => {
+  const { blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } = req.body;
+  const newBlog = {blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent };
+  const result = await blogsCollection.insertOne(newBlog);
+  res.send(result);
+});
+// Kiểm tra Blog Id có tồn tại chưa
+app.get("/blogs/check/:Id", cors(), async (req, res) => {
+  const Id = req.params.Id;
+  const result = await blogsCollection.findOne({ blogId: Id });
+
+  if (result) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+});
 // app.post("/login",cors(), async(req, res)=>{
 //     username=req.body.username
 //     password=req.body.password
