@@ -346,21 +346,37 @@ app.post("/orders", cors(), async (req,res) => {
   //   } else {
   //     res.send(false);
   //   }});
+// login admin mã hóa
   app.post('/admin', async (req, res) => {
     const { username, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
     const admin = await adminCollection.findOne({ username: username });
-    if (admin && await bcrypt.compare(password, admin.password)) {
-      res.send(true);
-    } else {
-      const result = await adminCollection.insertOne({ username: username, password: hashedPassword });
-      if (result.insertedCount === 1) {
+    if (admin) {
+      const validPassword = await bcrypt.compare(password, admin.password);
+      if (validPassword) {
         res.send(true);
       } else {
         res.send(false);
       }
+    } else {
+      res.send(false);
     }
   });
+// tạo tk, mk admin mã hóa
+  // app.post('/admin', async (req, res) => {
+  //   const { username, password } = req.body;
+  //   const hashedPassword = await bcrypt.hash(password, 10);
+  //   const admin = await adminCollection.findOne({ username: username });
+  //   if (admin && await bcrypt.compare(password, admin.password)) {
+  //     res.send(true);
+  //   } else {
+  //     const result = await adminCollection.insertOne({ username: username, password: hashedPassword });
+  //     if (result.insertedCount === 1) {
+  //       res.send(true);
+  //     } else {
+  //       res.send(false);
+  //     }
+  //   }
+  // });
 // lọc orderDate
 app.get('/orders/:start/:end', async (req, res) => {
   const result = await ordersCollection.find({
@@ -371,8 +387,6 @@ app.get('/orders/:start/:end', async (req, res) => {
 }).toArray();
   res.send(result);
 });
-
-
 
 // Xóa product
  app.delete("/products/delete/:Id", cors(), async (req, res)=>{
