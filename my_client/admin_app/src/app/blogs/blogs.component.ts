@@ -56,6 +56,21 @@ export class BlogsComponent {
     });
   }
 
+  onFileSelected (event:any, products: IBlog)
+  {
+    let me =this;
+    let file = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      products.imgTitle=reader.result!.toString()
+    };
+    reader.onerror= function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
   deleteBlog(blogId: any) {
     Swal.fire({
       title: 'Xóa sản phẩm',

@@ -32,13 +32,13 @@
         <textarea class="form-control" #shortContent="ngModel" id="shortContent" [(ngModel)]="newBlog.shortContent" name="shortContent" required></textarea>
         <small class="text-danger" *ngIf="shortContent.invalid && shortContent.touched">Thông tin này là bắt buộc.</small>
       </div>
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label for="image">Image:</label><span class="required">*</span>
-        <input  #image="ngModel" type="file" class="form-control"
-        #name="ngModel" name="image" id="image"   [(ngModel)]="newProduct.image"
-        (change)="onFileSelected($event, newProduct)" required>
-        <small class="text-danger" *ngIf="image.invalid && image.touched">Thông tin này là bắt buộc.</small>
-      </div> -->
+        <input  #imgTitle="ngModel" type="file" class="form-control"
+        #name="ngModel" name="imgTitle" id="imgTitle"   [(ngModel)]="newBlog.imgTitle"
+        (change)="onFileSelected($event, newBlog)" required>
+        <small class="text-danger" *ngIf="imgTitle.invalid && imgTitle.touched">Thông tin này là bắt buộc.</small>
+      </div>
       <div class="form-group">
         <label for="content1">Content1:</label><span class="required">*</span>
         <textarea class="form-control" #content1="ngModel" id="content1" [(ngModel)]="newBlog.content1" name="content1" required></textarea>
@@ -131,9 +131,9 @@
           <div class="form-group">
             <label for="imgTitle">Image:</label>
             <img src="{{selectedBlog. imgTitle}}" height="100px">
-            <!-- <input  #image="ngModel" type="file" class="form-control"
-            #name="ngModel" name="imageTitle" id="imageTitle"   [(ngModel)]="newBlog. imgTitle"
-            (change)="onFileSelected($event, newBlog)" > -->
+            <input  #imgTitle="ngModel" type="file" class="form-control"
+            #name="ngModel" name="imgTitle" id="imgTitle"   [(ngModel)]="newBlog. imgTitle"
+            (change)="onFileSelected($event, newBlog)" >
           </div>
           <div class="form-group">
             <label for="shortContent">Short content:</label>
