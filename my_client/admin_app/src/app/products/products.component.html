@@ -37,7 +37,7 @@
       </div>
       <div class="form-group">
         <label for="price">Price:</label><span class="required">*</span>
-        <input type="number" class="form-control" #price="ngModel" step="10000"  id="price" [(ngModel)]="newProduct.price" name="price" required>
+        <input type="number" class="form-control" #price="ngModel" step="10000" min="0"  id="price" [(ngModel)]="newProduct.price" name="price" required>
         <small class="text-danger" *ngIf="price.invalid && price.touched">Thông tin này là bắt buộc.</small>
       </div>
       <div class="form-group">
@@ -143,7 +143,7 @@
           </div>
           <div class="form-group">
             <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" step="10000"  name="price" [(ngModel)]="selectedProduct.price" required>
+            <input type="number" class="form-control" id="price"  step="10000" min="0"  name="price" [(ngModel)]="selectedProduct.price" required>
           </div>
           <div class="form-group">
             <label for="image">Image:</label>

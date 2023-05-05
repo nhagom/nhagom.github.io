@@ -45,15 +45,27 @@ feedbacksCollection = database.collection("feedbacks");
   app.get("/products", cors(), async (req,res)=>{
       const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
       result.forEach((item) => {
-        const productDate = new Date(item.date);
-        item.date = productDate;
+        const prodDate = new Date(item.productDate);
+        item.productDate = prodDate;
       });
-      result.sort((a, b) => b.date - a.date);
+      result.sort((a, b) => b.productDate - a.productDate);
       result.forEach((item) => {
-        item.date = item.date.toLocaleDateString('en-GB');
+        item.productDate = item.productDate.toLocaleDateString('en-GB');
       });
       res.send(result)
   })
+
+  // Kiểm tra Product Id có tồn tại chưa
+  app.get("/products/check/:Id", cors(), async (req, res) => {
+    const Id = req.params.Id;
+    const result = await productsCollection.findOne({ productId: Id });
+  
+    if (result) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  });
  
   app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();
@@ -456,6 +468,7 @@ app.get('/orders/:start/:end', async (req, res) => {
   app.post('/products/add', cors(), async (req, res) => {
     const { productId, productName, description, price, image, set, size, style, trait } = req.body;
     const newProduct = { productId, productName, description, price, image, set, size, style, trait };
+    newProduct.productDate = new Date().toLocaleDateString('en-GB');
     const result = await productsCollection.insertOne(newProduct);
     res.send(result);
   });
