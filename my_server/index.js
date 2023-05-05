@@ -303,7 +303,7 @@ app.post("/orders", cors(), async (req,res) => {
   }
 
   // Lấy ngày hiện tại
-  const currentDate = new Date().toLocaleDateString();
+  const currentDate = new Date().toISOString().slice(0, 10);
 
   const newOrder = {
     orderId: nextOrderId,
