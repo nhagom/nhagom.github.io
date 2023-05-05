@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProduct, Product } from '../interfaces/Product';
 import { CartService } from '../services/cart.service';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-product-all',
@@ -36,13 +37,17 @@ export class ProductAllComponent {
 
   //cart
   product: any
-  addToCart(id:any){
-    this._service.getProduct(id).subscribe({
+  quantity = 1
+  item=new Cart()
+  addToCart(po:any){
+    this._service.getProduct(po._id).subscribe({
       next: (data)=>{this.product=data},
     })
-    this.cartService.addToCart(this.product,1)
+    this.item.productId = this.product.productId,
+    this.item.productName = this.product.productName,
+    this.item.image = this.product.image,
+    this.item.price = this.product.price,
+    this.cartService.addToCart(this.item, this.quantity)
   }
 
-
-  
 }
