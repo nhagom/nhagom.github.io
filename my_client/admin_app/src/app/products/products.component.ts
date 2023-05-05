@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 
 export class ProductsComponent {
   products: any;
+  startDate = '';
+  endDate = '';
   errMessage:string="";
   modalRef!: BsModalRef;
   selectedProduct: any;
@@ -26,7 +28,8 @@ export class ProductsComponent {
     set: "",
     size: "",
     style: "",
-    trait: ""
+    trait: "",
+    productDate: "" // add productDate property with a default value
   };
   productId: string = '';
   result= false;
@@ -60,7 +63,16 @@ export class ProductsComponent {
       });
     }
   }
-  // Xóa product
+  searchByDate() {
+    const filteredProducts = this.products.filter((product: { productDate: Date}) => {
+      const productDate = new Date(product.productDate);
+      return (
+        productDate >= new Date(this.startDate) && productDate <= new Date(this.endDate)
+      );
+    });
+    this.products = filteredProducts;
+  }
+    // Xóa product
   refreshPage() {
     window.location.reload();
   }
@@ -159,4 +171,6 @@ export class ProductsComponent {
       }
     });
   }
+
+
 }

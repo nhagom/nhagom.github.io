@@ -43,8 +43,17 @@ feedbacksCollection = database.collection("feedbacks");
 //----------------------------------API Chung--------------------------------------------
   app.get("/products", cors(), async (req,res)=>{
       const result = await productsCollection.find({}).sort({productId:'desc'}).toArray();
+      result.forEach((item) => {
+        const productDate = new Date(item.date);
+        item.date = productDate;
+      });
+      result.sort((a, b) => b.date - a.date);
+      result.forEach((item) => {
+        item.date = item.date.toLocaleDateString('en-GB');
+      });
       res.send(result)
   })
+ 
   app.get("/customers", cors(), async (req,res)=>{
     const result = await customersCollection.find({}).toArray();
     res.send(result)
@@ -369,13 +378,22 @@ app.get('/orders/:start/:end', async (req, res) => {
     res.send(result2)
   }
   )
+  
   // Sửa product
   app.put("/products/update/:Id", cors(), async (req,res)=>{
     // console.log(req.body)
     const { productName, price, image, set, size, style, trait, description } = req.body;
     await productsCollection.updateOne(
       { productId: req.params.Id },
-      { $set: { productName, price, image, set, size, style, trait, description } }
+      { $set: { 
+        productName: req.body.productName,
+        price: req.body.price,
+        image: req.body.image, 
+        set: req.body.set,
+        size: req.body.size,
+        style: req.body.style, 
+        trait: req.body.trait,
+        description: req.body.description } }
     );
     const result = await productsCollection.findOne({ productId: req.params.Id });
     res.send(result);
