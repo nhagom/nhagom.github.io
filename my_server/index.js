@@ -29,6 +29,7 @@ app.get("/", (req,res)=>{
 const { MongoClient, ObjectId } = require('mongodb');
 client = new MongoClient("mongodb://127.0.0.1:27017");
 client.connect();
+const bcrypt = require('bcryptjs');
 
 database = client.db("gốm");
 
@@ -337,14 +338,29 @@ app.post("/orders", cors(), async (req,res) => {
   }
   )
 // login admin
+  // app.post('/admin', async (req, res) => {
+  //   const { username, password } = req.body;
+  //   const admin = await adminCollection.findOne({ username: username, password: password });
+  //   if (admin) {
+  //     res.send(true); 
+  //   } else {
+  //     res.send(false);
+  //   }});
   app.post('/admin', async (req, res) => {
     const { username, password } = req.body;
-    const admin = await adminCollection.findOne({ username: username, password: password });
-    if (admin) {
-      res.send(true); 
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const admin = await adminCollection.findOne({ username: username });
+    if (admin && await bcrypt.compare(password, admin.password)) {
+      res.send(true);
     } else {
-      res.send(false);
-    }});
+      const result = await adminCollection.insertOne({ username: username, password: hashedPassword });
+      if (result.insertedCount === 1) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
+    }
+  });
 // lọc orderDate
 app.get('/orders/:start/:end', async (req, res) => {
   const result = await ordersCollection.find({
