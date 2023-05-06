@@ -362,6 +362,7 @@ app.post("/orders", cors(), async (req,res) => {
     customerAddress: req.body.customerAddress,
     orderDate: currentDate,
     totalPrice: req.body.totalPrice,
+    shipMethod: req.body.shipMethod,
     orderItems: req.body.orderItems
   }
 

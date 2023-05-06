@@ -5,6 +5,7 @@ export class Order {
     public customerPhoneNumb: string ="",
     public customerAddress: string ="",
     public totalPrice: number = 0,
+    public shipMethod: string = "",
     public orderItems: Array<Item>=[]
   )
   {}
