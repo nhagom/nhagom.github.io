@@ -35,6 +35,7 @@ export class ProductsComponent {
   result= false;
   showForm: boolean = false;
   disable=false;
+  isFormInvalid = false;
   constructor(private productsService: ProductsService, private modalService: BsModalService) {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
@@ -119,12 +120,34 @@ export class ProductsComponent {
       }
     });
   }
+  // updateProduct() {
+  //   this.productsService.updateProduct(this.selectedProduct)
+  //     .subscribe(() => {
+  //       this.modalRef.hide();
+  //       this.getProducts();
+  //     });
+  // }
   updateProduct() {
-    this.productsService.updateProduct(this.selectedProduct)
-      .subscribe(() => {
-        this.modalRef.hide();
-        this.getProducts();
-      });
+    if (this.validateForm()) {
+      this.productsService.updateProduct(this.selectedProduct)
+        .subscribe(() => {
+          this.modalRef.hide();
+          this.getProducts();
+        });
+    }
+  }
+  validateForm(): boolean {
+    const isFormInvalid =
+      !this.selectedProduct.productName ||
+      !this.selectedProduct.description ||
+      !this.selectedProduct.price ||
+      !this.selectedProduct.image ||
+      !this.selectedProduct.style ||
+      !this.selectedProduct.trait;
+
+    this.isFormInvalid = isFormInvalid;
+
+    return !isFormInvalid;
   }
   editProduct(product: any, template: TemplateRef<any>) {
     this.selectedProduct = Object.assign({}, product);
