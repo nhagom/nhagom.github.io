@@ -7,5 +7,6 @@ export interface IProduct {
   trait:string,
   style:string,
   price:number,
-  image:string
+  image:string,
+  productDate: string
 }

@@ -9,5 +9,7 @@ export class Product {
   public discount:string="",
   public style:string,
   public price:string="",
-  public image:string=""){}
+  public image:string="",
+  public productDate: string=""
+  ){}
 }

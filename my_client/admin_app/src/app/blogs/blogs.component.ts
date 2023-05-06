@@ -30,6 +30,7 @@ export class BlogsComponent {
   result= false;
   disable=false;
   searchText: string = '';
+  isFormInvalid = false;
   constructor(private blogsService:BlogsService,private modalService: BsModalService,private checkService:CheckService, private router: Router ){
     this.blogsService.getBlogs().subscribe((data) => {
       this.blogs = data;
@@ -56,6 +57,21 @@ export class BlogsComponent {
     });
   }
 
+  onFileSelected (event:any, products: IBlog)
+  {
+    let me =this;
+    let file = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      products.imgTitle=reader.result!.toString()
+    };
+    reader.onerror= function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
   deleteBlog(blogId: any) {
     Swal.fire({
       title: 'Xóa sản phẩm',
@@ -80,12 +96,27 @@ export class BlogsComponent {
       }
     });
   }
-  updateProduct() {
-    this.blogsService.updateBlog(this.selectedBlog)
-      .subscribe(() => {
-        this.modalRef.hide();
-        this.getBlog();
-      });
+  validateForm(): boolean {
+    const isFormInvalid =
+      !this.selectedBlog.blogName ||
+      !this.selectedBlog.blogTitle ||
+      !this.selectedBlog.shortContent ||
+      !this.selectedBlog.content1 ||
+      !this.selectedBlog.content2 ||
+      !this.selectedBlog.content3;
+
+    this.isFormInvalid = isFormInvalid;
+
+    return !isFormInvalid;
+  }
+  updateBlog() {
+    if (this.validateForm()) {
+      this.blogsService.updateBlog(this.selectedBlog)
+        .subscribe(() => {
+          this.modalRef.hide();
+          this.getBlog();
+        });
+    }
   }
   editBlog(blog: any, template: TemplateRef<any>) {
     this.selectedBlog = Object.assign({}, blog);
@@ -133,7 +164,7 @@ export class BlogsComponent {
     });
   }
 
-  searchProducts() {
+  searchBlogs() {
     if (this.searchText) {
       this.blogs = this.blogs.filter((blog: { blogName: string; blogId: string }) =>
         blog.blogName.toLowerCase().includes(this.searchText.toLowerCase())
