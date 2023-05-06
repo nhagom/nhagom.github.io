@@ -262,6 +262,9 @@ app.get("/customers/check-email-invalid/:email", cors(), async (req, res) => {
 //api chỉnh sửa mật khẩu
 app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
     // console.log(req.body)
+    var crypto = require('crypto'); 
+    salt = crypto.randomBytes(16).toString('hex');
+    hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64, `sha512`).toString(`hex`);
     await customersCollection.updateOne(
         {customerEmail: req.params.customerEmail},
         { $set: { 
@@ -272,7 +275,8 @@ app.put("/customers/pass/:customerEmail", cors(), async (req,res)=>{
             customerBirth: req.body.customerBirth,
             customerGender: req.body.customerGender,
             customerAddress: req.body.customerAddress,
-            password : req.body.password
+            password : hash,
+            salt:salt
         }}
     )
     var email = req.params.customerEmail

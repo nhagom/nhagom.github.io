@@ -40,8 +40,8 @@
                       <i class="fa-solid fa-user-plus"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end p-2 container-account">
-                      <li><span class="dropdown-item dropdown-content" routerLink="/login">Đăng nhập </span> </li> <hr>
-                      <li><span class="dropdown-item dropdown-content" routerLink="/register">Đăng ký</span></li>
+                      <li><span class="dropdown-item dropdown-content pointer" routerLink="/login">Đăng nhập </span> </li> <hr>
+                      <li><span class="dropdown-item dropdown-content pointer" routerLink="/register">Đăng ký</span></li>
                   </ul>
               </li>
               <li class="nav-item dropdown" *ngIf="isLogin">
@@ -49,8 +49,8 @@
                   <i class="fa-solid fa-circle-user"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end p-2 container-account">
-                  <li><span class="dropdown-item dropdown-content" routerLink="/account">Tài khoản</span> </li> <hr>
-                  <li><span class="dropdown-item dropdown-content" (click)="logout()" >Đăng xuất</span> </li>
+                  <li><span class="dropdown-item dropdown-content pointer" routerLink="/account">Tài khoản</span> </li> <hr>
+                  <li><span class="dropdown-item dropdown-content pointer" (click)="logout()" >Đăng xuất</span> </li>
               </ul>
               </li>
           </ul>

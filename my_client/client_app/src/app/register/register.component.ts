@@ -25,7 +25,7 @@ export class RegisterComponent {
       address: ['', [Validators.required]],
       birth: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPass: ['', [Validators.required]]
     }, { validators: passwordValidator });
   }
