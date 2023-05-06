@@ -26,6 +26,9 @@ export class ProductsService {
     return throwError(() => new Error(error.message));
   }
 
+
+
+
   deleteProduct(productId: string): Observable<any> {
     const headers = new HttpHeaders().set("Content-Type", "application/json;charset=utf-8");
     const requestOptions: object = {

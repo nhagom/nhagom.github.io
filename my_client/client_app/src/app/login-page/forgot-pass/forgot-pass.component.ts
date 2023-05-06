@@ -32,8 +32,9 @@ export class ForgotPassComponent implements OnInit {
     this.logForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email], [this.emailExistsValidator()]],
       code: ['', [Validators.required, Validators.pattern(/^[0-9]{6}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPass: ['', [Validators.required]]
+    }, { validators: passwordValidator });
   }
   get email(){
     return this.logForm.controls['email']
