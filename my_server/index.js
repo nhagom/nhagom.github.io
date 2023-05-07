@@ -117,11 +117,11 @@ app.get("/blogs", cors(), async (req,res)=>{
     res.send(result)
 })
   // get 1 blog by id
-app.get("/blogs/:id",cors(), async (req,res)=>{
-    var id = req.params["id"]
-    const result = await blogsCollection.find({blogId:id}).toArray();
-    res.send(result)
-})
+  app.get("/blogs/:id",cors(), async (req,res)=>{
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await blogsCollection.find({_id:o_id}).toArray();
+    res.send(result[0])
+  })
 // API Home
   // get sp nổi bật từ order
 app.get('/api/home', async (req, res) => {

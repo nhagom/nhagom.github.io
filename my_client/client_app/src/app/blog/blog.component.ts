@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Blog } from '../interfaces/blogs';
 import { BlogListService } from '../services/blog-list.service';
 
 @Component({
@@ -8,8 +9,19 @@ import { BlogListService } from '../services/blog-list.service';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent {
-  blogs:any
+  blogs: Blog[] = []
   errMessage:string=''
+  images: string[] = [
+    '/assets/Cover-3-01.jpg',
+    '/assets/Cover-2-02.jpg',
+    '/assets/cover-2.3-01.jpg'
+  ];
+  currentImage: number = 0;
+  ngOnInit(): void {
+    setInterval(() => {
+      this.currentImage = (this.currentImage + 1) % this.images.length;
+    }, 5000); // Change image every 5 seconds
+  }
   constructor(public _service: BlogListService,private _router: Router){
     this._service.getBlogs().subscribe({
       next:(data: any)=>{this.blogs=data},
