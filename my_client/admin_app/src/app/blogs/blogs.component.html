@@ -7,7 +7,14 @@
     </div>
     <button (click)="toggleForm()">Thêm Blog</button>
   </div>
-
+  <!-- Thêm phần tìm kiếm theo thời gian -->
+  <div class="input-group mb-3">
+    <input type="date" class="form-control" placeholder="Từ ngày" [(ngModel)]="startDate">
+    <input type="date" class="form-control" placeholder="Đến ngày" [(ngModel)]="endDate">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchByDate()">Tìm kiếm theo thời gian</button>
+    </div>
+  </div>
   <div *ngIf="showForm">
     <h1 class="mt-5">Thêm blog mới</h1>
     <form (ngSubmit)="onSubmit()" class="mt-4">
@@ -64,7 +71,8 @@
         <th>STT</th>
         <th>Blog ID</th>
         <th>Blog name</th>
-        <th>Short content</th>
+        <th>Title</th>
+        <th>Create Date</th>
         <th></th>
       </tr>
     </thead>
@@ -74,13 +82,14 @@
         <td>{{ b.blogId }}</td>
         <td>{{ b.blogName }}</td>
         <td>{{ b.blogTitle }}</td>
+        <td>{{ b.blogDate }}</td>
         <td>
           <button type="button" class="btn btn-info" (click)="editBlog(b,editblogModal)">Sửa</button>
           <button class="btn btn-danger" (click)="deleteBlog(b.blogId)">Xóa</button>
           <button class="btn btn-info" (click)="showBlogDetails(b, blogModal)">Chi tiết</button>
         </td>
       </tr>
-    </tbody>
+    </tbody>a
   </table>
 </div>
 <ng-template #blogModal>
@@ -101,6 +110,7 @@
         <p><strong>content1:</strong> {{selectedBlog.content1}}</p>
         <p><strong>content2:</strong> {{selectedBlog.content2}}</p>
         <p><strong>content3:</strong> {{selectedBlog.content3}}</p>
+        <p><strong>Create Date:</strong> {{selectedBlog.blogDate}}</p>
       </div>
     </div>
   </div>

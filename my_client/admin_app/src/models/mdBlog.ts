@@ -7,6 +7,7 @@ export class Blog {
     public content1: string = "",
     public content2: string = "",
     public content3: string = "",
-    public imgTitle: string = ""
+    public imgTitle: string = "",
+    public blogDate: string=""
   ){}
 }
