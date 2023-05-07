@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 
 export class ProductsComponent {
   products: any;
+  startDate = '';
+  endDate = '';
   errMessage:string="";
   modalRef!: BsModalRef;
   selectedProduct: any;
@@ -26,12 +28,14 @@ export class ProductsComponent {
     set: "",
     size: "",
     style: "",
-    trait: ""
+    trait: "",
+    productDate: "" // add productDate property with a default value
   };
   productId: string = '';
   result= false;
   showForm: boolean = false;
   disable=false;
+  isFormInvalid = false;
   constructor(private productsService: ProductsService, private modalService: BsModalService) {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
@@ -60,7 +64,16 @@ export class ProductsComponent {
       });
     }
   }
-  // Xóa product
+  searchByDate() {
+    const filteredProducts = this.products.filter((product: { productDate: Date}) => {
+      const productDate = new Date(product.productDate);
+      return (
+        productDate >= new Date(this.startDate) && productDate <= new Date(this.endDate)
+      );
+    });
+    this.products = filteredProducts;
+  }
+    // Xóa product
   refreshPage() {
     window.location.reload();
   }
@@ -68,6 +81,20 @@ export class ProductsComponent {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
     });
+  }
+  onFileSelected (event:any, products: IProduct)
+  {
+    let me =this;
+    let file = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      products.image=reader.result!.toString()
+    };
+    reader.onerror= function (error) {
+      console.log('Error: ', error);
+    };
   }
   deleteProduct(productId: any) {
     Swal.fire({
@@ -93,12 +120,34 @@ export class ProductsComponent {
       }
     });
   }
+  // updateProduct() {
+  //   this.productsService.updateProduct(this.selectedProduct)
+  //     .subscribe(() => {
+  //       this.modalRef.hide();
+  //       this.getProducts();
+  //     });
+  // }
   updateProduct() {
-    this.productsService.updateProduct(this.selectedProduct)
-      .subscribe(() => {
-        this.modalRef.hide();
-        this.getProducts();
-      });
+    if (this.validateForm()) {
+      this.productsService.updateProduct(this.selectedProduct)
+        .subscribe(() => {
+          this.modalRef.hide();
+          this.getProducts();
+        });
+    }
+  }
+  validateForm(): boolean {
+    const isFormInvalid =
+      !this.selectedProduct.productName ||
+      !this.selectedProduct.description ||
+      !this.selectedProduct.price ||
+      !this.selectedProduct.image ||
+      !this.selectedProduct.style ||
+      !this.selectedProduct.trait;
+
+    this.isFormInvalid = isFormInvalid;
+
+    return !isFormInvalid;
   }
   editProduct(product: any, template: TemplateRef<any>) {
     this.selectedProduct = Object.assign({}, product);
@@ -145,4 +194,6 @@ export class ProductsComponent {
       }
     });
   }
+
+
 }

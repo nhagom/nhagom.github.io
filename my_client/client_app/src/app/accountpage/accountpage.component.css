@@ -1,3 +1,7 @@
+.container{
+  padding: 40px;
+border-radius: 2px ;
+}
 .profile-item{
   display: flex;
 }
@@ -9,13 +13,32 @@
 .detail{
   flex: 2;
 }
+.nav-link{
+  color: #752B22;
+  font-weight: bold;
+}
+.nav-tab{
+  color: black;
+}
+.nav-link:hover {
+  color: #fff;
+  background-color: #752B22;
+  border-color: #752B22;
+}
+.mb-3{
+  text-align: center;
+  font-weight: bold;
+  color: antiquewhite;
+}
 .order {
+  background-color: #f1f1f1;
+  color: #333;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 6px;
   border: 1px solid black;
-  padding: 20px 10px;
+  padding: 10px 10px;
   margin: 20px 0;
 }
 .order-header {
@@ -45,14 +68,7 @@ table{
 }
 
 
-body {
-  margin: 0;
-  padding-top: 40px;
-  color: #2e323c;
-  background: #f5f6fa;
-  position: relative;
-  height: 100%;
-}
+
 .account-settings .user-profile {
   margin: 0 0 1rem 0;
   padding-bottom: 1rem;
@@ -83,6 +99,10 @@ body {
   background: #ffffff;
   color: #2e323c;
 }
+.form-control:invalid {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
 
 .card {
   background: #ffffff;
@@ -91,4 +111,41 @@ body {
   border-radius: 5px;
   border: 0;
   margin-bottom: 1rem;
+}
+.btn {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: #752B22;
+  color: #fff;
+}
+.btn:hover {
+  color: #fff;
+  background-color: #752B22;
+  border-color:#752B22;
+}
+.user-avatar img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.fade-in {
+  animation: fade-in 0.5s ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.history {
+  text-align: center;
+  color: #752B22;
+  font-weight: bolder;
+}
+
+.tab-content{
+  padding-top: 0 !important;
+}
+
+.po{
+  padding: 0px !important;
 }

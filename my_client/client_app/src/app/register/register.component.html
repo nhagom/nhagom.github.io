@@ -59,17 +59,6 @@
                       <small class="text-danger" *ngIf="regForm.controls['email'].errors?.['emailExist'] && regForm.controls['email'].touched">Email này đã được sử dụng.</small>
                     </div>
                   </div>
-                  <!-- <div class="row px-3">
-                    <label class="mb-1">
-                      <h6 class="mb-0 text-sm" for="email">Email</h6>
-                    </label>
-                    <input type="email" [email]="true" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" formControlName="email" [class.is-invalid]="regForm.controls['email'].invalid && regForm.controls['email'].touched" (blur)="checkEmail()" [(ngModel)]="customer.customerEmail">
-                    <div *ngIf="regForm.controls['email'].errors && (regForm.controls['email'].invalid || regForm.controls['email'].touched)">
-                      <small class="text-danger" *ngIf="regForm.controls['email'].errors['required'] " [class.d-none]="regForm.controls['email'].valid || regForm.controls['email'].untouched
-                        ">Email không được để trống</small>
-                      <small class="text-danger" *ngIf="regForm.controls['email'].errors['email']">Email không hợp lệ</small>
-                      <small class="text-danger" *ngIf="regForm.controls['email'].hasError('emailExist')">Email này đã được sử dụng.</small>                    </div>
-                  </div> -->
                     <div class="row px-3">
                       <label class="mb-1">
                         <h6 class="mb-0 text-sm" for="phone">Số điện thoại</h6>
@@ -96,6 +85,7 @@
                       <input type="password" class="form-control" name="password" id="password" placeholder="Nhập Mật khẩu" formControlName="password" [class.is-invalid]="regForm.controls['password'].invalid && regForm.controls['password'].touched" [(ngModel)]="customer.password">
                       <div *ngIf="regForm.controls['password'].invalid && regForm.controls['password'].touched">
                         <small class="text-danger" *ngIf="regForm.controls['password'].errors?.['required'] ">Mật khẩu không được để trống</small>
+                        <small class="text-danger" *ngIf="regForm.controls['password'].errors?.['minlength']">Mật khẩu phải có ít nhất 6 ký tự</small>
                       </div>
                     </div>
                     <div class="row px-3">

@@ -30,10 +30,10 @@
     "ngx-bootstrap": "^10.2.0",
     "ngx-owl-carousel-o": "^15.0.0",
     "ngx-pagination": "^6.0.3",
-    "ngx-toastr": "^16.1.1",
+    "ngx-toastr": "^16.2.0",
     "rxjs": "~7.8.0",
     "script-loader": "^0.7.2",
-    "sweetalert2": "^11.7.3",
+    "sweetalert2": "^11.4.8",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

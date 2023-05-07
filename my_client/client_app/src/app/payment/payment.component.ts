@@ -48,11 +48,13 @@ export class PaymentComponent {
     )
     this.order.orderItems = this.cart,
     this.order.customerEmail = this.customerEmail,
-    this.order.totalPrice = this.totalPayment
+    this.order.totalPrice = this.totalPayment,
+
     console.log(this.order)
   }
 
   postOrder() {
+    this.order.shipMethod = this.selectedPaymentMethod
     this.service.postOrder(this.order).subscribe(
       (data => this.message=data)
     )

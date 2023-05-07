@@ -8,6 +8,14 @@
     </div>
     <button (click)="toggleForm()">Thêm sản phẩm</button>
   </div>
+  <!-- Thêm phần tìm kiếm theo thời gian -->
+  <div class="input-group mb-3">
+    <input type="date" class="form-control" placeholder="Từ ngày" [(ngModel)]="startDate">
+    <input type="date" class="form-control" placeholder="Đến ngày" [(ngModel)]="endDate">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchByDate()">Tìm kiếm theo thời gian</button>
+    </div>
+  </div>
 
   <div *ngIf="showForm">
     <h1 class="mt-5">Thêm sản phẩm mới</h1>
@@ -29,12 +37,14 @@
       </div>
       <div class="form-group">
         <label for="price">Price:</label><span class="required">*</span>
-        <input type="number" class="form-control" #price="ngModel" id="price" [(ngModel)]="newProduct.price" name="price" required>
+        <input type="number" class="form-control" #price="ngModel" step="10000" min="0"  id="price" [(ngModel)]="newProduct.price" name="price" required>
         <small class="text-danger" *ngIf="price.invalid && price.touched">Thông tin này là bắt buộc.</small>
       </div>
       <div class="form-group">
         <label for="image">Image:</label><span class="required">*</span>
-        <input type="text" class="form-control" #image="ngModel" id="image" [(ngModel)]="newProduct.image" name="image" required>
+        <input  #image="ngModel" type="file" class="form-control"
+        #name="ngModel" name="image" id="image"   [(ngModel)]="newProduct.image"
+        (change)="onFileSelected($event, newProduct)" required>
         <small class="text-danger" *ngIf="image.invalid && image.touched">Thông tin này là bắt buộc.</small>
       </div>
       <div class="form-group">
@@ -67,6 +77,7 @@
           <th>Product ID</th>
           <th>Product name</th>
           <th>Price</th>
+          <th>Create Date</th>
           <th></th>
         </tr>
       </thead>
@@ -76,6 +87,7 @@
           <td>{{ p.productId }}</td>
           <td>{{ p.productName }}</td>
           <td>{{ p.price }}</td>
+          <td>{{ p.productDate }}</td>
           <td>
             <button type="button" class="btn btn-info" (click)="editProduct(p,editProductModal)">Sửa</button>
             <button class="btn btn-danger" (click)="deleteProduct(p.productId)">Xóa</button>
@@ -105,6 +117,7 @@
           <p><strong>Style:</strong> {{selectedProduct.style}}</p>
           <p><strong>Trait:</strong> {{selectedProduct.trait}}</p>
           <p><strong>Description:</strong> {{selectedProduct.description}}</p>
+          <p><strong>Create Date:</strong> {{selectedProduct.productDate}}</p>
         </div>
       </div>
     </div>
@@ -119,23 +132,28 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="isFormInvalid">
+          Bạn cần nhập đầy đủ thông tin.
+        </div>
         <form>
           <div class="form-group">
-            <label for="productId">Product ID:</label>
+            <label for="productId">Product ID:</label><span class="required">*</span>
             <input type="text" class="form-control" id="productId" name="productId" [(ngModel)]="selectedProduct.productId" readonly>
           </div>
           <div class="form-group">
-            <label for="productName">Product name:</label>
+            <label for="productName">Product name:</label><span class="required">*</span>
             <input type="text" class="form-control" id="productName" name="productName" [(ngModel)]="selectedProduct.productName" required>
           </div>
           <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="selectedProduct.price" required>
+            <label for="price">Price:</label><span class="required">*</span>
+            <input type="number" class="form-control" id="price"  step="10000" min="0"  name="price" [(ngModel)]="selectedProduct.price" required>
           </div>
           <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="text" class="form-control" id="image" name="image" [(ngModel)]="selectedProduct.image" required>
-          </div>
+            <label for="image">Image:</label><span class="required">*</span>
+            <img src="{{selectedProduct.image}}" height="100px">
+            <input  #image="ngModel" type="file" class="form-control"
+            #name="ngModel" name="image" id="image"   [(ngModel)]="newProduct.image"
+            (change)="onFileSelected($event, newProduct)" required>          </div>
           <div class="form-group">
             <label for="set">Set:</label>
             <input type="text" class="form-control" id="set" name="set" [(ngModel)]="selectedProduct.set">
@@ -145,12 +163,12 @@
             <input type="text" class="form-control" id="size" name="size" [(ngModel)]="selectedProduct.size">
           </div>
           <div class="form-group">
-            <label for="style">Style:</label>
+            <label for="style">Style:</label><span class="required">*</span>
             <input type="text" class="form-control" id="style" name="style" [(ngModel)]="selectedProduct.style" required>
           </div>
           <div class="form-group">
-            <label for="trait">Trait:</label>
-            <input type="text" class="form-control" id="trait" name="trait" [(ngModel)]="selectedProduct.trait">
+            <label for="trait">Trait:</label><span class="required">*</span>
+            <input type="text" class="form-control" id="trait" name="trait" [(ngModel)]="selectedProduct.trait" required>
           </div>
         </form>
       </div>
