@@ -313,24 +313,13 @@ section #posts {
     color: #fff;
     background-color: #7a5a36;
 }
-.size_title {
-  font-size: 43px;
-}
-.color_brown {
-  color: #7a5a36;
-}
+
 .blog_cat_title {
   position: relative;
   max-width: 1140px;
   margin: 0 auto;
 }
-.blog_cat_title h1 {
-  text-align: center;
-  padding-top: 10px;
-  font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-transform: uppercase;
-}
+
 .center{
   text-align: center;
   font-weight: bold;
