@@ -145,8 +145,8 @@
             <label for="imgTitle">Image:</label><span class="required">*</span>
             <img src="{{selectedBlog.imgTitle}}" height="100px">
             <input  #imgTitle="ngModel" type="file" class="form-control"
-            #name="ngModel" name="imgTitle" id="imgTitle"   [(ngModel)]="newBlog.imgTitle"
-            (change)="onFileSelected($event, newBlog)" >
+            #name="ngModel" name="imgTitle" id="imgTitle"   [(ngModel)]="selectedBlog.imgTitle"
+            (change)="onFileSelected($event, selectedBlog)" >
           </div>
           <div class="form-group">
             <label for="shortContent">Short content:</label><span class="required">*</span>
