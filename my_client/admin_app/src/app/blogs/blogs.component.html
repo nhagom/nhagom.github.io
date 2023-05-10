@@ -1,7 +1,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <div class="container">
   <div class="input-group my-3">
-    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchBlogs()">
+    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keydown.enter)="searchBlogs()">
     <div class="input-group-append">
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchBlogs()">Tìm kiếm</button>
     </div>
