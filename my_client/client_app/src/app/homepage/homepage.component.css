@@ -42,7 +42,7 @@ section .slidershow .slideshow .slide {
   padding-top: 100px;
 }
 .custom-text p {
-  color: #000;
+  color: #fff;
   font-size: 16px;
 
 }
@@ -309,4 +309,12 @@ p:last-child {
   width: 15%;
   height: auto;
   margin: 10px;
+}
+.center{
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+.center p{
+  color: white;
 }
