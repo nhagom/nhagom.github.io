@@ -1,4 +1,12 @@
-/* main{} */
+main {
+  width: fit-content;
+  padding-top: 20px ;
+  padding-bottom: 20px;
+}
+
+.first {
+  margin-top: 0 !important;
+}
 
 .row__item--left {
   display: flex;
@@ -45,7 +53,7 @@
 .row__item--right img {
   width: 450px;
   height: 405px;
-  margin-left: 870px;
+  margin-left: 800px;
 }
 
 .row__item--right .content-box {

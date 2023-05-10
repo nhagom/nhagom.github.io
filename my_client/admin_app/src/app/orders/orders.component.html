@@ -2,7 +2,7 @@
 <div class="container">
   <!-- Thay đổi CSS cho phần tìm kiếm -->
   <div class="input-group my-3">
-    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchCustomers()">
+    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keydown.enter)="searchCustomers()">
     <div class="input-group-append">
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchCustomers()">Tìm kiếm</button>
     </div>
