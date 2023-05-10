@@ -1,13 +1,20 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <div class="container">
   <div class="input-group my-3">
-    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchBlogs()">
+    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keydown.enter)="searchBlogs()">
     <div class="input-group-append">
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchBlogs()">Tìm kiếm</button>
     </div>
     <button (click)="toggleForm()">Thêm Blog</button>
   </div>
-
+  <!-- Thêm phần tìm kiếm theo thời gian -->
+  <div class="input-group mb-3">
+    <input type="date" class="form-control" placeholder="Từ ngày" [(ngModel)]="startDate">
+    <input type="date" class="form-control" placeholder="Đến ngày" [(ngModel)]="endDate">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchByDate()">Tìm kiếm theo thời gian</button>
+    </div>
+  </div>
   <div *ngIf="showForm">
     <h1 class="mt-5">Thêm blog mới</h1>
     <form (ngSubmit)="onSubmit()" class="mt-4">
@@ -64,7 +71,8 @@
         <th>STT</th>
         <th>Blog ID</th>
         <th>Blog name</th>
-        <th>Short content</th>
+        <th class="width">Title</th>
+        <th>Create Date</th>
         <th></th>
       </tr>
     </thead>
@@ -73,7 +81,8 @@
         <td>{{ i + 1 }}</td>
         <td>{{ b.blogId }}</td>
         <td>{{ b.blogName }}</td>
-        <td>{{ b.blogTitle }}</td>
+        <td class="width">{{ b.blogTitle }}</td>
+        <td>{{ b.blogDate }}</td>
         <td>
           <button type="button" class="btn btn-info" (click)="editBlog(b,editblogModal)">Sửa</button>
           <button class="btn btn-danger" (click)="deleteBlog(b.blogId)">Xóa</button>
@@ -101,6 +110,7 @@
         <p><strong>content1:</strong> {{selectedBlog.content1}}</p>
         <p><strong>content2:</strong> {{selectedBlog.content2}}</p>
         <p><strong>content3:</strong> {{selectedBlog.content3}}</p>
+        <p><strong>Create Date:</strong> {{selectedBlog.blogDate}}</p>
       </div>
     </div>
   </div>
@@ -135,8 +145,8 @@
             <label for="imgTitle">Image:</label><span class="required">*</span>
             <img src="{{selectedBlog.imgTitle}}" height="100px">
             <input  #imgTitle="ngModel" type="file" class="form-control"
-            #name="ngModel" name="imgTitle" id="imgTitle"   [(ngModel)]="newBlog.imgTitle"
-            (change)="onFileSelected($event, newBlog)" >
+            #name="ngModel" name="imgTitle" id="imgTitle"   [(ngModel)]="selectedBlog.imgTitle"
+            (change)="onFileSelected($event, selectedBlog)" >
           </div>
           <div class="form-group">
             <label for="shortContent">Short content:</label><span class="required">*</span>

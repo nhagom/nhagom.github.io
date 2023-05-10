@@ -23,7 +23,7 @@
 .page ngx-pagination .current {
   padding: 0.1875rem 0.625rem;
   /* background: #e0c6b0; */
-  background: #b14739;
+  background: #A27457;
   color: #fefefe;
   cursor: default;
 }
@@ -397,7 +397,7 @@
 
 
 .search-button {
-  background: linear-gradient(to bottom, #b8443c, #e8c4b4 );
+  background:#C49F88;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -408,7 +408,7 @@
 }
 
 .search-button:hover {
-  background: linear-gradient(to bottom,  #e8c4b4, #b8443c);
+  background: linear-gradient(to bottom,  #fefefe, #C49F88);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -419,7 +419,8 @@
 .sidebar__item button{
   width: 240px;
   margin-top: 10px;
-  background: linear-gradient(to bottom, #b8443c, #e8c4b4 );
+  background:#C49F88;
+  opacity: 80%;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -441,7 +442,7 @@
 .item{
   width: 125px;
   height:135px;
-  background: linear-gradient(to bottom, rgb(240, 112, 103), #e8c4b4 );
+  background: linear-gradient(to bottom,#FAF1E7, #C49F88);
   border-radius: 10px;
   margin:10px;
   display: flex;

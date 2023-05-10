@@ -13,6 +13,9 @@ import Swal from 'sweetalert2';
 })
 export class BlogsComponent {
   blogs:any;
+  b:any;
+  startDate = '';
+  endDate = '';
   errMessage:string="";
   modalRef!: BsModalRef;
   selectedBlog: any;
@@ -24,16 +27,18 @@ export class BlogsComponent {
     content1: "",
     content2: "",
     content3: "",
-    imgTitle: ""
+    imgTitle: "",
+    blogDate: ""
   };
   showForm: boolean = false;
   result= false;
   disable=false;
-  searchText: string = '';
+  searchText ="";
   isFormInvalid = false;
   constructor(private blogsService:BlogsService,private modalService: BsModalService,private checkService:CheckService, private router: Router ){
     this.blogsService.getBlogs().subscribe((data) => {
       this.blogs = data;
+      this.b = data
     });
   }
   openModalWithClass(template: TemplateRef<any>) {
@@ -57,7 +62,7 @@ export class BlogsComponent {
     });
   }
 
-  onFileSelected (event:any, products: IBlog)
+  onFileSelected (event:any, blog: any)
   {
     let me =this;
     let file = event.target.files[0];
@@ -65,7 +70,7 @@ export class BlogsComponent {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-      products.imgTitle=reader.result!.toString()
+      blog.imgTitle=reader.result!.toString()
     };
     reader.onerror= function (error) {
       console.log('Error: ', error);
@@ -165,16 +170,25 @@ export class BlogsComponent {
   }
 
   searchBlogs() {
-    if (this.searchText) {
-      this.blogs = this.blogs.filter((blog: { blogName: string; blogId: string }) =>
+    this.blogs = this.b;
+    if (this.searchText !== "") {
+      this.blogs = this.blogs.filter((blog: { blogName : string; blogId: string }) =>
         blog.blogName.toLowerCase().includes(this.searchText.toLowerCase())
         || blog.blogId.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
     else {
-      this.blogsService.getBlogs().subscribe(data => {
-        this.blogs = data;
-      });
+     this.getBlog();
     }
+  }
+
+  searchByDate() {
+    const filteredBlogs = this.blogs.filter((blog: { blogDate: Date}) => {
+      const blogDate = new Date(blog.blogDate);
+      return (
+        blogDate >= new Date(this.startDate) && blogDate <= new Date(this.endDate)
+      );
+    });
+    this.blogs = filteredBlogs;
   }
 }

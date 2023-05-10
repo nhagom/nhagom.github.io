@@ -331,3 +331,8 @@ section #posts {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-transform: uppercase;
 }
+.center{
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}

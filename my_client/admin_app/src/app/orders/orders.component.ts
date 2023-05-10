@@ -9,6 +9,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class OrdersComponent {
   Orders:any;
+  o:any;
   searchText: string = '';
   modalRef!: BsModalRef;
   selectedOrder: any;
@@ -17,11 +18,13 @@ export class OrdersComponent {
   constructor(private ordersService:OrdersService,  private modalService: BsModalService){
     this.ordersService.getOrders().subscribe((data) => {
       this.Orders = data;
+      this.o = data;
     });
   }
 
   searchCustomers() {
-    if (this.searchText) {
+    this.Orders = this.o;
+    if (this.searchText !== "") {
       this.Orders = this.Orders.filter((customer: { customerName: string; }) =>
         customer.customerName.toLowerCase().includes(this.searchText.toLowerCase())
       );
