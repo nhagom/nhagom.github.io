@@ -117,6 +117,11 @@ a {
   border: 1px solid white;
 }
 
+.lg-title {
+  font-weight: bold;
+  color: #752B22;
+}
+
 .btn-primary:disabled {
   background-color: #CDD6D6 !important;
   opacity: 100% !important;

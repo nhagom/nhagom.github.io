@@ -3,23 +3,21 @@
   <section class="single-post-content">
     <div class="container">
       <div class="row">
-        <div class="col-md-9 post-content" data-aos="fade-up">
+        <div class="col-md-7 post-content" data-aos="fade-up">
           <!-- ======= Single Post Content ======= -->
           <div class="single-post">
             <div class="post-meta title"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
             <h1 class="mb-5">{{blog.blogTitle}}</h1>
-            <p>{{blog.content1}}</p>
-            <figure class="my-4">
+            <p class="bl-content">{{blog.content1}}</p>
+            <figure class="my-3">
               <img src="{{blog.imgTitle}}" alt="" class="img-fluid">
               <figcaption>{{blog.blogTitle}}</figcaption>
             </figure>
-            <p>{{blog.content2}}</p>
-            <p>{{blog.content3}}</p>
+            <p class="bl-content">{{blog.content2}}</p>
+            <p class="bl-content">{{blog.content3}}</p>
           </div><!-- End Single Post Content -->
-
-
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <!-- ======= Sidebar ======= -->
           <div class="aside-block">
 
@@ -27,13 +25,14 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Nổi bật</button>
               </li>
-              <li class="nav-item" role="presentation">
+              <li class="nav-item nav-sp" role="presentation">
                 <button class="nav-link" id="pills-trending-tab" data-bs-toggle="pill" data-bs-target="#pills-trending" type="button" role="tab" aria-controls="pills-trending" aria-selected="false">Thịnh hành</button>
               </li>
               <li class="nav-item" role="presentation">
-<button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false">Mới nhất</button>
+              <button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false">Mới nhất</button>
               </li>
             </ul>
+            <hr>
 
             <div class="tab-content" id="pills-tabContent">
 
