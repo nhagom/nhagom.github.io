@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class BlogsComponent {
   blogs:any;
+  startDate = '';
+  endDate = '';
   errMessage:string="";
   modalRef!: BsModalRef;
   selectedBlog: any;
@@ -24,7 +26,8 @@ export class BlogsComponent {
     content1: "",
     content2: "",
     content3: "",
-    imgTitle: ""
+    imgTitle: "",
+    blogDate: ""
   };
   showForm: boolean = false;
   result= false;
@@ -176,5 +179,15 @@ export class BlogsComponent {
         this.blogs = data;
       });
     }
+  }
+
+  searchByDate() {
+    const filteredBlogs = this.blogs.filter((blog: { blogDate: Date}) => {
+      const blogDate = new Date(blog.blogDate);
+      return (
+        blogDate >= new Date(this.startDate) && blogDate <= new Date(this.endDate)
+      );
+    });
+    this.blogs = filteredBlogs;
   }
 }
