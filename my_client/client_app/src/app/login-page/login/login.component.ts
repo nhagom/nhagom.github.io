@@ -40,8 +40,7 @@ export class LoginComponent implements OnInit{
           });
           this.router.navigate(['/home']);
         } else {
-          console.log("error");
-        }
+          $('#myModal').modal('show');         }
       }
     });
     this.authService.login();
