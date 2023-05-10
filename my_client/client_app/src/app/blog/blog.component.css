@@ -4,18 +4,20 @@
   max-width: 1140px;
   margin: 0 auto;
 }
-.blog_cat_title h1 {
+/* .blog_cat_title h1 {
   text-align: center;
   margin-top: 10px;
   font-weight: 600;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-transform: uppercase;
-}
-.size_title {
-  font-size: 43px;
-}
-.color_brown {
+} */
+
+.hotBlog {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
   color: #7a5a36;
+  padding-top: 20px;
 }
 .newws {
   display: -webkit-flex;
