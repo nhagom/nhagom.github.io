@@ -36,17 +36,19 @@
       <div class="col-md-6">
         <img src="../../assets/image/homepage/home1.jpg" alt="">
       </div>
-      <div class="col-md-6">
-          <h3 class="homepage-section__title">Hơn 100 nhà hàng đã lựa chọn Nhà Gốm</h3>
-          <p class="homepage-section__content">Với kinh nghiệm làm tô chén dĩa, ly tách, bộ trà, phin cà phê cho các nhà hàng, resort, quán cà phê cho đến nay, Nhà Gốm có số lượng phong phú về chủng loại và kiểu dáng đủ để đáp ứng các yêu cầu khác nhau của các bếp trưởng, từ món Âu, món Nhật, Hàn Quốc, Việt Nam.</p>
+      <div class="col-md-6 hp-sp">
+          <div class="hp-sp">
+            <h3 class="homepage-section__title">Hơn 100 nhà hàng đã lựa chọn Nhà Gốm</h3>
+            <p class="homepage-section__content">Với kinh nghiệm làm tô chén dĩa, ly tách, bộ trà, phin cà phê cho các nhà hàng, resort, quán cà phê cho đến nay, Nhà Gốm có số lượng phong phú về chủng loại và kiểu dáng đủ để đáp ứng các yêu cầu khác nhau của các bếp trưởng, từ món Âu, món Nhật, Hàn Quốc, Việt Nam.</p>
+          </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-md-pull-6 infor">
         <div class="infor1">
-        <h3 class="homepage-section__title">Nhà Gốm làm gốm thủ công bản địa</h3>
-        <p class="homepage-section__content">Ra đời ở thời kỳ gốm Việt Nam chạy theo những đơn hàng gia công theo các yêu cầu của khách Châu Âu, Mỹ. Nhà Gốm chọn làm gốm bản địa Việt Nam, tìm lại những giá trị đã mai một của gốm Việt để làm nên dòng gốm mới, trước tiên phải có được sự yêu thích của người Việt để rồi có thể đi xa hơn, đến được với sự đón nhận của bạn bè quốc tế.</p>
-      </div>
+          <h3 class="homepage-section__title">Nhà Gốm làm gốm thủ công bản địa</h3>
+          <p class="homepage-section__content">Ra đời ở thời kỳ gốm Việt Nam chạy theo những đơn hàng gia công theo các yêu cầu của khách Châu Âu, Mỹ. Nhà Gốm chọn làm gốm bản địa Việt Nam, tìm lại những giá trị đã mai một của gốm Việt để làm nên dòng gốm mới, trước tiên phải có được sự yêu thích của người Việt để rồi có thể đi xa hơn, đến được với sự đón nhận của bạn bè quốc tế.</p>
+        </div>
       </div>
       <div class="col-md-6 col-md-push-6">
         <img src="../../assets/image/homepage/home2.jpg" alt="">
@@ -56,9 +58,11 @@
       <div class="col-md-6">
         <img src="../../assets/image/homepage/home3.jpg" alt="">
       </div>
-      <div class="col-md-6">
-        <h3 class="homepage-section__title">Nhà Gốm - Sản phẩm gốm làm chậm</h3>
-        <p class="homepage-section__content">Với xưởng làm gốm thủ công đặt tại làng Bát Tràng vỏn vẹn chỉ 30 nhân công, chúng tôi không mong muốn đi theo hướng làm gia công số lượng lớn. Đội ngũ ở Nhà Gốm mong được làm gốm “chậm”: chậm trong từng công đoạn để thủ công mà không vội vàng, qua loa, chậm trong suy nghĩ khi tạo một mẫu gốm mới để gốm ra đời không chỉ có thẩm mỹ mà còn đem đến những trải nghiệm thú vị khi sử dụng trong đời sống.</p>
+      <div class="col-md-6 hp-sp">
+        <div class="hp-sp">
+          <h3 class="homepage-section__title">Nhà Gốm - Sản phẩm gốm làm chậm</h3>
+          <p class="homepage-section__content">Với xưởng làm gốm thủ công đặt tại làng Bát Tràng vỏn vẹn chỉ 30 nhân công, chúng tôi không mong muốn đi theo hướng làm gia công số lượng lớn. Đội ngũ ở Nhà Gốm mong được làm gốm “chậm”: chậm trong từng công đoạn để thủ công mà không vội vàng, qua loa, chậm trong suy nghĩ khi tạo một mẫu gốm mới để gốm ra đời không chỉ có thẩm mỹ mà còn đem đến những trải nghiệm thú vị khi sử dụng trong đời sống.</p>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -73,7 +77,10 @@
       </div>
     </div>
   </div>
+  <hr>
 </section>
+
+
 
 
 <!-- **********************************Products************************************* -->
@@ -92,7 +99,7 @@
                       <div class="col-xs-6 col-sm-3" *ngFor="let product of products.slice(16,20)">
                           <div class="bestseller__item--card products-card">
                               <img src="{{product.image}}" alt="">
-                              <h2>{{product.productName}}</h2>
+                              <h2 class="product-name">{{product.productName}}</h2>
                               <a (click)="DetailProduct(product)">Chi tiết sản phẩm</a>
                               <p>{{product.price}}đ</p>
                               <hr>
@@ -105,9 +112,9 @@
                       <div class="col-xs-6 col-sm-3" *ngFor="let product of products.slice(5,9)">
                           <div class="bestseller__item--card products-card">
                               <img src={{product.image}} alt="">
-                              <h2>{{product.productName}}</h2>
-                              <p>{{product.price}}đ</p>
+                              <h2 class="product-name">{{product.productName}}</h2>
                               <a (click)="DetailProduct(product)">Chi tiết sản phẩm</a>
+                              <p>{{product.price}}đ</p>
                               <hr>
                           </div>
                       </div>
@@ -125,6 +132,7 @@
       </div>
   </div>
 </div>
+<hr>
 <div class="hotProduct">
   SẢN PHẨM BÁN CHẠY
 </div>
@@ -170,6 +178,7 @@
       </div>
     </div>
   </div>
+  <hr>
 </section>
 
   <!-- ---------------blog------------------------ -->
@@ -201,7 +210,7 @@
     </div>
   </div>
 </section>
-<section style="background-image: url(../../assets/image/homepage/background.jpg);">
+<section class="dtac">
   <div class="blog_cat_title">
     <h1 class="hotProduct">
       ĐỐI TÁC CỦA CHÚNG TÔI

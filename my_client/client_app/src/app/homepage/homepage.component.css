@@ -91,7 +91,7 @@ section .slidershow .slideshow .slide {
 }
 /* ----------------------------------------end banner----------------------------------------- */
 .homepage-section {
-  padding-top: 180px;
+  padding-top: 80px;
 }
 .infor {
   display: flex;
@@ -99,21 +99,51 @@ section .slidershow .slideshow .slide {
 }
 .infor1 {
   margin-top: auto;
+  margin-bottom: auto;
 }
 .homepage-section__title {
   font-size: 28px;
-  font-weight: 500;
+  font-weight: bold;
   color: #6f784a;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .homepage-section__content {
   font-size: 16px;
   color: #666;
   line-height: 1.5;
+  font-style: italic;
+}
+
+.hp-sp {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.row{
+  padding-bottom: 20px;
+}
+
+.col-md-6 img {
+  border-radius: 20px;
+  border: 1px solid #6f784a;
+}
+
+hr {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: 30px;
 }
 
 /* *******************************************Products**************************************** */
+
+.productList {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 button.carousel-control-prev span {
   margin-left: -200px;
@@ -130,6 +160,7 @@ button.carousel-control-next span {
   text-align: center;
   color: #7a5a36;
   padding-top: 20px;
+  margin-bottom: 30px;
 }
 
 .bestseller__item {
@@ -145,7 +176,7 @@ button.carousel-control-next span {
   width: 290px;
   margin: 10px 0 10px 0;
   text-align: center;
-  background-color: var(--primary-color);
+  background-color:  #C49F88;
   width: 100%;
   justify-content: center;
   border: #000;
@@ -153,8 +184,11 @@ button.carousel-control-next span {
 }
 
 .products-card:hover {
-  background-color: #b1997e;
+  background-color: #A27457;
+  color: white ;
+  cursor: pointer;
 }
+
 .products-card img {
   width: 250px;
   height: 250px;
@@ -177,16 +211,20 @@ button.carousel-control-next span {
 
 .products-card h2 {
   font-size: 20px;
-  color: #555;
+  color: white;
   font-weight: 700;
   text-transform: capitalize;
 }
 
 .products-card p {
   margin: 10px auto;
-  color: #752b3a;
+  color: black;
   font-weight: 700;
   font-size: 20px;
+}
+
+.products-card:hover p {
+  color: #FAF1E7;
 }
 
 .products-card button {
@@ -229,6 +267,9 @@ section #posts {
 .list_news .post_home {
   display: -webkit-flex;
   box-shadow: 0 0 8px 2px #00000014;
+  background-color: #F6F3EE;
+  margin-bottom: 10px;
+  border: 1px solid white;
 }
 .list_news .post_home .thumbnail_post {
   width: 50%;
@@ -261,7 +302,7 @@ section #posts {
 .doiTac img {
   width: 15%;
   height: auto;
-  margin: 10px;
+  margin: 30px 10px;
 }
 .thumbnail_post {
   width: 65%;
@@ -324,4 +365,8 @@ section #posts {
   text-align: center;
   font-weight: bold;
   font-style: italic;
+}
+
+.dtac {
+  padding: 30px;
 }

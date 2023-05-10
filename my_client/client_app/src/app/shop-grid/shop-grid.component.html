@@ -120,7 +120,7 @@
                     <div class="sidebar__item">
                       <div class="latest-product__text">
                           <h4>Sản phẩm mới</h4>
-                          <app-product-all></app-product-all>
+                          <app-product-all class="new-p"></app-product-all>
                       </div>
                   </div>
                 </div>
@@ -174,38 +174,38 @@
                         </div>
                     </div>
 
-<section class="bg-color">
-  <div class="containers">
+                  <section class="bg-color">
+                    <div class="containers">
 
-      <div class="row" *ngIf="products" >
-        <div class="col-md-3"  *ngFor="let product of products | filter: searchText | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | sortProducts: sortOrder | sortProducts: sortPrice" >
-          <div class="card"  >
-                  <div class="card-main" >
-                      <div class="image" (click)="DetailProduct(product)">
-                        <img src="{{product.image}}">
-                      </div>
-                      <div class="cart-line" (click)="DetailProduct(product)"></div>
-                      <div class="cart-item">
-                          <ul>
-                              <li (click)="addToCart(product)"><a><i class="fa fa-shopping-basket" ></i></a></li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="content" (click)="DetailProduct(product)">
-                      <a href="javascript:void(0);">{{product.productName}}</a>
-                      <p><span class="money fw-bold">{{product.price  | currency: "":"": "6.0"}}đ</span></p>
-                  </div>
-              </div>
-          </div>
-      </div>
+                        <div class="row" *ngIf="products" >
+                          <div class="col-md-3"  *ngFor="let product of products | filter: searchText | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | sortProducts: sortOrder | sortProducts: sortPrice" >
+                            <div class="card"  >
+                                    <div class="card-main" >
+                                        <div class="image" (click)="DetailProduct(product)">
+                                          <img src="{{product.image}}">
+                                        </div>
+                                        <div class="cart-line" (click)="DetailProduct(product)"></div>
+                                        <div class="cart-item">
+                                            <ul>
+                                                <li (click)="addToCart(product)"><a><i class="fa fa-shopping-basket" ></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="content" (click)="DetailProduct(product)">
+                                        <a href="javascript:void(0);">{{product.productName}}</a>
+                                        <p><span class="money fw-bold">{{product.price  | currency: "":"": "6.0"}}đ</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-      <div class="page">
-        <pagination-controls (pageChange)="p = $event" previousLabel=""
-        nextLabel=""> </pagination-controls>
-      </div >
+                        <div class="page">
+                          <pagination-controls (pageChange)="p = $event" previousLabel=""
+                          nextLabel=""> </pagination-controls>
+                        </div >
 
-  </div>
-</section>
+                    </div>
+                 </section>
 
 
 
