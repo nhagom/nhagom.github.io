@@ -113,7 +113,13 @@ a {
 }
 
 .btn-primary{
-  background-color: #752B22;
+  background-color: #A27457;
+  border: 1px solid white;
+}
+
+.btn-primary:disabled {
+  background-color: #CDD6D6 !important;
+  opacity: 100% !important;
 }
 
 @media screen and (max-width: 991px) {
@@ -135,3 +141,26 @@ a {
       margin: 0px 15px;
   }
 }
+
+.md-err{
+  width: 350px !important;
+  height: 150px !important;
+  margin-top: 250px;
+  border-radius: 10px;
+  background-color: #F6F3EE;
+  border: 1px solid #C49F88;
+  box-shadow: 2px 2px 2px 2px gray;
+}
+
+.md-head {
+  text-align: center;
+  padding-top: auto;
+  padding-bottom: auto;
+}
+
+.modal-header {
+  display: inline;
+  justify-content: center;
+  padding: 10px;
+}
+
