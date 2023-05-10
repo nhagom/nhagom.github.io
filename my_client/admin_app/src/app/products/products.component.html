@@ -145,6 +145,10 @@
             <input type="text" class="form-control" id="productName" name="productName" [(ngModel)]="selectedProduct.productName" required>
           </div>
           <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea type="text" class="form-control" id="description" name="description" [(ngModel)]="selectedProduct.description"></textarea>
+          </div>
+          <div class="form-group">
             <label for="price">Price:</label><span class="required">*</span>
             <input type="number" class="form-control" id="price"  step="10000" min="0"  name="price" [(ngModel)]="selectedProduct.price" required>
           </div>

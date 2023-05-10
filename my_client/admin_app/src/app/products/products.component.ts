@@ -139,7 +139,6 @@ export class ProductsComponent {
   validateForm(): boolean {
     const isFormInvalid =
       !this.selectedProduct.productName ||
-      !this.selectedProduct.description ||
       !this.selectedProduct.price ||
       !this.selectedProduct.image ||
       !this.selectedProduct.style ||
