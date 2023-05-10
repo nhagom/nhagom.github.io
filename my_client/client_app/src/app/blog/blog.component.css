@@ -13,11 +13,12 @@
 } */
 
 .hotBlog {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 700;
   text-align: center;
   color: #7a5a36;
-  padding-top: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 .newws {
   display: -webkit-flex;
