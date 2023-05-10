@@ -2,7 +2,7 @@
 <div class="container">
   <!-- Thay đổi CSS cho phần tìm kiếm -->
   <div class="input-group my-3">
-    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keyup)="searchProducts()">
+    <input type="text" class="form-control" placeholder="Tìm kiếm" [(ngModel)]="searchText" (keydown.enter)="searchProducts()"  >
     <div class="input-group-append">
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchProducts()">Tìm kiếm</button>
     </div>
@@ -145,6 +145,10 @@
             <input type="text" class="form-control" id="productName" name="productName" [(ngModel)]="selectedProduct.productName" required>
           </div>
           <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea type="text" class="form-control" id="description" name="description" [(ngModel)]="selectedProduct.description"></textarea>
+          </div>
+          <div class="form-group">
             <label for="price">Price:</label><span class="required">*</span>
             <input type="number" class="form-control" id="price"  step="10000" min="0"  name="price" [(ngModel)]="selectedProduct.price" required>
           </div>
@@ -152,8 +156,8 @@
             <label for="image">Image:</label><span class="required">*</span>
             <img src="{{selectedProduct.image}}" height="100px">
             <input  #image="ngModel" type="file" class="form-control"
-            #name="ngModel" name="image" id="image"   [(ngModel)]="newProduct.image"
-            (change)="onFileSelected($event, newProduct)" required>          </div>
+            #name="ngModel" name="image" id="image" value="{{selectedProduct.image}}"  [(ngModel)]="selectedProduct.image"
+            (change)="onFileSelected($event, selectedProduct)" required>          </div>
           <div class="form-group">
             <label for="set">Set:</label>
             <input type="text" class="form-control" id="set" name="set" [(ngModel)]="selectedProduct.set">

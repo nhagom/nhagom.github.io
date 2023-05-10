@@ -5,7 +5,6 @@
     </button>
     <div *ngIf="isChatbotVisible" class="chatbot" >
       <div class="chatbox">
-
         <div class="message" *ngFor="let message of messages">
           <span [ngClass]="{'chatbot-message': message.sender === 'chatbot', 'user-message': message.sender === 'user'}">
             {{message.content}}
@@ -25,4 +24,4 @@
       </div>
     </div>
   </div>
-  </div>
+</div>

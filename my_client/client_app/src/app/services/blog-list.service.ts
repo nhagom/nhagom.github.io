@@ -44,6 +44,6 @@ export class BlogListService {
   // getBlogDetail(id:any){
   //   return this.find((x: { blogId: any; })=>x.blogId==id)
   // }
-  public selectedBlogId:any
+  // public selectedBlogId:any
 }
 

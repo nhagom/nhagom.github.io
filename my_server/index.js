@@ -135,15 +135,23 @@ feedbacksCollection = database.collection("feedbacks");
 //------------------------------------ API blogs--------------------------------------
   // get all blogs
 app.get("/blogs", cors(), async (req,res)=>{
-    const result = await blogsCollection.find({}).toArray();
+    const result = await blogsCollection.find({}).sort({blogId:'desc'}).toArray();
+    result.forEach((item) => {
+      const BlogDate = new Date(item.blogDate);
+      item.blogDate = BlogDate;
+    });
+    result.sort((a, b) => b.blogDate - a.blogDate);
+    result.forEach((item) => {
+      item.blogDate = item.blogDate.toLocaleDateString('en-GB');
+    });
     res.send(result)
 })
   // get 1 blog by id
-app.get("/blogs/:id",cors(), async (req,res)=>{
-    var id = req.params["id"]
-    const result = await blogsCollection.find({blogId:id}).toArray();
-    res.send(result)
-})
+  app.get("/blogs/:id",cors(), async (req,res)=>{
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await blogsCollection.find({_id:o_id}).toArray();
+    res.send(result[0])
+  })
 // API Home
   // get sp nổi bật từ order
 app.get('/api/home', async (req, res) => {
@@ -362,6 +370,7 @@ app.post("/orders", cors(), async (req,res) => {
     customerAddress: req.body.customerAddress,
     orderDate: currentDate,
     totalPrice: req.body.totalPrice,
+    shipMethod: req.body.shipMethod,
     orderItems: req.body.orderItems
   }
 
@@ -510,6 +519,7 @@ app.put("/blogs/update/:Id", cors(), async (req,res)=>{
  app.post('/blogs/add', cors(), async (req, res) => {
   const { blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } = req.body;
   const newBlog = {blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent };
+  newBlog.blogDate = new Date().toLocaleDateString('en-GB');
   const result = await blogsCollection.insertOne(newBlog);
   res.send(result);
 });

@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 
 export class ProductsComponent {
   products: any;
+  p:any;
   startDate = '';
   endDate = '';
   errMessage:string="";
@@ -39,6 +40,7 @@ export class ProductsComponent {
   constructor(private productsService: ProductsService, private modalService: BsModalService) {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
+      this.p = data
     });
   }
   openModalWithClass(template: TemplateRef<any>) {
@@ -52,17 +54,16 @@ export class ProductsComponent {
     this.modalRef = this.modalService.show(template);
   }
   searchProducts() {
-    if (this.searchText) {
+    this.products = this.p;
+    if (this.searchText !== "") {
       this.products = this.products.filter((product: { productName: string; productId: string }) =>
         product.productName.toLowerCase().includes(this.searchText.toLowerCase())
         || product.productId.toLowerCase().includes(this.searchText.toLowerCase())
       );
+    } else {
+      this.getProducts();
     }
-    else {
-      this.productsService.getProducts().subscribe(data => {
-        this.products = data;
-      });
-    }
+
   }
   searchByDate() {
     const filteredProducts = this.products.filter((product: { productDate: Date}) => {
@@ -82,7 +83,7 @@ export class ProductsComponent {
       this.products = data;
     });
   }
-  onFileSelected (event:any, products: IProduct)
+  onFileSelected (event:any, product: any)
   {
     let me =this;
     let file = event.target.files[0];
@@ -90,7 +91,7 @@ export class ProductsComponent {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-      products.image=reader.result!.toString()
+      product.image=reader.result!.toString()
     };
     reader.onerror= function (error) {
       console.log('Error: ', error);
@@ -137,17 +138,15 @@ export class ProductsComponent {
     }
   }
   validateForm(): boolean {
-    const isFormInvalid =
+    const validForm  =
       !this.selectedProduct.productName ||
-      !this.selectedProduct.description ||
       !this.selectedProduct.price ||
       !this.selectedProduct.image ||
       !this.selectedProduct.style ||
       !this.selectedProduct.trait;
 
-    this.isFormInvalid = isFormInvalid;
-
-    return !isFormInvalid;
+    this.isFormInvalid = validForm;
+    return !validForm;
   }
   editProduct(product: any, template: TemplateRef<any>) {
     this.selectedProduct = Object.assign({}, product);

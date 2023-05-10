@@ -12,9 +12,7 @@ export class BlogDetailComponent {
   blogs:any
   errMessage:string=''
   selectedBlogId:any
-  ngOnInit():void{
-    this.selectedBlogId=this._service.selectedBlogId
-  }
+
   constructor(public _service: BlogListService,private _router: Router, private activateRoute: ActivatedRoute){
     activateRoute.paramMap.subscribe(
       (param)=>{

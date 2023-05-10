@@ -6,5 +6,6 @@ export interface IBlog {
   content1: string,
   content2: string,
   content3: string,
-  imgTitle: string
+  imgTitle: string,
+  blogDate: string
 }

@@ -1,35 +1,50 @@
-<p>blog works!</p>
 {{errMessage}}
-<section id="posts" class="posts">
-  <div class="container" data-aos="fade-up">
-    <div class="row g-5">
-      <div class="col-lg-8">
-        <div class="row g-5">
-          <div class="col-lg-4 border-start custom-border" *ngFor="let blog of blogs">
-            <div class="post-entry-1">
-              <a style="cursor:pointer" [routerLink]="'/blog-detail'">
-                <img src="{{blog.imgTitle}}" alt="" class="img-fluid"  style="height:150px;width: 225px;">
-              </a>
-              <div class="post-meta"><span class="date">{{blog.blogName}}</span></div>
-              <h4><a style="cursor:pointer" [routerLink]="'/blog-detail'">{{blog.blogTitle}}</a></h4>
+  <div class="blog_cat_title">
+    <h1 class="color_brown size_title">Chuyện gốm chuyện nghề</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 newws" *ngFor="let blog of blogs.slice(0,6)">
+        <div class="thumbnail_post">
+          <a (click)="detailBlog(blog)"><img src="{{blog.imgTitle}}"></a>
+        </div>
+        <div class="text_post">
+          <div class="text_post_detail">
+            <div class="date">{{blog.blogName}}</div>
+            <h3 class="color_blue_black"><a>{{blog.blogTitle}}</a></h3>
+            <div class="date">{{blog.blogDate}}</div>
+            <p>
+              {{blog.shortContent}}
+            </p>
+            <div class="button_seemore_blog">
+              <a (click)="detailBlog(blog)">Xem Thêm</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="trending">
-          <h3>Trending</h3>
-          <ul class="trending-post" *ngFor="let blog of blogs.slice(0,6)">
-            <li>
-              <a style="cursor:pointer" [routerLink]="'/blog-detail'">
-                <h3>{{blog.blogTitle}}</h3>
-                <span class="author">{{blog.blogName}}</span>
-              </a>
-            </li>
-          </ul>
+    </div>
+  </div>
+
+  <div class="list_news">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-mg-6" *ngFor="let blog of blogs.slice(6,19)">
+          <div class="post_home">
+            <div class="thumbnail_post">
+              <a (click)="detailBlog(blog)"><img src="{{blog.imgTitle}}"></a>
+            </div>
+            <div class="text_post">
+              <div class="text_post_detail">
+                <div class="date">{{blog.blogDate}}</div>
+                <h3 class="color_blue_black"><a>{{blog.blogTitle}}</a></h3>
+                <p>{{blog.shortContent}}</p>
+                <div class="button_seemore_blog">
+                  <a (click)="detailBlog(blog)">Xem Thêm</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-

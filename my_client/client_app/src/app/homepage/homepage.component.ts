@@ -15,6 +15,17 @@ export class HomepageComponent {
   errMessage:string="";
   Styles: any;
   popularProducts:any;
+  images: string[] = [
+    '/assets/Cover-3-01.jpg',
+    '/assets/Cover-3-02.jpg',
+    '/assets/Cover-3-03.jpg'
+  ];
+  currentImage: number = 0;
+  ngOnInit(): void {
+    setInterval(() => {
+      this.currentImage = (this.currentImage + 1) % this.images.length;
+    }, 8000); // Change image every 5 seconds
+  }
   constructor(private _service:ProductApiService, private _service1:BlogListService,
               public router:Router, private _service2:PopularProductsService){
     this._service.getProducts().subscribe({

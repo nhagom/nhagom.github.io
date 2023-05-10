@@ -4,95 +4,31 @@
     margin-top: 20px;
     position: relative;
     z-index: 1;
-    /* box-shadow: 0px 2px 2px 1px rgba(71, 71, 71, 0.52); */
     position: relative;
     background: #e0c6b0;
     padding: 20px;
     border-radius: 10px;
   }
 
-/*
-  .sale-price{
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: #ff4000;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    padding: 12px;
-    text-transform: uppercase;
-    color: #fff;
-    font-size: 26px;
-    width: 260px;
-    text-align: center;
-  }
-
-  .selling-col-1{
-    width: 16%;
-    display: inline-block;
-    vertical-align: middle;
-  } */
-
 
   .zoom img{
     display: inline-block;
     vertical-align: middle;
-    /* box-shadow: 0px 1px 3px 1px rgba(71, 71, 71, 0.52);
-    transition: transform .2s;  */
     transition: all 0.8s;
 
   }
 
   .zoom:hover img{
-    /* transform: scale(1.1); */
     transform: scale(1.06);
 
   }
 
-  /* .selling-col-2  */
   .col-md-7 .col-md-5 {
     width: 42%;
     display: inline-block;
     vertical-align: middle;
     background: #e0c6b0;
   }
-
-  /* .selling-left ul{
-    padding: 0;
-    margin: 0;
-  }
-
-  .selling-left ul li{
-    display: block;
-    padding: 22px;
-    text-align: center;
-    background: #f5f5f5;
-    border-bottom: 1px solid #dbdbdb;
-  }
-
-  .selling-left ul li:first-child{
-    border-top-left-radius: 10px;
-    padding-top: 130px;
-  }
-
-   .selling-left ul li:last-child{
-    border-bottom: none;
-    border-bottom-left-radius: 10px;
-  }
-
-  .selling-left ul li .count-date{
-      color:#eee;
-      font-size: 30px;
-      font-weight: 800;
-      display: block;
-      letter-spacing: 0.6px;
-  }
-
-  .selling-left ul li .count-day{
-    color: #555;
-    display: block;
-    font-size: 18px;
-  } */
 
 .text{
   font-size: 16px;
@@ -206,14 +142,9 @@
   .main-button a:hover{ background: #7b352d;}
 
 
-
-
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
-
 .bg-color {
   background: #e0c6b0;
   padding: 60px 0;
-  /* font-family: 'Roboto', sans-serif; */
 }
 
 .containers {
@@ -245,7 +176,6 @@
 
 .title::after {
   content: '\f005';
-  /* font-family: FontAwesome; */
   color: #dbdbdb;
   width: 50px;
   height: 20px;
@@ -288,7 +218,6 @@
 
 .card-main {
   position: relative;
-  /* overflow: hidden; */
 }
 
 .discount {
@@ -427,7 +356,6 @@
 
  img:hover {
   opacity: 1;
-  /* transform: scale(1.2); */
 }
 
 .col-md-3{
@@ -485,3 +413,7 @@
   background: #f7941d;
 }
 
+.quantity {
+  margin-right: 5px;
+
+}

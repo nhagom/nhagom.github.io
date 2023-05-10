@@ -6,7 +6,9 @@ export interface IBlog {
   content1: string,
   content2: string,
   content3: string,
-  imgTitle: string
+  imgTitle: string,
+  author: string,
+  blogDate: Date
 }
 
 export class Blog {
@@ -18,6 +20,8 @@ export class Blog {
     public content1: string = "",
     public content2: string = "",
     public content3: string = "",
-    public imgTitle: string = ""
+    public imgTitle: string = "",
+    public author: string = "",
+    public blogDate: Date= new Date()
   ){}
 }
