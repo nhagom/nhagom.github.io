@@ -12,7 +12,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent {
+    //Sắp xếp
+    sortOrder: string = '';
+
   blogs:any;
+  blog: IBlog[] = [];
   startDate = '';
   endDate = '';
   errMessage:string="";
@@ -58,6 +62,11 @@ export class BlogsComponent {
     this.blogsService.getBlogs().subscribe((data) => {
       this.blogs = data;
     });
+  }
+
+  reset() {
+    // Thực hiện logic để đặt lại giá trị sortPrice về giá trị mặc định
+    this.sortOrder = '';
   }
 
   onFileSelected (event:any, blog: any)
@@ -190,4 +199,5 @@ export class BlogsComponent {
     });
     this.blogs = filteredBlogs;
   }
+
 }

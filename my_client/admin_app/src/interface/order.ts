@@ -6,6 +6,7 @@ export interface IOrder {
   customerPhone:string,
   customerAddress:string,
   orderDate: string,
+  shipMethod: string,
   orderItems: Array<OItem>
 }
 
@@ -13,5 +14,6 @@ export interface OItem {
   productId:string,
   productName:string,
   unitPrice: number,
+  shipMethod: string,
   quantity:number
 }

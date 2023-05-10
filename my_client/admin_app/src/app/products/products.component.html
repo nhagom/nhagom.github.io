@@ -16,7 +16,38 @@
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchByDate()">Tìm kiếm theo thời gian</button>
     </div>
   </div>
+  <div class="filter__item">
+      <div class="row">
+          <div class="col-lg-4 col-md-3">
+              <div class="filter__sort">
+                  <b><span for="sort">Sắp xếp theo:</span></b>
+                  <select  name=" " id="sort" [(ngModel)]="sortOrder"  [disabled]="sortOrder === 'Disabled'">
+                    <option value=" " disabled>--Sắp xếp--</option>
+                    <option value="price-asc">Giá tăng dần</option>
+                    <option value="price-desc">Giá giảm dần</option>
+                    <option value="name-asc">Tên A-Z</option>
+                    <option value="name-desc">Tên Z-A</option>
+                </select>
+              </div>
+          </div>
 
+          <div class="col-lg-4 col-md-3">
+            <div class="filter__sort" style="height: 35px">
+                <b><span for="sort">Khoảng giá:</span></b>
+                <select name=" " id="sort" [(ngModel)]="sortPrice" >
+                  <option value=" " disabled>--Lọc theo--</option>
+                  <option value="Under200K">Nhỏ hơn 200,000đ</option>
+                  <option value="From200KTo400K">200,000đ-400,000đ</option>
+                  <option value="From400KTo800K">400,000đ-800,000đ</option>
+                  <option value="Over800K">Trên 800,000đ</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-3">
+            <button class="btn btn-primary"  type="button" id="button-addon2"  (click)="reset()">Xóa bộ lọc</button>
+          </div>
+      </div>
+  </div>
   <div *ngIf="showForm">
     <h1 class="mt-5">Thêm sản phẩm mới</h1>
     <form (ngSubmit)="onSubmit()" class="mt-4">
@@ -82,7 +113,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let p of products ; let i = index">
+        <tr *ngFor="let p of products | sortProducts: sortOrder | sortProducts: sortPrice | sortPrice:'Disabled' | sortPrice:'Disabled'; let i = index ">
           <td>{{ i + 1 }}</td>
           <td>{{ p.productId }}</td>
           <td>{{ p.productName }}</td>

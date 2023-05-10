@@ -16,7 +16,38 @@
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchByDate()">Tìm kiếm theo thời gian</button>
     </div>
   </div>
+  <div class="filter__item">
+    <div class="row">
 
+        <div class="col-lg-4 col-md-3 input-group" >
+            <div class="filter__sort" >
+                <b><span for="sort">Sắp xếp theo:</span></b>
+                <select  style="height: 35px" name=" " id="sort" [(ngModel)]="sortName">
+                  <option value=" " disabled>--Sắp xếp--</option>
+                  <option value="name-asc">Tên A-Z</option>
+                  <option value="name-desc">Tên Z-A</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 input-group" >
+          <div class="filter__sort" >
+              <b><span for="sort">Lọc theo:</span></b>
+              <select  style="height: 35px" name=" " id="sort" [(ngModel)]="sortShip">
+                <option value=" " disabled>--Lọc theo--</option>
+                <option value="Banking">Banking</option>
+                <option value="COD">COD</option>
+
+            </select>
+          </div>
+      </div>
+
+        <div class="col-lg-4 col-md-3 input-group">
+          <button class="btn btn-primary"  type="button" id="button-addon2"  (click)="reset()">Xóa bộ lọc</button>
+        </div>
+
+    </div>
+  </div>
   <!-- Thay đổi CSS cho phần danh sách khách hàng -->
   <div class="table-responsive">
     <table class="table table-striped">
@@ -26,16 +57,18 @@
           <th>Order ID</th>
           <th>Customer name</th>
           <th>Email</th>
+          <th>Ship Method</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <!-- Thêm điều kiện tìm kiếm theo thời gian -->
-        <tr *ngFor="let o of Orders ; let i = index">
+        <tr *ngFor="let o of Orders | sortOrders: sortName  | shipOrders: sortShip; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ o.orderId }}</td>
           <td>{{ o.customerName }}</td>
           <td>{{ o.customerEmail }}</td>
+          <td>{{ o.shipMethod}}</td>
           <td>
             <button class="btn btn-info" (click)="showOrderDetails(o, customerModal)">Chi tiết</button>
           </td>
@@ -60,6 +93,7 @@
           <p><strong>Số điện thoại:</strong> {{selectedOrder.customerPhoneNumb}}</p>
           <p><strong>Order Date:</strong> {{selectedOrder.orderDate}}</p>
           <p><strong>Địa chỉ:</strong> {{selectedOrder.customerAddress}}</p>
+          <p><strong>Vận chuyển:</strong> {{selectedOrder.shipMethod}}</p>
           <table>
             <th>Order items:</th>
             <tbody *ngFor="let i of selectedOrder.orderItems ; let a = index">

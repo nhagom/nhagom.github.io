@@ -8,12 +8,16 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent {
+  sortName: string = '';
+  sortShip: string = '';
+
   Orders:any;
   searchText: string = '';
   modalRef!: BsModalRef;
   selectedOrder: any;
   startDate = '';
   endDate = '';
+  shipMethod = '';
   constructor(private ordersService:OrdersService,  private modalService: BsModalService){
     this.ordersService.getOrders().subscribe((data) => {
       this.Orders = data;
@@ -52,5 +56,11 @@ export class OrdersComponent {
   showOrderDetails(Order: any, template: TemplateRef<any>) {
     this.selectedOrder = Order;
     this.modalRef = this.modalService.show(template);
+  }
+
+  reset() {
+    // Thực hiện logic để đặt lại giá trị sortPrice về giá trị mặc định
+    this.sortName = '';
+    this.sortShip = '';
   }
 }

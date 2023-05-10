@@ -7,12 +7,33 @@
     </div>
     <button (click)="toggleForm()">Thêm Blog</button>
   </div>
+
   <!-- Thêm phần tìm kiếm theo thời gian -->
   <div class="input-group mb-3">
     <input type="date" class="form-control" placeholder="Từ ngày" [(ngModel)]="startDate">
     <input type="date" class="form-control" placeholder="Đến ngày" [(ngModel)]="endDate">
     <div class="input-group-append">
       <button class="btn btn-primary" type="button" id="button-addon2" (click)="searchByDate()">Tìm kiếm theo thời gian</button>
+    </div>
+  </div>
+  <div class="filter__item">
+    <div class="row">
+
+        <div class="col-lg-4 col-md-3 input-group" >
+            <div class="filter__sort" >
+                <b><span for="sort">Sắp xếp theo:</span></b>
+                <select  style="height: 35px" name=" " id="sort" [(ngModel)]="sortOrder"  [disabled]="sortOrder === 'Disabled'">
+                  <option value=" " disabled>--Sắp xếp--</option>
+                  <option value="name-asc">Tên A-Z</option>
+                  <option value="name-desc">Tên Z-A</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 input-group">
+          <button class="btn btn-primary"  type="button" id="button-addon2"  (click)="reset()">Xóa bộ lọc</button>
+        </div>
+
     </div>
   </div>
   <div *ngIf="showForm">
@@ -77,7 +98,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let b of blogs ; let i = index">
+      <tr *ngFor="let b of blogs | sortBlogs: sortOrder  ; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ b.blogId }}</td>
         <td>{{ b.blogName }}</td>

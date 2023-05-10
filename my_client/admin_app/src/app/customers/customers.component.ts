@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 
 export class CustomersComponent {
+  sortName: string = '';
+
   customers:any
   errMessage:string=""
   modalRef!: BsModalRef;
@@ -44,6 +46,11 @@ export class CustomersComponent {
       console.log(this.customers);
     });
   }
+  reset() {
+    // Thực hiện logic để đặt lại giá trị sortPrice về giá trị mặc định
+    this.sortName = '';
+  }
+
   deleteCustomer(customerEmail: any) {
     Swal.fire({
       title: 'Xóa khách hàng',

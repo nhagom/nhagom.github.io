@@ -12,6 +12,11 @@ import Swal from 'sweetalert2';
 })
 
 export class ProductsComponent {
+
+  //Sắp xếp
+  sortOrder: string = '';
+  sortPrice: string = '';
+
   products: any;
   startDate = '';
   endDate = '';
@@ -51,6 +56,13 @@ export class ProductsComponent {
     this.selectedProduct = product;
     this.modalRef = this.modalService.show(template);
   }
+
+  reset() {
+    // Thực hiện logic để đặt lại giá trị sortPrice về giá trị mặc định
+    this.sortPrice = '';
+    this.sortOrder = '';
+  }
+
   searchProducts() {
     if (this.searchText) {
       this.products = this.products.filter((product: { productName: string; productId: string }) =>
@@ -64,6 +76,7 @@ export class ProductsComponent {
       });
     }
   }
+
   searchByDate() {
     const filteredProducts = this.products.filter((product: { productDate: Date}) => {
       const productDate = new Date(product.productDate);

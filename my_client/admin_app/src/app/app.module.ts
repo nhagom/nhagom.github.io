@@ -11,6 +11,13 @@ import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { SortBlogsPipe} from './blogs/sort-blogs.pipe';
+import { SortOrdersPipe} from './orders/sort-orders.pipe';
+import { ShipOrdersPipe} from './orders/ship-orders.pipe';
+import { SortProductsPipe } from './products/sort-products.pipe';
+import { sortPricePipe } from './products/sort-price.pipe';
+import { SortCustomersPipe } from './customers/sort-customers.pipe';
+
 
 
 @NgModule({
@@ -21,6 +28,12 @@ import { BlogsComponent } from './blogs/blogs.component';
     OrdersComponent,
     ProductsComponent,
     HomeComponent,
+    SortProductsPipe,
+    SortBlogsPipe,
+    SortCustomersPipe,
+    SortOrdersPipe,
+    sortPricePipe,
+    ShipOrdersPipe,
     BlogsComponent,
 
   ],
@@ -30,9 +43,10 @@ import { BlogsComponent } from './blogs/blogs.component';
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ ]
 })
 export class AppModule { }

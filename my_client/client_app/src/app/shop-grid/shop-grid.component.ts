@@ -22,6 +22,8 @@ export class ShopGridComponent {
   products: Product[] = [];
   prod: Product[] = [];
   errMessage: string = '';
+  
+  isFiltered: boolean = false;
 
   //phân trang
   p: number=1;
@@ -53,13 +55,19 @@ constructor(public _service: ProductApiService, public router: Router, private c
     });
   }
   getProducts(){
-  this._service.getProducts().subscribe({
-    next: (data) => {
-      this.prod = data;},
-    error: (err) => {
-      this.errMessage = err;
-    },
-  });
+    if (this.isFiltered) {
+      this.getProductsByPriceRange(this.minPrice, this.maxPrice);
+    } else {
+      this._service.getProducts().subscribe({
+        next: (data) => {
+          this.products = data;
+          this.totalProduct = data.length;
+        },
+        error: (err) => {
+          this.errMessage = err;
+        },
+      });
+    }
   }
   DetailProduct(d:any){
     this.router.navigate(['product-detail',d._id])
@@ -94,6 +102,7 @@ constructor(public _service: ProductApiService, public router: Router, private c
 
   //minma
   getProductsByPriceRange(min: number, max: number) {
+    this.isFiltered = true;
     this._service.getProductsByPriceRange(min, max).subscribe({
       next: (data) => {
         this.products = data;
@@ -104,6 +113,12 @@ constructor(public _service: ProductApiService, public router: Router, private c
       },
     });
   }
+
+  cancelFilter() {
+    this.isFiltered = false;
+    this.getProducts(); // Gọi lại phương thức để lấy danh sách sản phẩm ban đầu
+  }
+  
   onPriceFilterSubmit() {
     this.getProductsByPriceRange(this.minPrice, this.maxPrice);
   }
@@ -115,7 +130,11 @@ constructor(public _service: ProductApiService, public router: Router, private c
       error: (err) => {this.errMessage = err;},
     });
   }
-
+  reset() {
+    // Thực hiện logic để đặt lại giá trị sortPrice về giá trị mặc định
+    this.sortPrice = '';
+    this.sortOrder = '';
+  }
   //cart
   product: any
   quantity = 1
