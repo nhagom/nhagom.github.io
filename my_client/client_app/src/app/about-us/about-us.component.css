@@ -1,5 +1,4 @@
 main {
-  width: 100vw;
   padding-top: 20px ;
   padding-bottom: 20px;
 }
@@ -53,7 +52,7 @@ main {
 .row__item--right img {
   width: 450px;
   height: 405px;
-  margin-left: 800px;
+  margin-left: 870px;
 }
 
 .row__item--right .content-box {
