@@ -473,3 +473,25 @@
 .item:hover img{
   transform: translate(0,-40px) rotate(20deg) scale(1.4);
 }
+
+.item:hover {
+  cursor: pointer;
+}
+
+.latest-product__text {
+  background-color: #F6F3EE;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.latest-product__text h4 {
+  margin-bottom: 4px !important;
+  color: #A27457 !important;
+}
+
+.latest-product__text .new-p {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -17,6 +17,7 @@ export class BlogsComponent {
 
   blogs:any;
   blog: IBlog[] = [];
+  b:any;
   startDate = '';
   endDate = '';
   errMessage:string="";
@@ -36,11 +37,12 @@ export class BlogsComponent {
   showForm: boolean = false;
   result= false;
   disable=false;
-  searchText: string = '';
+  searchText ="";
   isFormInvalid = false;
   constructor(private blogsService:BlogsService,private modalService: BsModalService,private checkService:CheckService, private router: Router ){
     this.blogsService.getBlogs().subscribe((data) => {
       this.blogs = data;
+      this.b = data
     });
   }
   openModalWithClass(template: TemplateRef<any>) {
@@ -177,16 +179,15 @@ export class BlogsComponent {
   }
 
   searchBlogs() {
-    if (this.searchText) {
-      this.blogs = this.blogs.filter((blog: { blogName: string; blogId: string }) =>
+    this.blogs = this.b;
+    if (this.searchText !== "") {
+      this.blogs = this.blogs.filter((blog: { blogName : string; blogId: string }) =>
         blog.blogName.toLowerCase().includes(this.searchText.toLowerCase())
         || blog.blogId.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
     else {
-      this.blogsService.getBlogs().subscribe(data => {
-        this.blogs = data;
-      });
+     this.getBlog();
     }
   }
 

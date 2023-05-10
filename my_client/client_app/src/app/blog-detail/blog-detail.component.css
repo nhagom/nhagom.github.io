@@ -1,7 +1,9 @@
 
 #main section {
   /* background: #e0c6b0; */
-  padding: 60px 0;
+  padding: 40px 40px;
+  width: 100%;
+  background-image: url(../../assets/image/homepage/background.jpg)
 }
 .post-meta {
   font-size: 11px;
@@ -14,7 +16,6 @@
 }
 .title {
   font-size: 20px;
-
 }
 h1 {
   font-size: 40px;
@@ -63,4 +64,35 @@ h1 {
 .post-entry-1 h2 a {
   color: var(--color-black);
   text-decoration: none;
+}
+
+/* .post-content {
+  margin-right: 30px;
+} */
+
+.col-md-4 {
+  background-color: white;
+}
+.row {
+  justify-content: space-around;
+}
+
+.aside-block{
+  width: 100%;
+}
+
+.tab-content {
+  padding: 5px 10px;
+}
+
+.nav {
+  justify-content: space-between;
+}
+
+.nav-item{
+  width: 25%;
+}
+
+.nav-sp {
+  width: 35% !important;
 }

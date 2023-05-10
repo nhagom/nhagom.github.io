@@ -15,6 +15,7 @@ export class CustomersComponent {
   sortName: string = '';
 
   customers:any
+  c:any;
   errMessage:string=""
   modalRef!: BsModalRef;
   selectedCustomer: any;
@@ -23,7 +24,7 @@ export class CustomersComponent {
   constructor(private customersService: CustomersService, private modalService: BsModalService, private checkService:CheckService,  private router: Router ) {
     this.customersService.getCustomers().subscribe((data) => {
       this.customers = data;
-      console.log(this.customers); // In ra danh sách khách hàng
+      this.c = data;
     });
   }
   openModalWithClass(template: TemplateRef<any>) {
@@ -76,7 +77,8 @@ export class CustomersComponent {
     });
   }
   searchCustomers() {
-    if (this.searchText) {
+    this.customers = this.c;
+    if (this.searchText !=="") {
       this.customers = this.customers.filter((customer: { customerName: string; }) =>
         customer.customerName.toLowerCase().includes(this.searchText.toLowerCase())
       );

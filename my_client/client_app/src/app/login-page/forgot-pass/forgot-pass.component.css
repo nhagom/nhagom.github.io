@@ -27,6 +27,16 @@ body {
   margin-left: 35px;
 }
 
+.lg-title {
+  font-weight: bold;
+  color: #752B22;
+}
+
+.btn-primary:disabled {
+  background-color: #CDD6D6 !important;
+  opacity: 100% !important;
+}
+
 .image {
   width: 360px;
   height: 280px;
@@ -113,7 +123,8 @@ a {
 }
 
 .btn-primary{
-  background-color: #752B22;
+  background-color: #A27457;
+  border: 1px solid white;
 }
 
 @media screen and (max-width: 991px) {
@@ -135,3 +146,4 @@ a {
       margin: 0px 15px;
   }
 }
+

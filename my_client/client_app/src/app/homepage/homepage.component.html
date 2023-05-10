@@ -12,7 +12,7 @@
           <div class="hero__text">
             <span>Chào bạn ghé thăm</span>
             <h2>NHÀ GỐM</h2>
-            <a href="#" class="primary-btn" style="background-color: #7a5a36;">Tìm hiểu thêm</a>
+            <a routerLink="/about" class="primary-btn" style="background-color: #7a5a36;">Tìm hiểu thêm</a>
           </div>
         </div>
       </div>
@@ -36,17 +36,19 @@
       <div class="col-md-6">
         <img src="../../assets/image/homepage/home1.jpg" alt="">
       </div>
-      <div class="col-md-6">
-          <h3 class="homepage-section__title">Hơn 100 nhà hàng đã lựa chọn Nhà Gốm</h3>
-          <p class="homepage-section__content">Với kinh nghiệm làm tô chén dĩa, ly tách, bộ trà, phin cà phê cho các nhà hàng, resort, quán cà phê cho đến nay, Nhà Gốm có số lượng phong phú về chủng loại và kiểu dáng đủ để đáp ứng các yêu cầu khác nhau của các bếp trưởng, từ món Âu, món Nhật, Hàn Quốc, Việt Nam.</p>
+      <div class="col-md-6 hp-sp">
+          <div class="hp-sp">
+            <h3 class="homepage-section__title">Hơn 100 nhà hàng đã lựa chọn Nhà Gốm</h3>
+            <p class="homepage-section__content">Với kinh nghiệm làm tô chén dĩa, ly tách, bộ trà, phin cà phê cho các nhà hàng, resort, quán cà phê cho đến nay, Nhà Gốm có số lượng phong phú về chủng loại và kiểu dáng đủ để đáp ứng các yêu cầu khác nhau của các bếp trưởng, từ món Âu, món Nhật, Hàn Quốc, Việt Nam.</p>
+          </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-md-pull-6 infor">
         <div class="infor1">
-        <h3 class="homepage-section__title">Nhà Gốm làm gốm thủ công bản địa</h3>
-        <p class="homepage-section__content">Ra đời ở thời kỳ gốm Việt Nam chạy theo những đơn hàng gia công theo các yêu cầu của khách Châu Âu, Mỹ. Nhà Gốm chọn làm gốm bản địa Việt Nam, tìm lại những giá trị đã mai một của gốm Việt để làm nên dòng gốm mới, trước tiên phải có được sự yêu thích của người Việt để rồi có thể đi xa hơn, đến được với sự đón nhận của bạn bè quốc tế.</p>
-      </div>
+          <h3 class="homepage-section__title">Nhà Gốm làm gốm thủ công bản địa</h3>
+          <p class="homepage-section__content">Ra đời ở thời kỳ gốm Việt Nam chạy theo những đơn hàng gia công theo các yêu cầu của khách Châu Âu, Mỹ. Nhà Gốm chọn làm gốm bản địa Việt Nam, tìm lại những giá trị đã mai một của gốm Việt để làm nên dòng gốm mới, trước tiên phải có được sự yêu thích của người Việt để rồi có thể đi xa hơn, đến được với sự đón nhận của bạn bè quốc tế.</p>
+        </div>
       </div>
       <div class="col-md-6 col-md-push-6">
         <img src="../../assets/image/homepage/home2.jpg" alt="">
@@ -56,9 +58,11 @@
       <div class="col-md-6">
         <img src="../../assets/image/homepage/home3.jpg" alt="">
       </div>
-      <div class="col-md-6">
-        <h3 class="homepage-section__title">Nhà Gốm - Sản phẩm gốm làm chậm</h3>
-        <p class="homepage-section__content">Với xưởng làm gốm thủ công đặt tại làng Bát Tràng vỏn vẹn chỉ 30 nhân công, chúng tôi không mong muốn đi theo hướng làm gia công số lượng lớn. Đội ngũ ở Nhà Gốm mong được làm gốm “chậm”: chậm trong từng công đoạn để thủ công mà không vội vàng, qua loa, chậm trong suy nghĩ khi tạo một mẫu gốm mới để gốm ra đời không chỉ có thẩm mỹ mà còn đem đến những trải nghiệm thú vị khi sử dụng trong đời sống.</p>
+      <div class="col-md-6 hp-sp">
+        <div class="hp-sp">
+          <h3 class="homepage-section__title">Nhà Gốm - Sản phẩm gốm làm chậm</h3>
+          <p class="homepage-section__content">Với xưởng làm gốm thủ công đặt tại làng Bát Tràng vỏn vẹn chỉ 30 nhân công, chúng tôi không mong muốn đi theo hướng làm gia công số lượng lớn. Đội ngũ ở Nhà Gốm mong được làm gốm “chậm”: chậm trong từng công đoạn để thủ công mà không vội vàng, qua loa, chậm trong suy nghĩ khi tạo một mẫu gốm mới để gốm ra đời không chỉ có thẩm mỹ mà còn đem đến những trải nghiệm thú vị khi sử dụng trong đời sống.</p>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -73,7 +77,10 @@
       </div>
     </div>
   </div>
+  <hr>
 </section>
+
+
 
 
 <!-- **********************************Products************************************* -->
@@ -92,7 +99,7 @@
                       <div class="col-xs-6 col-sm-3" *ngFor="let product of products.slice(16,20)">
                           <div class="bestseller__item--card products-card">
                               <img src="{{product.image}}" alt="">
-                              <h2>{{product.productName}}</h2>
+                              <h2 class="product-name">{{product.productName}}</h2>
                               <a (click)="DetailProduct(product)">Chi tiết sản phẩm</a>
                               <p>{{product.price}}đ</p>
                               <hr>
@@ -105,9 +112,9 @@
                       <div class="col-xs-6 col-sm-3" *ngFor="let product of products.slice(5,9)">
                           <div class="bestseller__item--card products-card">
                               <img src={{product.image}} alt="">
-                              <h2>{{product.productName}}</h2>
-                              <p>{{product.price}}đ</p>
+                              <h2 class="product-name">{{product.productName}}</h2>
                               <a (click)="DetailProduct(product)">Chi tiết sản phẩm</a>
+                              <p>{{product.price}}đ</p>
                               <hr>
                           </div>
                       </div>
@@ -125,6 +132,7 @@
       </div>
   </div>
 </div>
+<hr>
 <div class="hotProduct">
   SẢN PHẨM BÁN CHẠY
 </div>
@@ -170,78 +178,43 @@
       </div>
     </div>
   </div>
+  <hr>
 </section>
 
   <!-- ---------------blog------------------------ -->
-    <section id="posts" class="posts" style="background-image: url(../../assets/image/homepage/background.jpg);">
-      <div class="container" data-aos="fade-up">
-        <h2 class="hotProduct">TẢN MẠN VỀ GỐM</h2>
-        <div class="row g-5">
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="{{blogs[0].imgTitle}}" style="height: 360px; width: 360px;" class="img-fluid blogImage"></a>
-              <div class="post-meta"><span>{{blogs[0].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[0].blogDate}}</span></div>
-              <h2><a href="single-post.html">{{blogs[0].blogTitle}}</a></h2>
-              <p class="mb-4 d-block">{{blogs[0].shortContent}}</p>
-
-              <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-0 p-0">{{blogs[0].author}}</h3>
-                </div>
-              </div>
+<section id="posts" style="background-image: url(../../assets/image/homepage/background.jpg);">
+  <div class="blog_cat_title">
+    <h1 class="hotProduct">CHUYỆN GỐM CHUYỆN NGHỀ</h1>
+  </div>
+  <div class="list_news">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-mg-6" *ngFor="let blog of blogs.slice(6,10)">
+          <div class="post_home">
+            <div class="thumbnail_post">
+              <a (click)="detailBlog(blog)"><img src="{{blog.imgTitle}}"></a>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="{{blogs[4].imgTitle}}" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span>{{blogs[4].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[4].blogDate}}</span></div>
-              <h2><a href="single-post.html">{{blogs[4].blogTitle}}</a></h2>
-              <p class="mb-4 d-block">{{blogs[4].shortContent}}</p>
-
-              <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-0 p-0">{{blogs[4].author}}</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="{{blogs[12].imgTitle}}" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span>{{blogs[12].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[12].blogDate}}</span></div>
-              <h2><a href="single-post.html">{{blogs[12].blogTitle}}</a></h2>
-              <p class="mb-4 d-block">{{blogs[12].shortContent}}</p>
-
-              <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-0 p-0">{{blogs[12].author}}</h3>
+            <div class="text_post">
+              <div class="text_post_detail">
+                <div class="date">{{blog.blogDate}}</div>
+                <h3 class="color_blue_black"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h3>
+                <p>{{blog.shortContent}}</p>
+                <div class="button_seemore_blog">
+                  <a (click)="detailBlog(blog)">Xem Thêm</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-<section style="background-image: url(../../assets/image/homepage/background.jpg);">
-  <div class="title_product_home">
-    <div class="color_brown size_title">
-      Lướt Xem Nhà Gốm
     </div>
-    <p>
-      Gốm thủ công được chúng tôi thiết kế từ nền tảng mỹ thuật của gốm Việt Nam kết hợp cùng các giá trị của thời đương đại.
-    </p>
-    <p>&nbsp;</p>
-  </div>
-  <div class="button_seemore_product">
-    <a href="">Xem Thêm</a>
   </div>
 </section>
-<section style="background-image: url(../../assets/image/homepage/background.jpg);">
-  <div class="title_product_home">
-    <div class="color_brown size_title">
-      Đối Tác Của Chúng Tôi
-    </div>
+<section class="dtac">
+  <div class="blog_cat_title">
+    <h1 class="hotProduct">
+      ĐỐI TÁC CỦA CHÚNG TÔI
+    </h1>
   </div>
   <div class="doiTac">
     <img src="../../assets/image/homepage/doitac1.png" alt="Image 1">

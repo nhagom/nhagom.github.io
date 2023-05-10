@@ -18,6 +18,7 @@ export class ProductsComponent {
   sortPrice: string = '';
 
   products: any;
+  p:any;
   startDate = '';
   endDate = '';
   errMessage:string="";
@@ -44,6 +45,7 @@ export class ProductsComponent {
   constructor(private productsService: ProductsService, private modalService: BsModalService) {
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
+      this.p = data
     });
   }
   openModalWithClass(template: TemplateRef<any>) {
@@ -64,17 +66,16 @@ export class ProductsComponent {
   }
 
   searchProducts() {
-    if (this.searchText) {
+    this.products = this.p;
+    if (this.searchText !== "") {
       this.products = this.products.filter((product: { productName: string; productId: string }) =>
         product.productName.toLowerCase().includes(this.searchText.toLowerCase())
         || product.productId.toLowerCase().includes(this.searchText.toLowerCase())
       );
+    } else {
+      this.getProducts();
     }
-    else {
-      this.productsService.getProducts().subscribe(data => {
-        this.products = data;
-      });
-    }
+
   }
 
   searchByDate() {

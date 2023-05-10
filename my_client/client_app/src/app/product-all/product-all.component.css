@@ -265,6 +265,8 @@
   background: #f7941d;
 }
 
-
+.row {
+  justify-content: space-evenly;
+}
 
 
