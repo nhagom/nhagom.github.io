@@ -1,15 +1,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Css Styles
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css"> -->
-
     <!-- Hero Section Begin -->
 <section class="product-details spad">
 <div class="row product" >
@@ -41,19 +32,13 @@
         </h3>
 
       <div class="selling-button">
-          <div class="form-group"> <input type="number"  min="1" max="20" class="form-control" id="quantity" name="quantity" [(ngModel)]="quantity"/> </div>
+          <div class="form-group quantity"> <input type="number"  min="1" max="20" class="form-control " id="quantity" name="quantity" [(ngModel)]="quantity"/> </div>
 
-            <a href="javascript:void(0);" class="cart-btn" (click)="addToCart(product, quantity)" ><i class="fa fa-shopping-cart"></i> Add To Cart</a>
-          <!-- <button type="button" class="main-button">
-          <a href="javascript:void(0);"><i class="fa fa-heart"></i></a>
-          <a href="javascript:void(0);"><i class="fa fa-search"></i></a>
-        </button> -->
+          <a href="javascript:void(0);" class="cart-btn" (click)="addToCart(product, quantity)" ><i class="fa fa-shopping-cart"></i> Add To Cart</a>
       </div>
 
   </div>
 </div>
-
-
 
   <!-- Product Details Section Begin -->
       <div class="container">
@@ -109,20 +94,6 @@
               </div>
           </div>
           <div class="row">
-              <!-- <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="product__item">
-                      <div class="product__item__pic set-bg" data-setbg="../../assets/img/product/product-1.jpg">
-                          <ul class="product__item__pic__hover">
-                              <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                              <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="product__item__text">
-                          <h6><a href="#">Crab Pool Security</a></h6>
-                          <h5>$30.00</h5>
-                      </div>
-                  </div>
-                </div> -->
                 <div class="col-md-3"  *ngFor="let pro of products | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" >
                   <div class="card"  >
                           <div class="card-main" >

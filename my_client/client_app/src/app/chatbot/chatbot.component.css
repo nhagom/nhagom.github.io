@@ -1,6 +1,6 @@
 .chatbot-container {
   position: fixed;
-  bottom: 250px;
+  bottom: 140px;
   right: 20px;
   flex-direction: column;
   display: flex;
@@ -8,9 +8,10 @@
 }
 
 .toggle-chatbot {
-  background-color: #b14739;
+  background-color: #A52A2A;
   border: none;
   color: white;
+  font-weight: bold;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -38,6 +39,7 @@
   height: 400px;
   white-space: pre-wrap;
   word-wrap: break-word;
+  position: relative;
 }
 .chatbox {
   flex: 1;
@@ -54,19 +56,21 @@
 .chatbot-message {
   background-color: #f1f1f1;
   margin: 5px 5px;
-  border-radius: 4px;
+  border-radius: 15px;
   display: inline-block;
   padding: 5px;
+  width: 80%;
 }
 
 .user-message {
-  background-color: #b14739;
+  background-color:  #A3B5B5;
   color: white;
   margin: 5px 0px;
-  border-radius: 4px;
+  border-radius: 15px;
   display: inline-block;
   padding: 5px;
   align-self: flex-end;
+  max-width: 80%;
 }
 
 .traLoiNhanh {
@@ -74,7 +78,7 @@
   flex-direction: row;
   overflow-x: auto;
   white-space: nowrap;
-  margin-top: 5px; /* khoảng cách với input */
+
 }
 .traLoiNhanh::-webkit-scrollbar-thumb {
   background-color: #999;
@@ -92,7 +96,7 @@
 }
 
 .btnTraLoiNhanh {
-  background-color: #4376d0;
+  background-color: #C49F88 ;
   color: white;
   margin: 1px 5px 1px 0;
   border-radius: 4px;
