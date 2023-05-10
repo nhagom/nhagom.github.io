@@ -173,75 +173,39 @@
 </section>
 
   <!-- ---------------blog------------------------ -->
-    <section id="posts" class="posts" style="background-image: url(../../assets/image/homepage/background.jpg);">
-      <div class="container" data-aos="fade-up">
-        <h2 class="hotProduct">TẢN MẠN VỀ GỐM</h2>
-        <div class="row g-5">
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="{{blogs[0].imgTitle}}" style="height: 360px; width: 360px;" class="img-fluid blogImage"></a>
-              <div class="post-meta"><span>{{blogs[0].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[0].blogDate}}</span></div>
-              <h2><a href="single-post.html">{{blogs[0].blogTitle}}</a></h2>
-              <p class="mb-4 d-block">{{blogs[0].shortContent}}</p>
-
-              <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-0 p-0">{{blogs[0].author}}</h3>
-                </div>
-              </div>
+<section id="posts" style="background-image: url(../../assets/image/homepage/background.jpg);">
+  <div class="blog_cat_title">
+    <h1 class="color_brown size_title">Chuyện gốm chuyện nghề</h1>
+  </div>
+  <div class="list_news">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-mg-6" *ngFor="let blog of blogs.slice(6,10)">
+          <div class="post_home">
+            <div class="thumbnail_post">
+              <a (click)="detailBlog(blog)"><img src="{{blog.imgTitle}}"></a>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="{{blogs[4].imgTitle}}" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span>{{blogs[4].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[4].blogDate}}</span></div>
-              <h2><a href="single-post.html">{{blogs[4].blogTitle}}</a></h2>
-              <p class="mb-4 d-block">{{blogs[4].shortContent}}</p>
-
-              <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-0 p-0">{{blogs[4].author}}</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="{{blogs[12].imgTitle}}" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span>{{blogs[12].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[12].blogDate}}</span></div>
-              <h2><a href="single-post.html">{{blogs[12].blogTitle}}</a></h2>
-              <p class="mb-4 d-block">{{blogs[12].shortContent}}</p>
-
-              <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-0 p-0">{{blogs[12].author}}</h3>
+            <div class="text_post">
+              <div class="text_post_detail">
+                <div class="date">{{blog.blogDate}}</div>
+                <h3 class="color_blue_black"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h3>
+                <p>{{blog.shortContent}}</p>
+                <div class="button_seemore_blog">
+                  <a (click)="detailBlog(blog)">Xem Thêm</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-<section style="background-image: url(../../assets/image/homepage/background.jpg);">
-  <div class="title_product_home">
-    <div class="color_brown size_title">
-      Lướt Xem Nhà Gốm
     </div>
-    <p>
-      Gốm thủ công được chúng tôi thiết kế từ nền tảng mỹ thuật của gốm Việt Nam kết hợp cùng các giá trị của thời đương đại.
-    </p>
-    <p>&nbsp;</p>
-  </div>
-  <div class="button_seemore_product">
-    <a href="">Xem Thêm</a>
   </div>
 </section>
 <section style="background-image: url(../../assets/image/homepage/background.jpg);">
-  <div class="title_product_home">
-    <div class="color_brown size_title">
+  <div class="blog_cat_title">
+    <h1 class="color_brown size_title">
       Đối Tác Của Chúng Tôi
-    </div>
+    </h1>
   </div>
   <div class="doiTac">
     <img src="../../assets/image/homepage/doitac1.png" alt="Image 1">

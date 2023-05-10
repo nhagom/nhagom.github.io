@@ -1,191 +1,50 @@
 {{errMessage}}
-
-<section id="posts" class="posts">
-  <div class="container" data-aos="fade-up">
-    <div class="row g-5">
-      <div class="col-lg-8">
-        <div class="row g-5">
-          <div class="col-lg-4 border-start custom-border" *ngFor="let blog of blogs">
-            <div class="post-entry-1">
-              <a style="cursor:pointer" (click)="detailBlog(blog)">
-                <img src="{{blog.imgTitle}}" alt="" class="img-fluid"  style="height:150px;width: 225px;">
-              </a>
-              <div class="post-meta"><span class="date">{{blog.blogName}}</span></div>
-              <h4><a style="cursor:pointer" (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <!-- ======= Sidebar ======= -->
-        <div class="aside-block">
-
-          <ul class="nav nav-pills custom-tab-nav mb-4" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Phổ biến</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-trending-tab" data-bs-toggle="pill" data-bs-target="#pills-trending" type="button" role="tab" aria-controls="pills-trending" aria-selected="false">Thịnh hành</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false">Mới nhất</button>
-            </li>
-          </ul>
-
-          <div class="tab-content" id="pills-tabContent">
-
-            <!-- Popular -->
-            <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab" *ngFor="let blog of blogs.slice(0,5)">
-              <div class="post-entry-1 border-bottom">
-                <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
-                <h2 class="mb-2"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h2>
-                <span class="author mb-3 d-block">{{blog.author}}</span>
-              </div>
-            </div> <!-- End Popular -->
-
-            <!-- Trending -->
-            <div class="tab-pane fade" id="pills-trending" role="tabpanel" aria-labelledby="pills-trending-tab" *ngFor="let blog of blogs.slice(5,10)">
-              <div class="post-entry-1 border-bottom">
-                <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
-                <h2 class="mb-2"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h2>
-                <span class="author mb-3 d-block">{{blog.author}}</span>
-              </div>
-            </div> <!-- End Trending -->
-
-            <!-- Latest -->
-            <div class="tab-pane fade" id="pills-latest" role="tabpanel" aria-labelledby="pills-latest-tab" *ngFor="let blog of blogs.slice(10,15)">
-              <div class="post-entry-1 border-bottom">
-                <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
-                <h2 class="mb-2"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h2>
-                <span class="author mb-3 d-block">{{blog.author}}</span>
-              </div>
-            </div> <!-- End Latest -->
-
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="blog_cat_title">
+    <h1 class="color_brown size_title">Chuyện gốm chuyện nghề</h1>
   </div>
-</section>
-<hr>
- <!-- ======= Culture Category Section ======= -->
- <section class="category-section">
-  <div class="container" data-aos="fade-up">
-
-    <div class="section-header d-flex justify-content-between align-items-center mb-5">
-      <h2>Gốm Bát Tràng</h2>
-    </div>
-
+  <div class="container">
     <div class="row">
-      <div class="col-md-9">
-
-        <div class="d-lg-flex post-entry-2">
-          <a (click)="detailBlog(blogs[8])" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-            <img src="{{blogs[8].imgTitle}}" alt="" class="img-fluid">
-          </a>
-          <div>
-            <div class="post-meta"><span class="date">{{blogs[8].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[8].blogDate}}</span></div>
-            <h3><a (click)="detailBlog(blogs[8])">{{blogs[8].blogTitle}}</a></h3>
-            <p>{{blogs[8].shortContent}}</p>
-          </div>
+      <div class="col-md-12 newws" *ngFor="let blog of blogs.slice(0,6)">
+        <div class="thumbnail_post">
+          <a (click)="detailBlog(blog)"><img src="{{blog.imgTitle}}"></a>
         </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="post-entry-1 border-bottom">
-              <a (click)="detailBlog(blogs[10])"><img src="{{blogs[10].imgTitle}}" class="img-fluid"></a>
-              <div class="post-meta"><span class="date">{{blogs[10].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[10].blogDate}}</span></div>
-              <h2 class="mb-2"><a (click)="detailBlog(blogs[10])">{{blogs[10].blogTitle}}</a></h2>
-              <span class="author mb-3 d-block">{{blogs[10].author}}</span>
-              <p class="mb-4 d-block">{{blogs[10].shortContent}}</p>
-            </div>
-
-            <div class="post-entry-1">
-              <div class="post-meta"><span class="date">{{blogs[9].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[9].blogDate}}</span></div>
-              <h2 class="mb-2"><a (click)="detailBlog(blogs[9])">{{blogs[9].blogTitle}}</a></h2>
-              <span class="author mb-3 d-block">{{blogs[9].author}}</span>
+        <div class="text_post">
+          <div class="text_post_detail">
+            <div class="date">{{blog.blogName}}</div>
+            <h3 class="color_blue_black"><a>{{blog.blogTitle}}</a></h3>
+            <div class="date">{{blog.blogDate}}</div>
+            <p>
+              {{blog.shortContent}}
+            </p>
+            <div class="button_seemore_blog">
+              <a (click)="detailBlog(blog)">Xem Thêm</a>
             </div>
           </div>
-          <div class="col-lg-8">
-            <div class="post-entry-1">
-              <a href="single-post.html"><img src="{{blogs[6].imgTitle}}" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date">{{blogs[6].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[6].blogDate}}</span></div>
-              <h2 class="mb-2"><a (click)="detailBlog(blogs[6])">{{blogs[6].blogTitle}}</a></h2>
-              <span class="author mb-3 d-block">{{blogs[6].author}}</span>
-              <p class="mb-4 d-block">{{blogs[6].shortContent}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="post-entry-1 border-bottom"  *ngFor="let blog of blogs.slice(5,9)">
-          <div class="post-meta"><span class="date">{{blog.blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
-          <h2 class="mb-2 sidebar"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h2>
-          <span class="author mb-3 d-block">{{blog.author}}</span>
         </div>
       </div>
     </div>
   </div>
-</section><!-- End Culture Category Section -->
-<hr>
-    <!-- ======= Business Category Section ======= -->
-    <section class="category-section">
-      <div class="container" data-aos="fade-up">
 
-        <div class="section-header d-flex justify-content-between align-items-center mb-5">
-          <h2>Văn hóa - Phát triển</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-md-9 order-md-2">
-
-            <div class="d-lg-flex post-entry-2">
-              <a href="#" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
-                <img src="{{blogs[0].imgTitle}}" alt="" class="img-fluid">
-              </a>
-              <div>
-                <div class="post-meta"><span class="date">{{blogs[0].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[0].blogDate}}</span></div>
-                <h3><a (click)="detailBlog(blogs[0])">{{blogs[0].blogTitle}}</a></h3>
-                <p>{{blogs[0].shortContent}}</p>
-
-              </div>
+  <div class="list_news">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-mg-6" *ngFor="let blog of blogs.slice(6,19)">
+          <div class="post_home">
+            <div class="thumbnail_post">
+              <a (click)="detailBlog(blog)"><img src="{{blog.imgTitle}}"></a>
             </div>
-
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="post-entry-1 border-bottom">
-                  <a (click)="detailBlog(blogs[5])"><img src="{{blogs[5].imgTitle}}" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Talkshow</span> <span class="mx-1">&bullet;</span> <span>{{blogs[5].blogDate}}</span></div>
-                  <h2 class="mb-2"><a (click)="detailBlog(blogs[5])">{{blogs[5].blogTitle}}</a></h2>
-                  <span class="author mb-3 d-block">{{blogs[5].author}}</span>
-                  <p class="mb-4 d-block">{{blogs[5].shortContent}}</p>
-                </div>
-
-                <div class="post-entry-1">
-                  <div class="post-meta"><span class="date">{{blogs[1].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[1].blogDate}}</span></div>
-                  <h2 class="mb-2"><a (click)="detailBlog(blogs[1])">{{blogs[1].blogTitle}}</a></h2>
-                  <span class="author mb-3 d-block">{{blogs[1].author}}</span>
+            <div class="text_post">
+              <div class="text_post_detail">
+                <div class="date">{{blog.blogDate}}</div>
+                <h3 class="color_blue_black"><a>{{blog.blogTitle}}</a></h3>
+                <p>{{blog.shortContent}}</p>
+                <div class="button_seemore_blog">
+                  <a (click)="detailBlog(blog)">Xem Thêm</a>
                 </div>
               </div>
-              <div class="col-lg-8">
-                <div class="post-entry-1">
-                  <a href="single-post.html"><img src="{{blogs[3].imgTitle}}" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{blogs[3].blogName}}</span> <span class="mx-1">&bullet;</span> <span>{{blogs[3].blogDate}}</span></div>
-                  <h2 class="mb-2"><a (click)="detailBlog(blogs[3])">{{blogs[3].blogTitle}}</a></h2>
-                  <span class="author mb-3 d-block">{{blogs[3].author}}</span>
-                  <p class="mb-4 d-block">{{blogs[3].shortContent}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="post-entry-1 border-bottom" *ngFor="let blog of blogs.slice(0,5)">
-              <div class="post-meta"><span class="date">Văn hóa - Phát triển</span> <span class="mx-1">&bullet;</span> <span>{{blog.blogDate}}</span></div>
-              <h2 class="mb-2"><a (click)="detailBlog(blog)">{{blog.blogTitle}}</a></h2>
-              <span class="author mb-3 d-block">{{blog.author}}</span>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- End Business Category Section -->
+    </div>
+  </div>
