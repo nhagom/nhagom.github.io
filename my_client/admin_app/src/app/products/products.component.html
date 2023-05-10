@@ -152,8 +152,8 @@
             <label for="image">Image:</label><span class="required">*</span>
             <img src="{{selectedProduct.image}}" height="100px">
             <input  #image="ngModel" type="file" class="form-control"
-            #name="ngModel" name="image" id="image"   [(ngModel)]="newProduct.image"
-            (change)="onFileSelected($event, newProduct)" required>          </div>
+            #name="ngModel" name="image" id="image" value="{{selectedProduct.image}}"  [(ngModel)]="selectedProduct.image"
+            (change)="onFileSelected($event, selectedProduct)" required>          </div>
           <div class="form-group">
             <label for="set">Set:</label>
             <input type="text" class="form-control" id="set" name="set" [(ngModel)]="selectedProduct.set">

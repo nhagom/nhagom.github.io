@@ -82,7 +82,7 @@ export class ProductsComponent {
       this.products = data;
     });
   }
-  onFileSelected (event:any, products: IProduct)
+  onFileSelected (event:any, product: any)
   {
     let me =this;
     let file = event.target.files[0];
@@ -90,7 +90,7 @@ export class ProductsComponent {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-      products.image=reader.result!.toString()
+      product.image=reader.result!.toString()
     };
     reader.onerror= function (error) {
       console.log('Error: ', error);
@@ -137,7 +137,7 @@ export class ProductsComponent {
     }
   }
   validateForm(): boolean {
-    const isFormInvalid =
+    const validForm  =
       !this.selectedProduct.productName ||
       !this.selectedProduct.description ||
       !this.selectedProduct.price ||
@@ -145,9 +145,8 @@ export class ProductsComponent {
       !this.selectedProduct.style ||
       !this.selectedProduct.trait;
 
-    this.isFormInvalid = isFormInvalid;
-
-    return !isFormInvalid;
+    this.isFormInvalid = validForm;
+    return !validForm;
   }
   editProduct(product: any, template: TemplateRef<any>) {
     this.selectedProduct = Object.assign({}, product);

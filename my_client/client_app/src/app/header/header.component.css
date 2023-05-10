@@ -9,7 +9,7 @@ hr{
 .dropdown-content {
   padding: 8px;
   text-align: center;
-  color: #b14739;
+  color: #C49F88;
   font-weight: bold;
 }
 .dropdown:hover .dropdown-menu {
@@ -19,7 +19,7 @@ hr{
   margin-left: 25px;
 }
 .bg-color1 {
-  background-color: #b14739;
+  background-color:#A27457;
 }
 .search {
   margin-right: 100px;
@@ -38,3 +38,6 @@ hr{
   cursor: pointer;
 }
 
+.forlogo {
+  padding: 0 16px !important;
+}
