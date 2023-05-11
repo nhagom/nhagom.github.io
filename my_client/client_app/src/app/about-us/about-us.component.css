@@ -85,6 +85,10 @@ main {
 .row__item--contact {
   color: #000000;
   text-align: center;
-  margin-top: 150px;
-  margin-bottom: 150px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.row__item--contact h4 {
+  color: #A27457;
 }
