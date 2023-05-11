@@ -30,4 +30,7 @@ export class BlogDetailComponent {
       error:(err: string)=>{this.errMessage=err}
     })
   }
+  detailBlog(b:any){
+    this._router.navigate(['blog-detail',b._id])
+  }
 }
