@@ -27,30 +27,26 @@ export class ChatbotComponent {
     const userMessage = this.messages[this.messages.length - 1].content.toLowerCase();
     let botResponse = '';
 
-    if (userMessage === 'xin chào') {
+    if (userMessage.includes('chào')) {
       botResponse = 'Chào bạn!';
-    } else if (userMessage === 'chào') {
+    } else if (userMessage.includes('hi')) {
       botResponse = 'Chào bạn!';
-    } else if (userMessage === 'lê anh tài') {
-      botResponse = 'Vâng tôi biết, kui Tài rất thú';
-    } else if (userMessage === 'nguyễn hà khánh yên') {
-      botResponse = 'Waooo tất nhiên tôi biết, Yên rất xinh đẹp dễ thương lại còn học giỏi';
-    } else if (userMessage === 'nguyễn thị hồng thanh') {
-      botResponse = '....';
-    } else if (userMessage === 'phạm ngọc hiền') {
-      botResponse = '!!!!!';
-    } else if (userMessage === 'bạn tên gì?') {
-      botResponse = 'Mình tên là Chatbot.';
-    } else if (userMessage === 'bạn tên gì') {
-      botResponse = 'Mình tên là Chatbot.';
+    } else if (userMessage.includes('cảm ơn')) {
+      botResponse = 'Không có gì, mình luôn sẵn sàng giúp đỡ!';
+    } else if (userMessage.includes('hello')) {
+      botResponse = 'Chào bạn!';
+    } else if (userMessage.includes('hướng dẫn')) {
+      botResponse = 'Vui lòng cho mình biết bạn muốn hướng dẫn về điều gì!';
+    } else if (userMessage.includes('tài')) {
+      botResponse = 'Vâng tôi biết Tài, Tài đội trưởng đội coder, Tài rất giỏi, Tài 10 điểm';
+    } else if (userMessage.includes('tên')) {
+      botResponse = 'Mình là chatbot';
     } else if (userMessage === 'bạn làm gì được?') {
       botResponse = 'Mình có thể giúp bạn trả lời những câu hỏi đơn giản.';
     } else if (userMessage === 'bạn có thể giúp gì cho tôi?') {
       botResponse = 'Mình có thể giúp bạn trả lời những câu hỏi đơn giản.';
-    } else if (userMessage === 'trả lời giúp tôi') {
-      botResponse = 'Mình có thể giúp bạn trả lời những câu hỏi như: \n1. Thời gian giao hàng trung bình là bao lâu? \n2. Các chính sách đổi trả hoặc bảo hành sản phẩm? \n 3. Tư vấn về sản phẩm hoặc dịch vụ của Nhà Gốm \n 4. ' ;
-    } else if (userMessage.endsWith('?')) {
-      botResponse = 'Quý khách vui lòng đợi trong vài phút để chatbot liên hệ bộ phận chăm sóc khách hàng.';
+    // } else if (userMessage.endsWith('?')) {
+    //   botResponse = 'Quý khách vui lòng đợi trong vài phút để chatbot liên hệ bộ phận chăm sóc khách hàng.';
     } else if (userMessage === 'cho tôi hỏi') {
       botResponse = 'Mình có thể giúp bạn trả lời những câu hỏi đơn giản.';
     } else if (userMessage === 'cho hỏi') {
@@ -58,7 +54,7 @@ export class ChatbotComponent {
     } else if (userMessage === 'cho tao hỏi') {
       botResponse = 'Bạn cần lịch sự hơn trong việc đặt câu hỏi!';
     } else {
-      botResponse = 'Xin lỗi, mình không hiểu bạn đang nói gì.';
+      botResponse = 'Câu hỏi của bạn nằm ngoài phạm vi trả lời của tôi, xin vui lòng đợi trong giây lát tôi sẽ liên hệ đến bộ phận CSKH';
     }
 
     this.messages.push({ sender: 'chatbot', content: botResponse });
