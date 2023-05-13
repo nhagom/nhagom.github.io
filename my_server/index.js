@@ -481,7 +481,7 @@ app.get('/orders/:start/:end', async (req, res) => {
   app.post('/products/add', cors(), async (req, res) => {
     const { productId, productName, description, price, image, set, size, style, trait } = req.body;
     const newProduct = { productId, productName, description, price, image, set, size, style, trait };
-    newProduct.productDate = new Date().toLocaleDateString('en-GB');
+    newProduct.productDate = new Date().toISOString();
     const result = await productsCollection.insertOne(newProduct);
     res.send(result);
   });
