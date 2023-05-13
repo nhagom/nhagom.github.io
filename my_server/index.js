@@ -50,7 +50,7 @@ feedbacksCollection = database.collection("feedbacks");
       });
       result.sort((a, b) => b.productDate - a.productDate);
       result.forEach((item) => {
-        item.productDate = item.productDate.toISOString()('en-GB');
+        item.productDate = item.productDate.toLocaleDateString('en-GB');
       });
       res.send(result)
   })
@@ -142,7 +142,7 @@ app.get("/blogs", cors(), async (req,res)=>{
     });
     result.sort((a, b) => b.blogDate - a.blogDate);
     result.forEach((item) => {
-      item.blogDate = item.blogDate.toISOString()('en-GB');
+      item.blogDate = item.blogDate.toLocaleDateString('en-GB');
     });
     res.send(result)
 })
@@ -481,7 +481,8 @@ app.get('/orders/:start/:end', async (req, res) => {
   app.post('/products/add', cors(), async (req, res) => {
     const { productId, productName, description, price, image, set, size, style, trait } = req.body;
     const newProduct = { productId, productName, description, price, image, set, size, style, trait };
-    newProduct.productDate = new Date().toISOString();
+    newProduct.productDate = new Date().toLocaleDateString('en-GB');
+    
     const result = await productsCollection.insertOne(newProduct);
     res.send(result);
   });
@@ -519,7 +520,7 @@ app.put("/blogs/update/:Id", cors(), async (req,res)=>{
  app.post('/blogs/add', cors(), async (req, res) => {
   const { blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent } = req.body;
   const newBlog = {blogId, blogName, blogTitle, content1, content2, content3, imgTitle, shortContent };
-  newBlog.blogDate = new Date().toISOString();
+  newBlog.blogDate = new Date().toLocaleDateString('en-GB');
   const result = await blogsCollection.insertOne(newBlog);
   res.send(result);
 });
