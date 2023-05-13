@@ -50,7 +50,7 @@ feedbacksCollection = database.collection("feedbacks");
       });
       result.sort((a, b) => b.productDate - a.productDate);
       result.forEach((item) => {
-        item.productDate = item.productDate.toLocaleDateString('en-GB');
+        item.productDate = item.productDate.toISOString()('en-GB');
       });
       res.send(result)
   })
@@ -142,7 +142,7 @@ app.get("/blogs", cors(), async (req,res)=>{
     });
     result.sort((a, b) => b.blogDate - a.blogDate);
     result.forEach((item) => {
-      item.blogDate = item.blogDate.toLocaleDateString('en-GB');
+      item.blogDate = item.blogDate.toISOString()('en-GB');
     });
     res.send(result)
 })

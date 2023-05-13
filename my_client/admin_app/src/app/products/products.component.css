@@ -5,7 +5,15 @@
   color: red;
 }
 
+.new-p{
+  background-color: #FAF1E7;
+  margin: 10px;
+  padding: 15px;
+}
 
+.new-p h1 {
+  text-align: center;
+}
 
 .row {
   display: flex;
@@ -31,5 +39,5 @@
 
 .btn-primary {
   padding: 5px 10px;
-  
+
 }

@@ -43,6 +43,10 @@ body {
   margin-top: 10px;
 }
 
+.fsize {
+  font-size: 13px !important;
+}
+
 .text-sm {
   font-size: 14px !important;
 }
